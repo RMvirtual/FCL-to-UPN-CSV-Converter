@@ -3,5 +3,8 @@ load("@rules_python//python:defs.bzl", "py_test")
 py_test(
     name = "csv_reader",
     srcs = glob(["*.py"]),
-    deps = [],
+    deps = [
+        "@rules_python//python/runfiles"
+    ],
+    data = ["//resources/test_inputs:simple_scenario.csv"]
 )
