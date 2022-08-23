@@ -9,7 +9,7 @@ class Consignment:
         return self._reference
 
     @staticmethod
-    def from_upn_csv(csv_path: str):
+    def from_fcl_csv(csv_path: str):
         consignment = Consignment()
 
         return consignment

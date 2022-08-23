@@ -13,8 +13,8 @@ class TestConsignment(unittest.TestCase):
         self._csv_path = data_files.Rlocation(
             "fcl-to-upn-csv/resources/test_inputs/simple_scenario.csv")
 
-    def test_should_get_consignment_number_from_upn_csv(self):
-        consignment = Consignment.from_upn_csv(self._csv_path)
+    def test_should_get_consignment_number_from_fcl_csv(self):
+        consignment = Consignment.from_fcl_csv(self._csv_path)
         correct_reference = "GR220806951"
 
         self.assertEqual(correct_reference, consignment.reference)
