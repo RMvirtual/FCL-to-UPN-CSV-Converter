@@ -8,8 +8,7 @@ class TestCsvReader(unittest.TestCase):
         location = r.Rlocation(
             "fcl-to-upn-csv/resources/test_inputs/simple_scenario.csv")
 
-        print("Location:", location)
-
+        csv_file = csv_reader.read(location)
         self.fail("FAIL ME")
 
 
