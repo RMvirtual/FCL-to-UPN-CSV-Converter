@@ -52,9 +52,9 @@ class TestCsvReader(unittest.TestCase):
         self._correct_first_row = [
             "Mr  Susan      Cheshire", "10 BRAMBLING RISE", "HEMEL HEMPSTEAD",
             "", "", "HEMEL HEMPSTEAD", "HP2   6DT", "GR220806951",
-            "(078)4133 2424", "1000", "1", "PALL", "PALLETS N / D",
+            "(078) 4133 2424", "1000", "1", "PALL", "PALLETS N/D",
             "PROP PAL LTD", "", "", "", "", "", "", "", "", "", "", "", "",
-            "TEL: 07841 332424, TAIL LIFT","", "", "23 - Aug - 22", "",
+            "TEL: 07841 332424, TAIL LIFT","", "", "23-Aug-22", "",
             "1", "2", "Yes"
         ]
 
