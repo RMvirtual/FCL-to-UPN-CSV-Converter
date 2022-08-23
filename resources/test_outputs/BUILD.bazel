@@ -1,1 +1,1 @@
-exports_files([])
+exports_files(["simple_scenario.csv"])
