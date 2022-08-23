@@ -19,7 +19,7 @@ class CsvReading:
     def add(self, row: list[str]):
         self._rows.append(row)
 
-    def at(self, index: int):
+    def row(self, index: int):
         return self._rows[index]
 
     def number_of_rows(self):

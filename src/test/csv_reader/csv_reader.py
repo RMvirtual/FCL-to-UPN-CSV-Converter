@@ -15,7 +15,7 @@ class TestCsvReader(unittest.TestCase):
         self.assertEqual(correct_no_of_rows, rows)
 
     def test_should_read_first_line_headers(self):
-        headers = self._csv_file.at(0)
+        headers = self._csv_file.row(0)
         self.assertListEqual(self._correct_headers, headers)
 
     def _load_csv_file(self) -> None:
