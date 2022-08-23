@@ -4,7 +4,8 @@ py_test(
     name = "csv_reader",
     srcs = glob(["*.py"]),
     deps = [
-        "@rules_python//python/runfiles"
+        "@rules_python//python/runfiles",
+        "//src/main/csv"
     ],
     data = ["//resources/test_inputs:simple_scenario.csv"]
 )
