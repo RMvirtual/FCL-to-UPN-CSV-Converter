@@ -1,5 +1,6 @@
 import unittest
 from rules_python.python.runfiles import runfiles
+from src.main.consignment.consignment import Consignment
 
 
 class TestConsignment(unittest.TestCase):
@@ -13,7 +14,7 @@ class TestConsignment(unittest.TestCase):
             "fcl-to-upn-csv/resources/test_inputs/simple_scenario.csv")
 
     def test_should_create_consignment_from_upn_csv(self):
-        consignment = Consignment.fromUpnCsv(self._csv_path)
+        consignment = Consignment.from_upn_csv(self._csv_path)
 
         self.fail("Force fail")
 
