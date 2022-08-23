@@ -9,17 +9,17 @@ class TestCsvReader(unittest.TestCase):
         self._initialise_correct_values()
 
     def test_should_get_number_of_rows(self):
-        rows = self._csv_file.number_of_rows()
+        rows = len(self._csv_file)
         correct_no_of_rows = 2
 
         self.assertEqual(correct_no_of_rows, rows)
 
     def test_should_read_first_line_headers(self):
-        headers = self._csv_file.row(0)
+        headers = self._csv_file[0]
         self.assertListEqual(self._correct_headers, headers)
 
     def test_should_read_second_row(self):
-        second_row = self._csv_file.row(1)
+        second_row = self._csv_file[1]
         self.assertListEqual(self._correct_first_row, second_row)
 
     def _load_csv_file(self) -> None:

@@ -1,27 +1,13 @@
 import csv
 
 
-def read(src_path: str):
+def read(src_path: str) -> list[list[str]]:
     with open(src_path, newline='') as csv_file:
         reader = csv.reader(csv_file, delimiter=',', quotechar='"')
-        csv_reading = CsvReading()
+        csv_readings = []
 
         for row in reader:
-            csv_reading.add(row)
+            csv_readings.append(row)
 
-    return csv_reading
-
-
-class CsvReading:
-    def __init__(self):
-        self._rows = []
-
-    def add(self, row: list[str]):
-        self._rows.append(row)
-
-    def row(self, index: int):
-        return self._rows[index]
-
-    def number_of_rows(self):
-        return len(self._rows)
+    return csv_readings
 
