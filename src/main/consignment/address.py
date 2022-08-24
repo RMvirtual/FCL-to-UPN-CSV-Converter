@@ -30,7 +30,7 @@ class Address:
             + r"([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
         )
 
-    def _matches_uk_post_code_pattern(self, post_code: str) -> bool:
+    def _post_code_pattern_matches(self, post_code: str) -> bool:
         return bool(self._uk_post_code_pattern.fullmatch(post_code))
 
     @property
@@ -79,7 +79,11 @@ class Address:
 
     @post_code.setter
     def post_code(self, new_post_code):
-        self._post_code = new_post_code
+        if self._post_code_pattern_matches(new_post_code):
+            self._post_code = new_post_code
+
+        else:
+            raise ValueError("Incorrect pattern for post code.")
 
     @property
     def country(self):
