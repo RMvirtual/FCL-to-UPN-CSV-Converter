@@ -32,4 +32,4 @@ class Consignment:
         reference_to_process = self._strip_reference_prefix(ref)
         nine_digit_pattern = re.compile(r"\d{9}")
 
-        return bool(nine_digit_pattern.match(reference_to_process))
+        return bool(nine_digit_pattern.fullmatch(reference_to_process))
