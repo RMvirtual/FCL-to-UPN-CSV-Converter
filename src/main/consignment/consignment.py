@@ -8,7 +8,7 @@ class Consignment:
     @property
     def reference(self) -> str:
         return (
-            self._reference.as_string() if self._reference is not None
+            self._reference.string() if self._reference is not None
             else None
         )
 
@@ -17,5 +17,5 @@ class Consignment:
         try:
             self._reference = Reference(new_reference)
 
-        except ValueError:
-            raise ValueError("Incorrect Reference Format")
+        except ValueError as error:
+            raise error

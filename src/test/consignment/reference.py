@@ -5,13 +5,13 @@ from src.main.consignment.reference import Reference
 class TestReference(unittest.TestCase):
     def test_should_set_full_reference(self):
         correct_reference = "GR220806951"
-        reference = Reference("GR220806951").as_string()
+        reference = str(Reference("GR220806951"))
 
         self.assertEqual(correct_reference, reference)
 
     def test_should_set_numeric_only_reference(self):
         correct_reference = "GR220806951"
-        reference = Reference("220806951").as_string()
+        reference = str(Reference("220806951"))
 
         self.assertEqual(correct_reference, reference)
 
