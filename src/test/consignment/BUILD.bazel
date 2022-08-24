@@ -19,3 +19,13 @@ py_test(
     ],
     data = []
 )
+
+py_test(
+    name = "service_options",
+    srcs = glob(["*.py"]),
+    deps = [
+        "@rules_python//python/runfiles",
+        "//src/main/consignment"
+    ],
+    data = []
+)

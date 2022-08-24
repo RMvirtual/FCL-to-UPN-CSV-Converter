@@ -14,7 +14,7 @@ class TestAddress(unittest.TestCase):
     def test_should_validate_sufficient_address(self):
         self.assertTrue(self._address.is_valid())
 
-    def test_should_invalidate_incorrect_post_code_variants(self):
+    def test_should_invalidate_incorrect_post_code(self):
         incorrect_post_code = "1L43 8EP"
 
         with self.assertRaises(ValueError):
