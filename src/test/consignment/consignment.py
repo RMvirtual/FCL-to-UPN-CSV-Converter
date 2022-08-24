@@ -30,5 +30,14 @@ class TestConsignment(unittest.TestCase):
         with self.assertRaises(ValueError):
             self._consignment.reference = "FE220806951"
 
+    def test_should_error_if_too_few_digits(self):
+        with self.assertRaises(ValueError):
+            self._consignment.reference = "GR220806"
+
+    def test_should_error_if_too_many_digits(self):
+        with self.assertRaises(ValueError):
+            self._consignment.reference = "2208069510"
+
+
 if __name__ == '__main__':
     unittest.main()
