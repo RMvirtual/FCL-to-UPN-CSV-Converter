@@ -9,3 +9,13 @@ py_test(
     ],
     data = ["//resources/test_inputs:simple_scenario.csv"]
 )
+
+py_test(
+    name = "address",
+    srcs = glob(["*.py"]),
+    deps = [
+        "@rules_python//python/runfiles",
+        "//src/main/consignment"
+    ],
+    data = []
+)
