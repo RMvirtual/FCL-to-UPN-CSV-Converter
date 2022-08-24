@@ -23,13 +23,15 @@ class Consignment:
             else "GR" + ref
         )
 
-    def _strip_reference_prefix(self, ref: str):
+    @staticmethod
+    def _strip_reference_prefix(ref: str):
         starting_index = 2 if ref.upper().startswith("GR") else 0
 
         return ref[starting_index:]
 
-    def _is_reference_valid(self, ref: str):
-        reference_to_process = self._strip_reference_prefix(ref)
+    @staticmethod
+    def _is_reference_valid(ref: str):
+        reference_to_process = Consignment._strip_reference_prefix(ref)
         nine_digit_pattern = re.compile(r"\d{9}")
 
         return bool(nine_digit_pattern.fullmatch(reference_to_process))
