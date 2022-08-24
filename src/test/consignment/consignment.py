@@ -26,6 +26,9 @@ class TestConsignment(unittest.TestCase):
 
         self.assertEqual(correct_reference, self._consignment.reference)
 
+    def test_should_error_if_incorrect_prefix(self):
+        with self.assertRaises(ValueError):
+            self._consignment.reference = "FE220806951"
 
 if __name__ == '__main__':
     unittest.main()
