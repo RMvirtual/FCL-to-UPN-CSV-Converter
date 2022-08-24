@@ -17,10 +17,10 @@ class Consignment:
         else:
             raise ValueError("Incorrect Reference Format")
 
-    def _set_reference(self, new_reference: str):
+    def _set_reference(self, ref: str):
         self._reference = (
-            new_reference if new_reference.upper().startswith("GR")
-            else "GR" + new_reference
+            ref if ref.upper().startswith("GR")
+            else "GR" + ref
         )
 
     def _strip_reference_prefix(self, ref: str):
@@ -33,9 +33,3 @@ class Consignment:
         nine_digit_pattern = re.compile(r"\d{9}")
 
         return bool(nine_digit_pattern.match(reference_to_process))
-
-    @staticmethod
-    def from_fcl_csv(csv_path: str):
-        consignment = Consignment()
-
-        return consignment
