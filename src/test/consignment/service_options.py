@@ -3,17 +3,34 @@ from src.main.consignment.service_options import ServiceOptions
 
 
 class TestServiceOptions(unittest.TestCase):
-    def should_create_default_service_options(self):
-        service_options = ServiceOptions()
+    def setUp(self) -> None:
+        self._service_options = ServiceOptions()
 
-        checks = [
-            service_options.main_service.is_next_day(),
-            service_options.premium_service.is_not_required(),
-            service_options.additional_service.is_not_required(),
-            service_options.tail_lift.is_not_required()
+    def test_should_create_default_service_options(self):
+        default_service_checks = [
+            self._service_options.main_service.is_next_day(),
+            self._service_options.premium_service.is_not_required(),
+            self._service_options.additional_service.is_not_required(),
+            self._service_options.tail_lift.is_not_required()
         ]
 
-        for check in checks:
+        for check in default_service_checks:
+            self.assertTrue(check)
+
+    def test_should_amend_service_options(self):
+        self._service_options.main_service.economy()
+        self._service_options.premium_service.timed()
+        self._service_options.additional_service.book_in()
+        self._service_options.tail_lift.required()
+
+        amended_service_checks = [
+            self._service_options.main_service.is_economy(),
+            self._service_options.premium_service.is_timed(),
+            self._service_options.additional_service.is_book_in(),
+            self._service_options.tail_lift.is_required()
+        ]
+
+        for check in amended_service_checks:
             self.assertTrue(check)
 
 

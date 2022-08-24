@@ -98,7 +98,7 @@ class AdditionalService:
     def is_book_in(self) -> bool:
         return self._option == AdditionalService.Options.BOOK_IN
 
-    def is_booked_in(self) -> None:
+    def is_booked(self) -> None:
         return self._option == AdditionalService.Options.BOOKED
 
 
