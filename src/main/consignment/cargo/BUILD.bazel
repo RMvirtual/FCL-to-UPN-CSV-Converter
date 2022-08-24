@@ -1,11 +1,8 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-  name = "consignment",
+  name = "cargo",
   srcs = glob(["*.py"]),
-  deps = [
-    "//src/main/consignment/service",
-    "//src/main/consignment/cargo"
-  ],
+  deps = [],
   visibility = ["//visibility:public"]
 )

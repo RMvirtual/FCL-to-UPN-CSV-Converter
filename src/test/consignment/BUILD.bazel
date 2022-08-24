@@ -21,11 +21,21 @@ py_test(
 )
 
 py_test(
-    name = "service_options",
+    name = "service",
     srcs = glob(["*.py"]),
     deps = [
         "@rules_python//python/runfiles",
-        "//src/main/consignment"
+        "//src/main/consignment/service"
+    ],
+    data = []
+)
+
+py_test(
+    name = "cargo",
+    srcs = glob(["*.py"]),
+    deps = [
+        "@rules_python//python/runfiles",
+        "//src/main/consignment/cargo"
     ],
     data = []
 )
