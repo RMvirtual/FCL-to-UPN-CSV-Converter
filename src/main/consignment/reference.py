@@ -3,8 +3,14 @@ import re
 
 class Reference:
     def __init__(self, reference: str):
-        self._prefix = "GR"
-        self._number = reference
+        if Reference.is_valid(reference):
+            self._set_reference(reference)
+
+        else:
+            raise ValueError(
+                "Incorrect reference format. Should be either GRddddddddd "
+                + "or ddddddddd"
+            )
 
     def as_string(self):
         return self._prefix + self._number
@@ -23,7 +29,9 @@ class Reference:
         return bool(nine_digit_pattern.fullmatch(reference_to_process))
 
     def _set_reference(self, reference: str):
-        self._reference = (
-            reference if reference.upper().startswith(self._prefix)
-            else self._prefix + reference
+        self._prefix = "GR"
+
+        self._number = (
+            reference[2:] if reference.upper().startswith(self._prefix)
+            else reference
         )
