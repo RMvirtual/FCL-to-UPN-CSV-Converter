@@ -26,5 +26,6 @@ class TestConsignment(unittest.TestCase):
 
         self.assertEqual(correct_reference, self._consignment.reference)
 
+
 if __name__ == '__main__':
     unittest.main()
