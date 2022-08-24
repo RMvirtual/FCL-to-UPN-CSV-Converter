@@ -19,7 +19,7 @@ class Reference:
         except ValueError as error:
             raise error
 
-    def _parse_number(self, number):
+    def _parse_number(self, number) -> None:
         if self._numbers_only_pattern_matches(number):
             self._number = number
 
