@@ -3,7 +3,7 @@ import re
 
 class Reference:
     def __init__(self, reference: str):
-        if Reference.is_valid(reference):
+        if Reference._is_valid(reference):
             self._set_reference(reference)
 
         else:
@@ -22,11 +22,10 @@ class Reference:
         return reference[starting_index:]
 
     @staticmethod
-    def is_valid(reference: str):
-        reference_to_process = Reference._strip_reference_prefix(reference)
-        nine_digit_pattern = re.compile(r"\d{9}")
+    def _is_valid(reference: str):
+        gr_pattern = re.compile(r"\d{9}|[gG][rR]\d{9}")
 
-        return bool(nine_digit_pattern.fullmatch(reference_to_process))
+        return bool(gr_pattern.fullmatch(reference))
 
     def _set_reference(self, reference: str):
         self._prefix = "GR"
