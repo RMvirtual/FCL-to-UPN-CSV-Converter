@@ -1,6 +1,7 @@
 import unittest
 from rules_python.python.runfiles import runfiles
 
+
 class TestFclCsv(unittest.TestCase):
     def setUp(self) -> None:
         pass
