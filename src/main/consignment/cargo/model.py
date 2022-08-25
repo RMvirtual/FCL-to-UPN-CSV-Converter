@@ -14,3 +14,5 @@ class Cargo:
     def __getitem__(self, index: int) -> CargoEntry:
         return self._entry_lines[index]
 
+    def __len__(self) -> int:
+        return len(self._entry_lines)
