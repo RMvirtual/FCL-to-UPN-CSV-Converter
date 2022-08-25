@@ -7,9 +7,8 @@ class Cargo:
 
     def add(self, new_entry: CargoEntry) -> None:
         for entry in self._entries:
-            if entry.pallet_type.__class__ is new_entry.pallet_type.__class__:
-                entry.total_weight += new_entry.total_weight
-                entry.number_of_pallets += new_entry.number_of_pallets
+            if entry == new_entry:
+                entry += new_entry
 
                 return
 

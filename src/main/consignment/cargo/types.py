@@ -9,16 +9,18 @@ class Pallet:
         DOUBLE = 2
         TRIPLE = 3
 
-    def __init__(self, max_weight_kgs: int):
-        self._max_weight_kgs: int = max_weight_kgs
+    def __init__(self, max_weight_kgs: float):
+        self._max_weight_kgs: float = max_weight_kgs
         self._oversize_option = Pallet.OversizeOptions.NORMAL
 
-    def __eq__(self, other: Pallet):
-        if self.__class__ == other.__class__:
-            if self._oversize_option == other.oversize_option:
-                return True
+    def __eq__(self, other: Pallet) -> bool:
+        pallet_class_matches = self.__class__ == other.__class__
+        oversize_matches = False
 
-        return False
+        if pallet_class_matches:
+            oversize_matches = self._oversize_option == other.oversize_option
+
+        return pallet_class_matches and oversize_matches
 
     @property
     def oversize_option(self):
