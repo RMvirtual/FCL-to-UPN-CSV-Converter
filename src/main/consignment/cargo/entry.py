@@ -3,8 +3,8 @@ from src.main.consignment.cargo.types import *
 
 
 class CargoEntry:
-    def __init__(self):
-        self._pallet_type: Pallet or None = None
+    def __init__(self, package_type: Pallet):
+        self._pallet_type: Pallet = package_type
         self._number_of_pallets: int = 0
         self._total_weight: float = 0
 

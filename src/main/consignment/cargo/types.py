@@ -14,16 +14,20 @@ class Pallet:
         self._oversize = Pallet.OversizeOptions.NORMAL
 
     def __eq__(self, other: Pallet) -> bool:
-        return (
-            self._pallet_class_matches(other)
-            and self._oversize_option_matches(other)
-        )
+        return self._is_equal(other)
 
-    def _pallet_class_matches(self, other: Pallet) -> bool:
+    def _is_equal(self, other: Pallet) -> bool:
+        return self._matches_class(other) and self._matches_oversize(other)
+
+    def _matches_class(self, other: Pallet) -> bool:
         return self.__class__ == other.__class__
 
-    def _oversize_option_matches(self, other: Pallet) -> bool:
+    def _matches_oversize(self, other: Pallet) -> bool:
         return self._oversize == other.oversize_option
+
+    @property
+    def max_weight_kgs(self) -> float:
+        return self._max_weight_kgs
 
     @property
     def oversize_option(self):
