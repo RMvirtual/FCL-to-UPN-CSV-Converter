@@ -81,5 +81,6 @@ class TestCargo(unittest.TestCase):
         self.assertEqual(1000, cargo[1].total_weight)
         self.assertIsInstance(cargo[1].pallet_type, FullPallet)
 
+
 if __name__ == '__main__':
     unittest.main()

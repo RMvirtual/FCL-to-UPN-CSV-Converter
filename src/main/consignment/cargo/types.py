@@ -11,36 +11,39 @@ class Pallet:
 
     def __init__(self, max_weight_kgs: float):
         self._max_weight_kgs: float = max_weight_kgs
-        self._oversize_option = Pallet.OversizeOptions.NORMAL
+        self._oversize = Pallet.OversizeOptions.NORMAL
 
     def __eq__(self, other: Pallet) -> bool:
-        pallet_class_matches = self.__class__ == other.__class__
-        oversize_matches = False
+        return (
+            self._pallet_class_matches(other)
+            and self._oversize_option_matches(other)
+        )
 
-        if pallet_class_matches:
-            oversize_matches = self._oversize_option == other.oversize_option
+    def _pallet_class_matches(self, other: Pallet) -> bool:
+        return self.__class__ == other.__class__
 
-        return pallet_class_matches and oversize_matches
+    def _oversize_option_matches(self, other: Pallet) -> bool:
+        return self._oversize == other.oversize_option
 
     @property
     def oversize_option(self):
-        return self._oversize_option
+        return self._oversize
 
     @oversize_option.setter
     def oversize_option(self, option: OversizeOptions):
-        self._oversize_option = option
+        self._oversize = option
 
     def is_normal_size(self) -> bool:
-        return self._oversize_option == self.OversizeOptions.NORMAL
+        return self._oversize == self.OversizeOptions.NORMAL
 
     def is_oversize(self) -> bool:
-        return self._oversize_option == self.OversizeOptions.OVERSIZE
+        return self._oversize == self.OversizeOptions.OVERSIZE
 
     def is_double(self) -> bool:
-        return self._oversize_option == self.OversizeOptions.DOUBLE
+        return self._oversize == self.OversizeOptions.DOUBLE
 
     def is_triple(self) -> bool:
-        return self._oversize_option == self.OversizeOptions.TRIPLE
+        return self._oversize == self.OversizeOptions.TRIPLE
 
 
 class FullPallet(Pallet):
