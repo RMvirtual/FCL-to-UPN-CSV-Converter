@@ -4,9 +4,9 @@ from src.main.consignment.cargo.types import *
 
 class CargoEntry:
     def __init__(self, package_type: Pallet):
-        self._pallet_type: Pallet = package_type
-        self._number_of_pallets: int = 0
-        self._total_weight: float = 0
+        self._package_type: Pallet = package_type
+        self._no_of_packages: int = 0
+        self._weight_kgs: float = 0
 
     def __iadd__(self, other_entry: CargoEntry) -> None:
         if self == other_entry:
@@ -16,33 +16,38 @@ class CargoEntry:
             raise ValueError("Incorrect pallet dimensions to combine.")
 
     def __eq__(self, other_entry: CargoEntry) -> bool:
-        return self._pallet_type == other_entry.pallet_type
+        return self._package_type == other_entry.package_type
 
     def _add_cargo_details(self, other_entry: CargoEntry) -> None:
-        self._number_of_pallets += other_entry.number_of_pallets
-        self._total_weight += other_entry.total_weight
+        self._no_of_packages += other_entry.quantity
+        self._weight_kgs += other_entry.weight_kgs
 
     @property
-    def pallet_type(self) -> Pallet:
-        return self._pallet_type
+    def package_type(self) -> Pallet:
+        return self._package_type
 
-    @pallet_type.setter
-    def pallet_type(self, pallet_type: Pallet):
-        self._pallet_type = pallet_type
-
-    @property
-    def number_of_pallets(self) -> int:
-        return self._number_of_pallets
-
-    @number_of_pallets.setter
-    def number_of_pallets(self, quantity: int) -> None:
-        self._number_of_pallets = quantity
+    @package_type.setter
+    def package_type(self, pallet_type: Pallet):
+        self._package_type = pallet_type
 
     @property
-    def total_weight(self) -> float:
-        return self._total_weight
+    def quantity(self) -> int:
+        return self._no_of_packages
 
-    @total_weight.setter
-    def total_weight(self, weight) -> None:
-        self._total_weight = weight
+    @quantity.setter
+    def quantity(self, quantity: int) -> None:
+        self._no_of_packages = quantity
+
+    @property
+    def weight_kgs(self) -> float:
+        return self._weight_kgs
+
+    @weight_kgs.setter
+    def weight_kgs(self, weight: float) -> None:
+        if weight / self._no_of_packages > self._package_type.max_weight_kgs:
+            raise ValueError(
+                "Desired weight too heavy for the current number of packages.")
+
+        else:
+            self._weight_kgs = weight
 
