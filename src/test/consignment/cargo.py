@@ -33,7 +33,14 @@ class TestCargo(unittest.TestCase):
         cargo.add(line_1)
         cargo.add(line_2)
 
-        self.assertEqual(len(cargo), 1)
+        correct_no_of_entries = 1
+        correct_total_weight = 900
+        correct_total_pallets = 2
+
+        self.assertEqual(correct_no_of_entries, len(cargo))
+        self.assertEqual(correct_total_pallets, cargo[0].number_of_pallets)
+        self.assertEqual(correct_total_weight, cargo[0].total_weight)
+        self.assertIsInstance(cargo[0].pallet_type, HalfPallet)
 
 
 if __name__ == '__main__':
