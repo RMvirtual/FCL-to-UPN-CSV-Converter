@@ -10,14 +10,17 @@ class CargoEntry:
 
     def __iadd__(self, other_entry: CargoEntry) -> None:
         if self == other_entry:
-            self._number_of_pallets += other_entry.number_of_pallets
-            self._total_weight += other_entry.total_weight
+            self._add_cargo_details(other_entry)
 
         else:
             raise ValueError("Incorrect pallet dimensions to combine.")
 
     def __eq__(self, other_entry: CargoEntry) -> bool:
         return self._pallet_type == other_entry.pallet_type
+
+    def _add_cargo_details(self, other_entry: CargoEntry) -> None:
+        self._number_of_pallets += other_entry.number_of_pallets
+        self._total_weight += other_entry.total_weight
 
     @property
     def pallet_type(self) -> Pallet:
