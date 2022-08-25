@@ -1,3 +1,4 @@
+from __future__ import annotations
 from enum import Enum
 
 
@@ -11,6 +12,13 @@ class Pallet:
     def __init__(self, max_weight_kgs: int):
         self._max_weight_kgs: int = max_weight_kgs
         self._oversize_option = Pallet.OversizeOptions.NORMAL
+
+    def __eq__(self, other: Pallet):
+        if self.__class__ == other.__class__:
+            if self._oversize_option == other.oversize_option:
+                return True
+
+        return False
 
     @property
     def oversize_option(self):
