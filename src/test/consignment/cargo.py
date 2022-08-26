@@ -40,6 +40,19 @@ class TestCargo(unittest.TestCase):
         with self.assertRaises(ValueError):
             entry_1 += entry_2
 
+    def test_should_combine_entries_of_special_oversize(self):
+        entry_1 = self._cargo_entry(HalfPallet(), (1, 400))
+        entry_1.package_type.oversize_option = Pallet.OversizeOptions.DOUBLE
+
+        entry_2 = self._cargo_entry(HalfPallet(), (2, 300))
+        entry_2.package_type.oversize_option = Pallet.OversizeOptions.DOUBLE
+
+        self._cargo.add(entry_1)
+        self._cargo.add(entry_2)
+
+        self._compare_cargo_entry(
+            0, HalfPallet, (3, 700), Pallet.OversizeOptions.DOUBLE)
+
     def test_should_add_two_different_pallet_types(self):
         self._create_and_add_cargo_entry(HalfPallet(), (1, 400))
         self._create_and_add_cargo_entry(FullPallet(), (3, 1000))
@@ -89,11 +102,18 @@ class TestCargo(unittest.TestCase):
 
     def _compare_cargo_entry(
             self, index: int, pkg_type: Type[Pallet],
-            quantity_and_weight: tuple[int, float]) -> None:
+            quantity_and_weight: tuple[int, float],
+            oversize_option: Pallet.OversizeOptions = None) -> None:
 
         self.assertIsInstance(self._cargo[index].package_type, pkg_type)
         self.assertEqual(quantity_and_weight[0], self._cargo[index].quantity)
         self.assertEqual(quantity_and_weight[1], self._cargo[index].weight_kgs)
+
+        if oversize_option:
+            self.assertEqual(
+                self._cargo[index].package_type.oversize_option,
+                oversize_option
+            )
 
 
 if __name__ == '__main__':
