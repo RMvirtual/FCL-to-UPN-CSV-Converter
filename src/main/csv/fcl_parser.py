@@ -11,44 +11,45 @@ def read(csv_path: str, ignore_headers: bool = False) \
     return fcl_format.parse(csv_rows)
 
 
+class FclExportColumns(IntEnum):
+    CONTACT_NAME = 0
+    COMPANY_NAME = 1
+    ADDRESS_LINE_1 = 2
+    ADDRESS_LINE_2 = 3
+    ADDRESS_LINE_3 = 4
+    TOWN = 5
+    POST_CODE = 6
+    REFERENCE = 7
+    TELEPHONE_NO = 8
+    LINE_1_WEIGHT = 9
+    LINE_1_QUANTITY = 10
+    LINE_1_PACKAGE_TYPE = 11
+    LINE_1_DESCRIPTION = 12
+    PRINCIPAL_CLIENT = 13
+    LINE_2_WEIGHT = 14
+    LINE_2_QUANTITY = 15
+    LINE_2_PACKAGE_TYPE = 16
+    LINE_2_DESCRIPTION = 17
+    LINE_3_WEIGHT = 18
+    LINE_3_QUANTITY = 19
+    LINE_3_PACKAGE_TYPE = 20
+    LINE_3_DESCRIPTION = 21
+    LINE_4_WEIGHT = 22
+    LINE_4_QUANTITY = 23
+    LINE_4_PACKAGE_TYPE = 24
+    LINE_4_DESCRIPTION = 25
+    DELIVERY_INSTRUCTION_1 = 26
+    DELIVERY_INSTRUCTION_2 = 27
+    BOOKING_TIME = 28
+    DELIVERY_DATE = 29
+    SHIPPER_REFERENCE = 30
+    TOTAL_PALLETS = 31
+    PRIORITY_CODE = 32
+    TAIL_LIFT_REQUIRED = 33
+
+
 class FclCsvFormat:
     """Interprets a list of strings as a UPNEDIIMP FCL CSV export."""
-
-    class Column(IntEnum):
-        CONTACT_NAME = 0
-        COMPANY_NAME = 1
-        ADDRESS_LINE_1 = 2
-        ADDRESS_LINE_2 = 3
-        ADDRESS_LINE_3 = 4
-        TOWN = 5
-        POST_CODE = 6
-        REFERENCE = 7
-        TELEPHONE_NO = 8
-        LINE_1_WEIGHT = 9
-        LINE_1_QUANTITY = 10
-        LINE_1_PACKAGE_TYPE = 11
-        LINE_1_DESCRIPTION = 12
-        PRINCIPAL_CLIENT = 13
-        LINE_2_WEIGHT = 14
-        LINE_2_QUANTITY = 15
-        LINE_2_PACKAGE_TYPE = 16
-        LINE_2_DESCRIPTION = 17
-        LINE_3_WEIGHT = 18
-        LINE_3_QUANTITY = 19
-        LINE_3_PACKAGE_TYPE = 20
-        LINE_3_DESCRIPTION = 21
-        LINE_4_WEIGHT = 22
-        LINE_4_QUANTITY = 23
-        LINE_4_PACKAGE_TYPE = 24
-        LINE_4_DESCRIPTION = 25
-        DELIVERY_INSTRUCTION_1 = 26
-        DELIVERY_INSTRUCTION_2 = 27
-        BOOKING_TIME = 28
-        DELIVERY_DATE = 29
-        SHIPPER_REFERENCE = 30
-        TOTAL_PALLETS = 31
-        PRIORITY_CODE = 32
-        TAIL_LIFT_REQUIRED = 33
 
     def __init__(self):
         self._consignments: dict[str, Consignment] = {}
@@ -62,7 +63,7 @@ class FclCsvFormat:
         return self._consignments
 
     def _parse(self, csv_row: list[str]) -> None:
-        reference = csv_row[self.Column.REFERENCE]
+        reference = csv_row[FclExportColumns.REFERENCE]
 
         if reference in self._consignments:
             self._append_consignment(csv_row)
@@ -77,32 +78,33 @@ class FclCsvFormat:
         consignment = Consignment()
 
         consignment.reference = FclCsvFormat._trim_whitespace(
-            str(csv_row[self.Column.REFERENCE]))
+            str(csv_row[FclExportColumns.REFERENCE]))
 
         consignment.address.name = FclCsvFormat._trim_whitespace(
-            csv_row[self.Column.COMPANY_NAME])
+            csv_row[FclExportColumns.COMPANY_NAME])
 
         consignment.address.line_1 = FclCsvFormat._trim_whitespace(
-            csv_row[self.Column.ADDRESS_LINE_1])
+            csv_row[FclExportColumns.ADDRESS_LINE_1])
 
         consignment.address.line_2 = FclCsvFormat._trim_whitespace(
-            csv_row[self.Column.ADDRESS_LINE_2])
+            csv_row[FclExportColumns.ADDRESS_LINE_2])
 
         consignment.address.line_3 = FclCsvFormat._trim_whitespace(
-            csv_row[self.Column.ADDRESS_LINE_3])
+            csv_row[FclExportColumns.ADDRESS_LINE_3])
 
         consignment.address.town = FclCsvFormat._trim_whitespace(
-            csv_row[self.Column.TOWN])
+            csv_row[FclExportColumns.TOWN])
 
         consignment.address.post_code = FclCsvFormat._trim_whitespace(
-            csv_row[self.Column.POST_CODE])
+            csv_row[FclExportColumns.POST_CODE])
 
         consignment.address.country = "GB"
+
         consignment.address.contact_name = FclCsvFormat._trim_whitespace(
-            csv_row[self.Column.CONTACT_NAME])
+            csv_row[FclExportColumns.CONTACT_NAME])
 
         consignment.address.telephone_number = FclCsvFormat._trim_whitespace(
-            csv_row[self.Column.TELEPHONE_NO])
+            csv_row[FclExportColumns.TELEPHONE_NO])
 
         self._consignments[consignment.reference] = consignment
 
