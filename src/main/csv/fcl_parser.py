@@ -1,3 +1,4 @@
+from enum import IntEnum
 from src.main.csv.reader import read as read_csv
 from src.main.consignment.consignment import Consignment
 
@@ -13,6 +14,9 @@ def read(csv_path: str, ignore_headers: bool = False) \
 class FclCsvFormat:
     """Interprets a list of strings as a UPNEDIIMP FCL CSV export."""
 
+    class Column(IntEnum):
+        REFERENCE = 7
+
     def __init__(self):
         self._consignments: dict[str, Consignment] = {}
 
@@ -25,7 +29,7 @@ class FclCsvFormat:
         return self._consignments
 
     def _parse(self, csv_row: list[str]) -> None:
-        reference = csv_row[7]
+        reference = csv_row[self.Column.REFERENCE]
 
         if reference in self._consignments:
             self._append_consignment(csv_row)
@@ -38,7 +42,7 @@ class FclCsvFormat:
 
     def _new_consignment(self, csv_row: list[str]) -> None:
         consignment = Consignment()
-        consignment.reference = csv_row[7]
+        consignment.reference = csv_row[self.Column.REFERENCE]
 
         self._consignments[consignment.reference] = consignment
 

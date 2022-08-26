@@ -21,7 +21,7 @@ class TestFclCsvParser(unittest.TestCase):
             ignore_headers=True
         )
 
-        reference = consignments[0].reference
+        reference = list(consignments.values())[0].reference
         self.assertEqual(reference, "GR220806951")
 
     def test_should_read_a_consignment_address(self):
@@ -30,7 +30,7 @@ class TestFclCsvParser(unittest.TestCase):
             ignore_headers=True
         )
 
-        address = consignments[0].address
+        address = list(consignments.values())[0].address
         self.assertEqual(address.name, "10 BRAMBLING RISE")
         self.assertEqual(address.line_1, "HEMEL HEMPSTEAD")
         self.assertEqual(address.line_2, "")
