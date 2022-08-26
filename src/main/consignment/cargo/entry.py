@@ -23,6 +23,21 @@ class CargoEntry:
         self._weight_kgs += other_entry.weight_kgs
 
     @property
+    def quantity_and_weight(self) -> tuple[int, float]:
+        return self._quantity, self._weight_kgs
+
+    @quantity_and_weight.setter
+    def quantity_and_weight(self, qty_and_weight: tuple[int, float]) -> None:
+        quantity, weight = qty_and_weight
+        average_weight = self._average_weight(quantity, weight)
+
+        if self._max_weight_exceeded(average_weight):
+            raise ValueError("New average weight will exceed maximum.")
+
+        self._quantity = quantity
+        self._weight_kgs = weight
+
+    @property
     def package_type(self) -> Pallet:
         return self._package_type
 
@@ -58,18 +73,18 @@ class CargoEntry:
             raise ValueError("Desired weight will exceed average maximum.")
 
     def _can_amend_quantity(self, new_quantity: int):
-        average_weight = self._average_weight(self._weight_kgs, new_quantity)
+        average_weight = self._average_weight(new_quantity, self._weight_kgs)
 
-        return not self._new_weight_exceeds_max(average_weight)
+        return not self._max_weight_exceeded(average_weight)
 
     def _can_amend_weight(self, new_weight: float):
-        average_weight = self._average_weight(new_weight, self._quantity)
+        average_weight = self._average_weight(self._quantity, new_weight)
 
-        return not self._new_weight_exceeds_max(average_weight)
+        return not self._max_weight_exceeded(average_weight)
 
     @staticmethod
-    def _average_weight(total_weight, total_packages):
+    def _average_weight(total_packages, total_weight):
         return total_weight / total_packages if total_packages else 0
 
-    def _new_weight_exceeds_max(self, new_weight_per_package: float):
-        return new_weight_per_package > self._package_type.max_weight_kgs
+    def _max_weight_exceeded(self, weight: float):
+        return weight > self._package_type.max_weight_kgs
