@@ -45,7 +45,9 @@ class CargoEntry:
 
         else:
             raise ValueError(
-                "Desired number of packages will exceed maximum weight.")
+                "Desired number of packages will cause average weight to "
+                "exceed maximum."
+            )
 
     @weight_kgs.setter
     def weight_kgs(self, new_weight: float) -> None:
@@ -53,21 +55,20 @@ class CargoEntry:
             self._weight_kgs = new_weight
 
         else:
-            raise ValueError(
-                "Desired weight too heavy for the current number of packages.")
+            raise ValueError("Desired weight will exceed average maximum.")
 
     def _can_amend_quantity(self, new_quantity: int):
-        itemised_weight = self._weight_per_package(
-            self._weight_kgs, new_quantity)
+        average_weight = self._average_weight(self._weight_kgs, new_quantity)
 
-        return not self._new_weight_exceeds_max(itemised_weight)
+        return not self._new_weight_exceeds_max(average_weight)
 
     def _can_amend_weight(self, new_weight: float):
-        itemised_weight = self._weight_per_package(new_weight, self._quantity)
+        average_weight = self._average_weight(new_weight, self._quantity)
 
-        return not self._new_weight_exceeds_max(itemised_weight)
+        return not self._new_weight_exceeds_max(average_weight)
 
-    def _weight_per_package(self, total_weight, total_packages):
+    @staticmethod
+    def _average_weight(total_weight, total_packages):
         return total_weight / total_packages if total_packages else 0
 
     def _new_weight_exceeds_max(self, new_weight_per_package: float):
