@@ -1,5 +1,5 @@
 from src.main.consignment.cargo.entry import CargoEntry
-from src.main.consignment.cargo.types import Pallet
+from src.main.consignment.cargo.types import *
 
 
 class Cargo:

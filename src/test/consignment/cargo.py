@@ -34,7 +34,7 @@ class TestCargo(unittest.TestCase):
 
     def test_should_reject_combining_different_oversize_entries(self):
         entry_1 = self._cargo_entry(HalfPallet(), (1, 400))
-        entry_1.package_type.oversize_option = Pallet.OversizeOptions.DOUBLE
+        entry_1.package_type.oversize_option = OversizeOptions.DOUBLE
 
         entry_2 = self._cargo_entry(HalfPallet(), (1, 400))
 
@@ -43,16 +43,16 @@ class TestCargo(unittest.TestCase):
 
     def test_should_combine_entries_of_special_oversize(self):
         self._add_cargo_entry(
-            HalfPallet(), (1, 400), Pallet.OversizeOptions.DOUBLE)
+            HalfPallet(), (1, 400), OversizeOptions.DOUBLE)
 
         self._add_cargo_entry(
-            HalfPallet(), (2, 300), Pallet.OversizeOptions.DOUBLE)
+            HalfPallet(), (2, 300), OversizeOptions.DOUBLE)
 
         self._compare_cargo_entry(
             index=0,
             pkg_type=HalfPallet,
             quantity_and_weight=(3, 700),
-            oversize_option=Pallet.OversizeOptions.DOUBLE
+            oversize_option=OversizeOptions.DOUBLE
         )
 
     def test_should_add_two_different_pallet_types(self):
@@ -95,7 +95,7 @@ class TestCargo(unittest.TestCase):
 
     def _add_cargo_entry(
             self, pkg_type: Pallet, qty_and_weight: tuple[int, float],
-            oversize_option: Pallet.OversizeOptions = None
+            oversize_option: OversizeOptions = None
     ) -> None:
         entry = self._cargo_entry(pkg_type, qty_and_weight, oversize_option)
 
@@ -104,7 +104,7 @@ class TestCargo(unittest.TestCase):
     @staticmethod
     def _cargo_entry(
             pkg_type: Pallet, qty_and_weight: tuple[int, float],
-            oversize_option: Pallet.OversizeOptions = None
+            oversize_option: OversizeOptions = None
     ) -> CargoEntry:
         entry = CargoEntry(pkg_type)
         entry.quantity_and_weight = qty_and_weight
@@ -117,7 +117,7 @@ class TestCargo(unittest.TestCase):
     def _compare_cargo_entry(
             self, index: int, pkg_type: Type[Pallet],
             quantity_and_weight: tuple[int, float],
-            oversize_option: Pallet.OversizeOptions = None
+            oversize_option: OversizeOptions = None
     ) -> None:
         self.assertIsInstance(self._cargo[index].package_type, pkg_type)
         self.assertEqual(quantity_and_weight[0], self._cargo[index].quantity)

@@ -2,16 +2,17 @@ from __future__ import annotations
 from enum import Enum
 
 
-class Pallet:
-    class OversizeOptions(Enum):
-        NORMAL = 1
-        OVERSIZE = 2
-        DOUBLE = 2
-        TRIPLE = 3
+class OversizeOptions(Enum):
+    NORMAL = 1
+    OVERSIZE = 2
+    DOUBLE = 2
+    TRIPLE = 3
 
+
+class Pallet:
     def __init__(self, max_weight_kgs: float):
         self._max_weight_kgs: float = max_weight_kgs
-        self._oversize = Pallet.OversizeOptions.NORMAL
+        self._oversize = OversizeOptions.NORMAL
 
     def __eq__(self, other: Pallet) -> bool:
         return self._is_equal(other)
@@ -38,16 +39,16 @@ class Pallet:
         self._oversize = option
 
     def is_normal_size(self) -> bool:
-        return self._oversize == self.OversizeOptions.NORMAL
+        return self._oversize == OversizeOptions.NORMAL
 
     def is_oversize(self) -> bool:
-        return self._oversize == self.OversizeOptions.OVERSIZE
+        return self._oversize == OversizeOptions.OVERSIZE
 
     def is_double(self) -> bool:
-        return self._oversize == self.OversizeOptions.DOUBLE
+        return self._oversize == OversizeOptions.DOUBLE
 
     def is_triple(self) -> bool:
-        return self._oversize == self.OversizeOptions.TRIPLE
+        return self._oversize == OversizeOptions.TRIPLE
 
 
 class FullPallet(Pallet):
