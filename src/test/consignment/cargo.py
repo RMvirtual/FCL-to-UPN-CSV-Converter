@@ -31,6 +31,15 @@ class TestCargo(unittest.TestCase):
         with self.assertRaises(ValueError):
             entry_1 += entry_2
 
+    def test_should_reject_combining_different_oversize_entries(self):
+        entry_1 = self._cargo_entry(HalfPallet(), (1, 400))
+        entry_1.package_type.oversize_option = Pallet.OversizeOptions.DOUBLE
+
+        entry_2 = self._cargo_entry(HalfPallet(), (1, 400))
+
+        with self.assertRaises(ValueError):
+            entry_1 += entry_2
+
     def test_should_add_two_different_pallet_types(self):
         self._create_and_add_cargo_entry(HalfPallet(), (1, 400))
         self._create_and_add_cargo_entry(FullPallet(), (3, 1000))
