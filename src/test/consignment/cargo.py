@@ -90,6 +90,13 @@ class TestCargo(unittest.TestCase):
         with self.assertRaises(ValueError):
             entry.quantity = 2
 
+    def test_should_modify_qty_and_weight(self):
+        entry = CargoEntry(FullPallet())
+        entry.quantity_and_weight = (3, 3000)
+
+        self.assertEqual(3, entry.quantity)
+        self.assertEqual(3000, entry.weight_kgs)
+
     def test_should_not_exceed_max_weight_when_modifying_qty_and_weight(self):
         entry = CargoEntry(FullPallet())
         entry.quantity = 3
