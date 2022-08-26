@@ -57,14 +57,18 @@ class CargoEntry:
                 "Desired weight too heavy for the current number of packages.")
 
     def _can_amend_quantity(self, new_quantity: int):
-        weight_per_package = self._weight_kgs / new_quantity
+        itemised_weight = self._weight_per_package(
+            self._weight_kgs, new_quantity)
 
-        return self._new_weight_exceeds_max(weight_per_package)
+        return not self._new_weight_exceeds_max(itemised_weight)
 
     def _can_amend_weight(self, new_weight: float):
-        weight_per_package = new_weight / self._quantity
+        itemised_weight = self._weight_per_package(new_weight, self._quantity)
 
-        return self._new_weight_exceeds_max(weight_per_package)
+        return not self._new_weight_exceeds_max(itemised_weight)
+
+    def _weight_per_package(self, total_weight, total_packages):
+        return total_weight / total_packages if total_packages else 0
 
     def _new_weight_exceeds_max(self, new_weight_per_package: float):
         return new_weight_per_package > self._package_type.max_weight_kgs
