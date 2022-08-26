@@ -13,6 +13,7 @@ class Address:
         self._post_code = ""
         self._country = "GB"
         self._telephone_number = ""
+        self._contact_name = ""
 
     def is_valid(self):
         return (
@@ -93,6 +94,14 @@ class Address:
     @country.setter
     def country(self, new_country):
         self._country = new_country
+
+    @property
+    def contact_name(self):
+        return self._contact_name
+
+    @contact_name.setter
+    def contact_name(self, new_contact_name):
+        self._contact_name = new_contact_name
 
     @property
     def telephone_number(self):

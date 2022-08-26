@@ -38,6 +38,7 @@ class TestFclCsvParser(unittest.TestCase):
         self.assertEqual(address.town, "HEMEL HEMPSTEAD")
         self.assertEqual(address.post_code, "HP2 6DT")
         self.assertEqual(address.country, "GB")
+        self.assertEqual(address.contact_name, "Mr  Susan      Cheshire")
         self.assertEqual(address.telephone_number, "(078) 4133 2424")
 
     @property

@@ -87,6 +87,7 @@ class FclCsvFormat:
         consignment.address.post_code = cleaned_post_code
 
         consignment.address.country = "GB"
+        consignment.address.contact_name = csv_row[self.Column.CONTACT_NAME]
 
         consignment.address.telephone_number = csv_row[
             self.Column.TELEPHONE_NO]
