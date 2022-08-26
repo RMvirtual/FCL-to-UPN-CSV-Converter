@@ -17,9 +17,9 @@ class FclCsvFormat:
     class Column(IntEnum):
         CONTACT_NAME = 0
         COMPANY_NAME = 1
-        LINE_1 = 2
-        LINE_2 = 3
-        LINE_3 = 4
+        ADDRESS_LINE_1 = 2
+        ADDRESS_LINE_2 = 3
+        ADDRESS_LINE_3 = 4
         TOWN = 5
         POST_CODE = 6
         REFERENCE = 7
@@ -76,6 +76,20 @@ class FclCsvFormat:
     def _new_consignment(self, csv_row: list[str]) -> None:
         consignment = Consignment()
         consignment.reference = csv_row[self.Column.REFERENCE]
+
+        consignment.address.name = csv_row[self.Column.COMPANY_NAME]
+        consignment.address.line_1 = csv_row[self.Column.ADDRESS_LINE_1]
+        consignment.address.line_2 = csv_row[self.Column.ADDRESS_LINE_2]
+        consignment.address.line_3 = csv_row[self.Column.ADDRESS_LINE_3]
+        consignment.address.town = csv_row[self.Column.TOWN]
+
+        cleaned_post_code = " ".join(csv_row[self.Column.POST_CODE].split())
+        consignment.address.post_code = cleaned_post_code
+
+        consignment.address.country = "GB"
+
+        consignment.address.telephone_number = csv_row[
+            self.Column.TELEPHONE_NO]
 
         self._consignments[consignment.reference] = consignment
 
