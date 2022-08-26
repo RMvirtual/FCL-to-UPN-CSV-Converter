@@ -1,4 +1,5 @@
 from src.main.consignment.cargo.entry import CargoEntry
+from src.main.consignment.cargo.types import Pallet
 
 
 class Cargo:
@@ -6,13 +7,24 @@ class Cargo:
         self._entries: list[CargoEntry] = []
 
     def add(self, new_entry: CargoEntry) -> None:
+        existing_entry = self.entry_by_package_type(new_entry.package_type)
+
+        if existing_entry:
+            existing_entry += new_entry
+
+        else:
+            self._entries.append(new_entry)
+
+    def entry_by_package_type(self, package: Pallet) -> CargoEntry:
+        matching_cargo_entry = None
+
         for entry in self._entries:
-            if entry == new_entry:
-                entry += new_entry
+            if entry.package_type == package:
+                matching_cargo_entry = entry
 
-                return
+                break
 
-        self._entries.append(new_entry)
+        return matching_cargo_entry
 
     def __iter__(self):
         return self._entries.__iter__()
