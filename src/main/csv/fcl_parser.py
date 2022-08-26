@@ -75,24 +75,37 @@ class FclCsvFormat:
 
     def _new_consignment(self, csv_row: list[str]) -> None:
         consignment = Consignment()
-        consignment.reference = csv_row[self.Column.REFERENCE]
 
-        consignment.address.name = csv_row[self.Column.COMPANY_NAME]
-        consignment.address.line_1 = csv_row[self.Column.ADDRESS_LINE_1]
-        consignment.address.line_2 = csv_row[self.Column.ADDRESS_LINE_2]
-        consignment.address.line_3 = csv_row[self.Column.ADDRESS_LINE_3]
-        consignment.address.town = csv_row[self.Column.TOWN]
+        consignment.reference = FclCsvFormat._trim_whitespace(
+            str(csv_row[self.Column.REFERENCE]))
 
-        cleaned_post_code = " ".join(csv_row[self.Column.POST_CODE].split())
-        consignment.address.post_code = cleaned_post_code
+        consignment.address.name = FclCsvFormat._trim_whitespace(
+            csv_row[self.Column.COMPANY_NAME])
+
+        consignment.address.line_1 = FclCsvFormat._trim_whitespace(
+            csv_row[self.Column.ADDRESS_LINE_1])
+
+        consignment.address.line_2 = FclCsvFormat._trim_whitespace(
+            csv_row[self.Column.ADDRESS_LINE_2])
+
+        consignment.address.line_3 = FclCsvFormat._trim_whitespace(
+            csv_row[self.Column.ADDRESS_LINE_3])
+
+        consignment.address.town = FclCsvFormat._trim_whitespace(
+            csv_row[self.Column.TOWN])
+
+        consignment.address.post_code = FclCsvFormat._trim_whitespace(
+            csv_row[self.Column.POST_CODE])
 
         consignment.address.country = "GB"
-        consignment.address.contact_name = csv_row[self.Column.CONTACT_NAME]
+        consignment.address.contact_name = FclCsvFormat._trim_whitespace(
+            csv_row[self.Column.CONTACT_NAME])
 
-        consignment.address.telephone_number = csv_row[
-            self.Column.TELEPHONE_NO]
+        consignment.address.telephone_number = FclCsvFormat._trim_whitespace(
+            csv_row[self.Column.TELEPHONE_NO])
 
         self._consignments[consignment.reference] = consignment
 
-
-
+    @staticmethod
+    def _trim_whitespace(value: str):
+        return " ".join(value.split())
