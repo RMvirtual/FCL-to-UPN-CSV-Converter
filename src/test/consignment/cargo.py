@@ -6,29 +6,29 @@ from src.main.consignment.cargo.model import Cargo
 
 class TestCargo(unittest.TestCase):
     def test_should_add_a_single_cargo_entry(self):
-        cargo_line = CargoEntry(FullPallet())
-        cargo_line.quantity = 1
-        cargo_line.weight_kgs = 1000
+        entry = CargoEntry(FullPallet())
+        entry.quantity = 1
+        entry.weight_kgs = 1000
 
         cargo = Cargo()
-        cargo.add(cargo_line)
+        cargo.add(entry)
 
         self.assertIsInstance(cargo[0].package_type, FullPallet)
-        self.assertEqual(cargo[0].quantity, 1)
-        self.assertEqual(cargo[0].weight_kgs, 1000)
+        self.assertEqual(1, cargo[0].quantity)
+        self.assertEqual(1000, cargo[0].weight_kgs)
 
     def test_should_combine_two_cargo_entries(self):
-        line_1 = CargoEntry(HalfPallet())
-        line_1.quantity = 1
-        line_1.weight_kgs = 400
+        entry_1 = CargoEntry(HalfPallet())
+        entry_1.quantity = 1
+        entry_1.weight_kgs = 400
 
-        line_2 = CargoEntry(HalfPallet())
-        line_2.quantity = 2
-        line_2.weight_kgs = 1000
+        entry_2 = CargoEntry(HalfPallet())
+        entry_2.quantity = 2
+        entry_2.weight_kgs = 1000
 
         cargo = Cargo()
-        cargo.add(line_1)
-        cargo.add(line_2)
+        cargo.add(entry_1)
+        cargo.add(entry_2)
 
         correct_no_of_entries = 1
         correct_total_weight = 1400
@@ -40,29 +40,29 @@ class TestCargo(unittest.TestCase):
         self.assertIsInstance(cargo[0].package_type, HalfPallet)
 
     def test_should_reject_combining_two_cargo_entries(self):
-        line_1 = CargoEntry(HalfPallet())
-        line_1.quantity = 1
-        line_1.weight_kgs = 400
+        entry_1 = CargoEntry(HalfPallet())
+        entry_1.quantity = 1
+        entry_1.weight_kgs = 400
 
-        line_2 = CargoEntry(FullPallet())
-        line_2.quantity = 1
-        line_2.weight_kgs = 1000
+        entry_2 = CargoEntry(FullPallet())
+        entry_2.quantity = 1
+        entry_2.weight_kgs = 1000
 
         with self.assertRaises(ValueError):
-            line_1 += line_2
+            entry_1 += entry_2
 
     def test_should_add_two_different_pallet_types(self):
-        line_1 = CargoEntry(HalfPallet())
-        line_1.quantity = 1
-        line_1.weight_kgs = 400
+        entry_1 = CargoEntry(HalfPallet())
+        entry_1.quantity = 1
+        entry_1.weight_kgs = 400
 
-        line_2 = CargoEntry(FullPallet())
-        line_2.quantity = 3
-        line_2.weight_kgs = 1000
+        entry_2 = CargoEntry(FullPallet())
+        entry_2.quantity = 3
+        entry_2.weight_kgs = 1000
 
         cargo = Cargo()
-        cargo.add(line_1)
-        cargo.add(line_2)
+        cargo.add(entry_1)
+        cargo.add(entry_2)
 
         self.assertEqual(2, len(cargo))
 
@@ -92,6 +92,9 @@ class TestCargo(unittest.TestCase):
 
     def test_should_modify_qty_and_weight(self):
         entry = CargoEntry(FullPallet())
+        entry.quantity = 1
+        entry.weight_kgs = 1000
+
         entry.quantity_and_weight = (3, 3000)
 
         self.assertEqual(3, entry.quantity)
