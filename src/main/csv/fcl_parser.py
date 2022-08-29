@@ -40,49 +40,36 @@ class FclCsvFormat:
         pass
 
     def _new_consignment(self, csv_row: list[str]) -> None:
-        consignment = Consignment()
-
-        consignment.reference = FclCsvFormat._trim_and_extract_list_element(
-            csv_row, self._format["reference"])
-
-        consignment.address = self._parse_address(csv_row)
+        consignment = self._parse_consignment(csv_row)
         self._consignments[consignment.reference] = consignment
+
+    def _parse_consignment(self, csv_row: list[str]):
+        consignment = Consignment()
+        consignment.reference = self._extract_value(csv_row, "reference")
+        consignment.address = self._parse_address(csv_row)
+
+        return consignment
 
     def _parse_address(self, csv_row) -> Address:
         address = Address()
 
-        trim_and_extract = FclCsvFormat._trim_and_extract_list_element
-
-        address.name = trim_and_extract(csv_row, self._format["company_name"])
-
-        address.line_1 = trim_and_extract(
-            csv_row, self._format["address_line_1"])
-
-        address.line_2 = trim_and_extract(
-            csv_row, self._format["address_line_2"])
-
-        address.line_3 = trim_and_extract(
-            csv_row, self._format["address_line_3"])
-
-        address.town = trim_and_extract(csv_row, self._format["town"])
-
-        address.post_code = trim_and_extract(
-            csv_row, self._format["post_code"])
-
+        address.name = self._extract_value(csv_row, "company_name")
+        address.line_1 = self._extract_value(csv_row, "address_line_1")
+        address.line_2 = self._extract_value(csv_row, "address_line_2")
+        address.line_3 = self._extract_value(csv_row, "address_line_3")
+        address.town = self._extract_value(csv_row, "town")
+        address.post_code = self._extract_value(csv_row, "post_code")
         address.country = "GB"
-
-        address.contact_name = trim_and_extract(
-            csv_row, self._format["contact_name"])
-
-        address.telephone_number = trim_and_extract(
-            csv_row, self._format["telephone_no"])
+        address.contact_name = self._extract_value(csv_row, "contact_name")
+        address.telephone_number = self._extract_value(csv_row, "telephone_no")
 
         return address
 
-    @staticmethod
-    def _trim_and_extract_list_element(
-            list_at_hand: list[str], index: int) -> str:
-        return FclCsvFormat._trim_whitespace(str(list_at_hand[index]))
+    def _extract_value(self, csv_row, field: str) -> str:
+        field_column_index = self._format[field]
+        value = csv_row[field_column_index]
+
+        return self._trim_whitespace(str(value))
 
     @staticmethod
     def _trim_whitespace(value: str):
