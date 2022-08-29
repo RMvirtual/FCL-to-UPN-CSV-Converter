@@ -3,19 +3,9 @@ load("@rules_python//python:defs.bzl", "py_test")
 py_test(
     name = "reader",
     srcs = glob(["*.py"]),
+    data = ["//resources/test_inputs:simple_scenario.csv"],
     deps = [
+        "//src/main/csv",
         "@rules_python//python/runfiles",
-        "//src/main/csv"
     ],
-    data = ["//resources/test_inputs:simple_scenario.csv"]
-)
-
-py_test(
-    name = "parser",
-    srcs = glob(["*.py"]),
-    deps = [
-        "@rules_python//python/runfiles",
-        "//src/main/csv"
-    ],
-    data = ["//resources/test_inputs:simple_scenario.csv"]
 )

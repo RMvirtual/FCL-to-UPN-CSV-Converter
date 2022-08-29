@@ -1,71 +1,72 @@
 from __future__ import annotations
-from enum import Enum
+from src.main.consignment.cargo.oversize_options import OversizeOption
 
 
-class OversizeOptions(Enum):
-    NORMAL = 1
-    OVERSIZE = 2
-    DOUBLE = 2
-    TRIPLE = 3
-
-
-class Pallet:
-    def __init__(self, max_weight_kgs: float):
-        self._max_weight_kgs: float = max_weight_kgs
-        self._oversize = OversizeOptions.NORMAL
-
-    def __eq__(self, other: Pallet) -> bool:
-        return self._is_equal(other)
-
-    def _is_equal(self, other: Pallet) -> bool:
-        return self._matches_class(other) and self._matches_oversize(other)
-
-    def _matches_class(self, other: Pallet) -> bool:
-        return self.__class__ == other.__class__
-
-    def _matches_oversize(self, other: Pallet) -> bool:
-        return self._oversize == other.oversize_option
+class PackageType:
+    def __init__(self):
+        self._name = ""
+        self._base_type = None
+        self._oversize_option: OversizeOption or None = None
+        self._maximum_dimensions = None
+        self._maximum_weight = None
+        self._override_options = []
 
     @property
-    def max_weight_kgs(self) -> float:
-        return self._max_weight_kgs
+    def name(self) -> str:
+        return self._name
+
+    @name.setter
+    def name(self, new_name: str):
+        self._name = new_name
 
     @property
-    def oversize_option(self):
-        return self._oversize
+    def base_type(self) -> str:
+        return self._base_type
+
+    @base_type.setter
+    def base_type(self, new_type):
+        self._base_type = new_type
+
+    @property
+    def oversize_option(self) -> OversizeOption:
+        return self._oversize_option
 
     @oversize_option.setter
-    def oversize_option(self, option: OversizeOptions):
-        self._oversize = option
+    def oversize_option(self, new_option: OversizeOption):
+        self._oversize_option = new_option
 
-    def is_normal_size(self) -> bool:
-        return self._oversize == OversizeOptions.NORMAL
+    @property
+    def maximum_dimensions(self):
+        return self._maximum_dimensions
 
-    def is_oversize(self) -> bool:
-        return self._oversize == OversizeOptions.OVERSIZE
+    @maximum_dimensions.setter
+    def maximum_dimensions(self, new_dimensions):
+        self._maximum_dimensions = new_dimensions
 
-    def is_double(self) -> bool:
-        return self._oversize == OversizeOptions.DOUBLE
+    @property
+    def maximum_weight(self):
+        return self._maximum_weight
 
-    def is_triple(self) -> bool:
-        return self._oversize == OversizeOptions.TRIPLE
+    @maximum_weight.setter
+    def maximum_weight(self, new_weight):
+        self._maximum_weight = new_weight
 
+    @property
+    def override_options(self):
+        return self._override_options
 
-class FullPallet(Pallet):
-    def __init__(self):
-        super().__init__(1200)
+    @override_options.setter
+    def override_options(self, new_options):
+        self._override_options = new_options
 
+    def __eq__(self, other: PackageType) -> bool:
+        return self._is_equal(other)
 
-class HalfPallet(Pallet):
-    def __init__(self):
-        super().__init__(600)
+    def _is_equal(self, other: PackageType) -> bool:
+        return self._name_matches(other) and self._oversize_matches(other)
 
+    def _name_matches(self, other: PackageType) -> bool:
+        return self._name == other.name
 
-class QuarterPallet(Pallet):
-    def __init__(self):
-        super().__init__(300)
-
-
-class MicroPallet(Pallet):
-    def __init__(self):
-        super().__init__(150)
+    def _oversize_matches(self, other: PackageType) -> bool:
+        return self._oversize_option == other.oversize_option

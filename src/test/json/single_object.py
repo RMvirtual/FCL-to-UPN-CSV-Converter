@@ -1,9 +1,9 @@
 import unittest
 from rules_python.python.runfiles import runfiles
-from src.main.json.fcl_format import FclConsignmentFormat
+from src.main.json.single_object import FieldsToIndexes
 
 
-class TestFclFormatReader(unittest.TestCase):
+class TestJsonReader(unittest.TestCase):
     CORRECT_FIELDS = {
         "contact_name": 0,
         "company_name": 1,
@@ -42,8 +42,8 @@ class TestFclFormatReader(unittest.TestCase):
     }
 
     def setUp(self) -> None:
-        self._fields = FclConsignmentFormat(
-            json_file_path=self._test_json_file
+        self._fields = FieldsToIndexes(
+            fields_to_indexes_json=self._test_json_file
         )
 
     def test_should_read_correct_number_of_fields(self):

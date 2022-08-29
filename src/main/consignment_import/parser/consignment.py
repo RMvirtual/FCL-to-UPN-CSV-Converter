@@ -1,21 +1,6 @@
-from src.main.csv.reader import read as read_csv
 from src.main.consignment.consignment import Consignment
-from src.main.json.fcl_format import FclConsignmentFormat
-from src.main.csv.parser.address import AddressParser
-
-
-def read(
-        csv_path: str, file_format: FclConsignmentFormat,
-        ignore_headers: bool = False
-) -> dict[str, Consignment]:
-    csv_rows = read_csv(
-        src_path=csv_path,
-        ignore_headers=ignore_headers
-    )
-
-    parser = ConsignmentParser(file_format)
-
-    return parser.parse(csv_rows)
+from src.main.json.single_object import FieldsToIndexes
+from src.main.consignment_import.parser.address import AddressParser
 
 
 class ConsignmentParser:
@@ -25,7 +10,7 @@ class ConsignmentParser:
     determine which rows to use for each field.
     """
 
-    def __init__(self, file_format: FclConsignmentFormat):
+    def __init__(self, file_format: FieldsToIndexes):
         self._consignments: dict[str, Consignment] = {}
         self._format = file_format
         self._address_parser = AddressParser(self._format)

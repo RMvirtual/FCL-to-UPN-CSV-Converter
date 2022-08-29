@@ -1,0 +1,47 @@
+[
+  {
+    "name": "full",
+    "type": "pallet",
+    "maximum_length": 1.2,
+    "maximum_width": 1.0,
+    "maximum_height": 2.0,
+    "maximum_weight": 1200.0,
+    "override_options": []
+  },
+  {
+    "name": "euro",
+    "type": "pallet",
+    "maximum_length": 1.2,
+    "maximum_width": 1.0,
+    "maximum_height": 2.0,
+    "maximum_weight": 1000.0,
+    "override_options": ["no_oversize"]
+  },
+  {
+    "name": "half",
+    "type": "pallet",
+    "maximum_length": 1.2,
+    "maximum_width": 1.0,
+    "maximum_height": 1.0,
+    "maximum_weight": 600.0,
+    "override_options": []
+  },
+  {
+    "name": "quarter",
+    "type": "pallet",
+    "maximum_length": 1.2,
+    "maximum_width": 1.0,
+    "maximum_height": 0.6,
+    "maximum_weight": 300.0,
+    "override_options": []
+  },
+  {
+    "name": "micro",
+    "type": "pallet",
+    "maximum_length": 1.2,
+    "maximum_width": 0.8,
+    "maximum_height": 0.6,
+    "maximum_weight": 150.0,
+    "override_options": ["no_oversize"]
+  }
+]

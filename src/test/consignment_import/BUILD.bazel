@@ -1,11 +1,11 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "fcl_fields",
+    name = "parser",
     srcs = glob(["*.py"]),
-    data = ["//resources/test_inputs:upn_edi_imp.json"],
+    data = ["//resources/test_inputs:simple_scenario.csv"],
     deps = [
-        "//src/main/json",
+        "//src/main/consignment_import",
         "@rules_python//python/runfiles",
     ],
 )

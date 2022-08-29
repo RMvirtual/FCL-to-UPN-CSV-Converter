@@ -4,9 +4,5 @@ py_library(
     name = "csv",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [
-        "//src/main/consignment",
-        "//src/main/csv/parser",
-        "//src/main/json",
-    ],
+    deps = [],
 )

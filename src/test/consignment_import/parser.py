@@ -1,8 +1,6 @@
 import unittest
 from rules_python.python.runfiles import runfiles
-import src.main.csv.parser.consignment as consignment_parser
-from src.main.json.fcl_format import UpnEdiImp
-
+import src.main.consignment_import.parser.consignment as consignment_parser
 
 class TestConsignmentParser(unittest.TestCase):
     def setUp(self) -> None:
@@ -11,7 +9,6 @@ class TestConsignmentParser(unittest.TestCase):
             ignore_headers=True,
             file_format=UpnEdiImp()
         )
-        pass
 
     def test_should_read_a_quantity_of_one_consignment(self):
         self.assertEqual(1, len(self._consignments))
