@@ -1,6 +1,6 @@
 from enum import IntEnum
 from src.main.csv.reader import read as read_csv
-from src.main.consignment.consignment import Consignment
+from src.main.consignment.consignment import Consignment, Address
 from src.main.json.fcl_format import FclConsignmentFormat
 
 
@@ -45,45 +45,51 @@ class FclCsvFormat:
         consignment.reference = FclCsvFormat._trim_and_extract_list_element(
             csv_row, self._format["reference"])
 
-        consignment.address.name = FclCsvFormat._trim_and_extract_list_element(
+        consignment.address = self._parse_address(csv_row)
+        self._consignments[consignment.reference] = consignment
+
+    def _parse_address(self, csv_row) -> Address:
+        address = Address()
+
+        address.name = FclCsvFormat._trim_and_extract_list_element(
             csv_row, self._format["company_name"])
 
-        consignment.address.line_1 = (
+        address.line_1 = (
             FclCsvFormat._trim_and_extract_list_element(
                 csv_row, self._format["address_line_1"])
         )
 
-        consignment.address.line_2 = (
+        address.line_2 = (
             FclCsvFormat._trim_and_extract_list_element(
                 csv_row, self._format["address_line_2"])
         )
 
-        consignment.address.line_3 = (
+        address.line_3 = (
             FclCsvFormat._trim_and_extract_list_element(
                 csv_row, self._format["address_line_3"])
         )
 
-        consignment.address.town = FclCsvFormat._trim_and_extract_list_element(
+        address.town = FclCsvFormat._trim_and_extract_list_element(
             csv_row, self._format["town"])
 
-        consignment.address.post_code = (
+        address.post_code = (
             FclCsvFormat._trim_and_extract_list_element(
                 csv_row, self._format["post_code"])
         )
 
-        consignment.address.country = "GB"
+        address.country = "GB"
 
-        consignment.address.contact_name = (
+        address.contact_name = (
             FclCsvFormat._trim_and_extract_list_element(
                 csv_row, self._format["contact_name"])
         )
 
-        consignment.address.telephone_number = (
+        address.telephone_number = (
             FclCsvFormat._trim_and_extract_list_element(
                 csv_row, self._format["telephone_no"])
         )
 
-        self._consignments[consignment.reference] = consignment
+        return address
 
     @staticmethod
     def _trim_and_extract_list_element(

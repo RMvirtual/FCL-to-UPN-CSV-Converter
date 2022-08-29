@@ -31,3 +31,8 @@ class Consignment:
     @property
     def address(self) -> Address:
         return self._address
+
+    @address.setter
+    def address(self, new_address: Address) -> None:
+        self._address = new_address
+
