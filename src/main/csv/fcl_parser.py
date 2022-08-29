@@ -77,36 +77,53 @@ class FclCsvFormat:
     def _new_consignment(self, csv_row: list[str]) -> None:
         consignment = Consignment()
 
-        consignment.reference = FclCsvFormat._trim_whitespace(
-            str(csv_row[FclExportColumns.REFERENCE]))
+        consignment.reference = FclCsvFormat._trim_and_extract_list_element(
+            csv_row, FclExportColumns.REFERENCE)
 
-        consignment.address.name = FclCsvFormat._trim_whitespace(
-            csv_row[FclExportColumns.COMPANY_NAME])
+        consignment.address.name = FclCsvFormat._trim_and_extract_list_element(
+            csv_row, FclExportColumns.COMPANY_NAME)
 
-        consignment.address.line_1 = FclCsvFormat._trim_whitespace(
-            csv_row[FclExportColumns.ADDRESS_LINE_1])
+        consignment.address.line_1 = (
+            FclCsvFormat._trim_and_extract_list_element(
+                csv_row, FclExportColumns.ADDRESS_LINE_1)
+        )
 
-        consignment.address.line_2 = FclCsvFormat._trim_whitespace(
-            csv_row[FclExportColumns.ADDRESS_LINE_2])
+        consignment.address.line_2 = (
+            FclCsvFormat._trim_and_extract_list_element(
+                csv_row, FclExportColumns.ADDRESS_LINE_2)
+        )
 
-        consignment.address.line_3 = FclCsvFormat._trim_whitespace(
-            csv_row[FclExportColumns.ADDRESS_LINE_3])
+        consignment.address.line_3 = (
+            FclCsvFormat._trim_and_extract_list_element(
+                csv_row, FclExportColumns.ADDRESS_LINE_3)
+        )
 
-        consignment.address.town = FclCsvFormat._trim_whitespace(
-            csv_row[FclExportColumns.TOWN])
+        consignment.address.town = FclCsvFormat._trim_and_extract_list_element(
+            csv_row, FclExportColumns.TOWN)
 
-        consignment.address.post_code = FclCsvFormat._trim_whitespace(
-            csv_row[FclExportColumns.POST_CODE])
+        consignment.address.post_code = (
+            FclCsvFormat._trim_and_extract_list_element(
+                csv_row, FclExportColumns.POST_CODE)
+        )
 
         consignment.address.country = "GB"
 
-        consignment.address.contact_name = FclCsvFormat._trim_whitespace(
-            csv_row[FclExportColumns.CONTACT_NAME])
+        consignment.address.contact_name = (
+            FclCsvFormat._trim_and_extract_list_element(
+            csv_row, FclExportColumns.CONTACT_NAME)
+        )
 
-        consignment.address.telephone_number = FclCsvFormat._trim_whitespace(
-            csv_row[FclExportColumns.TELEPHONE_NO])
+        consignment.address.telephone_number = (
+            FclCsvFormat._trim_and_extract_list_element(
+                csv_row, FclExportColumns.TELEPHONE_NO)
+        )
 
         self._consignments[consignment.reference] = consignment
+
+    @staticmethod
+    def _trim_and_extract_list_element(
+            list_at_hand: list[str], index: int) -> str:
+        return FclCsvFormat._trim_whitespace(str(list_at_hand[index]))
 
     @staticmethod
     def _trim_whitespace(value: str):
