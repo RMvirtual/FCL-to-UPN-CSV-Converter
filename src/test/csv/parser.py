@@ -6,35 +6,22 @@ from src.main.json.fcl_format import UpnEdiImp
 
 class TestConsignmentParser(unittest.TestCase):
     def setUp(self) -> None:
+        self._consignments = consignment_parser.read(
+            csv_path=self._simple_scenario_csv,
+            ignore_headers=True,
+            file_format=UpnEdiImp()
+        )
         pass
 
     def test_should_read_a_quantity_of_one_consignment(self):
-        consignments = consignment_parser.read(
-            csv_path=self._simple_scenario_csv,
-            ignore_headers=True,
-            file_format=UpnEdiImp()
-        )
-
-        self.assertEqual(1, len(consignments))
+        self.assertEqual(1, len(self._consignments))
 
     def test_should_read_a_consignment_reference(self):
-        consignments = consignment_parser.read(
-            csv_path=self._simple_scenario_csv,
-            ignore_headers=True,
-            file_format=UpnEdiImp()
-        )
-
-        reference = list(consignments.values())[0].reference
+        reference = list(self._consignments.values())[0].reference
         self.assertEqual(reference, "GR220806951")
 
     def test_should_read_a_consignment_address(self):
-        consignments = consignment_parser.read(
-            csv_path=self._simple_scenario_csv,
-            ignore_headers=True,
-            file_format=UpnEdiImp()
-        )
-
-        address = list(consignments.values())[0].address
+        address = list(self._consignments.values())[0].address
         self.assertEqual(address.name, "10 BRAMBLING RISE")
         self.assertEqual(address.line_1, "HEMEL HEMPSTEAD")
         self.assertEqual(address.line_2, "")
@@ -44,6 +31,12 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual(address.country, "GB")
         self.assertEqual(address.contact_name, "Mr Susan Cheshire")
         self.assertEqual(address.telephone_number, "(078) 4133 2424")
+
+    def test_should_get_one_cargo_entry_from_description(self):
+        cargo = list(
+            self._consignments.values())[0].cargo
+
+        self.assertEqual(1, len(cargo))
 
     @property
     def _simple_scenario_csv(self) -> str:

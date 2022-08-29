@@ -4,12 +4,18 @@ from src.main.json.fcl_format import FclConsignmentFormat
 from src.main.csv.parser.address import AddressParser
 
 
-def read(csv_path: str, file_format: FclConsignmentFormat,
-         ignore_headers: bool = False) -> dict[str, Consignment]:
-    csv_rows = read_csv(src_path=csv_path, ignore_headers=ignore_headers)
-    fcl_format = ConsignmentParser(file_format)
+def read(
+        csv_path: str, file_format: FclConsignmentFormat,
+        ignore_headers: bool = False
+) -> dict[str, Consignment]:
+    csv_rows = read_csv(
+        src_path=csv_path,
+        ignore_headers=ignore_headers
+    )
 
-    return fcl_format.parse(csv_rows)
+    parser = ConsignmentParser(file_format)
+
+    return parser.parse(csv_rows)
 
 
 class ConsignmentParser:

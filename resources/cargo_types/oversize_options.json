@@ -1,0 +1,18 @@
+[
+  {
+    "name": "normal",
+    "pallet_space_multiplier": 1.0
+  },
+  {
+    "name": "oversize",
+    "pallet_space_multiplier": 1.5
+  },
+  {
+    "name": "double",
+    "pallet_space_multiplier": 2.0
+  },
+  {
+    "name": "triple",
+    "pallet_space_multiplier": 3.0
+  }
+]

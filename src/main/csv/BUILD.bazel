@@ -1,12 +1,12 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-  name = "csv",
-  srcs = glob(["*.py"]),
-  deps = [
-      "//src/main/csv/parser",
-      "//src/main/consignment",
-      "//src/main/json"
-  ],
-  visibility = ["//visibility:public"]
+    name = "csv",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/consignment",
+        "//src/main/csv/parser",
+        "//src/main/json",
+    ],
 )
