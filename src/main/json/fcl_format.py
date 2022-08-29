@@ -4,13 +4,17 @@ from rules_python.python.runfiles import runfiles
 
 class FclConsignmentFormat:
     def __init__(self, json_file_path: str):
-        self._file_path = json_file_path
+        self._load_json_file(json_file_path)
 
     def __getitem__(self, item: str) -> int:
-        return 0
+        return self._fields[item]
 
     def __len__(self) -> int:
-        return 0
+        return len(self._fields)
+
+    def _load_json_file(self, file_path: str):
+        with open(file_path, "r") as json_file:
+            self._fields = json.load(json_file)
 
 
 class UpnEdiImp(FclConsignmentFormat):

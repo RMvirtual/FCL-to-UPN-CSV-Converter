@@ -44,7 +44,7 @@ class TestFclFormatReader(unittest.TestCase):
     def setUp(self) -> None:
         pass
 
-    def test_should_read_format_file_into_dictionary(self):
+    def test_should_read_correct_number_of_fields(self):
         file_format = FclConsignmentFormat(
             json_file_path=self._test_json_file
         )
