@@ -4,5 +4,6 @@ py_library(
   name = "json",
   srcs = glob(["*.py"]),
   deps = [],
+  data = ["//resources/file_formats:upn_edi_imp.json"],
   visibility = ["//visibility:public"]
 )

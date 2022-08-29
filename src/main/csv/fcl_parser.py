@@ -17,6 +17,7 @@ class FclCsvFormat:
 
     def __init__(self, file_format: FclConsignmentFormat):
         self._consignments: dict[str, Consignment] = {}
+        self._format = file_format
 
     def parse(self, csv_rows: list[list[str]]) -> dict[str, Consignment]:
         self._consignments.clear()
@@ -27,7 +28,7 @@ class FclCsvFormat:
         return self._consignments
 
     def _parse(self, csv_row: list[str]) -> None:
-        reference = csv_row[file_format.reference]
+        reference = csv_row[self._format["reference"]]
 
         if reference in self._consignments:
             self._append_consignment(csv_row)
@@ -42,44 +43,44 @@ class FclCsvFormat:
         consignment = Consignment()
 
         consignment.reference = FclCsvFormat._trim_and_extract_list_element(
-            csv_row, FclExportColumns.REFERENCE)
+            csv_row, self._format["reference"])
 
         consignment.address.name = FclCsvFormat._trim_and_extract_list_element(
-            csv_row, FclExportColumns.COMPANY_NAME)
+            csv_row, self._format["company_name"])
 
         consignment.address.line_1 = (
             FclCsvFormat._trim_and_extract_list_element(
-                csv_row, FclExportColumns.ADDRESS_LINE_1)
+                csv_row, self._format["address_line_1"])
         )
 
         consignment.address.line_2 = (
             FclCsvFormat._trim_and_extract_list_element(
-                csv_row, FclExportColumns.ADDRESS_LINE_2)
+                csv_row, self._format["address_line_2"])
         )
 
         consignment.address.line_3 = (
             FclCsvFormat._trim_and_extract_list_element(
-                csv_row, FclExportColumns.ADDRESS_LINE_3)
+                csv_row, self._format["address_line_3"])
         )
 
         consignment.address.town = FclCsvFormat._trim_and_extract_list_element(
-            csv_row, FclExportColumns.TOWN)
+            csv_row, self._format["town"])
 
         consignment.address.post_code = (
             FclCsvFormat._trim_and_extract_list_element(
-                csv_row, FclExportColumns.POST_CODE)
+                csv_row, self._format["post_code"])
         )
 
         consignment.address.country = "GB"
 
         consignment.address.contact_name = (
             FclCsvFormat._trim_and_extract_list_element(
-                csv_row, FclExportColumns.CONTACT_NAME)
+                csv_row, self._format["contact_name"])
         )
 
         consignment.address.telephone_number = (
             FclCsvFormat._trim_and_extract_list_element(
-                csv_row, FclExportColumns.TELEPHONE_NO)
+                csv_row, self._format["telephone_no"])
         )
 
         self._consignments[consignment.reference] = consignment

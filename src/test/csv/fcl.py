@@ -1,6 +1,7 @@
 import unittest
 from rules_python.python.runfiles import runfiles
 import src.main.csv.fcl_parser as fcl_csv_parser
+from src.main.json.fcl_format import UpnEdiImp
 
 
 class TestFclCsvParser(unittest.TestCase):
@@ -10,7 +11,8 @@ class TestFclCsvParser(unittest.TestCase):
     def test_should_read_a_quantity_of_one_consignment(self):
         consignments = fcl_csv_parser.read(
             csv_path=self._simple_scenario_csv,
-            ignore_headers=True
+            ignore_headers=True,
+            file_format=UpnEdiImp()
         )
 
         self.assertEqual(1, len(consignments))
@@ -18,7 +20,8 @@ class TestFclCsvParser(unittest.TestCase):
     def test_should_read_a_consignment_reference(self):
         consignments = fcl_csv_parser.read(
             csv_path=self._simple_scenario_csv,
-            ignore_headers=True
+            ignore_headers=True,
+            file_format=UpnEdiImp()
         )
 
         reference = list(consignments.values())[0].reference
@@ -27,7 +30,8 @@ class TestFclCsvParser(unittest.TestCase):
     def test_should_read_a_consignment_address(self):
         consignments = fcl_csv_parser.read(
             csv_path=self._simple_scenario_csv,
-            ignore_headers=True
+            ignore_headers=True,
+            file_format=UpnEdiImp()
         )
 
         address = list(consignments.values())[0].address
