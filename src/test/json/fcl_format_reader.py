@@ -42,14 +42,16 @@ class TestFclFormatReader(unittest.TestCase):
     }
 
     def setUp(self) -> None:
-        pass
-
-    def test_should_read_correct_number_of_fields(self):
-        file_format = FclConsignmentFormat(
+        self._fields = FclConsignmentFormat(
             json_file_path=self._test_json_file
         )
 
-        self.assertEqual(len(self.CORRECT_FIELDS), len(file_format))
+    def test_should_read_correct_number_of_fields(self):
+        self.assertEqual(len(self.CORRECT_FIELDS), len(self._fields))
+
+    def test_should_read_all_fields(self):
+        for field in self.CORRECT_FIELDS:
+            self.assertEqual(self.CORRECT_FIELDS[field], self._fields[field])
 
     @property
     def _test_json_file(self) -> str:
