@@ -1,6 +1,6 @@
 import unittest
 from rules_python.python.runfiles import runfiles
-import src.main.csv.consignment_parser as consignment_parser
+import src.main.csv.parser.consignment as consignment_parser
 from src.main.json.fcl_format import UpnEdiImp
 
 

@@ -1,6 +1,7 @@
 from src.main.csv.reader import read as read_csv
-from src.main.consignment.consignment import Consignment, Address
+from src.main.consignment.consignment import Consignment
 from src.main.json.fcl_format import FclConsignmentFormat
+from src.main.csv.parser.address import AddressParser
 
 
 def read(csv_path: str, file_format: FclConsignmentFormat,
@@ -21,6 +22,7 @@ class ConsignmentParser:
     def __init__(self, file_format: FclConsignmentFormat):
         self._consignments: dict[str, Consignment] = {}
         self._format = file_format
+        self._address_parser = AddressParser(self._format)
 
     def parse(self, csv_rows: list[list[str]]) -> dict[str, Consignment]:
         self._consignments.clear()
@@ -49,24 +51,9 @@ class ConsignmentParser:
     def _parse_consignment(self, csv_row: list[str]):
         consignment = Consignment()
         consignment.reference = self._extract_value(csv_row, "reference")
-        consignment.address = self._parse_address(csv_row)
+        consignment.address = self._address_parser.parse(csv_row)
 
         return consignment
-
-    def _parse_address(self, csv_row) -> Address:
-        address = Address()
-
-        address.name = self._extract_value(csv_row, "company_name")
-        address.line_1 = self._extract_value(csv_row, "address_line_1")
-        address.line_2 = self._extract_value(csv_row, "address_line_2")
-        address.line_3 = self._extract_value(csv_row, "address_line_3")
-        address.town = self._extract_value(csv_row, "town")
-        address.post_code = self._extract_value(csv_row, "post_code")
-        address.country = "GB"
-        address.contact_name = self._extract_value(csv_row, "contact_name")
-        address.telephone_number = self._extract_value(csv_row, "telephone_no")
-
-        return address
 
     def _extract_value(self, csv_row, field: str) -> str:
         field_column_index = self._format[field]
