@@ -1,0 +1,11 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "consignment",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/freight/cargo",
+        "//src/main/freight/service",
+    ],
+)

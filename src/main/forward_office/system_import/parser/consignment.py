@@ -5,7 +5,7 @@ from src.main.consignment_import.parser.address import AddressParser
 
 class ConsignmentParser:
     """
-    Interprets a 2D list of strings into a set of consignments.
+    Interprets a 2D list of strings into a set of consignment.
     The ordering of this list is defined by the format parameter to
     determine which rows to use for each field.
     """

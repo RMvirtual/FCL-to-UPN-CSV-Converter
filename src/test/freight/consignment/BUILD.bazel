@@ -3,39 +3,39 @@ load("@rules_python//python:defs.bzl", "py_test")
 py_test(
     name = "reference",
     srcs = glob(["*.py"]),
+    data = ["//resources/test_inputs:simple_scenario.csv"],
     deps = [
+        "//src/main/freight",
         "@rules_python//python/runfiles",
-        "//src/main/consignment"
     ],
-    data = ["//resources/test_inputs:simple_scenario.csv"]
 )
 
 py_test(
     name = "address",
     srcs = glob(["*.py"]),
+    data = [],
     deps = [
+        "//src/main/freight",
         "@rules_python//python/runfiles",
-        "//src/main/consignment"
     ],
-    data = []
 )
 
 py_test(
     name = "service",
     srcs = glob(["*.py"]),
+    data = [],
     deps = [
+        "//src/main/freight/service",
         "@rules_python//python/runfiles",
-        "//src/main/consignment/service"
     ],
-    data = []
 )
 
 py_test(
     name = "cargo",
     srcs = glob(["*.py"]),
+    data = [],
     deps = [
+        "//src/main/freight/cargo",
         "@rules_python//python/runfiles",
-        "//src/main/consignment/cargo"
     ],
-    data = []
 )
