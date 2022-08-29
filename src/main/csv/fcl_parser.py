@@ -1,4 +1,3 @@
-from enum import IntEnum
 from src.main.csv.reader import read as read_csv
 from src.main.consignment.consignment import Consignment, Address
 from src.main.json.fcl_format import FclConsignmentFormat
@@ -7,13 +6,17 @@ from src.main.json.fcl_format import FclConsignmentFormat
 def read(csv_path: str, file_format: FclConsignmentFormat,
          ignore_headers: bool = False) -> dict[str, Consignment]:
     csv_rows = read_csv(src_path=csv_path, ignore_headers=ignore_headers)
-    fcl_format = FclCsvFormat(file_format)
+    fcl_format = ConsignmentParser(file_format)
 
     return fcl_format.parse(csv_rows)
 
 
-class FclCsvFormat:
-    """Interprets a list of strings as a UPNEDIIMP FCL CSV export."""
+class ConsignmentParser:
+    """
+    Interprets a 2D list of strings into a set of consignments.
+    The ordering of this list is defined by the format parameter to
+    determine which rows to use for each field.
+    """
 
     def __init__(self, file_format: FclConsignmentFormat):
         self._consignments: dict[str, Consignment] = {}
