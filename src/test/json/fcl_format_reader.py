@@ -1,5 +1,6 @@
 import unittest
 from rules_python.python.runfiles import runfiles
+from src.main.json.fcl_format import FclConsignmentFormat
 
 
 class TestFclFormatReader(unittest.TestCase):
@@ -44,8 +45,11 @@ class TestFclFormatReader(unittest.TestCase):
         pass
 
     def test_should_read_format_file_into_dictionary(self):
-        file_format = UpnEdiImp()
-        self.assertDictEqual(self.CORRECT_FIELDS, file_format)
+        file_format = FclConsignmentFormat(
+            json_file_path=self._test_json_file
+        )
+
+        self.assertEqual(len(self.CORRECT_FIELDS), len(file_format))
 
     @property
     def _test_json_file(self) -> str:

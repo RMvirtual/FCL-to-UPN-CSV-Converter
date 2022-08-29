@@ -1,10 +1,8 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-  name = "csv",
+  name = "json",
   srcs = glob(["*.py"]),
-  deps = [
-      "//src/main/consignment",
-      "//src/main/json"],
+  deps = [],
   visibility = ["//visibility:public"]
 )
