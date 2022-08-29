@@ -11,7 +11,7 @@ py_test(
 )
 
 py_test(
-    name = "fcl",
+    name = "consignment_parser",
     srcs = glob(["*.py"]),
     deps = [
         "@rules_python//python/runfiles",
