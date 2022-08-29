@@ -1,1 +1,1 @@
-exports_files(["simple_scenario.csv"])
+exports_files(["simple_scenario.csv", "upn_edi_imp.json"])

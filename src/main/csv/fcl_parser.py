@@ -110,7 +110,7 @@ class FclCsvFormat:
 
         consignment.address.contact_name = (
             FclCsvFormat._trim_and_extract_list_element(
-            csv_row, FclExportColumns.CONTACT_NAME)
+                csv_row, FclExportColumns.CONTACT_NAME)
         )
 
         consignment.address.telephone_number = (

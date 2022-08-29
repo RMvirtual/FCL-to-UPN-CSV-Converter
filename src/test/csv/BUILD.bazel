@@ -20,3 +20,12 @@ py_test(
     data = ["//resources/test_inputs:simple_scenario.csv"]
 )
 
+py_test(
+    name = "fcl_format_reader",
+    srcs = glob(["*.py"]),
+    deps = [
+        "@rules_python//python/runfiles",
+        "//src/main/csv"
+    ],
+    data = ["//resources/test_inputs:upn_edi_imp.json"]
+)
