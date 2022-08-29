@@ -51,43 +51,31 @@ class FclCsvFormat:
     def _parse_address(self, csv_row) -> Address:
         address = Address()
 
-        address.name = FclCsvFormat._trim_and_extract_list_element(
-            csv_row, self._format["company_name"])
+        trim_and_extract = FclCsvFormat._trim_and_extract_list_element
 
-        address.line_1 = (
-            FclCsvFormat._trim_and_extract_list_element(
-                csv_row, self._format["address_line_1"])
-        )
+        address.name = trim_and_extract(csv_row, self._format["company_name"])
 
-        address.line_2 = (
-            FclCsvFormat._trim_and_extract_list_element(
-                csv_row, self._format["address_line_2"])
-        )
+        address.line_1 = trim_and_extract(
+            csv_row, self._format["address_line_1"])
 
-        address.line_3 = (
-            FclCsvFormat._trim_and_extract_list_element(
-                csv_row, self._format["address_line_3"])
-        )
+        address.line_2 = trim_and_extract(
+            csv_row, self._format["address_line_2"])
 
-        address.town = FclCsvFormat._trim_and_extract_list_element(
-            csv_row, self._format["town"])
+        address.line_3 = trim_and_extract(
+            csv_row, self._format["address_line_3"])
 
-        address.post_code = (
-            FclCsvFormat._trim_and_extract_list_element(
-                csv_row, self._format["post_code"])
-        )
+        address.town = trim_and_extract(csv_row, self._format["town"])
+
+        address.post_code = trim_and_extract(
+            csv_row, self._format["post_code"])
 
         address.country = "GB"
 
-        address.contact_name = (
-            FclCsvFormat._trim_and_extract_list_element(
-                csv_row, self._format["contact_name"])
-        )
+        address.contact_name = trim_and_extract(
+            csv_row, self._format["contact_name"])
 
-        address.telephone_number = (
-            FclCsvFormat._trim_and_extract_list_element(
-                csv_row, self._format["telephone_no"])
-        )
+        address.telephone_number = trim_and_extract(
+            csv_row, self._format["telephone_no"])
 
         return address
 
