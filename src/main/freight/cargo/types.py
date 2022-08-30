@@ -35,6 +35,7 @@ def load_package_type(type_name: str) -> PackageType:
 
     return None
 
+
 class PackageType:
     def __init__(self):
         self._name = ""

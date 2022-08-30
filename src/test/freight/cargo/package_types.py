@@ -2,6 +2,7 @@ import unittest
 from rules_python.python.runfiles import runfiles
 from src.main.freight.cargo.types import load_package_type
 
+
 class TestPackageTypesJsonReader(unittest.TestCase):
     def setUp(self) -> None:
         pass
@@ -9,7 +10,6 @@ class TestPackageTypesJsonReader(unittest.TestCase):
     def test_should_get_base_type_from_full_pallet(self):
         package_type = load_package_type("full")
         self.assertEqual(package_type.base_type, "pallet")
-
 
     @property
     def _test_json_file(self) -> str:
