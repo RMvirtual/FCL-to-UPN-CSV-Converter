@@ -134,7 +134,6 @@ class TestCargo(unittest.TestCase):
             quantity_and_weight: tuple[int, float],
             oversize_option: OversizeOption = None
     ) -> None:
-        self.assertIsInstance(self._cargo[index].package_type, pkg_type)
         self.assertEqual(quantity_and_weight[0], self._cargo[index].quantity)
         self.assertEqual(quantity_and_weight[1], self._cargo[index].weight_kgs)
 
@@ -143,6 +142,32 @@ class TestCargo(unittest.TestCase):
                 self._cargo[index].package_type.oversize_option,
                 oversize_option
             )
+
+    def compare_cargo_entry_package_type(
+            self, index: int, pkg_type: PackageType) -> None:
+        cargo_package_type = self._cargo[index].package_type
+
+        self.assertEqual(pkg_type.base_type, cargo_package_type.base_type)
+        self.assertEqual(pkg_type.name, cargo_package_type.name)
+
+        self.assertEqual(
+            pkg_type.maximum_weight, cargo_package_type.maximum_weight)
+
+        self.assertDictEqual(
+            pkg_type.maximum_dimensions, cargo_package_type.maximum_dimensions)
+
+        self.assertListEqual(
+            pkg_type.override_options, cargo_package_type.override_options)
+
+    def compare_oversize_option(
+            self, pkg_type_1: PackageType, pkg_type_2: PackageType) -> None:
+        self.assertEqual(
+            pkg_type_1.oversize_option.name, pkg_type_2.oversize_option.name)
+
+        self.assertDictEqual(
+            pkg_type_1.oversize_option.package_multipliers,
+            pkg_type_2.oversize_option.package_multipliers
+        )
 
 
 if __name__ == '__main__':
