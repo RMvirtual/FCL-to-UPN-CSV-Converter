@@ -136,6 +136,7 @@ class TestCargo(unittest.TestCase):
     ) -> None:
         self.assertEqual(quantity_and_weight[0], self._cargo[index].quantity)
         self.assertEqual(quantity_and_weight[1], self._cargo[index].weight_kgs)
+        self.compare_cargo_entry_package_type(index, pkg_type)
 
         if oversize_option:
             self.assertEqual(
