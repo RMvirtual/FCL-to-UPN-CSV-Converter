@@ -1,21 +1,21 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "reference",
+    name = "cargo",
     srcs = glob(["*.py"]),
-    data = ["//resources/test_inputs:simple_scenario.csv"],
+    data = [],
     deps = [
-        "//src/main/freight/consignment",
+        "//src/main/freight/cargo",
         "@rules_python//python/runfiles",
     ],
 )
 
 py_test(
-    name = "address",
+    name = "package_types",
     srcs = glob(["*.py"]),
-    data = [],
+    data = ["//resources/cargo_types:base_packages.json"],
     deps = [
-        "//src/main/freight/consignment",
+        "//src/main/freight/cargo",
         "@rules_python//python/runfiles",
     ],
 )

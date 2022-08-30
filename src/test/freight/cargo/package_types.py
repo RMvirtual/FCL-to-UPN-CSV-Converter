@@ -1,13 +1,15 @@
 import unittest
 from rules_python.python.runfiles import runfiles
-
+from src.main.freight.cargo.types import load_package_type
 
 class TestPackageTypesJsonReader(unittest.TestCase):
     def setUp(self) -> None:
         pass
 
-    def test_should_read_correct_number_of_fields(self):
-        self.fail("Dummy fail on package type json reader.")
+    def test_should_get_base_type_from_full_pallet(self):
+        package_type = load_package_type("full")
+        self.assertEqual(package_type.base_type, "pallet")
+
 
     @property
     def _test_json_file(self) -> str:

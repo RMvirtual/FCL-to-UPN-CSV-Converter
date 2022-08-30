@@ -1,6 +1,39 @@
 from __future__ import annotations
 from src.main.freight.cargo.oversize_options import OversizeOption
+import json
+from rules_python.python.runfiles import runfiles
 
+
+def load_package_type(type_name: str) -> PackageType:
+    r = runfiles.Create()
+
+    base_packages_file = r.Rlocation(
+        "fcl-to-upn-csv/resources/cargo_types/base_packages.json")
+
+    with open(base_packages_file, "r") as json_file:
+        objects = json.load(json_file)
+
+    types = []
+
+    for package_type in objects:
+        result = PackageType()
+        result.base_type = package_type["type"]
+        result.name = package_type["name"]
+        result.maximum_dimensions = {
+            "length": package_type["maximum_length"],
+            "width": package_type["maximum_width"],
+            "height": package_type["maximum_height"],
+        },
+        result.maximum_weight = package_type["maximum_weight"]
+        result.override_options = package_type["override_options"]
+
+        types.append(result)
+
+    for package in types:
+        if package.name == type_name:
+            return package
+
+    return None
 
 class PackageType:
     def __init__(self):
