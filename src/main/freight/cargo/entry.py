@@ -1,10 +1,10 @@
 from __future__ import annotations
-from src.main.freight.cargo.types import *
+from src.main.freight.cargo.types import PackageType
 
 
 class CargoEntry:
-    def __init__(self, package_type: "Pallet"):
-        self._package_type: "Pallet" = package_type
+    def __init__(self, package_type: PackageType):
+        self._package_type: PackageType = package_type
         self._quantity: int = 0
         self._weight: float = 0
 
@@ -38,7 +38,7 @@ class CargoEntry:
         self._weight = weight
 
     @property
-    def package_type(self) -> Pallet:
+    def package_type(self) -> PackageType:
         return self._package_type
 
     @property
@@ -50,8 +50,8 @@ class CargoEntry:
         return self._weight
 
     @package_type.setter
-    def package_type(self, pallet_type: Pallet):
-        self._package_type = pallet_type
+    def package_type(self, package_type: PackageType):
+        self._package_type = package_type
 
     @quantity.setter
     def quantity(self, new_quantity: int) -> None:
@@ -87,4 +87,4 @@ class CargoEntry:
         return total_weight / total_packages if total_packages else 0
 
     def _max_weight_exceeded(self, weight: float) -> bool:
-        return weight > self._package_type.max_weight_kgs
+        return weight > self._package_type.maximum_weight

@@ -1,4 +1,5 @@
 from src.main.freight.cargo.entry import CargoEntry
+from src.main.freight.cargo.types import PackageType
 
 
 class Cargo:
@@ -14,11 +15,11 @@ class Cargo:
         else:
             self._entries.append(new_entry)
 
-    def entry_by_package_type(self, package: "Pallet") -> CargoEntry:
+    def entry_by_package_type(self, package_type: PackageType) -> CargoEntry:
         matching_cargo_entry = None
 
         for entry in self._entries:
-            if entry.package_type == package:
+            if entry.package_type == package_type:
                 matching_cargo_entry = entry
 
                 break
