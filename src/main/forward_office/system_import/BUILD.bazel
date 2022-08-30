@@ -1,0 +1,11 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+  name = "system_import",
+  srcs = glob(["*.py"]),
+  deps = [
+    "//src/main/forward_office/system_import/files",
+    "//src/main/forward_office/system_import/parser",
+  ],
+  visibility = ["//visibility:public"]
+)

@@ -1,7 +1,7 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "fcl_fields",
+    name = "single_object",
     srcs = glob(["*.py"]),
     data = ["//resources/test_inputs:upn_edi_imp.json"],
     deps = [

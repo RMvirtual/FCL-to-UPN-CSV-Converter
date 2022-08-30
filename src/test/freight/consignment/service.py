@@ -1,5 +1,5 @@
 import unittest
-from src.main.consignment.service.options import ServiceOptions
+from src.main.freight.service.options import ServiceOptions
 
 
 class TestServiceOptions(unittest.TestCase):

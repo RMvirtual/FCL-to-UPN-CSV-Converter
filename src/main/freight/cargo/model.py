@@ -1,5 +1,4 @@
-from src.main.consignment.cargo.entry import CargoEntry
-from src.main.consignment.cargo.types import *
+from src.main.freight.cargo.entry import CargoEntry
 
 
 class Cargo:
@@ -15,7 +14,7 @@ class Cargo:
         else:
             self._entries.append(new_entry)
 
-    def entry_by_package_type(self, package: Pallet) -> CargoEntry:
+    def entry_by_package_type(self, package: "Pallet") -> CargoEntry:
         matching_cargo_entry = None
 
         for entry in self._entries:

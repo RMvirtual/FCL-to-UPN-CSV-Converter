@@ -6,5 +6,6 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/freight",
+        "//src/main/forward_office/dashboard_fields"
     ],
 )

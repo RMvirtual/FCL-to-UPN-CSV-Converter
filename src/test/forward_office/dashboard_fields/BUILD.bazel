@@ -3,6 +3,7 @@ load("@rules_python//python:defs.bzl", "py_test")
 py_test(
     name = "dashboard_fields",
     srcs = glob(["*.py"]),
+    main = "upn_edi_imp.py",
     data = ["//resources/test_inputs:upn_edi_imp.json"],
     deps = [
         "//src/main/forward_office/dashboard_fields",

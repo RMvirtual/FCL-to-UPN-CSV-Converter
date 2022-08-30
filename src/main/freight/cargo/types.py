@@ -1,5 +1,5 @@
 from __future__ import annotations
-from src.main.consignment.cargo.oversize_options import OversizeOption
+from src.main.freight.cargo.oversize_options import OversizeOption
 
 
 class PackageType:

@@ -1,5 +1,5 @@
 import unittest
-from src.main.consignment.address import Address
+from src.main.freight.consignment.address import Address
 
 
 class TestAddress(unittest.TestCase):

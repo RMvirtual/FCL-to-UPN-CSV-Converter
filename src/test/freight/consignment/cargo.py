@@ -1,8 +1,8 @@
 import unittest
 from typing import Type
-from src.main.consignment.cargo.entry import CargoEntry
-from src.main.consignment.cargo.types import *
-from src.main.consignment.cargo.model import Cargo
+from src.main.freight.cargo.entry import CargoEntry
+from src.main.freight.cargo.types import *
+from src.main.freight.cargo.model import Cargo
 
 
 class TestCargo(unittest.TestCase):

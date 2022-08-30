@@ -1,6 +1,10 @@
 import unittest
 from rules_python.python.runfiles import runfiles
-import src.main.consignment_import.parser.consignment as consignment_parser
+import src.main.forward_office.system_import.parser.consignment as \
+    consignment_parser
+
+from src.main.forward_office.dashboard_fields.upn_edi_imp import UpnEdiImp
+
 
 class TestConsignmentParser(unittest.TestCase):
     def setUp(self) -> None:

@@ -1,6 +1,6 @@
-from src.main.consignment.address import Address
-from src.main.consignment.reference import Reference
-from src.main.consignment.cargo.model import Cargo
+from src.main.freight.consignment.address import Address
+from src.main.freight.consignment.reference import Reference
+from src.main.freight.cargo.model import Cargo
 
 
 class Consignment:

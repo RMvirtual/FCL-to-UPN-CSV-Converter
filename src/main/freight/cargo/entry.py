@@ -1,10 +1,10 @@
 from __future__ import annotations
-from src.main.consignment.cargo.types import *
+from src.main.freight.cargo.types import *
 
 
 class CargoEntry:
-    def __init__(self, package_type: Pallet):
-        self._package_type: Pallet = package_type
+    def __init__(self, package_type: "Pallet"):
+        self._package_type: "Pallet" = package_type
         self._quantity: int = 0
         self._weight: float = 0
 

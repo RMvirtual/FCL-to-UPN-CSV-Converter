@@ -5,7 +5,7 @@ py_test(
     srcs = glob(["*.py"]),
     data = ["//resources/test_inputs:simple_scenario.csv"],
     deps = [
-        "//src/main/system_import",
+        "//src/main/forward_office/system_import",
         "@rules_python//python/runfiles",
     ],
 )
