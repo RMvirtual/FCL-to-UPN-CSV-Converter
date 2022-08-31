@@ -1,5 +1,5 @@
 import unittest
-from rules_python.python.runfiles import runfiles
+from src.main.file_system.runfiles import load_path
 from src.main.json.single_object import FieldsToIndexes
 
 
@@ -55,10 +55,7 @@ class TestJsonReader(unittest.TestCase):
 
     @property
     def _test_json_file(self) -> str:
-        r = runfiles.Create()
-
-        return r.Rlocation(
-            "fcl-to-upn-csv/resources/test_inputs/upn_edi_imp.json")
+        return load_path("resources/test_inputs/upn_edi_imp.json")
 
 
 if __name__ == '__main__':

@@ -6,6 +6,6 @@ py_test(
     data = ["//resources/test_inputs:upn_edi_imp.json"],
     deps = [
         "//src/main/json",
-        "@rules_python//python/runfiles",
+        "//src/main/file_system",
     ],
 )
