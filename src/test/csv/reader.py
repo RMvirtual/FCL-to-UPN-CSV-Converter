@@ -1,6 +1,6 @@
 import unittest
 import src.main.csv.reader as csv_reader
-from rules_python.python.runfiles import runfiles
+from src.main.file_system.runfiles import load_path
 
 
 class TestCsvReader(unittest.TestCase):
@@ -23,12 +23,9 @@ class TestCsvReader(unittest.TestCase):
         self.assertListEqual(self._correct_first_row, second_row)
 
     def _load_csv_file(self) -> None:
-        r = runfiles.Create()
+        path = load_path("resources/test_inputs/simple_scenario.csv")
 
-        location = r.Rlocation(
-            "fcl-to-upn-csv/resources/test_inputs/simple_scenario.csv")
-
-        self._csv_file = csv_reader.read(location)
+        self._csv_file = csv_reader.read(path)
 
     def _initialise_correct_values(self) -> None:
         self._initialise_correct_headers()
