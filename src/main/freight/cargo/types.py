@@ -1,14 +1,12 @@
 from __future__ import annotations
 from src.main.freight.cargo.oversize_options import OversizeOption
 import json
-from rules_python.python.runfiles import runfiles
+from src.main.file_system.runfiles import load_path
 
 
-def load_package_type(type_name: str) -> PackageType:
-    r = runfiles.Create()
-
-    base_packages_file = r.Rlocation(
-        "fcl-to-upn-csv/resources/cargo_types/base_packages.json")
+def load_package_type(type_name: str) -> PackageType or None:
+    base_packages_file = load_path(
+        "resources/cargo_types/base_packages.json")
 
     with open(base_packages_file, "r") as json_file:
         objects = json.load(json_file)

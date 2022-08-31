@@ -6,7 +6,7 @@ py_test(
     data = ["//resources/test_inputs:simple_scenario.csv"],
     deps = [
         "//src/main/freight/consignment",
-        "@rules_python//python/runfiles",
+        "//src/main/file_system",
     ],
 )
 
@@ -16,6 +16,6 @@ py_test(
     data = [],
     deps = [
         "//src/main/freight/consignment",
-        "@rules_python//python/runfiles",
+        "//src/main/file_system",
     ],
 )

@@ -1,5 +1,5 @@
 import unittest
-from rules_python.python.runfiles import runfiles
+from src.main.file_system.runfiles import load_path
 import src.main.forward_office.system_import.parser.consignment as \
     consignment_parser
 
@@ -41,10 +41,7 @@ class TestConsignmentParser(unittest.TestCase):
 
     @property
     def _simple_scenario_csv(self) -> str:
-        r = runfiles.Create()
-
-        return r.Rlocation(
-            "fcl-to-upn-csv/resources/test_inputs/simple_scenario.csv")
+        return load_path("resources/test_inputs/simple_scenario.csv")
 
 
 if __name__ == '__main__':

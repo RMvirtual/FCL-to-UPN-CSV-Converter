@@ -1,5 +1,5 @@
 import unittest
-from rules_python.python.runfiles import runfiles
+from src.main.file_system.runfiles import load_path
 from src.main.freight.cargo.types import load_package_type
 
 
@@ -13,10 +13,8 @@ class TestPackageTypesJsonReader(unittest.TestCase):
 
     @property
     def _test_json_file(self) -> str:
-        r = runfiles.Create()
-
-        return r.Rlocation(
-            "fcl-to-upn-csv/resources/test_inputs/base_packages.json")
+        return load_path(
+            "resources/test_inputs/base_packages.json")
 
 
 if __name__ == '__main__':

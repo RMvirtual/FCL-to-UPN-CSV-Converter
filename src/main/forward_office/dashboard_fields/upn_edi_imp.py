@@ -1,5 +1,5 @@
 from src.main.json.single_object import FieldsToIndexes
-from rules_python.python.runfiles import runfiles
+from src.main.file_system.runfiles import load_path
 
 
 class UpnEdiImp(FieldsToIndexes):
@@ -9,7 +9,4 @@ class UpnEdiImp(FieldsToIndexes):
 
     @property
     def _json_file_path(self) -> str:
-        r = runfiles.Create()
-
-        return r.Rlocation(
-            "fcl-to-upn-csv/resources/file_formats/upn_edi_imp.json")
+        return load_path("resources/file_formats/upn_edi_imp.json")
