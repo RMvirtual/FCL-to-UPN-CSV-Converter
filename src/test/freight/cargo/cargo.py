@@ -39,7 +39,7 @@ class TestCargo(unittest.TestCase):
     def test_should_reject_combining_different_oversize_entries(self):
         half_pallet = load_package_type("half")
         entry_1 = self._cargo_entry(half_pallet, (1, 400))
-        entry_1.package_type.oversize_option = OversizeOption.DOUBLE
+        entry_1.package_type.set_oversize_option("double")
 
         entry_2 = self._cargo_entry(half_pallet, (1, 400))
 
@@ -50,16 +50,16 @@ class TestCargo(unittest.TestCase):
         half_pallet = load_package_type("half")
 
         self._add_cargo_entry(
-            half_pallet, (1, 400), OversizeOption.DOUBLE)
+            half_pallet, (1, 400), "double")
 
         self._add_cargo_entry(
-            half_pallet, (2, 300), OversizeOption.DOUBLE)
+            half_pallet, (2, 300), "double")
 
         self._compare_cargo_entry(
             index=0,
             pkg_type=half_pallet,
             quantity_and_weight=(3, 700),
-            oversize_option=OversizeOption.DOUBLE
+            oversize_option="double"
         )
 
     def test_should_add_two_different_pallet_types(self):
@@ -165,8 +165,8 @@ class TestCargo(unittest.TestCase):
             pkg_type_1.oversize_option.name, pkg_type_2.oversize_option.name)
 
         self.assertDictEqual(
-            pkg_type_1.oversize_option.package_multipliers,
-            pkg_type_2.oversize_option.package_multipliers
+            pkg_type_1.oversize_option.multiplier,
+            pkg_type_2.oversize_option.multiplier
         )
 
 
