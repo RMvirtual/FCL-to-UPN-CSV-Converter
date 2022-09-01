@@ -2,11 +2,14 @@ from __future__ import annotations
 from src.main.freight.cargo.oversize_options import OversizeOption
 import json
 from src.main.file_system.runfiles import load_path
+from src.main.freight.cargo.oversize_options import load_oversize_options
 
 
 def load_package_type(type_name: str) -> PackageType or None:
     base_packages_file = load_path(
         "resources/cargo_types/base_packages.json")
+
+    oversize_options = load_oversize_options()
 
     with open(base_packages_file, "r") as json_file:
         objects = json.load(json_file)
@@ -15,13 +18,14 @@ def load_package_type(type_name: str) -> PackageType or None:
 
     for package_type in objects:
         result = PackageType()
-        result.base_type = package_type["type"]
         result.name = package_type["name"]
+        result.base_type = package_type["type"]
+        result.oversize_option = oversize_options["normal"]
         result.maximum_dimensions = {
             "length": package_type["maximum_length"],
             "width": package_type["maximum_width"],
-            "height": package_type["maximum_height"],
-        },
+            "height": package_type["maximum_height"]
+        }
         result.maximum_weight = package_type["maximum_weight"]
         result.override_options = package_type["override_options"]
 
@@ -39,9 +43,9 @@ class PackageType:
         self._name = ""
         self._base_type = None
         self._oversize_option: OversizeOption or None = None
-        self._maximum_dimensions = None
+        self._maximum_dimensions: dict[str, float] or None = None
         self._maximum_weight = None
-        self._override_options = []
+        self._override_options: list[str] = []
 
     @property
     def name(self) -> str:
@@ -68,11 +72,11 @@ class PackageType:
         self._oversize_option = new_option
 
     @property
-    def maximum_dimensions(self):
+    def maximum_dimensions(self) -> dict[str, float]:
         return self._maximum_dimensions
 
     @maximum_dimensions.setter
-    def maximum_dimensions(self, new_dimensions):
+    def maximum_dimensions(self, new_dimensions: dict[str, float]):
         self._maximum_dimensions = new_dimensions
 
     @property

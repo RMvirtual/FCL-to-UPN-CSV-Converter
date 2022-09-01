@@ -3,6 +3,24 @@ import json
 from src.main.file_system.runfiles import load_path
 
 
+def load_oversize_options():
+    base_packages_file = load_path(
+        "resources/cargo_types/oversize_options.json")
+
+    with open(base_packages_file, "r") as json_file:
+        options_file = json.load(json_file)
+
+    options = {}
+
+    for option in options_file:
+        result = OversizeOption()
+        result.name = option["name"]
+        result.package_multipliers = option["package_type_multipliers"]
+        options[result.name] = result
+
+    return options
+
+
 def load_oversize_option(option_name: str):
     base_packages_file = load_path(
         "resources/cargo_types/oversize_options.json")
