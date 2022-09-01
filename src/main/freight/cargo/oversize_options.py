@@ -1,4 +1,25 @@
 from __future__ import annotations
+import json
+from src.main.file_system.runfiles import load_path
+
+
+def load_oversize_option(option_name: str):
+    base_packages_file = load_path(
+        "resources/cargo_types/oversize_options.json")
+
+    with open(base_packages_file, "r") as json_file:
+        options = json.load(json_file)
+
+    result = None
+
+    for option in options:
+        if option["name"] == option_name:
+            result = OversizeOption()
+            result.name = option["name"]
+            result.package_multipliers = option["package_type_multipliers"]
+            break
+
+    return result
 
 
 class OversizeOption:
