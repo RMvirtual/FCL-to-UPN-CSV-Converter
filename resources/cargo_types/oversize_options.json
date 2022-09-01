@@ -1,26 +1,23 @@
 [
   {
-    "name": "normal",
-    "package_type_multipliers": {
-      "pallet": 1.0
-    }
-  },
-  {
-    "name": "oversize",
-    "package_type_multipliers": {
-      "pallet": 1.5
-    }
-  },
-  {
-    "name": "double",
-    "package_type_multipliers": {
-      "pallet": 2.0
-    }
-  },
-  {
-    "name": "triple",
-    "package_type_multipliers": {
-      "pallet": 3.0
-    }
+    "base_type" : "pallet",
+    "options": [
+      {
+        "name": "normal",
+        "multiplier": 1.0
+      },
+      {
+        "name": "oversize",
+        "multiplier": 1.5
+      },
+      {
+        "name": "double",
+        "multiplier": 2.0
+      },
+      {
+        "name": "triple",
+        "multiplier": 3.0
+      }
+    ]
   }
 ]
