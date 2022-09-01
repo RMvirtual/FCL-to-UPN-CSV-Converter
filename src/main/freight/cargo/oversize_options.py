@@ -7,8 +7,8 @@ def load_options_by_base_type(base_type: str):
     oversize_options = load_all_options()
     filtered_options = {}
 
-    for key, value in oversize_options:
-        if base_type in key:
+    for key, value in enumerate(oversize_options):
+        if base_type == key:
             filtered_options[key] = value
 
     return filtered_options
