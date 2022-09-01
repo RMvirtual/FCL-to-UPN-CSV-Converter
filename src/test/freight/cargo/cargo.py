@@ -1,5 +1,4 @@
 import unittest
-from typing import Type
 from src.main.freight.cargo.entry import CargoEntry
 from src.main.freight.cargo.types import \
     load_package_type, PackageType, OversizeOption
