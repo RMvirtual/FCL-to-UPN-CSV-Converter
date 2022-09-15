@@ -43,7 +43,7 @@ class PackageType:
     def __init__(self):
         self._name = ""
         self._base_type = None
-        self._oversize: dict[str, float] or None = None
+        self._oversize_option: dict[str, float] or None = None
         self._oversize_options: {str, dict[str, float]} or None = None
         self._maximum_dimensions: dict[str, float] or None = None
         self._maximum_weight = None
@@ -67,14 +67,17 @@ class PackageType:
 
     @property
     def oversize_option(self) -> dict[str, float]:
-        return self._oversize
+        return {
+            self._oversize_option:
+                self._oversize_options[self._oversize_option]
+        }
 
     @oversize_option.setter
     def oversize_option(self, new_option: dict[str, float]):
-        self._oversize = new_option
+        self._oversize_option = new_option
 
     def set_oversize_option(self, option: str) -> None:
-        self._oversize = self._oversize_options[option]
+        self._oversize_option = self._oversize_options[option]
 
     @property
     def all_oversize_options(self):
@@ -118,4 +121,4 @@ class PackageType:
         return self._name == other.name
 
     def _oversize_matches(self, other: PackageType) -> bool:
-        return self._oversize == other.oversize_option
+        return self._oversize_option == other.oversize_option
