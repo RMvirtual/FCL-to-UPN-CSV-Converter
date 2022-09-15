@@ -1,7 +1,6 @@
 import unittest
 from src.main.freight.cargo.entry import CargoEntry
-from src.main.freight.cargo.types import \
-    load_package_type, PackageType, OversizeOption
+from src.main.freight.cargo.types import load_package_type, PackageType
 from src.main.freight.cargo.model import Cargo
 
 
@@ -109,7 +108,7 @@ class TestCargo(unittest.TestCase):
 
     def _add_cargo_entry(
             self, pkg_type: PackageType, qty_and_weight: tuple[int, float],
-            oversize_option: OversizeOption = None
+            oversize_option: dict[str, float] = None
     ) -> None:
         entry = self._cargo_entry(pkg_type, qty_and_weight, oversize_option)
 
@@ -118,7 +117,7 @@ class TestCargo(unittest.TestCase):
     @staticmethod
     def _cargo_entry(
             pkg_type: PackageType, qty_and_weight: tuple[int, float],
-            oversize_option: OversizeOption = None
+            oversize_option: dict[str, float] = None
     ) -> CargoEntry:
         entry = CargoEntry(pkg_type)
         entry.quantity_and_weight = qty_and_weight
@@ -131,7 +130,7 @@ class TestCargo(unittest.TestCase):
     def _compare_cargo_entry(
             self, index: int, pkg_type: PackageType,
             quantity_and_weight: tuple[int, float],
-            oversize_option: OversizeOption = None
+            oversize_option: dict[str, float] = None
     ) -> None:
         self.assertEqual(quantity_and_weight[0], self._cargo[index].quantity)
         self.assertEqual(quantity_and_weight[1], self._cargo[index].weight_kgs)
@@ -161,12 +160,9 @@ class TestCargo(unittest.TestCase):
 
     def compare_oversize_option(
             self, pkg_type_1: PackageType, pkg_type_2: PackageType) -> None:
-        self.assertEqual(
-            pkg_type_1.oversize_option.name, pkg_type_2.oversize_option.name)
-
         self.assertDictEqual(
-            pkg_type_1.oversize_option.multiplier,
-            pkg_type_2.oversize_option.multiplier
+            pkg_type_1.oversize_option,
+            pkg_type_2.oversize_option
         )
 
 
