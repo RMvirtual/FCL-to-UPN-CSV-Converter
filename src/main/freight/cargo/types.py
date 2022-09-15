@@ -1,9 +1,8 @@
 from __future__ import annotations
-from src.main.freight.cargo.oversize_options \
-    import OversizeOption, OversizeOptions
+from src.main.freight.cargo.oversize_options import OversizeOption
 import json
 from src.main.file_system.runfiles import load_path
-from src.main.freight.cargo.oversize_options import load_options_by_base_type
+from src.main.freight.cargo.oversize_options import options_by_base_type
 
 
 def load_package_type(type_name: str) -> PackageType or None:
@@ -20,7 +19,7 @@ def load_package_type(type_name: str) -> PackageType or None:
         result.name = package_type["name"]
         result.base_type = package_type["type"]
 
-        result.all_oversize_options = load_options_by_base_type(
+        result.all_oversize_options = options_by_base_type(
             result.base_type)
 
         result.all_oversize_options.default = result.all_oversize_options[
@@ -49,7 +48,7 @@ class PackageType:
         self._name = ""
         self._base_type = None
         self._oversize: OversizeOption or None = None
-        self._oversize_options: OversizeOptions or None = None
+        self._oversize_options: {} or None = None
         self._maximum_dimensions: dict[str, float] or None = None
         self._maximum_weight = None
         self._override_options: list[str] = []
@@ -82,12 +81,11 @@ class PackageType:
         self._oversize = self._oversize_options[option]
 
     @property
-    def all_oversize_options(self) -> OversizeOptions:
+    def all_oversize_options(self):
         return self._oversize_options
 
     @all_oversize_options.setter
-    def all_oversize_options(
-            self, new_oversize_options: OversizeOptions) -> None:
+    def all_oversize_options(self, new_oversize_options) -> None:
         self._oversize_options = new_oversize_options
 
     @property
