@@ -29,6 +29,7 @@ class TestPackageTypesJsonReader(unittest.TestCase):
         package_2 = load_package_type("full")
 
         self.assertTrue(package_1 == package_2)
+        self.assertFalse(package_1 != package_2)
 
     def test_should_show_identical_oversize_package_types_as_equal(self):
         package_1 = load_package_type("full")
@@ -38,11 +39,13 @@ class TestPackageTypesJsonReader(unittest.TestCase):
         package_2.oversize_option = "double"
 
         self.assertTrue(package_1 == package_2)
+        self.assertFalse(package_1 != package_2)
 
     def test_should_show_different_normal_package_types_as_inequal(self):
         package_1 = load_package_type("full")
         package_2 = load_package_type("half")
 
+        self.assertTrue(package_1 != package_2)
         self.assertFalse(package_1 == package_2)
 
     def test_should_show_different_oversize_package_types_as_inequal(self):
@@ -52,6 +55,7 @@ class TestPackageTypesJsonReader(unittest.TestCase):
         package_2 = load_package_type("full")
         package_2.oversize_option = "triple"
 
+        self.assertTrue(package_1 != package_2)
         self.assertFalse(package_1 == package_2)
 
     @property

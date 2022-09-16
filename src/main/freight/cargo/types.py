@@ -120,9 +120,6 @@ class PackageType:
         self._override_options = new_options
 
     def __eq__(self, other: PackageType) -> bool:
-        return self._is_equal(other)
-
-    def _is_equal(self, other: PackageType) -> bool:
         return self._name_matches(other) and self._oversize_matches(other)
 
     def _name_matches(self, other: PackageType) -> bool:

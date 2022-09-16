@@ -11,6 +11,16 @@ py_test(
 )
 
 py_test(
+    name = "entry",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/freight/cargo",
+        "//src/main/file_system",
+    ],
+)
+
+py_test(
     name = "package_types",
     srcs = glob(["*.py"]),
     data = ["//resources/cargo_types:base_packages.json"],
