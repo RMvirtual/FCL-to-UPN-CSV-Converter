@@ -76,8 +76,12 @@ class PackageType:
         return self._oversize_option
 
     @oversize_option.setter
-    def oversize_option(self, new_option: str):
-        self._oversize_option = new_option
+    def oversize_option(self, new_option: str) -> None:
+        if new_option in self._oversize_options:
+            self._oversize_option = new_option
+
+        else:
+            raise ValueError("Oversize option not found.")
 
     @property
     def oversize_multiplier(self):
