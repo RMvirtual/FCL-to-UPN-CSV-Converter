@@ -4,7 +4,7 @@ from src.main.file_system.runfiles import load_path
 from src.main.freight.cargo.oversize_options import options_by_base_type
 
 
-def load_package_type(type_name: str) -> PackageType or None:
+def load_package_type(type_name: str) -> PackageType:
     base_packages_file = load_path(
         "resources/cargo_types/base_packages.json")
 
@@ -32,18 +32,24 @@ def load_package_type(type_name: str) -> PackageType or None:
 
         types.append(result)
 
+    result = None
+
     for package in types:
         if package.name == type_name:
-            return package
+            result = package
+            break
 
-    return None
+    if result is None:
+        raise ValueError("Package type does not exist.")
+
+    return result
 
 
 class PackageType:
     def __init__(self):
         self._name = ""
         self._base_type = None
-        self._oversize_option: dict[str, float] or None = None
+        self._oversize_option: str = "normal"
         self._oversize_options: {str, dict[str, float]} or None = None
         self._maximum_dimensions: dict[str, float] or None = None
         self._maximum_weight = None
@@ -66,18 +72,16 @@ class PackageType:
         self._base_type = new_type
 
     @property
-    def oversize_option(self) -> dict[str, float]:
-        return {
-            self._oversize_option:
-                self._oversize_options[self._oversize_option]
-        }
+    def oversize_option(self) -> str:
+        return self._oversize_option
 
     @oversize_option.setter
-    def oversize_option(self, new_option: dict[str, float]):
+    def oversize_option(self, new_option: str):
         self._oversize_option = new_option
 
-    def set_oversize_option(self, option: str) -> None:
-        self._oversize_option = self._oversize_options[option]
+    @property
+    def oversize_multiplier(self):
+        return self._oversize_options[self._oversize_option]
 
     @property
     def all_oversize_options(self):

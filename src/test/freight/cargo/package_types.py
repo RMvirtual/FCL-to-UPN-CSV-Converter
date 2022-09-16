@@ -11,10 +11,16 @@ class TestPackageTypesJsonReader(unittest.TestCase):
         package_type = load_package_type("full")
         self.assertEqual(package_type.base_type, "pallet")
 
+    def test_should_get_oversize_options_after_amendment(self):
+        package_type = load_package_type("half")
+        package_type.oversize_option = "double"
+
+        self.assertEqual("double", package_type.oversize_option)
+        self.assertEqual(2, package_type.oversize_multiplier)
+
     @property
     def _test_json_file(self) -> str:
-        return load_path(
-            "resources/test_inputs/base_packages.json")
+        return load_path("resources/test_inputs/base_packages.json")
 
 
 if __name__ == '__main__':
