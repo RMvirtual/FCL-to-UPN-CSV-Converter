@@ -4,14 +4,19 @@ from src.main.forward_office.dashboard.export.parser.consignment \
     import ConsignmentParser
 
 
-def read(
-        csv_path: str, field_indexes: dict[str, int],
-        ignore_headers: bool = False) -> dict[str, Consignment]:
+class ReadParameters:
+    def __init__(self):
+        self.csv_path: str = ""
+        self.field_indexes: dict[str, int] = {}
+        self.ignore_headers: bool = False
+
+
+def read(parameters: ReadParameters) -> dict[str, Consignment]:
     csv_rows = read_csv(
-        src_path=csv_path,
-        ignore_headers=ignore_headers
+        src_path=parameters.csv_path,
+        ignore_headers=parameters.field_indexes
     )
 
-    parser = ConsignmentParser(field_indexes)
+    parser = ConsignmentParser(parameters.field_indexes)
 
     return parser.parse(csv_rows)

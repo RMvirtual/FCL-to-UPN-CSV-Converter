@@ -1,6 +1,6 @@
 from __future__ import annotations
 import json
-from src.main.file_system.runfiles import load_path
+from src.main.file_system import runfiles
 
 
 def all_options() -> dict[str, dict[str, float]]:
@@ -16,7 +16,7 @@ def all_options() -> dict[str, dict[str, float]]:
 
 
 def option_file_contents() -> list[dict[str, str]]:
-    options_file = load_path(
+    options_file = runfiles.load_path(
         "resources/cargo_types/oversize_options.json")
 
     with open(options_file, "r") as json_file:
