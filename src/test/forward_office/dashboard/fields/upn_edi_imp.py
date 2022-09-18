@@ -1,6 +1,6 @@
 import unittest
 from src.main.forward_office.dashboard.fields.upn_edi_imp \
-    import upn_edi_imp_format
+    import format
 
 
 class TestDashboardExportReader(unittest.TestCase):
@@ -42,7 +42,7 @@ class TestDashboardExportReader(unittest.TestCase):
     }
 
     def setUp(self) -> None:
-        self._fields = upn_edi_imp_format()
+        self._fields = format()
 
     def test_should_read_correct_number_of_fields(self):
         self.assertEqual(len(self.CORRECT_FIELDS), len(self._fields))
