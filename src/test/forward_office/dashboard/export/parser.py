@@ -1,11 +1,11 @@
 import unittest
 from src.main.file_system.runfiles import load_path
-import src.main.forward_office.dashboard.export.upn_edi_imp_csv as upn_edi
+from src.main.forward_office.dashboard.export import upn_edi_imp_csv
 
 
 class TestConsignmentParser(unittest.TestCase):
     def setUp(self) -> None:
-        self._consignments = upn_edi.import_upn_edi_imp_csv_fcl_export(
+        self._consignments = upn_edi_imp_csv.import_upn_edi_imp_csv_fcl_export(
             csv_path=self._simple_scenario_csv)
 
     def test_should_read_a_quantity_of_one_consignment(self):
@@ -26,6 +26,9 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual(address.country, "GB")
         self.assertEqual(address.contact_name, "Mr Susan Cheshire")
         self.assertEqual(address.telephone_number, "(078) 4133 2424")
+
+    def test_should_read_cargo(self):
+        self.fail("Dummy fail.")
 
     @property
     def _simple_scenario_csv(self) -> str:

@@ -1,11 +1,11 @@
 from __future__ import annotations
 import json
-from src.main.file_system.runfiles import load_path
-from src.main.freight.cargo.oversize_options import options_by_base_type
+from src.main.file_system import runfiles
+from src.main.freight.cargo import oversize_options
 
 
 def load_package_type(type_name: str) -> PackageType:
-    base_packages_file = load_path(
+    base_packages_file = runfiles.load_path(
         "resources/cargo_types/base_packages.json")
 
     with open(base_packages_file, "r") as json_file:
@@ -18,7 +18,7 @@ def load_package_type(type_name: str) -> PackageType:
         result.name = package_type["name"]
         result.base_type = package_type["type"]
 
-        result.all_oversize_options = options_by_base_type(
+        result.all_oversize_options = oversize_options.options_by_base_type(
             result.base_type)
 
         result.maximum_dimensions = {
