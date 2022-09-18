@@ -4,5 +4,7 @@ py_library(
     name = "file_formats",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = ["//src/main/csv"],
+    deps = [
+        "//src/main/csv",
+    ],
 )

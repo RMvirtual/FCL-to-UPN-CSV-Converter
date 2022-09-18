@@ -3,13 +3,12 @@ load("@rules_python//python:defs.bzl", "py_library")
 py_library(
     name = "cargo",
     srcs = glob(["*.py"]),
-    deps = [
-        "//src/main/json",
-        "//src/main/file_system",
-    ],
     data = [
         "//resources/cargo_types:base_packages.json",
-        "//resources/cargo_types:oversize_options.json"
+        "//resources/cargo_types:oversize_options.json",
     ],
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/file_system",
+    ],
 )

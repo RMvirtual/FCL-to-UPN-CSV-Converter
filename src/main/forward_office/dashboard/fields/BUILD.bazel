@@ -7,6 +7,5 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/file_system",
-        "//src/main/json",
     ],
 )
