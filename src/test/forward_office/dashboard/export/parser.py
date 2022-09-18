@@ -27,8 +27,10 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual(address.contact_name, "Mr Susan Cheshire")
         self.assertEqual(address.telephone_number, "(078) 4133 2424")
 
-    def test_should_read_cargo(self):
-        self.fail("Dummy fail.")
+    def test_should_read_correct_number_of_cargo_entries(self):
+        consignment = list(self._consignments.values())[0]
+        cargo = consignment.cargo
+        self.assertEqual(1, len(cargo))
 
     @property
     def _simple_scenario_csv(self) -> str:
