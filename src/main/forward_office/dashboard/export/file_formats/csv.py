@@ -1,6 +1,7 @@
 from src.main.csv.reader import read as read_csv
-from src.main.consignment.consignment import Consignment
-from src.main.consignment_import.parser.consignment import ConsignmentParser
+from src.main.freight.consignment.consignment import Consignment
+from src.main.forward_office.dashboard.export.parser.consignment \
+    import ConsignmentParser
 
 
 def read(

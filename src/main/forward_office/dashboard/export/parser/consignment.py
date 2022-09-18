@@ -1,6 +1,7 @@
 from src.main.freight.consignment.consignment import Consignment
 from src.main.json.single_object import FieldsToIndexes
-from src.main.forward_office.system_import.parser.address import AddressParser
+from src.main.forward_office.dashboard.export.parser.address \
+    import AddressParser
 
 
 class ConsignmentParser:

@@ -1,18 +1,12 @@
 import unittest
 from src.main.file_system.runfiles import load_path
-import src.main.forward_office.system_import.parser.consignment as \
-    consignment_parser
-
-from src.main.forward_office.dashboard_fields.upn_edi_imp import UpnEdiImp
+import src.main.forward_office.dashboard.export.upn_edi_imp_csv as upn_edi
 
 
 class TestConsignmentParser(unittest.TestCase):
     def setUp(self) -> None:
-        self._consignments = consignment_parser.read(
-            csv_path=self._simple_scenario_csv,
-            ignore_headers=True,
-            file_format=UpnEdiImp()
-        )
+        self._consignments = upn_edi.import_upn_edi_imp_csv_fcl_export(
+            csv_path=self._simple_scenario_csv)
 
     def test_should_read_a_quantity_of_one_consignment(self):
         self.assertEqual(1, len(self._consignments))
@@ -32,12 +26,6 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual(address.country, "GB")
         self.assertEqual(address.contact_name, "Mr Susan Cheshire")
         self.assertEqual(address.telephone_number, "(078) 4133 2424")
-
-    def test_should_get_one_cargo_entry_from_description(self):
-        cargo = list(
-            self._consignments.values())[0].cargo
-
-        self.assertEqual(1, len(cargo))
 
     @property
     def _simple_scenario_csv(self) -> str:

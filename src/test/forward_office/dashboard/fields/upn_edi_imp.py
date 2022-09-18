@@ -1,5 +1,5 @@
 import unittest
-from src.main.forward_office.dashboard_fields.upn_edi_imp \
+from src.main.forward_office.dashboard.fields.upn_edi_imp \
     import upn_edi_imp_format
 
 
