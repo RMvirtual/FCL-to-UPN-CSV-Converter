@@ -5,12 +5,11 @@ from src.main.forward_office.system_import.parser.address import AddressParser
 
 class ConsignmentParser:
     """
-    Interprets a 2D list of strings into a set of consignment.
-    The ordering of this list is defined by the format parameter to
-    determine which rows to use for each field.
+    Interprets a 2D list of strings into a consignment.
+    The interpretation of the field heading for each list column
+    is defined by the format parameter in the constructor.
     """
-
-    def __init__(self, file_format: FieldsToIndexes):
+    def __init__(self, file_format: dict[str, int]):
         self._consignments: dict[str, Consignment] = {}
         self._format = file_format
         self._address_parser = AddressParser(self._format)

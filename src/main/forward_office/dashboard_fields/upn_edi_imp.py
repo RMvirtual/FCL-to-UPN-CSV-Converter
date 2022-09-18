@@ -1,12 +1,11 @@
-from src.main.json.single_object import FieldsToIndexes
+import json
 from src.main.file_system.runfiles import load_path
 
 
-class UpnEdiImp(FieldsToIndexes):
-    def __init__(self):
-        super().__init__(
-            fields_to_indexes_json=self._json_file_path)
+def upn_edi_imp_format():
+    file_path = load_path("resources/file_formats/upn_edi_imp.json")
 
-    @property
-    def _json_file_path(self) -> str:
-        return load_path("resources/file_formats/upn_edi_imp.json")
+    with open(file_path, "r") as json_file:
+        field_indexes = json.load(json_file)
+
+    return field_indexes

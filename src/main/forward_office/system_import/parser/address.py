@@ -2,8 +2,8 @@ from src.main.freight.consignment.address import Address
 
 
 class AddressParser:
-    def __init__(self, fields_to_indexes: dict[str, int]):
-        self._fields_to_indexes = fields_to_indexes
+    def __init__(self, field_indexes: dict[str, int]):
+        self._fields_to_indexes = field_indexes
 
     def parse(self, values: list[str]) -> Address:
         address = Address()
