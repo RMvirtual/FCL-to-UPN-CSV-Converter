@@ -15,7 +15,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = ["//resources/test_inputs:simple_scenario.csv"],
     deps = [
-        "//src/main/file_system",
         "//src/main/forward_office/dashboard/export",
     ],
 )
