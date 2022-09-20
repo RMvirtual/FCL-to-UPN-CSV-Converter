@@ -1,7 +1,17 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "parser",
+    name = "consignment",
+    srcs = glob(["*.py"]),
+    data = ["//resources/test_inputs:simple_scenario.csv"],
+    deps = [
+        "//src/main/file_system",
+        "//src/main/forward_office/dashboard/export",
+    ],
+)
+
+py_test(
+    name = "address",
     srcs = glob(["*.py"]),
     data = ["//resources/test_inputs:simple_scenario.csv"],
     deps = [

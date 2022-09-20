@@ -2,6 +2,8 @@ from src.main.freight.consignment.consignment import Consignment
 from src.main.forward_office.dashboard.export.parser.address \
     import AddressParser
 
+from src.main.forward_office.dashboard.export.parser.cargo import CargoParser
+
 
 class ConsignmentParser:
     """
@@ -13,6 +15,7 @@ class ConsignmentParser:
         self._consignments: dict[str, Consignment] = {}
         self._format = file_format
         self._address_parser = AddressParser(self._format)
+        self._cargo_parser = CargoParser(self._format)
 
     def parse(self, csv_rows: list[list[str]]) -> dict[str, Consignment]:
         self._consignments.clear()
@@ -42,6 +45,7 @@ class ConsignmentParser:
         consignment = Consignment()
         consignment.reference = self._extract_value(csv_row, "reference")
         consignment.address = self._address_parser.parse(csv_row)
+        consignment.cargo = self._cargo_parser.parse(csv_row)
 
         return consignment
 
