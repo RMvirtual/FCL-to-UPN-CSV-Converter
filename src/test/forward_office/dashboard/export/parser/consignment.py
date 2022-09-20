@@ -15,11 +15,6 @@ class TestConsignmentParser(unittest.TestCase):
         reference = list(self._consignments.values())[0].reference
         self.assertEqual(reference, "GR220806951")
 
-    def test_should_read_correct_number_of_cargo_entries(self):
-        consignment = list(self._consignments.values())[0]
-        cargo = consignment.cargo
-        self.assertEqual(1, len(cargo))
-
     @property
     def _simple_scenario_csv(self) -> str:
         return load_path("resources/test_inputs/simple_scenario.csv")

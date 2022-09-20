@@ -13,7 +13,16 @@ py_test(
 py_test(
     name = "address",
     srcs = glob(["*.py"]),
-    data = ["//resources/test_inputs:simple_scenario.csv"],
+    data = [],
+    deps = [
+        "//src/main/forward_office/dashboard/export",
+    ],
+)
+
+py_test(
+    name = "cargo",
+    srcs = glob(["*.py"]),
+    data = [],
     deps = [
         "//src/main/forward_office/dashboard/export",
     ],
