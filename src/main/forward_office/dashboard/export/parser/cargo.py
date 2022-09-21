@@ -7,8 +7,8 @@ class CargoParser:
         self._fields = field_indexes
         self._cargo = Cargo()
 
-    def parse(self, values: list[str]) -> CargoEntry:
-        return None
+    def parse(self, values: list[str]) -> Cargo:
+        return self._cargo
 
     def _extract_value(self, csv_row: list[str], field: str) -> str:
         field_column_index = self._fields[field]
