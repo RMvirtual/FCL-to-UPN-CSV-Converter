@@ -1,9 +1,13 @@
 load("@rules_python//python:defs.bzl", "py_library")
+load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
     name = "dashboard",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = ["//src/main/file_system"],
-    data = ["//resources/forward_office:dashboard_formats.json"]
+    deps = [
+        "//src/main/file_system",
+        requirement("dataclasses")
+    ],
+    data = ["//resources/forward_office:dashboard_format_files.json"]
 )

@@ -2,7 +2,7 @@ import json
 from src.main.file_system import runfiles
 
 
-def load_file(file_name: str):
+def load_path(file_name: str):
     all_paths_file = runfiles.load_path("resources/file_system.json")
 
     with open(all_paths_file) as file_paths:

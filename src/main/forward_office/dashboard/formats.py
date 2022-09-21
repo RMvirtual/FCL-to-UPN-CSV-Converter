@@ -1,7 +1,20 @@
-from dataclasses import dataclass
-from src.main.file_system import runfiles
+import dataclasses
+import json
 
+from src.main.file_system import system_paths, runfiles
 
-@dataclass
-class DashboardFormats:
-    UPNEDIIMP: str = "//resources/forward_office/formats/upn_edi_imp.json"
+dashboard_formats_file = system_paths.load_path("FCL_DASHBOARD_FORMATS")
+full_path = runfiles.load_path(dashboard_formats_file)
+
+with open(full_path) as json_file:
+    contents = json.load(json_file)
+
+fields = []
+
+for item in contents:
+    fields.append([item, str, contents[item]])
+
+DashboardFormats = dataclasses.make_dataclass(
+    cls_name="DashboardFormats",
+    fields=fields
+)

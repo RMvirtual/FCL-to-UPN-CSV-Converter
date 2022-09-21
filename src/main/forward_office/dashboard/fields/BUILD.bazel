@@ -3,7 +3,7 @@ load("@rules_python//python:defs.bzl", "py_library")
 py_library(
     name = "fields",
     srcs = glob(["*.py"]),
-    data = ["//resources/file_formats:upn_edi_imp.json"],
+    data = ["//resources/forward_office/formats:upn_edi_imp.json"],
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/file_system",
