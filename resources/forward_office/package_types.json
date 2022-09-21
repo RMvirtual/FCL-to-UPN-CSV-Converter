@@ -1,0 +1,10 @@
+[
+  {
+    "short_code": "PALL",
+    "maps_to": {
+      "name": "full",
+      "type": "pallet",
+      "oversize_option": "normal"
+    }
+  }
+]

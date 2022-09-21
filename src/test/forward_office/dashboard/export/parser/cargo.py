@@ -3,6 +3,7 @@ import unittest
 from src.main.forward_office.dashboard.export.parser.cargo import CargoParser
 from src.main.freight.cargo.types import PackageType
 
+
 class TestCargoEntryParser(unittest.TestCase):
     def setUp(self) -> None:
         self._field_indexes = {
