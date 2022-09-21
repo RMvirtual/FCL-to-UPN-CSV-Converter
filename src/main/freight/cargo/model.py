@@ -15,6 +15,9 @@ class Cargo:
         else:
             self._entries.append(new_entry)
 
+    def clear(self) -> None:
+        self._entries.clear()
+
     def entry_by_package_type(self, package_type: PackageType) -> CargoEntry:
         matching_cargo_entry = None
 
