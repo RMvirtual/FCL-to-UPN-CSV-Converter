@@ -8,3 +8,12 @@ py_test(
         "//src/main/file_system",
     ],
 )
+
+py_test(
+    name = "formats",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/file_system",
+    ],
+)

@@ -9,5 +9,7 @@ py_library(
         "//src/main/file_system",
         requirement("dataclasses")
     ],
-    data = ["//resources/forward_office:dashboard_format_files.json"]
+    data = [
+        "//resources/forward_office/formats:upn_edi_imp.json"
+    ]
 )

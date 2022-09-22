@@ -1,20 +1,27 @@
 import dataclasses
 import json
 
-from src.main.file_system import system_paths, runfiles
+from src.main.file_system import runfiles
+from src.main.file_system.dashboard_format_files import DashboardFormatFiles
 
-dashboard_formats_file = system_paths.load_path("FCL_DASHBOARD_FORMATS")
-full_path = runfiles.load_path(dashboard_formats_file)
+format_files = DashboardFormatFiles()
+formats = []
 
-with open(full_path) as json_file:
-    contents = json.load(json_file)
+for format_field in dataclasses.fields(format_files):
+    full_format_path = runfiles.load_path(getattr(format_files, format_field.name))
 
-fields = []
+    with open(full_format_path) as json_stream:
+        format_contents = json.load(json_stream)
 
-for item in contents:
-    fields.append([item, str, contents[item]])
+    formats.append([
+        format_field.name,
+        dict[str, int],
+        dataclasses.field(default=format_contents)
+    ])
 
 DashboardFormats = dataclasses.make_dataclass(
     cls_name="DashboardFormats",
-    fields=fields
+    fields=formats
 )
+
+
