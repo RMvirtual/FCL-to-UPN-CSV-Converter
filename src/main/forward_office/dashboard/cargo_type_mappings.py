@@ -25,11 +25,12 @@ for package_type in contents:
 field_interpretation = []
 
 for short_code in short_codes_to_package_types:
+    package_type = short_codes_to_package_types[short_code]
+
     field_interpretation.append([
         short_code,
         PackageType,
-        dataclasses.field(
-            default_factory=lambda: short_codes_to_package_types[short_code])
+        dataclasses.field(default=package_type)
     ])
 
 FclCargoTypeMap = dataclasses.make_dataclass(
