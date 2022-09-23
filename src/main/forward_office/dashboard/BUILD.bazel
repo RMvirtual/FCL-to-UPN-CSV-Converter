@@ -8,7 +8,6 @@ py_library(
     deps = [
         "//src/main/file_system",
         "//src/main/freight",
-        requirement("dataclasses")
     ],
     data = [
         "//resources/forward_office:cargo_type_mappings.json",
