@@ -7,7 +7,7 @@ class TestFclCargoTypeMappings(unittest.TestCase):
     def setUp(self) -> None:
         pass
 
-    def test_can_map_an_fcl_cargo_type(self):
+    def test_should_map_fcl_cargo_type(self):
         cargo_types = FclCargoTypeMappings()
         package_type = cargo_types.PALL
 
