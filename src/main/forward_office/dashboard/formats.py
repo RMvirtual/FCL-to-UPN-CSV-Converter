@@ -24,5 +24,3 @@ DashboardFormats = dataclasses.make_dataclass(
     cls_name="DashboardFormats",
     fields=formats
 )
-
-

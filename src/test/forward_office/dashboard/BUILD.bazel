@@ -8,3 +8,12 @@ py_test(
         "//src/main/forward_office/dashboard",
     ],
 )
+
+py_test(
+    name = "cargo_type_mappings",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/forward_office/dashboard",
+    ],
+)

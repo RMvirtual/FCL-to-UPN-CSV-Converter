@@ -7,9 +7,11 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/file_system",
+        "//src/main/freight",
         requirement("dataclasses")
     ],
     data = [
+        "//resources/forward_office:cargo_type_mappings.json",
         "//resources/forward_office/formats:upn_edi_imp.json"
     ]
 )

@@ -1,4 +1,4 @@
 exports_files([
-    "package_types.json",
+    "cargo_type_mappings.json",
     "dashboard_format_files.json",
 ])

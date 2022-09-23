@@ -6,7 +6,7 @@ from src.main.freight.cargo.types import PackageType
 
 class TestCargoEntryParser(unittest.TestCase):
     def setUp(self) -> None:
-        self._field_indexes = {
+        self._dashboard_format = {
             "line_1_weight": 9,
             "line_1_quantity": 10,
             "line_1_package_type": 11,
@@ -25,7 +25,7 @@ class TestCargoEntryParser(unittest.TestCase):
             "line_4_description": 25
         }
 
-        self._values_to_parse = [
+        self._dashboard_input = [
             "Mr Susan Cheshire", "10 BRAMBLING RISE", "HEMEL HEMPSTEAD",
             "", "", "HEMEL HEMPSTEAD", "HP2 6DT", "GR220806951",
             "(078)41332424", "1000", "1", "PALL", "PALLETS N/D",
@@ -35,14 +35,24 @@ class TestCargoEntryParser(unittest.TestCase):
         ]
 
     def test_should_parse_one_cargo_entry(self):
-        parser = CargoParser(self._field_indexes)
-        cargo = parser.parse(self._values_to_parse)
+        parser = CargoParser(self._dashboard_format)
+        cargo = parser.parse(self._dashboard_input)
 
         self.assertEqual(1, len(cargo))
 
         entry = cargo[0]
+        correct_package_type = PackageType()
+        correct_package_type.base_type = "pallet"
+        correct_package_type.name = "full"
+
         self.assertEqual(1, entry.quantity)
-        self.assertEqual(PackageType, entry.package_type)
+
+        self.assertEqual(
+            correct_package_type.base_type, entry.package_type.base_type)
+
+        self.assertEqual(
+            correct_package_type.name, entry.package_type.name)
+
         self.assertEqual(1000, entry.weight_kgs)
 
 
