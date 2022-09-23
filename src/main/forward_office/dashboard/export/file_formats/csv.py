@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from src.main.csv.reader import read as read_csv
 from src.main.freight.consignment.consignment import Consignment
@@ -8,7 +8,7 @@ from src.main.forward_office.dashboard.export.parser.consignment \
 
 @dataclass
 class ReadParameters:
-    dashboard_format: dict[str, int]
+    dashboard_format: dict[str, int] = field(default_factory=lambda: {})
     csv_path: str = ""
     ignore_headers: bool = False
 
