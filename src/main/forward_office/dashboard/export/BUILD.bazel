@@ -7,6 +7,5 @@ py_library(
     deps = [
         "//src/main/forward_office/dashboard/export/file_formats",
         "//src/main/forward_office/dashboard/export/parser",
-        "//src/main/forward_office/dashboard"
     ],
 )
