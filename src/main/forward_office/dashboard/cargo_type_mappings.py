@@ -25,7 +25,7 @@ for package_type in packages:
         dataclasses.field(default_factory=lambda: packages[package_type])
     ])
 
-FclCargoTypeMappings = dataclasses.make_dataclass(
-    cls_name="FclCargoTypeMappings",
+FclCargoTypeMap = dataclasses.make_dataclass(
+    cls_name="FclCargoTypeMap",
     fields=field_interpretation
 )

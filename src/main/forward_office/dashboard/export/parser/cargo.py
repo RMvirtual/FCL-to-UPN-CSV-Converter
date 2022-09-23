@@ -1,7 +1,7 @@
 from src.main.freight.consignment.consignment import Cargo
 from src.main.freight.cargo.entry import CargoEntry
 from src.main.forward_office.dashboard.cargo_type_mappings \
-    import FclCargoTypeMappings
+    import FclCargoTypeMap
 
 
 class CargoParser:
@@ -12,7 +12,7 @@ class CargoParser:
     def parse(self, values: list[str]) -> Cargo:
         self._cargo.clear()
 
-        mappings = FclCargoTypeMappings()
+        mappings = FclCargoTypeMap()
 
         if values[self._fields["line_1_package_type"]] != "":
             package_type = getattr(

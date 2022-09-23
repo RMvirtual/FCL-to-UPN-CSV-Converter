@@ -1,6 +1,6 @@
 import unittest
 from src.main.forward_office.dashboard.cargo_type_mappings \
-    import FclCargoTypeMappings
+    import FclCargoTypeMap
 
 
 class TestFclCargoTypeMappings(unittest.TestCase):
@@ -8,7 +8,7 @@ class TestFclCargoTypeMappings(unittest.TestCase):
         pass
 
     def test_should_map_fcl_cargo_type(self):
-        cargo_types = FclCargoTypeMappings()
+        cargo_types = FclCargoTypeMap()
         package_type = cargo_types.PALL
 
         self.assertEqual("full", package_type.name)
