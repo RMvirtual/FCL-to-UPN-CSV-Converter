@@ -22,7 +22,7 @@ class Cargo:
         matching_cargo_entry = None
 
         for entry in self._entries:
-            if entry.package_type == package_type:
+            if entry.short_code == package_type:
                 matching_cargo_entry = entry
 
                 break

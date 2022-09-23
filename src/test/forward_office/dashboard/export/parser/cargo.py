@@ -28,7 +28,7 @@ class TestCargoEntryParser(unittest.TestCase):
         self._dashboard_input = [
             "Mr Susan Cheshire", "10 BRAMBLING RISE", "HEMEL HEMPSTEAD",
             "", "", "HEMEL HEMPSTEAD", "HP2 6DT", "GR220806951",
-            "(078)41332424", "1000", "1", "PALL", "PALLETS N/D",
+            "(078)41332424", "1000", "1", "PAL2", "PALLETS N/D",
             "PROP PAL LTD", "", "", "", "", "", "", "", "", "", "", "", "",
             "TEL: 07841 332424, TAIL LIFT", "", "", "23-Aug-22", "", "1",
             "2", "Yes"
@@ -41,19 +41,12 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertEqual(1, len(cargo))
 
         entry = cargo[0]
-        correct_package_type = PackageType()
-        correct_package_type.base_type = "pallet"
-        correct_package_type.name = "full"
-
         self.assertEqual(1, entry.quantity)
 
-        self.assertEqual(
-            correct_package_type.base_type, entry.package_type.base_type)
-
-        self.assertEqual(
-            correct_package_type.name, entry.package_type.name)
-
+        self.assertEqual("pallet", entry.package_type.base_type)
+        self.assertEqual("full", entry.package_type.name)
         self.assertEqual(1000, entry.weight_kgs)
+        self.assertEqual("double", entry.package_type.oversize_option)
 
 
 if __name__ == '__main__':

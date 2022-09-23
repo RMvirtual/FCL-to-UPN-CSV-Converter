@@ -5,7 +5,7 @@ import copy
 
 class CargoEntry:
     def __init__(self, package_type: PackageType):
-        self.package_type = package_type
+        self.package_type = copy.copy(package_type)
         self._quantity: int = 0
         self._weight: float = 0
 
@@ -31,7 +31,7 @@ class CargoEntry:
 
     @package_type.setter
     def package_type(self, package_type: PackageType):
-        self._package_type = copy.copy(package_type)
+        self._package_type = copy.deepcopy(package_type)
 
     @property
     def quantity(self) -> int:

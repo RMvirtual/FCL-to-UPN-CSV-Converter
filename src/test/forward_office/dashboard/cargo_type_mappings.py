@@ -9,10 +9,11 @@ class TestFclCargoTypeMappings(unittest.TestCase):
 
     def test_should_map_fcl_cargo_type(self):
         cargo_types = FclCargoTypeMap()
-        package_type = cargo_types.PALL
+        package_type = cargo_types.PAL2
 
         self.assertEqual("full", package_type.name)
         self.assertEqual("pallet", package_type.base_type)
+        self.assertEqual("double", package_type.oversize_option)
 
 
 if __name__ == '__main__':
