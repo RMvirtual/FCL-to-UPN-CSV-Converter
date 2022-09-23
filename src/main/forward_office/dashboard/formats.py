@@ -8,7 +8,8 @@ format_files = DashboardFormatFiles()
 formats = []
 
 for format_field in dataclasses.fields(format_files):
-    full_format_path = runfiles.load_path(getattr(format_files, format_field.name))
+    full_format_path = runfiles.load_path(
+        getattr(format_files, format_field.name))
 
     with open(full_format_path) as json_stream:
         format_contents = json.load(json_stream)
@@ -16,7 +17,7 @@ for format_field in dataclasses.fields(format_files):
     formats.append([
         format_field.name,
         dict[str, int],
-        dataclasses.field(default=format_contents)
+        dataclasses.field(default_factory=lambda: format_contents)
     ])
 
 DashboardFormats = dataclasses.make_dataclass(
