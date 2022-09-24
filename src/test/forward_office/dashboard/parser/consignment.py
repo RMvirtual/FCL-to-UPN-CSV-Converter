@@ -1,7 +1,7 @@
 import unittest
 from src.main.file_system.runfiles import load_path
-from src.main.forward_office.dashboard.formats import DashboardFormats
-from src.main.forward_office.dashboard.export.file_formats import csv
+from src.main.forward_office.dashboard.format.formats import DashboardFormats
+from src.main.forward_office.dashboard.export import csv
 
 
 class TestConsignmentParser(unittest.TestCase):

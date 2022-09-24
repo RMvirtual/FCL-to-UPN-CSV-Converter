@@ -5,7 +5,8 @@ py_library(
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/forward_office/dashboard",
+        "//src/main/forward_office/cargo",
+        "//src/main/forward_office/dashboard/format",
         "//src/main/freight",
     ],
 )

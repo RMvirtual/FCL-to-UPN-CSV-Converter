@@ -7,6 +7,7 @@ py_test(
     deps = [
         "//src/main/file_system",
         "//src/main/forward_office/dashboard/export",
+        "//src/main/forward_office/dashboard/parser",
     ],
 )
 
@@ -15,7 +16,7 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/forward_office/dashboard/export",
+        "//src/main/forward_office/dashboard/parser",
     ],
 )
 
@@ -24,6 +25,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/forward_office/dashboard/export",
+        "//src/main/forward_office/dashboard/parser",
     ],
 )

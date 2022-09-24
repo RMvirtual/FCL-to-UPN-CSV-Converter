@@ -2,13 +2,13 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "dashboard",
+    name = "format",
     srcs = glob(["*.py"]),
-    data = [],
+    data = [
+        "//resources/forward_office/formats:upn_edi_imp.json",
+    ],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/forward_office/dashboard/export",
-        "//src/main/forward_office/dashboard/format",
-        "//src/main/forward_office/dashboard/parser",
+        "//src/main/file_system",
     ],
 )

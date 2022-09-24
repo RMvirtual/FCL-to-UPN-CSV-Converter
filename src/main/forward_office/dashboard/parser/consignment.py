@@ -1,8 +1,8 @@
 from src.main.freight.consignment.consignment import Consignment
-from src.main.forward_office.dashboard.export.parser.address \
+from src.main.forward_office.dashboard.parser.address \
     import AddressParser
 
-from src.main.forward_office.dashboard.export.parser.cargo import CargoParser
+from src.main.forward_office.dashboard.parser.cargo import CargoParser
 
 
 class ConsignmentParser:
