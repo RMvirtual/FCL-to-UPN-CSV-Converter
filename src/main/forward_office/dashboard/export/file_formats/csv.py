@@ -15,7 +15,7 @@ class ReadParameters:
 
 
 def read(parameters: ReadParameters) -> dict[str, Consignment]:
-    csv_rows = csv.read(
+    csv_rows = csv_file.read(
         src_path=parameters.csv_path,
         ignore_headers=parameters.dashboard_format
     )
