@@ -1,6 +1,6 @@
 import unittest
 from src.main.file_system.runfiles import load_path
-from src.main.forward_office.dashboard.format.formats import DashboardFormats
+from src.main.forward_office.dashboard.format.all import DashboardFormats
 from src.main.forward_office.dashboard.export import csv
 
 
