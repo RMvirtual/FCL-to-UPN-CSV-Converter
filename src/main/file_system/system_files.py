@@ -3,13 +3,24 @@ from src.main.file_system import runfiles
 
 
 def load_path(file_name: str):
-    all_paths_file = runfiles.load_path("resources/file_system.json")
+    sys_files = _json_contents()
+    result = None
 
-    with open(all_paths_file) as file_paths:
-        items = json.load(file_paths)
+    for file in sys_files:
+        if file == file_name:
+            result = sys_files[file]
+            break
 
-    for item in items:
-        if item == file_name:
-            return items[item]
+    if result is None:
+        raise ValueError("No file found matching", file_name)
 
-    return None
+    return result
+
+
+def _json_contents():
+    with open(_file_path()) as json_file:
+        return json.load(json_file)
+
+
+def _file_path():
+    return runfiles.load_path("resources/file_system.json")
