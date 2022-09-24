@@ -15,12 +15,13 @@ class CargoTypeMapBuilder:
         self._parse_mappings()
 
     def _parse_mappings(self):
-        for mapping_details in self._mapping_file_contents():
-            self._add(mapping_details)
+        for short_code_to_map in self._mapping_file_contents():
+            self._add(short_code_to_map)
 
-    def _add(self, mapping_details):
-        short_code = mapping_details["short_code"]
-        package_type = self._package_type_from_mapping_details(mapping_details)
+    def _add(self, short_code_to_map):
+        short_code = short_code_to_map["short_code"]
+        package_type = self._package_type_from_mapping_details(
+            short_code_to_map)
 
         self._mappings.append([
             short_code,
@@ -29,13 +30,13 @@ class CargoTypeMapBuilder:
         ])
 
     @staticmethod
-    def _package_type_from_mapping_details(mapping_details):
-        mapping_info = mapping_details["maps_to"]
+    def _package_type_from_mapping_details(short_code_to_map):
+        mapping_info = short_code_to_map["maps_to"]
 
-        package_type = load_package_type(mapping_info["name"])
-        package_type.oversize_option = mapping_info["oversize_option"]
+        result = load_package_type(mapping_info["name"])
+        result.oversize_option = mapping_info["oversize_option"]
 
-        return package_type
+        return result
 
     def _mapping_file_contents(self):
         with open(self._file_path()) as json_file:
