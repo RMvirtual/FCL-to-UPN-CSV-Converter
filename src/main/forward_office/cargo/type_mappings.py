@@ -11,11 +11,7 @@ class CargoTypeMappingLoader:
         self._load()
 
     def _load(self):
-        full_path = self._file_path()
-
-        with open(full_path) as json_file:
-            contents = json.load(json_file)
-
+        contents = self._mapping_file_contents()
         short_codes_to_package_types = {}
 
         for package_type in contents:
@@ -37,6 +33,12 @@ class CargoTypeMappingLoader:
                 PackageType,
                 dataclasses.field(default=package_type)
             ])
+
+    def _mapping_file_contents(self):
+        with open(self._file_path()) as json_file:
+            contents = json.load(json_file)
+
+        return contents
 
     @staticmethod
     def _file_path():
