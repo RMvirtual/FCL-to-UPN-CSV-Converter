@@ -6,15 +6,12 @@ from src.main.file_system import runfiles, system_files
 from src.main.freight.cargo.types import load_package_type, PackageType
 
 
-class Loader:
+class CargoTypeMappingLoader:
     def __init__(self):
         self._load()
 
     def _load(self):
-        cargo_type_mappings_file = system_files.load_path(
-            "FCL_CARGO_TYPE_MAPPINGS")
-
-        full_path = runfiles.load_path(cargo_type_mappings_file)
+        full_path = self._file_path()
 
         with open(full_path) as json_file:
             contents = json.load(json_file)
@@ -41,11 +38,17 @@ class Loader:
                 dataclasses.field(default=package_type)
             ])
 
+    @staticmethod
+    def _file_path():
+        relative_path = system_files.load_path("FCL_CARGO_TYPE_MAPPINGS")
+
+        return runfiles.load_path(relative_path)
+
     def all(self):
         return copy.copy(self._field_interpretation)
 
 
 FclCargoTypeMap = dataclasses.make_dataclass(
     cls_name="FclCargoTypeMap",
-    fields=Loader().all()
+    fields=CargoTypeMappingLoader().all()
 )
