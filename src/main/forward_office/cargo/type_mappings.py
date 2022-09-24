@@ -6,7 +6,7 @@ from src.main.file_system import runfiles, system_files
 from src.main.freight.cargo.types import load_package_type, PackageType
 
 
-class CargoTypeMappingLoader:
+class CargoTypeMapBuilder:
     def __init__(self):
         self._load()
 
@@ -49,5 +49,5 @@ class CargoTypeMappingLoader:
 
 FclCargoTypeMap = dataclasses.make_dataclass(
     cls_name="FclCargoTypeMap",
-    fields=CargoTypeMappingLoader().all()
+    fields=CargoTypeMapBuilder().all()
 )
