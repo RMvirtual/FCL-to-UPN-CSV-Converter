@@ -5,10 +5,11 @@ py_library(
     srcs = glob(["*.py"]),
     data = [
         "//resources:file_system.json",
-        "//resources/forward_office:dashboard_format_files.json"
+        "//resources/forward_office:dashboard_format_files.json",
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "@rules_python//python/runfiles"
+        "//src/main/file_system/file_readers",
+        "@rules_python//python/runfiles",
     ],
 )

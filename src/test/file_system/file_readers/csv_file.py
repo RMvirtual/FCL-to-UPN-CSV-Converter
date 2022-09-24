@@ -1,5 +1,5 @@
 import unittest
-import src.main.csv.reader as csv_reader
+from src.main.file_system.file_readers import csv_file
 from src.main.file_system.runfiles import load_path
 
 
@@ -25,7 +25,7 @@ class TestCsvReader(unittest.TestCase):
     def _load_csv_file(self) -> None:
         path = load_path("resources/test_inputs/simple_scenario.csv")
 
-        self._csv_file = csv_reader.read(path)
+        self._csv_file = csv_file.read(path)
 
     def _initialise_correct_values(self) -> None:
         self._initialise_correct_headers()

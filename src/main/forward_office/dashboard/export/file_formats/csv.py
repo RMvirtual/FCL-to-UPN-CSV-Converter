@@ -1,11 +1,12 @@
 from dataclasses import dataclass, field
 
-from src.main.csv.reader import read as read_csv
+from src.main.file_system.file_readers import csv_file
 from src.main.freight.consignment.consignment import Consignment
 from src.main.forward_office.dashboard.export.parser.consignment \
     import ConsignmentParser
 
 
+# noinspection PyClassHasNoInit
 @dataclass
 class ReadParameters:
     dashboard_format: dict[str, int] = field(default_factory=lambda: {})
@@ -14,7 +15,7 @@ class ReadParameters:
 
 
 def read(parameters: ReadParameters) -> dict[str, Consignment]:
-    csv_rows = read_csv(
+    csv_rows = csv.read(
         src_path=parameters.csv_path,
         ignore_headers=parameters.dashboard_format
     )
