@@ -11,28 +11,32 @@ class CargoTypeMappingLoader:
         self._load()
 
     def _load(self):
-        contents = self._mapping_file_contents()
-        short_codes_to_package_types = {}
+        self._parse_short_codes_to_package_types()
+        self._field_interpretation = []
 
-        for package_type in contents:
+        for short_code in self._short_codes_to_package_types:
+            self._add(short_code)
+
+    def _add(self, short_code):
+        package_type = self._short_codes_to_package_types[short_code]
+
+        self._field_interpretation.append([
+            short_code,
+            PackageType,
+            dataclasses.field(default=package_type)
+        ])
+
+    def _parse_short_codes_to_package_types(self):
+        self._short_codes_to_package_types = {}
+
+        for package_type in self._mapping_file_contents():
             short_code = package_type["short_code"]
             mapping_info = package_type["maps_to"]
 
             the_type = load_package_type(mapping_info["name"])
             the_type.oversize_option = mapping_info["oversize_option"]
 
-            short_codes_to_package_types[short_code] = the_type
-
-        self._field_interpretation = []
-
-        for short_code in short_codes_to_package_types:
-            package_type = short_codes_to_package_types[short_code]
-
-            self._field_interpretation.append([
-                short_code,
-                PackageType,
-                dataclasses.field(default=package_type)
-            ])
+            self._short_codes_to_package_types[short_code] = the_type
 
     def _mapping_file_contents(self):
         with open(self._file_path()) as json_file:
