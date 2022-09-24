@@ -1,11 +1,11 @@
 from __future__ import annotations
 import json
-from src.main.file_system import runfiles, system_paths
+from src.main.file_system import runfiles, system_files
 from src.main.freight.cargo import oversize_options
 
 
 def load_package_type(type_name: str) -> PackageType:
-    cargo_types_file = system_paths.load_path("CARGO_TYPES")
+    cargo_types_file = system_files.load_path("CARGO_TYPES")
     base_packages_file = runfiles.load_path(cargo_types_file)
 
     with open(base_packages_file, "r") as json_file:

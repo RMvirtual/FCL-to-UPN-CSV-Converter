@@ -2,10 +2,10 @@ import dataclasses
 import json
 import copy
 
-from src.main.file_system import runfiles, system_paths
+from src.main.file_system import runfiles, system_files
 from src.main.freight.cargo.types import load_package_type, PackageType
 
-cargo_type_mappings_file = system_paths.load_path("FCL_CARGO_TYPE_MAPPINGS")
+cargo_type_mappings_file = system_files.load_path("FCL_CARGO_TYPE_MAPPINGS")
 full_path = runfiles.load_path(cargo_type_mappings_file)
 
 with open(full_path) as json_file:

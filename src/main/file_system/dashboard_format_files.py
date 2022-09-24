@@ -1,9 +1,9 @@
 import dataclasses
 import json
 
-from src.main.file_system import system_paths, runfiles
+from src.main.file_system import system_files, runfiles
 
-dashboard_formats_file = system_paths.load_path("FCL_DASHBOARD_FORMATS")
+dashboard_formats_file = system_files.load_path("FCL_DASHBOARD_FORMATS")
 full_path = runfiles.load_path(dashboard_formats_file)
 
 with open(full_path) as json_file:
