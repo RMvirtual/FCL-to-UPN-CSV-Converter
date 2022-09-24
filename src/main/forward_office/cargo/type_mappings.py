@@ -8,9 +8,9 @@ from src.main.freight.cargo.types import load_package_type, PackageType
 
 class CargoTypeMapBuilder:
     def __init__(self):
-        self._load()
+        self._build_map()
 
-    def _load(self):
+    def _build_map(self):
         self._mappings = []
         self._parse_short_codes_to_package_types()
 
@@ -43,11 +43,11 @@ class CargoTypeMapBuilder:
 
         return runfiles.load_path(relative_path)
 
-    def all(self):
+    def mappings(self):
         return copy.copy(self._mappings)
 
 
 FclCargoTypeMap = dataclasses.make_dataclass(
     cls_name="FclCargoTypeMap",
-    fields=CargoTypeMapBuilder().all()
+    fields=CargoTypeMapBuilder().mappings()
 )
