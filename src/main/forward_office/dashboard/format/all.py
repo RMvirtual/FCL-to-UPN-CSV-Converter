@@ -1,5 +1,6 @@
 import dataclasses
 import json
+import copy
 
 from src.main.file_system import runfiles
 from src.main.file_system.dashboard_format_files import DashboardFormatFiles
@@ -7,37 +8,41 @@ from src.main.file_system.dashboard_format_files import DashboardFormatFiles
 
 class FormatLoader:
     def __init__(self):
-        self._initialise_formats()
+        self._load_formats()
 
-    def all(self):
-        return self._formats
-
-    def _initialise_formats(self):
-        format_files = DashboardFormatFiles()
+    def _load_formats(self):
+        self._format_files = DashboardFormatFiles()
         self._formats = []
 
-        for file_entry in dataclasses.fields(format_files):
-            full_format_path = self._file_path(file_entry, format_files)
-            format_contents = self._load_contents_from_json(full_format_path)
+        for file_entry in dataclasses.fields(self._format_files):
+            self.add_format_entry(file_entry)
 
-            self._formats.append(
-                self._create_dashboard_format(file_entry, format_contents))
+    def add_format_entry(self, format_entry):
+        full_format_path = self._file_path(format_entry)
+        format_contents = self._json_contents(full_format_path)
+        self._add_format(format_entry, format_contents)
 
-    def _create_dashboard_format(self, file_name, contents):
-        return [
+    def _add_format(self, file_name, contents):
+        new_format = [
             file_name.name,
             dict[str, int],
             dataclasses.field(default_factory=lambda: contents)
         ]
 
-    def _file_path(self, file_entry: any, format_files: DashboardFormatFiles):
-        return runfiles.load_path(getattr(format_files, file_entry.name))
+        self._formats.append(new_format)
 
-    def _load_contents_from_json(self, file_path: str):
+    def _file_path(self, file_entry: any):
+        return runfiles.load_path(getattr(self._format_files, file_entry.name))
+
+    @staticmethod
+    def _json_contents(file_path: str):
         with open(file_path) as json_stream:
             format_contents = json.load(json_stream)
 
         return format_contents
+
+    def all(self):
+        return copy.copy(self._formats)
 
 
 DashboardFormats = dataclasses.make_dataclass(
