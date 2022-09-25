@@ -1,7 +1,14 @@
+import copy
+from dataclasses import dataclass
 from src.main.freight.consignment.consignment import Cargo
 from src.main.freight.cargo.entry import CargoEntry
-from src.main.forward_office.cargo.type_mappings \
-    import FclCargoTypeMap
+from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap
+
+
+# noinspection PyClassHasNoInit
+@dataclass
+class CargoParseErrors:
+    weight_incorrect: bool = False
 
 
 class CargoParser:
@@ -9,12 +16,18 @@ class CargoParser:
         self._fields = field_indexes
         self._cargo = Cargo()
         self._mappings = FclCargoTypeMap()
+        self._errors = []
 
-    def parse(self, values: list[str]) -> Cargo:
+    def parse(self, values: list[str]) -> None:
         self._cargo.clear()
         self._parse_cargo_line("line_1", values)
 
-        return self._cargo
+    @property
+    def cargo(self):
+        return copy.copy(self._cargo)
+
+    def errors(self):
+        return copy.copy(self._errors)
 
     def _parse_cargo_line(self, line_number: str, values):
         short_code = values[self._fields[line_number + "_package_type"]]

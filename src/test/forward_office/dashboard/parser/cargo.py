@@ -25,6 +25,7 @@ class TestCargoEntryParser(unittest.TestCase):
             "line_4_description": 25
         }
 
+    def _load_simple_example(self):
         self._dashboard_input = [
             "Mr Susan Cheshire", "10 BRAMBLING RISE", "HEMEL HEMPSTEAD",
             "", "", "HEMEL HEMPSTEAD", "HP2 6DT", "GR220806951",
@@ -35,8 +36,10 @@ class TestCargoEntryParser(unittest.TestCase):
         ]
 
     def test_should_parse_one_cargo_entry(self):
+        self._load_simple_example()
         parser = CargoParser(self._dashboard_format)
-        cargo = parser.parse(self._dashboard_input)
+        parser.parse(self._dashboard_input)
+        cargo = parser.cargo
 
         self.assertEqual(1, len(cargo))
 
@@ -47,6 +50,17 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertEqual("full", entry.package_type.name)
         self.assertEqual(1000, entry.weight_kgs)
         self.assertEqual("double", entry.package_type.oversize_option)
+
+    def test_should_find_missing_weight_error(self):
+        self._load_simple_example()
+        self._dashboard_input[9] = 0
+
+        parser = CargoParser(self._dashboard_format)
+        parser.parse(self._dashboard_input)
+
+        self.assertEqual(0, len(parser.cargo))
+        self.assertEqual(1, len(parser.errors))
+        self.assertTrue(parser.errors.missing_weight)
 
 
 if __name__ == '__main__':
