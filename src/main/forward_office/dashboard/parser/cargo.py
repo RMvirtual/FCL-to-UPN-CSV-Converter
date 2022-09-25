@@ -8,6 +8,7 @@ from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap
 # noinspection PyClassHasNoInit
 @dataclass
 class CargoParseErrors:
+    blank_package_type: bool = False
     weight_incorrect: bool = False
 
 
@@ -16,7 +17,7 @@ class CargoParser:
         self._fields = field_indexes
         self._cargo = Cargo()
         self._mappings = FclCargoTypeMap()
-        self._errors = []
+        self._errors = CargoParseErrors()
 
     def parse(self, values: list[str]) -> None:
         self._cargo.clear()
@@ -33,17 +34,23 @@ class CargoParser:
         short_code = values[self._fields[line_number + "_package_type"]]
 
         if short_code:
-            package_type = getattr(self._mappings, short_code)
+            self._parse_with_short_code(short_code, line_number, values)
 
-            new_entry = CargoEntry(package_type)
+        else:
+            self._errors.blank_package_type = True
 
-            new_entry.quantity = int(
-                values[self._fields[line_number + "_quantity"]])
+    def _parse_with_short_code(self, short_code, line_number, values):
+        package_type = getattr(self._mappings, short_code)
 
-            new_entry.weight_kgs = float(
-                values[self._fields[line_number + "_weight"]])
+        new_entry = CargoEntry(package_type)
 
-            self._cargo.add(new_entry)
+        new_entry.quantity = int(
+            values[self._fields[line_number + "_quantity"]])
+
+        new_entry.weight_kgs = float(
+            values[self._fields[line_number + "_weight"]])
+
+        self._cargo.add(new_entry)
 
     def _extract_value(self, csv_row: list[str], field: str) -> str:
         field_column_index = self._fields[field]
