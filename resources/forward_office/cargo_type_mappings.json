@@ -30,5 +30,85 @@
       "type": "pallet",
       "oversize_option": "triple"
     }
+  },
+  {
+    "short_code": "HPAL",
+    "maps_to": {
+      "name": "half",
+      "type": "pallet",
+      "oversize_option": "normal"
+    }
+  },
+  {
+    "short_code": "HPLO",
+    "maps_to": {
+      "name": "half",
+      "type": "pallet",
+      "oversize_option": "oversize"
+    }
+  },
+  {
+    "short_code": "HPL2",
+    "maps_to": {
+      "name": "half",
+      "type": "pallet",
+      "oversize_option": "double"
+    }
+  },
+  {
+    "short_code": "HPL3",
+    "maps_to": {
+      "name": "half",
+      "type": "pallet",
+      "oversize_option": "triple"
+    }
+  },
+  {
+    "short_code": "QPAL",
+    "maps_to": {
+      "name": "quarter",
+      "type": "pallet",
+      "oversize_option": "normal"
+    }
+  },
+  {
+    "short_code": "QPLO",
+    "maps_to": {
+      "name": "quarter",
+      "type": "pallet",
+      "oversize_option": "oversize"
+    }
+  },
+  {
+    "short_code": "QPL2",
+    "maps_to": {
+      "name": "quarter",
+      "type": "pallet",
+      "oversize_option": "double"
+    }
+  },
+  {
+    "short_code": "QPL3",
+    "maps_to": {
+      "name": "quarter",
+      "type": "pallet",
+      "oversize_option": "triple"
+    }
+  },
+  {
+    "short_code": "MPAL",
+    "maps_to": {
+      "name": "micro",
+      "type": "pallet",
+      "oversize_option": "normal"
+    }
+  },
+  {
+    "short_code": "EPAL",
+    "maps_to": {
+      "name": "euro",
+      "type": "pallet",
+      "oversize_option": "normal"
+    }
   }
 ]
