@@ -26,6 +26,11 @@ class CargoParseErrors:
             + self.invalid_quantity
         )
 
+    def reset(self):
+        self.blank_package_type = False
+        self.invalid_quantity = False
+        self.weight_incorrect = False
+
 
 class CargoParser:
     def __init__(self, field_indexes: dict[str, int]):
@@ -33,16 +38,7 @@ class CargoParser:
         self._cargo = Cargo()
         self._mappings = FclCargoTypeMap()
         self._errors = CargoParseErrors()
-
-    def parse(self, values: list[str]) -> None:
-        self._cargo.clear()
-        self._validate_cargo_line("line_1", values)
-
-        if not self._errors:
-            self._parse_cargo_line("line_1", values)
-
-        else:
-            raise ValueError(self.errors)
+        self._should_skip_line = False
 
     @property
     def cargo(self) -> Cargo:
@@ -52,21 +48,46 @@ class CargoParser:
     def errors(self) -> CargoParseErrors:
         return copy.copy(self._errors)
 
+    def parse(self, values: list[str]) -> None:
+        self._cargo.clear()
+
+        for line in ["line_1", "line_2", "line_3", "line_4"]:
+            self._validate_cargo_line(line, values)
+
+            if not self._errors and not self._should_skip_line:
+                self._parse_cargo_line(line, values)
+
+            elif self._should_skip_line:
+                pass
+
+            elif self.errors:
+                raise ValueError(self.errors)
+
     def _validate_cargo_line(self, line_number, values):
+        self._should_skip_line = False
         short_code = values[self._fields[line_number + "_package_type"]]
 
-        if not short_code:
+        if short_code == "" or short_code == 0:
             self._errors.blank_package_type = True
 
-        quantity = int(values[self._fields[line_number + "_quantity"]])
+        quantity = values[self._fields[line_number + "_quantity"]]
 
-        if quantity == 0:
+        if quantity == 0 or quantity == "":
             self._errors.invalid_quantity = True
 
-        weight = float(values[self._fields[line_number + "_weight"]])
+        weight = values[self._fields[line_number + "_weight"]]
 
-        if weight == 0:
+        if weight == 0 or weight == "":
             self._errors.weight_incorrect = True
+
+        blank_line = (
+            self.errors.weight_incorrect and self.errors.invalid_quantity
+            and self.errors.blank_package_type
+        )
+
+        if blank_line:
+            self._should_skip_line = True
+            self.errors.reset()
 
     def _parse_cargo_line(self, line_number: str, values):
         short_code = values[self._fields[line_number + "_package_type"]]
@@ -76,11 +97,11 @@ class CargoParser:
         package_type = getattr(self._mappings, short_code)
         new_entry = CargoEntry(package_type)
 
-        quantity = int(values[self._fields[line_number + "_quantity"]])
-        new_entry.quantity = quantity
+        quantity = values[self._fields[line_number + "_quantity"]]
+        new_entry.quantity = int(quantity)
 
-        weight = float(values[self._fields[line_number + "_weight"]])
-        new_entry.weight_kgs = weight
+        weight = values[self._fields[line_number + "_weight"]]
+        new_entry.weight_kgs = float(weight)
 
         self._cargo.add(new_entry)
 
