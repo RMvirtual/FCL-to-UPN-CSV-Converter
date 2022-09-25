@@ -56,11 +56,13 @@ class TestCargoEntryParser(unittest.TestCase):
         self._dashboard_input[9] = 0
 
         parser = CargoParser(self._dashboard_format)
-        parser.parse(self._dashboard_input)
+
+        with self.assertRaises(ValueError):
+            parser.parse(self._dashboard_input)
 
         self.assertEqual(0, len(parser.cargo))
         self.assertEqual(1, len(parser.errors))
-        self.assertTrue(parser.errors.missing_weight)
+        self.assertTrue(parser.errors.weight_incorrect)
 
 
 if __name__ == '__main__':

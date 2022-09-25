@@ -10,6 +10,22 @@ from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap
 class CargoParseErrors:
     blank_package_type: bool = False
     weight_incorrect: bool = False
+    invalid_quantity = False
+
+    def __bool__(self):
+        return (
+            self.blank_package_type
+            or self.weight_incorrect
+            or self.invalid_quantity
+        )
+
+    def __len__(self):
+        error_count = 0
+
+        return (
+            self.blank_package_type + self.weight_incorrect +
+            self.invalid_quantity
+        )
 
 
 class CargoParser:
@@ -21,34 +37,51 @@ class CargoParser:
 
     def parse(self, values: list[str]) -> None:
         self._cargo.clear()
-        self._parse_cargo_line("line_1", values)
+        self._validate_cargo_line("line_1", values)
+
+        if not self._errors:
+            self._parse_cargo_line("line_1", values)
+
+        else:
+            raise ValueError(self.errors)
 
     @property
     def cargo(self):
         return copy.copy(self._cargo)
 
+    @property
     def errors(self):
         return copy.copy(self._errors)
 
-    def _parse_cargo_line(self, line_number: str, values):
+    def _validate_cargo_line(self, line_number, values):
         short_code = values[self._fields[line_number + "_package_type"]]
 
-        if short_code:
-            self._parse_with_short_code(short_code, line_number, values)
-
-        else:
+        if not short_code:
             self._errors.blank_package_type = True
+
+        quantity = int(values[self._fields[line_number + "_quantity"]])
+
+        if quantity == 0:
+            self._errors.invalid_quantity = True
+
+        weight = float(values[self._fields[line_number + "_weight"]])
+
+        if weight == 0:
+            self._errors.weight_incorrect = True
+
+    def _parse_cargo_line(self, line_number: str, values):
+        short_code = values[self._fields[line_number + "_package_type"]]
+        self._parse_with_short_code(short_code, line_number, values)
 
     def _parse_with_short_code(self, short_code, line_number, values):
         package_type = getattr(self._mappings, short_code)
-
         new_entry = CargoEntry(package_type)
 
-        new_entry.quantity = int(
-            values[self._fields[line_number + "_quantity"]])
+        quantity = int(values[self._fields[line_number + "_quantity"]])
+        new_entry.quantity = quantity
 
-        new_entry.weight_kgs = float(
-            values[self._fields[line_number + "_weight"]])
+        weight = float(values[self._fields[line_number + "_weight"]])
+        new_entry.weight_kgs = weight
 
         self._cargo.add(new_entry)
 
