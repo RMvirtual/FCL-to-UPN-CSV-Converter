@@ -46,11 +46,11 @@ class CargoParser:
             raise ValueError(self.errors)
 
     @property
-    def cargo(self):
+    def cargo(self) -> Cargo:
         return copy.copy(self._cargo)
 
     @property
-    def errors(self):
+    def errors(self) -> CargoParseErrors:
         return copy.copy(self._errors)
 
     def _validate_cargo_line(self, line_number, values):

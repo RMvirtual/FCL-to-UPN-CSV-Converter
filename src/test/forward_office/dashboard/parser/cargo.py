@@ -65,5 +65,22 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertTrue(parser.errors.weight_incorrect)
 
 
+    def test_should_find_missing_quantity_and_package_type_errors(self):
+        self._load_simple_example()
+        self._dashboard_input[10] = 0
+        self._dashboard_input[11] = 0
+
+        parser = CargoParser(self._dashboard_format)
+
+        with self.assertRaises(ValueError):
+            parser.parse(self._dashboard_input)
+
+        self.assertEqual(0, len(parser.cargo))
+        self.assertEqual(2, len(parser.errors))
+        self.assertFalse(parser.errors.weight_incorrect)
+        self.assertTrue(parser.errors.blank_package_type)
+        self.assertTrue(parser.errors.invalid_quantity)
+
+
 if __name__ == '__main__':
     unittest.main()
