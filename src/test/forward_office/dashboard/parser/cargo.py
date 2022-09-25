@@ -35,6 +35,20 @@ class TestCargoEntryParser(unittest.TestCase):
             "2", "Yes"
         ]
 
+    def _load_complex_example(self):
+        self._dashboard_input = [
+            "Mr Susan Cheshire", "10 BRAMBLING RISE",
+            "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
+            "GR220806951", "(078)41332424",
+            "2000", "2", "PALL", "PALLETS N/D",
+            "PROP PAL LTD",
+            "600", "2", "QPL3", "",
+            "800", "8", "MPAL", "",
+            "2000", "2", "HPL2", "",
+            "TEL: 07841 332424, TAIL LIFT", "",
+            "", "23-Aug-22", "", "1", "2", "Yes"
+        ]
+
     def test_should_parse_one_cargo_entry(self):
         self._load_simple_example()
         parser = CargoParser(self._dashboard_format)
@@ -64,7 +78,6 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertEqual(1, len(parser.errors))
         self.assertTrue(parser.errors.weight_incorrect)
 
-
     def test_should_find_missing_quantity_and_package_type_errors(self):
         self._load_simple_example()
         self._dashboard_input[10] = 0
@@ -80,6 +93,42 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertFalse(parser.errors.weight_incorrect)
         self.assertTrue(parser.errors.blank_package_type)
         self.assertTrue(parser.errors.invalid_quantity)
+
+    def test_should_parse_complex_example(self):
+        self._load_complex_example()
+        parser = CargoParser(self._dashboard_format)
+        parser.parse(self._dashboard_input)
+        cargo = parser.cargo
+
+        self.assertEqual(4, len(cargo))
+
+        entry_1 = cargo[0]
+        self.assertEqual(2, entry_1.quantity)
+        self.assertEqual("pallet", entry_1.package_type.base_type)
+        self.assertEqual("full", entry_1.package_type.name)
+        self.assertEqual(2000, entry_1.weight_kgs)
+        self.assertEqual("normal", entry_1.package_type.oversize_option)
+
+        entry_2 = cargo[1]
+        self.assertEqual(2, entry_2.quantity)
+        self.assertEqual("pallet", entry_2.package_type.base_type)
+        self.assertEqual("quarter", entry_2.package_type.name)
+        self.assertEqual(600, entry_2.weight_kgs)
+        self.assertEqual("triple", entry_2.package_type.oversize_option)
+
+        entry_3 = cargo[2]
+        self.assertEqual(8, entry_3.quantity)
+        self.assertEqual("pallet", entry_3.package_type.base_type)
+        self.assertEqual("micro", entry_3.package_type.name)
+        self.assertEqual(800, entry_3.weight_kgs)
+        self.assertEqual("normal", entry_3.package_type.oversize_option)
+
+        entry_4 = cargo[3]
+        self.assertEqual(2, entry_4.quantity)
+        self.assertEqual("pallet", entry_4.package_type.base_type)
+        self.assertEqual("half", entry_4.package_type.name)
+        self.assertEqual(2000, entry_4.weight_kgs)
+        self.assertEqual("double", entry_4.package_type.oversize_option)
 
 
 if __name__ == '__main__':

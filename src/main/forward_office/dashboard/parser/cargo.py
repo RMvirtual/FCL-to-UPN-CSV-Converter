@@ -20,11 +20,10 @@ class CargoParseErrors:
         )
 
     def __len__(self):
-        error_count = 0
-
         return (
-            self.blank_package_type + self.weight_incorrect +
-            self.invalid_quantity
+            self.blank_package_type
+            + self.weight_incorrect
+            + self.invalid_quantity
         )
 
 
