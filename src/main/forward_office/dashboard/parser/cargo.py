@@ -36,11 +36,11 @@ class CargoParseErrors:
         self.weight_incorrect = False
 
 
-class CargoEntryParser:
+class CargoEntryParseValidator:
     def __init__(self):
         self._errors = CargoParseErrors()
 
-    def validate(
+    def find_errors(
             self, short_code: str, quantity: str or int,
             weight: str or float) -> CargoParseErrors:
         self._errors.blank_package_type = not short_code
@@ -60,16 +60,10 @@ class CargoParser:
         self._fields = field_indexes
         self._cargo = Cargo()
         self._mappings = FclCargoTypeMap()
-        self._errors = CargoParseErrors()
-        self._should_skip_line = False
 
     @property
     def cargo(self) -> Cargo:
         return copy.copy(self._cargo)
-
-    @property
-    def errors(self) -> CargoParseErrors:
-        return copy.copy(self._errors)
 
     def parse(self, values: list[str]) -> None:
         self._cargo.clear()
@@ -79,20 +73,22 @@ class CargoParser:
             quantity = values[self._fields[line_number + "_quantity"]]
             weight = values[self._fields[line_number + "_weight"]]
 
-            validator = CargoEntryParser()
-            self._errors = validator.validate(short_code, quantity, weight)
+            validator = CargoEntryParseValidator()
+            errors = validator.find_errors(short_code, quantity, weight)
 
-            if not self._errors:
-                self._parse_cargo_line(short_code, quantity, weight)
-
-            elif self._errors.blank_line:
-                ...
+            if errors:
+                self._handle_critical_error(errors)
 
             else:
-                raise ValueError(self._errors)
+                self._parse_cargo_line(short_code, quantity, weight)
 
-    def _can_parse_cargo_line(self) -> bool:
-        return not self._errors and not self._should_skip_line
+    @staticmethod
+    def _handle_critical_error(errors: CargoParseErrors):
+        if errors.blank_line:
+            ...
+
+        else:
+            raise ValueError(errors)
 
     def _parse_cargo_line(self, short_code, quantity, weight):
         package_type = getattr(self._mappings, short_code)

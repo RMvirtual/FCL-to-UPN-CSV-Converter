@@ -87,14 +87,19 @@ class TestCargoEntryParser(unittest.TestCase):
 
         parser = CargoParser(self._dashboard_format)
 
-        with self.assertRaises(ValueError):
+        try:
             parser.parse(self._dashboard_input)
 
+        except ValueError as error:
+            errors = error.args
+
+        print(errors)
+
         self.assertEqual(0, len(parser.cargo))
-        self.assertEqual(2, len(parser.errors))
-        self.assertFalse(parser.errors.weight_incorrect)
-        self.assertTrue(parser.errors.blank_package_type)
-        self.assertTrue(parser.errors.invalid_quantity)
+        self.assertEqual(2, len(errors))
+        self.assertFalse(errors.weight_incorrect)
+        self.assertTrue(errors.blank_package_type)
+        self.assertTrue(errors.invalid_quantity)
 
     def test_should_parse_four_different_cargo_lines(self):
         self._load_complex_example()
