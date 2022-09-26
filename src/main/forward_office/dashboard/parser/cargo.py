@@ -67,17 +67,17 @@ class CargoParser:
         self._should_skip_line = False
         short_code = values[self._fields[line_number + "_package_type"]]
 
-        if short_code == "" or short_code == 0:
+        if not short_code:
             self._errors.blank_package_type = True
 
         quantity = values[self._fields[line_number + "_quantity"]]
 
-        if quantity == 0 or quantity == "":
+        if not quantity:
             self._errors.invalid_quantity = True
 
         weight = values[self._fields[line_number + "_weight"]]
 
-        if weight == 0 or weight == "":
+        if not weight:
             self._errors.weight_incorrect = True
 
         blank_line = (

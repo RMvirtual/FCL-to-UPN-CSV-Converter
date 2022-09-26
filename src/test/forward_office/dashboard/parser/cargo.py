@@ -1,7 +1,5 @@
 import unittest
-
 from src.main.forward_office.dashboard.parser.cargo import CargoParser
-from src.main.freight.cargo.types import PackageType
 
 
 class TestCargoEntryParser(unittest.TestCase):
@@ -49,7 +47,7 @@ class TestCargoEntryParser(unittest.TestCase):
             "", "23-Aug-22", "", "1", "2", "Yes"
         ]
 
-    def test_should_parse_one_cargo_entry(self):
+    def test_should_parse_one_cargo_line(self):
         self._load_simple_example()
         parser = CargoParser(self._dashboard_format)
         parser.parse(self._dashboard_input)
@@ -94,7 +92,7 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertTrue(parser.errors.blank_package_type)
         self.assertTrue(parser.errors.invalid_quantity)
 
-    def test_should_parse_complex_example(self):
+    def test_should_parse_four_different_cargo_lines(self):
         self._load_complex_example()
         parser = CargoParser(self._dashboard_format)
         parser.parse(self._dashboard_input)
