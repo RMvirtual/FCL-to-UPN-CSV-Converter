@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 
 from src.main.file_system.file_readers import csv_file
 from src.main.freight.consignment.consignment import Consignment
-from src.main.forward_office.dashboard.parser.consignment \
+from src.main.forward_office.dashboard.parser.reference \
     import ConsignmentParser
 
 

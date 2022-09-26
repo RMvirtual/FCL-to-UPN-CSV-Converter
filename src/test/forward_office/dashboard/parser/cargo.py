@@ -25,12 +25,16 @@ class TestCargoEntryParser(unittest.TestCase):
 
     def _load_simple_example(self):
         self._dashboard_input = [
-            "Mr Susan Cheshire", "10 BRAMBLING RISE", "HEMEL HEMPSTEAD",
-            "", "", "HEMEL HEMPSTEAD", "HP2 6DT", "GR220806951",
-            "(078)41332424", "1000", "1", "PAL2", "PALLETS N/D",
-            "PROP PAL LTD", "", "", "", "", "", "", "", "", "", "", "", "",
-            "TEL: 07841 332424, TAIL LIFT", "", "", "23-Aug-22", "", "1",
-            "2", "Yes"
+            "Mr Susan Cheshire", "10 BRAMBLING RISE",
+            "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
+            "GR220806951", "(078)41332424",
+            "1000", "1", "PAL2", "PALLETS N/D",
+            "PROP PAL LTD",
+            "", "", "", "",
+            "", "", "", "",
+            "", "", "", "",
+            "TEL: 07841 332424, TAIL LIFT", "",
+            "", "23-Aug-22", "", "1", "2", "Yes"
         ]
 
     def _load_complex_example(self):

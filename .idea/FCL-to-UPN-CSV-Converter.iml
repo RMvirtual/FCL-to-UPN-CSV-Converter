@@ -6,6 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python3_9_x86_64-pc-windows-msvc/DLLs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python3_9_x86_64-pc-windows-msvc/Lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python3_9_x86_64-pc-windows-msvc/Lib/site-packages" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter" />
+      <excludeFolder url="file://$MODULE_DIR$/bazel-bin" />
+      <excludeFolder url="file://$MODULE_DIR$/bazel-out" />
+      <excludeFolder url="file://$MODULE_DIR$/bazel-testlogs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
