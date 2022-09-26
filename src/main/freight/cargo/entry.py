@@ -58,7 +58,11 @@ class CargoEntry:
             self._weight = new_weight
 
         else:
-            raise ValueError("Desired weight will exceed average maximum.")
+            raise ValueError(
+                "Desired weight of", new_weight, " will exceed average "
+                "maximum of", self.package_type.maximum_weight, " spread "
+                "across", self._quantity, " packages."
+            )
 
     @property
     def quantity_and_weight(self) -> tuple[int, float]:

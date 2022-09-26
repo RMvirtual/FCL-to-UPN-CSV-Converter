@@ -44,7 +44,7 @@ class TestCargoEntryParser(unittest.TestCase):
             "PROP PAL LTD",
             "600", "2", "QPL3", "",
             "800", "8", "MPAL", "",
-            "2000", "2", "HPL2", "",
+            "1000", "2", "HPL2", "",
             "TEL: 07841 332424, TAIL LIFT", "",
             "", "23-Aug-22", "", "1", "2", "Yes"
         ]
@@ -127,7 +127,7 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertEqual(2, entry_4.quantity)
         self.assertEqual("pallet", entry_4.package_type.base_type)
         self.assertEqual("half", entry_4.package_type.name)
-        self.assertEqual(2000, entry_4.weight_kgs)
+        self.assertEqual(1000, entry_4.weight_kgs)
         self.assertEqual("double", entry_4.package_type.oversize_option)
 
 
