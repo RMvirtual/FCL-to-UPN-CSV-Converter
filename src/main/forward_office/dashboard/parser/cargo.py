@@ -36,6 +36,12 @@ class CargoParseErrors:
         self.weight_incorrect = False
 
 
+class CargoParseException(ValueError):
+    def __init__(self, message, errors: CargoParseErrors):
+        super().__init__(message)
+        self.errors = errors
+
+
 class CargoEntryParseValidator:
     def __init__(self):
         self._errors = CargoParseErrors()
@@ -88,7 +94,8 @@ class CargoParser:
             ...
 
         else:
-            raise ValueError(errors)
+            raise CargoParseException(
+                message="Cargo parse errors", errors=errors)
 
     def _parse_cargo_line(self, short_code, quantity, weight):
         package_type = getattr(self._mappings, short_code)

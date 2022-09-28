@@ -1,5 +1,6 @@
 import unittest
-from src.main.forward_office.dashboard.parser.cargo import CargoParser
+from src.main.forward_office.dashboard.parser.cargo import \
+    CargoParser, CargoParseException
 
 
 class TestCargoEntryParser(unittest.TestCase):
@@ -72,13 +73,19 @@ class TestCargoEntryParser(unittest.TestCase):
         self._dashboard_input[9] = 0
 
         parser = CargoParser(self._dashboard_format)
+        error = None
 
-        with self.assertRaises(ValueError):
-            parser.parse(self._dashboard_input)
+        with self.assertRaises(CargoParseException):
+            try:
+                parser.parse(self._dashboard_input)
+
+            except CargoParseException as error_to_be:
+                error = error_to_be.errors
+                raise error_to_be
 
         self.assertEqual(0, len(parser.cargo))
-        self.assertEqual(1, len(parser.errors))
-        self.assertTrue(parser.errors.weight_incorrect)
+        self.assertEqual(1, len(error))
+        self.assertTrue(error.weight_incorrect)
 
     def test_should_find_missing_quantity_and_package_type_errors(self):
         self._load_simple_example()
@@ -87,19 +94,21 @@ class TestCargoEntryParser(unittest.TestCase):
 
         parser = CargoParser(self._dashboard_format)
 
-        try:
-            parser.parse(self._dashboard_input)
+        error = None
 
-        except ValueError as error:
-            errors = error.args
+        with self.assertRaises(CargoParseException):
+            try:
+                parser.parse(self._dashboard_input)
 
-        print(errors)
+            except CargoParseException as error_to_be:
+                error = error_to_be.errors
+                raise error_to_be
 
         self.assertEqual(0, len(parser.cargo))
-        self.assertEqual(2, len(errors))
-        self.assertFalse(errors.weight_incorrect)
-        self.assertTrue(errors.blank_package_type)
-        self.assertTrue(errors.invalid_quantity)
+        self.assertEqual(2, len(error))
+        self.assertFalse(error.weight_incorrect)
+        self.assertTrue(error.blank_package_type)
+        self.assertTrue(error.invalid_quantity)
 
     def test_should_parse_four_different_cargo_lines(self):
         self._load_complex_example()
