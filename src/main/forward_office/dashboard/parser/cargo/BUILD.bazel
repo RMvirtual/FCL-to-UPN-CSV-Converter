@@ -1,13 +1,12 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "parser",
+    name = "cargo",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/forward_office/cargo",
         "//src/main/forward_office/dashboard/format",
-        "//src/main/forward_office/dashboard/parser/cargo",
         "//src/main/freight",
     ],
 )

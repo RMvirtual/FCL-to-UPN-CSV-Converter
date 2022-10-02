@@ -1,5 +1,5 @@
 import unittest
-from src.main.forward_office.dashboard.parser.cargo import \
+from src.main.forward_office.dashboard.parser.cargo.cargo import \
     CargoParser, CargoParseException
 
 
