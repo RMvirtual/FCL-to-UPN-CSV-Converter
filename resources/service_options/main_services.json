@@ -1,0 +1,10 @@
+[
+  {
+    "priority": {
+      "overrides": ["no_booked_services"]
+    },
+    "economy": {
+      "overrides": []
+    }
+  }
+]

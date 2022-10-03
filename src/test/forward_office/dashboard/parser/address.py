@@ -1,7 +1,5 @@
 import unittest
-
-from src.main.forward_office.dashboard.parser.address \
-    import AddressParser
+from src.main.forward_office.dashboard.parser.address import AddressParser
 
 
 class TestAddressParser(unittest.TestCase):
