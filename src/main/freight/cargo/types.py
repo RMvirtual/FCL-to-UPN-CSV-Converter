@@ -14,23 +14,7 @@ def load_package_type(type_name: str) -> PackageType:
     types = []
 
     for package_type in objects:
-        result = PackageType()
-        result.name = package_type["name"]
-        result.base_type = package_type["type"]
-
-        result.all_oversize_options = oversize_options.options_by_base_type(
-            result.base_type)
-
-        result.maximum_dimensions = {
-            "length": package_type["maximum_length"],
-            "width": package_type["maximum_width"],
-            "height": package_type["maximum_height"]
-        }
-
-        result.maximum_weight = package_type["maximum_weight"]
-        result.override_options = package_type["override_options"]
-
-        types.append(result)
+        types.append(_deserialise_to_package_type(package_type))
 
     result = None
 
@@ -44,6 +28,25 @@ def load_package_type(type_name: str) -> PackageType:
 
     return result
 
+
+def _deserialise_to_package_type(package_type):
+    result = PackageType()
+    result.name = package_type["name"]
+    result.base_type = package_type["type"]
+
+    result.all_oversize_options = oversize_options.options_by_base_type(
+        result.base_type)
+
+    result.maximum_dimensions = {
+        "length": package_type["maximum_length"],
+        "width": package_type["maximum_width"],
+        "height": package_type["maximum_height"]
+    }
+
+    result.maximum_weight = package_type["maximum_weight"]
+    result.override_options = package_type["override_options"]
+
+    return result
 
 class PackageType:
     def __init__(self):
