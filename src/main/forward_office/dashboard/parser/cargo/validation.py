@@ -29,20 +29,25 @@ class CargoParseErrors:
         return (getattr(self, error.name) for error in self._error_types())
 
 
+@dataclasses.dataclass
+class CargoParseRequest:
+    short_code: str = ""
+    quantity: str or int = ""
+    weight: str or float = ""
+
+
 class CargoParseException(ValueError):
     def __init__(self, message, errors: CargoParseErrors):
         super().__init__(message)
         self.errors = errors
 
 
-def find_errors(
-        short_code: str, quantity: str or int, weight: str or float
-) -> CargoParseErrors:
+def find_errors(parse_request: CargoParseRequest) -> CargoParseErrors:
     errors = CargoParseErrors()
 
-    errors.blank_package_type = not short_code
-    errors.invalid_quantity = not quantity
-    errors.weight_incorrect = not weight
+    errors.blank_package_type = not parse_request.short_code
+    errors.invalid_quantity = not parse_request.quantity
+    errors.weight_incorrect = not parse_request.weight
 
     blank_line_values = (
         errors.weight_incorrect,
@@ -51,6 +56,7 @@ def find_errors(
     )
 
     errors.blank_line = all(blank_line_values)
-    errors.invalid_package_type = not FclCargoTypeMap().contains(short_code)
+    errors.invalid_package_type = not FclCargoTypeMap().contains(
+        parse_request.short_code)
 
     return copy.copy(errors)

@@ -19,17 +19,24 @@ class CargoParser:
         self._cargo.clear()
 
         for line_number in ["line_1", "line_2", "line_3", "line_4"]:
-            short_code = values[self._fields[line_number + "_package_type"]]
-            quantity = values[self._fields[line_number + "_quantity"]]
-            weight = values[self._fields[line_number + "_weight"]]
+            parse_request = validation.CargoParseRequest()
 
-            errors = validation.find_errors(short_code, quantity, weight)
+            parse_request.short_code = values[
+                self._fields[line_number + "_package_type"]]
+
+            parse_request.quantity = values[
+                self._fields[line_number + "_quantity"]]
+
+            parse_request.weight = values[
+                self._fields[line_number + "_weight"]]
+
+            errors = validation.find_errors(parse_request)
 
             if errors:
                 self._handle_critical_error(errors)
 
             else:
-                self._parse_cargo_line(short_code, quantity, weight)
+                self._parse_cargo_line(parse_request)
 
     @staticmethod
     def _handle_critical_error(errors: validation.CargoParseErrors):
@@ -40,12 +47,12 @@ class CargoParser:
             raise validation.CargoParseException(
                 message="Cargo parse errors", errors=errors)
 
-    def _parse_cargo_line(self, short_code, quantity, weight):
-        package_type = getattr(self._mappings, short_code)
+    def _parse_cargo_line(self, request: validation.CargoParseRequest):
+        package_type = getattr(self._mappings, request.short_code)
 
         new_entry = CargoEntry(package_type)
-        new_entry.quantity = int(quantity)
-        new_entry.weight_kgs = float(weight)
+        new_entry.quantity = int(request.quantity)
+        new_entry.weight_kgs = float(request.weight)
 
         self._cargo.add(new_entry)
 
