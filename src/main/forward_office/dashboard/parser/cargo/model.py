@@ -19,24 +19,26 @@ class CargoParser:
         self._cargo.clear()
 
         for line_number in ["line_1", "line_2", "line_3", "line_4"]:
-            parse_request = validation.CargoParseRequest()
+            self._parse_line(line_number, values)
 
-            parse_request.short_code = values[
-                self._fields[line_number + "_package_type"]]
+    def _parse_line(self, line_number, values):
+        parse_request = self._parse_request(line_number, values)
+        errors = validation.find_errors(parse_request)
 
-            parse_request.quantity = values[
-                self._fields[line_number + "_quantity"]]
+        if errors:
+            self._handle_critical_error(errors)
 
-            parse_request.weight = values[
-                self._fields[line_number + "_weight"]]
+        else:
+            self._parse_cargo_line(parse_request)
 
-            errors = validation.find_errors(parse_request)
+    def _parse_request(self, line_number, values):
+        result = validation.CargoParseRequest()
 
-            if errors:
-                self._handle_critical_error(errors)
+        result.short_code = values[self._fields[line_number + "_package_type"]]
+        result.quantity = values[self._fields[line_number + "_quantity"]]
+        result.weight = values[self._fields[line_number + "_weight"]]
 
-            else:
-                self._parse_cargo_line(parse_request)
+        return result
 
     @staticmethod
     def _handle_critical_error(errors: validation.CargoParseErrors):

@@ -42,21 +42,20 @@ class CargoParseException(ValueError):
         self.errors = errors
 
 
-def find_errors(parse_request: CargoParseRequest) -> CargoParseErrors:
+def find_errors(request: CargoParseRequest) -> CargoParseErrors:
     errors = CargoParseErrors()
 
-    errors.blank_package_type = not parse_request.short_code
-    errors.invalid_quantity = not parse_request.quantity
-    errors.weight_incorrect = not parse_request.weight
+    errors.blank_package_type = not request.short_code
+    errors.invalid_quantity = not request.quantity
+    errors.weight_incorrect = not request.weight
 
-    blank_line_values = (
+    errors.blank_line = all((
         errors.weight_incorrect,
         errors.invalid_quantity,
         errors.blank_package_type
-    )
+    ))
 
-    errors.blank_line = all(blank_line_values)
     errors.invalid_package_type = not FclCargoTypeMap().contains(
-        parse_request.short_code)
+        request.short_code)
 
     return copy.copy(errors)
