@@ -1,5 +1,4 @@
 import copy
-from dataclasses import dataclass
 from src.main.freight.consignment.consignment import Cargo
 from src.main.freight.cargo.entry import CargoEntry
 from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap

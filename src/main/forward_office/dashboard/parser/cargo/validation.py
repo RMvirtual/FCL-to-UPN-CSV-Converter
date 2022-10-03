@@ -1,5 +1,5 @@
 import copy
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 from src.main.freight.consignment.consignment import Cargo
 from src.main.freight.cargo.entry import CargoEntry
 from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap
@@ -12,22 +12,26 @@ class CargoParseErrors:
     blank_package_type: bool = False
     weight_incorrect: bool = False
     invalid_quantity: bool = False
+    invalid_package_type: bool = False
 
     def __bool__(self):
-        return (
-            self.blank_line
-            or self.blank_package_type
-            or self.weight_incorrect
-            or self.invalid_quantity
-        )
+        all_fields = fields(self)
+
+        for field in all_fields:
+            if getattr(self, field.name):
+                return True
+
+        return False
 
     def __len__(self):
-        return (
-            self.blank_line
-            + self.blank_package_type
-            + self.weight_incorrect
-            + self.invalid_quantity
-        )
+        error_count = 0
+        all_fields = fields(self)
+
+        for field in all_fields:
+            if getattr(self, field.name):
+                error_count += 1
+
+        return error_count
 
     def reset(self):
         self.blank_line = False
@@ -43,8 +47,8 @@ class CargoParseException(ValueError):
 
 
 def find_errors(
-        short_code: str, quantity: str or int, weight: str or float) -> \
-        CargoParseErrors:
+        short_code: str, quantity: str or int, weight: str or float
+) -> CargoParseErrors:
     errors = CargoParseErrors()
 
     errors.blank_package_type = not short_code
@@ -55,5 +59,7 @@ def find_errors(
         errors.weight_incorrect and errors.invalid_quantity
         and errors.blank_package_type
     )
+
+    errors.invalid_package_type = not hasattr(FclCargoTypeMap, short_code)
 
     return copy.copy(errors)
