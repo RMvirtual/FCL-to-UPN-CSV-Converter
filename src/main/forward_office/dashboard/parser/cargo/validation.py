@@ -1,12 +1,10 @@
 import copy
-from dataclasses import dataclass, fields
-from src.main.freight.consignment.consignment import Cargo
-from src.main.freight.cargo.entry import CargoEntry
+import dataclasses
 from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap
 
 
 # noinspection PyClassHasNoInit
-@dataclass
+@dataclasses.dataclass
 class CargoParseErrors:
     blank_line: bool = False
     blank_package_type: bool = False
@@ -15,7 +13,7 @@ class CargoParseErrors:
     invalid_package_type: bool = False
 
     def __bool__(self):
-        all_fields = fields(self)
+        all_fields = dataclasses.fields(self)
 
         for field in all_fields:
             if getattr(self, field.name):
@@ -25,7 +23,7 @@ class CargoParseErrors:
 
     def __len__(self):
         error_count = 0
-        all_fields = fields(self)
+        all_fields = dataclasses.fields(self)
 
         for field in all_fields:
             if getattr(self, field.name):
