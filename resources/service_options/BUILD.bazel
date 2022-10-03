@@ -1,5 +1,0 @@
-exports_files([
-    "main_services.json",
-    "premium_services.json",
-    "booked_services.json"
-])

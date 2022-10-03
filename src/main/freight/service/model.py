@@ -1,44 +1,42 @@
 from src.main.freight.service.types import (
-    MainService, PremiumService, BookedService)
+    MainService, PremiumService, BookedService, ServiceOptions)
 
 
 class Service:
     def __init__(self, validation_strategy):
-        self._main_service: MainService = MainService.PRIORITY
-        self._premium_service: PremiumService or None = None
-        self._booked: BookedService or None = None
+        self._options = ServiceOptions()
         self._tail_lift: bool = False
         self._validation_strategy = validation_strategy
 
     def priority(self) -> None:
-        self._main_service = MainService.PRIORITY
+        self._options.main_service = MainService.PRIORITY
 
     def economy(self) -> None:
-        self._main_service = MainService.ECONOMY
+        self._options.main_service = MainService.ECONOMY
 
     def am(self) -> None:
-        self._premium_service = PremiumService.AM
+        self._options.premium_service = PremiumService.AM
 
     def pre_10am(self) -> None:
-        self._premium_service = PremiumService.PRE_10AM
+        self._options.premium_service = PremiumService.PRE_10AM
 
     def timed(self) -> None:
-        self._premium_service = PremiumService.Timed
+        self._options.premium_service = PremiumService.Timed
 
     def saturday(self) -> None:
-        self._premium_service = PremiumService.SATURDAY_AM
+        self._options.premium_service = PremiumService.SATURDAY_AM
 
     def no_premium_service(self):
-        self._premium_service = None
+        self._options.premium_service = None
 
     def book_in(self) -> None:
-        self._booked = BookedService.BOOK_IN
+        self._options.booked_service = BookedService.BOOK_IN
 
     def booked(self) -> None:
-        self._booked = BookedService.BOOKED
+        self._options.booked_service = BookedService.BOOKED
 
     def no_booked_service(self) -> None:
-        self._booked = None
+        self._options.booked_service = None
 
     def tail_lift(self) -> None:
         self._tail_lift = True
@@ -47,34 +45,34 @@ class Service:
         self._tail_lift = False
 
     def is_priority(self) -> bool:
-        return self._main_service is MainService.PRIORITY
+        return self._options.main_service is MainService.PRIORITY
 
     def is_economy(self) -> bool:
-        return self._main_service is MainService.ECONOMY
+        return self._options.main_service is MainService.ECONOMY
 
     def has_premium_service(self) -> bool:
-        return self._premium_service is PremiumService
+        return self._options.premium_service is PremiumService
 
     def is_am(self) -> bool:
-        return self._premium_service is PremiumService.AM
+        return self._options.premium_service is PremiumService.AM
 
     def is_pre_10am(self) -> bool:
-        return self._premium_service is PremiumService.PRE_10AM
+        return self._options.premium_service is PremiumService.PRE_10AM
 
     def is_timed(self) -> bool:
-        return self._premium_service is PremiumService.TIMED
+        return self._options.premium_service is PremiumService.TIMED
 
     def is_saturday(self) -> bool:
-        return self._premium_service is PremiumService.SATURDAY_AM
+        return self._options.premium_service is PremiumService.SATURDAY_AM
 
     def has_booked_service(self) -> bool:
-        return self._booked is BookedService
+        return self._options.booked_service is BookedService
 
     def is_book_in(self) -> bool:
-        return self._booked is BookedService.BOOK_IN
+        return self._options.booked_service is BookedService.BOOK_IN
 
     def is_booked(self) -> bool:
-        return self._booked is BookedService.BOOKED
+        return self._options.booked_service is BookedService.BOOKED
 
     def is_tail_lift_required(self) -> bool:
         return self._tail_lift
