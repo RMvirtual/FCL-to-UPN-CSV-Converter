@@ -13,20 +13,24 @@ class CargoParseErrors:
     invalid_package_type: bool = False
 
     def __bool__(self):
-        for field in self._fields():
-            if getattr(self, field.name):
-                return True
+        has_errors = False
 
-        return False
+        for error in self._fields():
+            has_errors = getattr(self, error.name)
+
+            if has_errors:
+                break
+
+        return has_errors
 
     def __len__(self):
-        error_count = 0
+        result = 0
 
-        for field in self._fields():
-            if getattr(self, field.name):
-                error_count += 1
+        for error in self._fields():
+            if getattr(self, error.name):
+                result += 1
 
-        return error_count
+        return result
 
     def reset(self):
         for field in self._fields():
