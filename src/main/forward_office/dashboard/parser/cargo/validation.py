@@ -13,9 +13,7 @@ class CargoParseErrors:
     invalid_package_type: bool = False
 
     def __bool__(self):
-        all_fields = dataclasses.fields(self)
-
-        for field in all_fields:
+        for field in self._fields():
             if getattr(self, field.name):
                 return True
 
@@ -23,19 +21,19 @@ class CargoParseErrors:
 
     def __len__(self):
         error_count = 0
-        all_fields = dataclasses.fields(self)
 
-        for field in all_fields:
+        for field in self._fields():
             if getattr(self, field.name):
                 error_count += 1
 
         return error_count
 
     def reset(self):
-        self.blank_line = False
-        self.blank_package_type = False
-        self.invalid_quantity = False
-        self.weight_incorrect = False
+        for field in self._fields():
+            setattr(self, field.name, False)
+
+    def _fields(self):
+        return dataclasses.fields(self)
 
 
 class CargoParseException(ValueError):
