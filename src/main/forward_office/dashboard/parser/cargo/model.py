@@ -23,7 +23,7 @@ class CargoParser:
         for request in self._requests_from_dashboard_input(values):
             self._process_request(request)
 
-    def _process_request(self, request: CargoParseRequest):
+    def _process_request(self, request: CargoParseRequest) -> None:
         errors = validation.find_errors(request)
         self._process(errors) if errors else self._process(request)
 
@@ -41,17 +41,19 @@ class CargoParser:
             raise TypeError("Invalid type.")
 
     @staticmethod
-    def _process_error(errors):
+    def _process_error(errors) -> None:
         if errors.are_critical():
             raise validation.CargoParseException(
                 message="Cargo parse errors", errors=errors)
 
-    def _requests_from_dashboard_input(self, values: list[str]):
+    def _requests_from_dashboard_input(
+            self, values: list[str]) -> list[CargoParseRequest]:
         return [
             self._request_by_line(number, values) for number in range(1, 5)]
 
-    def _request_by_line(self, line_number: int, values: list[str]):
-        result = validation.CargoParseRequest()
+    def _request_by_line(
+            self, line_number: int, values: list[str]) -> CargoParseRequest:
+        result = CargoParseRequest()
 
         result.short_code = values[self._field(line_number, "package_type")]
         result.quantity = values[self._field(line_number, "quantity")]
@@ -64,7 +66,7 @@ class CargoParser:
 
         return self._fields[full_field]
 
-    def _process_cargo_entry(self, request: validation.CargoParseRequest):
+    def _process_cargo_entry(self, request: CargoParseRequest) -> None:
         package_type = getattr(self._mappings, request.short_code)
 
         new_entry = CargoEntry(package_type)
