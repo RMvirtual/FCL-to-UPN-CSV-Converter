@@ -3,7 +3,8 @@ from src.main.freight.consignment.consignment import Cargo
 from src.main.freight.cargo.entry import CargoEntry
 from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap
 from src.main.forward_office.dashboard.parser.cargo import validation
-
+from src.main.forward_office.dashboard.parser.cargo.validation \
+    import CargoParseRequest, CargoParseErrors
 
 class CargoParser:
     def __init__(self, field_indexes: dict[str, int]):
@@ -18,20 +19,42 @@ class CargoParser:
     def parse(self, values: list[str]) -> None:
         self._cargo.clear()
 
-        for line_number in ["line_1", "line_2", "line_3", "line_4"]:
-            self._parse_line(line_number, values)
+        parse_requests = self._create_parse_requests(values)
+        self._parse_requests(parse_requests)
 
-    def _parse_line(self, line_number, values):
-        parse_request = self._parse_request(line_number, values)
-        errors = validation.find_errors(parse_request)
+    def _parse_requests(self, requests: list):
+        for request in requests:
+            self._parse_request(request)
 
-        if errors:
-            self._handle_critical_error(errors)
+    def _parse_request(self, request: CargoParseRequest):
+        errors = validation.find_errors(request)
+        self._process(errors) if errors else self._process(request)
+
+    def _process(self, request: CargoParseRequest or CargoParseErrors) -> None:
+        if type(request) is validation.CargoParseRequest:
+            self._process_cargo_entry(request)
+
+        elif type(request) is validation.CargoParseErrors:
+            self._process_error(request)
 
         else:
-            self._parse_cargo_line(parse_request)
+            raise TypeError("Invalid type supplied.")
 
-    def _parse_request(self, line_number, values):
+    @staticmethod
+    def _process_error(errors):
+        if errors.are_critical():
+            raise validation.CargoParseException(
+                message="Cargo parse errors", errors=errors)
+
+    def _create_parse_requests(self, values):
+        result = []
+
+        for line_number in ["line_1", "line_2", "line_3", "line_4"]:
+            result.append(self._create_parse_request(line_number, values))
+
+        return result
+
+    def _create_parse_request(self, line_number, values):
         result = validation.CargoParseRequest()
 
         result.short_code = values[self._fields[line_number + "_package_type"]]
@@ -40,16 +63,7 @@ class CargoParser:
 
         return result
 
-    @staticmethod
-    def _handle_critical_error(errors: validation.CargoParseErrors):
-        if errors.blank_line:
-            ...
-
-        else:
-            raise validation.CargoParseException(
-                message="Cargo parse errors", errors=errors)
-
-    def _parse_cargo_line(self, request: validation.CargoParseRequest):
+    def _process_cargo_entry(self, request: validation.CargoParseRequest):
         package_type = getattr(self._mappings, request.short_code)
 
         new_entry = CargoEntry(package_type)

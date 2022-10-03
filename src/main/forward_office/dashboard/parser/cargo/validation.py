@@ -28,12 +28,15 @@ class CargoParseErrors:
     def _error_values(self) -> tuple[bool]:
         return (getattr(self, error.name) for error in self._error_types())
 
+    def are_critical(self) -> bool:
+        return bool(self) and not self.blank_line
+
 
 @dataclasses.dataclass
 class CargoParseRequest:
     short_code: str = ""
-    quantity: str or int = ""
-    weight: str or float = ""
+    quantity: str or int = 0
+    weight: str or float = 0
 
 
 class CargoParseException(ValueError):
