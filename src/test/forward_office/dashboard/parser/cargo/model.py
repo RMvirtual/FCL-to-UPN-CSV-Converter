@@ -1,6 +1,5 @@
 import unittest
-from src.main.forward_office.dashboard.parser.cargo.cargo import \
-    CargoParser, CargoParseException
+from src.main.forward_office.dashboard.parser.cargo.model import CargoParser
 
 
 class TestCargoEntryParser(unittest.TestCase):
@@ -67,48 +66,6 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertEqual("full", entry.package_type.name)
         self.assertEqual(1000, entry.weight_kgs)
         self.assertEqual("double", entry.package_type.oversize_option)
-
-    def test_should_find_missing_weight_error(self):
-        self._load_simple_example()
-        self._dashboard_input[9] = 0
-
-        parser = CargoParser(self._dashboard_format)
-        error = None
-
-        with self.assertRaises(CargoParseException):
-            try:
-                parser.parse(self._dashboard_input)
-
-            except CargoParseException as error_to_be:
-                error = error_to_be.errors
-                raise error_to_be
-
-        self.assertEqual(0, len(parser.cargo))
-        self.assertEqual(1, len(error))
-        self.assertTrue(error.weight_incorrect)
-
-    def test_should_find_missing_quantity_and_package_type_errors(self):
-        self._load_simple_example()
-        self._dashboard_input[10] = 0
-        self._dashboard_input[11] = 0
-
-        parser = CargoParser(self._dashboard_format)
-
-        error = None
-
-        with self.assertRaises(CargoParseException):
-            try:
-                parser.parse(self._dashboard_input)
-
-            except CargoParseException as error_to_be:
-                error = error_to_be.errors
-                raise error_to_be
-
-        self.assertEqual(0, len(parser.cargo))
-        self.assertEqual(2, len(error))
-        self.assertFalse(error.weight_incorrect)
-        self.assertTrue(error.blank_package_type)
-        self.assertTrue(error.invalid_quantity)
 
     def test_should_parse_four_different_cargo_lines(self):
         self._load_complex_example()

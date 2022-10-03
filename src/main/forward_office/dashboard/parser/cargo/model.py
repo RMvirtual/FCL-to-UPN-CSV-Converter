@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from src.main.freight.consignment.consignment import Cargo
 from src.main.freight.cargo.entry import CargoEntry
 from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap
-from src.main.forward_office.dashboard.parser.cargo import *
+from src.main.forward_office.dashboard.parser.cargo import validation
 
 
 class CargoParser:
@@ -24,7 +24,7 @@ class CargoParser:
             quantity = values[self._fields[line_number + "_quantity"]]
             weight = values[self._fields[line_number + "_weight"]]
 
-            validator = CargoEntryParseValidator()
+            validator = validation.CargoEntryParseValidator()
             errors = validator.find_errors(short_code, quantity, weight)
 
             if errors:
@@ -34,12 +34,12 @@ class CargoParser:
                 self._parse_cargo_line(short_code, quantity, weight)
 
     @staticmethod
-    def _handle_critical_error(errors: CargoParseErrors):
+    def _handle_critical_error(errors: validation.CargoParseErrors):
         if errors.blank_line:
             ...
 
         else:
-            raise CargoParseException(
+            raise validation.CargoParseException(
                 message="Cargo parse errors", errors=errors)
 
     def _parse_cargo_line(self, short_code, quantity, weight):
