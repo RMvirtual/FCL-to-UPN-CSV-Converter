@@ -11,10 +11,8 @@ def load_package_type(type_name: str) -> PackageType:
     with open(base_packages_file, "r") as json_file:
         objects = json.load(json_file)
 
-    types = []
-
-    for package_type in objects:
-        types.append(_deserialise_to_package_type(package_type))
+    types = [
+        _deserialise_to_package_type(package_type) for package_type in objects]
 
     result = None
 
