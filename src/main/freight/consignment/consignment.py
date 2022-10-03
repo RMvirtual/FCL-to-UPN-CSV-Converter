@@ -1,6 +1,7 @@
 from src.main.freight.consignment.address import Address
 from src.main.freight.consignment.reference import Reference
 from src.main.freight.cargo.model import Cargo
+from src.main.freight.service.model import Service
 
 
 class Consignment:
@@ -11,12 +12,8 @@ class Consignment:
         self._client_name: str = ""
         self._address: Address = Address()
         self._cargo = Cargo()
+        self._service = Service()
         self._delivery_instructions = ""
-        # N/D or Std
-        # AM/Pre-10AM/Timed/Saturday AM
-        # Tail lift
-        # Book-In/Booked
-        # Goods description
 
     @property
     def reference(self) -> str:
@@ -45,3 +42,11 @@ class Consignment:
     @cargo.setter
     def cargo(self, new_cargo: Cargo) -> None:
         self._cargo = new_cargo
+
+    @property
+    def service(self) -> Service:
+        return self._service
+
+    @service.setter
+    def service(self, new_service: Service) -> None:
+        self._service = new_service

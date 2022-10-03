@@ -1,12 +1,14 @@
 from src.main.freight.service.types import (
     MainService, PremiumService, BookedService, ServiceOptions)
 
+from src.main.freight.service.validation import ServiceValidationStrategy
+
 
 class Service:
-    def __init__(self, validation_strategy):
+    def __init__(self):
         self._options = ServiceOptions()
         self._tail_lift: bool = False
-        self._validation_strategy = validation_strategy
+        self._validation = ServiceValidationStrategy(self._options)
 
     def priority(self) -> None:
         self._options.main_service = MainService.PRIORITY
