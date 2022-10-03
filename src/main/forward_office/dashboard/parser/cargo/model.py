@@ -20,14 +20,10 @@ class CargoParser:
     def parse(self, values: list[str]) -> None:
         self._cargo.clear()
 
-        parse_requests = self._create_parse_requests(values)
-        self._parse_requests(parse_requests)
+        for request in self._requests_from_dashboard_input(values):
+            self._process_request(request)
 
-    def _parse_requests(self, requests: list):
-        for request in requests:
-            self._parse_request(request)
-
-    def _parse_request(self, request: CargoParseRequest):
+    def _process_request(self, request: CargoParseRequest):
         errors = validation.find_errors(request)
         self._process(errors) if errors else self._process(request)
 
@@ -38,7 +34,8 @@ class CargoParser:
         }
 
         if type(request) in request_type_handlers:
-            request_type_handlers[type(request)](request)
+            handle = request_type_handlers[type(request)]
+            handle(request)
 
         else:
             raise TypeError("Invalid type.")
@@ -49,11 +46,9 @@ class CargoParser:
             raise validation.CargoParseException(
                 message="Cargo parse errors", errors=errors)
 
-    def _create_parse_requests(self, values: list[str]):
+    def _requests_from_dashboard_input(self, values: list[str]):
         return [
-            self._request_by_line(line_number, values)
-            for line_number in range(1, 5)
-        ]
+            self._request_by_line(number, values) for number in range(1, 5)]
 
     def _request_by_line(self, line_number: int, values: list[str]):
         result = validation.CargoParseRequest()
@@ -77,13 +72,3 @@ class CargoParser:
         new_entry.weight_kgs = float(request.weight)
 
         self._cargo.add(new_entry)
-
-    def _extract_value(self, csv_row: list[str], field: str) -> str:
-        field_column_index = self._fields[field]
-        value = csv_row[field_column_index]
-
-        return self._trim_whitespace(str(value))
-
-    @staticmethod
-    def _trim_whitespace(value: str):
-        return " ".join(value.split())
