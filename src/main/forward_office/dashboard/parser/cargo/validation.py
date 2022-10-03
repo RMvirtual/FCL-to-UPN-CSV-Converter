@@ -51,11 +51,13 @@ def find_errors(
     errors.invalid_quantity = not quantity
     errors.weight_incorrect = not weight
 
-    errors.blank_line = (
-        errors.weight_incorrect and errors.invalid_quantity
-        and errors.blank_package_type
+    blank_line_values = (
+        errors.weight_incorrect,
+        errors.invalid_quantity,
+        errors.blank_package_type
     )
 
+    errors.blank_line = all(blank_line_values)
     errors.invalid_package_type = not hasattr(FclCargoTypeMap, short_code)
 
     return copy.copy(errors)
