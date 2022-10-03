@@ -54,5 +54,8 @@ class CargoTypeMapBuilder:
 
 FclCargoTypeMap = dataclasses.make_dataclass(
     cls_name="FclCargoTypeMap",
-    fields=CargoTypeMapBuilder().mappings()
+    fields=CargoTypeMapBuilder().mappings(),
+    namespace={
+        "contains": lambda self, short_code: hasattr(self, short_code)
+    }
 )

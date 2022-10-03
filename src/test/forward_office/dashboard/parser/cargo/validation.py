@@ -15,7 +15,7 @@ class TestCargoEntryParser(unittest.TestCase):
         self.assertTrue(errors.invalid_quantity)
         self.assertTrue(errors.invalid_package_type)
 
-    def test_should_find_invalid_package_type(self):
+    def test_should_raise_invalid_package_type_error(self):
         errors = validation.find_errors("LIFT", "1", "1000")
         self.assertEqual(1, len(errors))
         self.assertTrue(errors.invalid_package_type)

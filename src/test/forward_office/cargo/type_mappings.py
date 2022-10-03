@@ -15,6 +15,11 @@ class TestFclCargoTypeMappings(unittest.TestCase):
         self.assertEqual("pallet", package_type.base_type)
         self.assertEqual("double", package_type.oversize_option)
 
+    def test_should_verify_if_package_type_contained(self):
+        cargo_types = FclCargoTypeMap()
+        self.assertTrue(cargo_types.contains("PALL"))
+        self.assertFalse(cargo_types.contains("LIFT"))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -51,6 +51,6 @@ def find_errors(
     )
 
     errors.blank_line = all(blank_line_values)
-    errors.invalid_package_type = not hasattr(FclCargoTypeMap, short_code)
+    errors.invalid_package_type = not FclCargoTypeMap().contains(short_code)
 
     return copy.copy(errors)
