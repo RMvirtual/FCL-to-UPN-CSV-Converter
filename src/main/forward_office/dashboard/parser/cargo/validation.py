@@ -42,20 +42,18 @@ class CargoParseException(ValueError):
         self.errors = errors
 
 
-class CargoEntryParseValidator:
-    def __init__(self):
-        self._errors = CargoParseErrors()
+def find_errors(
+        short_code: str, quantity: str or int, weight: str or float) -> \
+        CargoParseErrors:
+    errors = CargoParseErrors()
 
-    def find_errors(
-            self, short_code: str, quantity: str or int,
-            weight: str or float) -> CargoParseErrors:
-        self._errors.blank_package_type = not short_code
-        self._errors.invalid_quantity = not quantity
-        self._errors.weight_incorrect = not weight
+    errors.blank_package_type = not short_code
+    errors.invalid_quantity = not quantity
+    errors.weight_incorrect = not weight
 
-        self._errors.blank_line = (
-            self._errors.weight_incorrect and self._errors.invalid_quantity
-            and self._errors.blank_package_type
-        )
+    errors.blank_line = (
+        errors.weight_incorrect and errors.invalid_quantity
+        and errors.blank_package_type
+    )
 
-        return copy.copy(self._errors)
+    return copy.copy(errors)

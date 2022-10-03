@@ -24,8 +24,7 @@ class CargoParser:
             quantity = values[self._fields[line_number + "_quantity"]]
             weight = values[self._fields[line_number + "_weight"]]
 
-            validator = validation.CargoEntryParseValidator()
-            errors = validator.find_errors(short_code, quantity, weight)
+            errors = validation.find_errors(short_code, quantity, weight)
 
             if errors:
                 self._handle_critical_error(errors)
