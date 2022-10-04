@@ -1,5 +1,6 @@
 from src.main.freight.consignment.consignment import Consignment, Reference
 from src.main.forward_office.dashboard.parser.address import AddressParser
+from src.main.forward_office.dashboard.parser.cargo.model import CargoParser
 
 
 class ConsignmentParser:
@@ -14,9 +15,13 @@ class ConsignmentParser:
 
         consignment.reference = self._parse_reference(dashboard_input)
 
+        cargo_parser = CargoParser(self._field_indexes)
+        cargo_parser.parse(dashboard_input)
+        consignment.cargo = cargo_parser.cargo
+
         return consignment
 
     def _parse_reference(self, dashboard_input: list[str]) -> Reference:
         dashboard_reference = dashboard_input[self._field_indexes["reference"]]
-        
+
         return Reference(dashboard_reference)
