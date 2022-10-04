@@ -1,4 +1,6 @@
 import datetime
+import calendar
+
 from src.main.freight.consignment.consignment import Consignment, Reference
 from src.main.forward_office.dashboard.parser.address import AddressParser
 from src.main.forward_office.dashboard.parser.cargo.model import CargoParser
@@ -52,8 +54,16 @@ class ConsignmentParser:
     def _parse_delivery_date(
             self, dashboard_input: list[str]) -> datetime.date:
         date_string = dashboard_input[self._field_indexes["delivery_date"]]
+        day, month, year = date_string.split("-")
 
-        year, month, day = date_string.split("-")  # dd-mmm-yy
+        abbreviations = {
+            month: index for index, month in enumerate(calendar.month_abbr)
+            if month
+        }
 
-        return datetime.date(year=year, month=month, day=day)
+        return datetime.date(
+            day=int(day),
+            month=abbreviations[month],
+            year=int("20" + year)
+        )
 

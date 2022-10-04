@@ -126,9 +126,9 @@ class TestConsignmentParser(unittest.TestCase):
 
         date = consignment.delivery_date
 
-        self.assertEqual("2022", date.year)
-        self.assertEqual("Aug", date.month)
-        self.assertEqual("23", date.day)
+        self.assertEqual(23, date.day)
+        self.assertEqual(8, date.month)
+        self.assertEqual(2022, date.year)
 
 
 if __name__ == '__main__':
