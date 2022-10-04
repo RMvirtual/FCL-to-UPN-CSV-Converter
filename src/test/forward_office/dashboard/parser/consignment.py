@@ -72,6 +72,13 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual("(078)41 332424", address.telephone_number)
         self.assertEqual("GB", address.country)
 
+    def test_should_parse_reference(self):
+        parser = ConsignmentParser(self._field_indexes)
+        consignment = parser.parse(self._simple_example)
+
+        reference = consignment.reference
+        self.assertEqual("GR220806951", str(reference))
+
 
 if __name__ == '__main__':
     unittest.main()
