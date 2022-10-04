@@ -7,7 +7,6 @@ py_library(
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/forward_office/dashboard/export",
         "//src/main/forward_office/dashboard/format",
         "//src/main/forward_office/dashboard/parser",
     ],

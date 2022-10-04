@@ -69,9 +69,9 @@ class ConsignmentParser:
         )
 
     def _parse_delivery_time(
-            self, dashboard_input: list[str]) -> datetime.time:
+            self, dashboard_input: list[str]) -> datetime.datetime:
         time_string = dashboard_input[self._field_indexes["booking_time"]]
-        # h:mmpm
+        # h:mmpm (fcl's time format).
         new_time = datetime.datetime.strptime(time_string, "%I:%M%p")
 
         return new_time
