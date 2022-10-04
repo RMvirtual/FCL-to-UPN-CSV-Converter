@@ -120,6 +120,16 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertTrue(service.has_premium_service())
         self.assertFalse(service.has_booked_service())
 
+    def test_should_parse_date(self):
+        parser = ConsignmentParser(self._field_indexes)
+        consignment = parser.parse(self._simple_example)
+
+        date = consignment.delivery_date
+
+        self.assertEqual("2022", date.year)
+        self.assertEqual("Aug", date.month)
+        self.assertEqual("23", date.day)
+
 
 if __name__ == '__main__':
     unittest.main()

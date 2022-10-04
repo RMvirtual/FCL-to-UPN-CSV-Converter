@@ -1,3 +1,4 @@
+import datetime
 from src.main.freight.consignment.consignment import Consignment, Reference
 from src.main.forward_office.dashboard.parser.address import AddressParser
 from src.main.forward_office.dashboard.parser.cargo.model import CargoParser
@@ -30,6 +31,8 @@ class ConsignmentParser:
         consignment.service = ServiceParser(
             self._field_indexes).parse(dashboard_input)
 
+        consignment.delivery_date = self._parse_delivery_date(dashboard_input)
+
         return consignment
 
     def _parse_reference(self, dashboard_input: list[str]) -> Reference:
@@ -45,3 +48,12 @@ class ConsignmentParser:
         instructions = dashboard_input[start:end]
 
         return list(filter(bool, instructions))
+
+    def _parse_delivery_date(
+            self, dashboard_input: list[str]) -> datetime.date:
+        date_string = dashboard_input[self._field_indexes["delivery_date"]]
+
+        year, month, day = date_string.split("-")  # dd-mmm-yy
+
+        return datetime.date(year=year, month=month, day=day)
+
