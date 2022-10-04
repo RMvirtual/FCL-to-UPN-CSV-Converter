@@ -19,15 +19,13 @@ class Cargo:
         self._entries.clear()
 
     def entry_by_package_type(self, package_type: PackageType) -> CargoEntry:
-        matching_cargo_entry = None
+        matching_entries = self._matching_entries(package_type)
 
-        for entry in self._entries:
-            if entry.package_type == package_type:
-                matching_cargo_entry = entry
+        return matching_entries.pop() if matching_entries else None
 
-                break
-
-        return matching_cargo_entry
+    def _matching_entries(self, package_type: PackageType) -> list[CargoEntry]:
+        return list(filter(
+            lambda entry: entry.package_type == package_type, self._entries))
 
     def __iter__(self):
         return self._entries.__iter__()
