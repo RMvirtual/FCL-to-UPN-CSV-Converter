@@ -72,11 +72,22 @@ class FclServiceCodeMap:
     def __init__(self):
         self._map = ServiceCodeMapBuilder().mappings()
 
-    def __getitem__(self, priority_code: int) -> Service:
-        return copy.copy(self._map[priority_code])
+    def __getitem__(self, priority_code: int or str) -> Service:
+        return copy.copy(self._map[self._normalise(priority_code)])
 
-    def contains(self, priority_code: int):
-        return priority_code in self._map
+    def contains(self, priority_code: int or str):
+        return self._normalise(priority_code) in self._map
 
-    def __contains__(self, priority_code: int):
-        return self.contains(priority_code)
+    def __contains__(self, priority_code: int or str):
+        return self.contains(self._normalise(priority_code))
+
+    @staticmethod
+    def _normalise(priority_code: str) -> int:
+        if type(priority_code) is str and priority_code.isnumeric():
+            return int(priority_code)
+
+        elif type(priority_code) is int or float:
+            return priority_code
+
+        else:
+            raise TypeError("Incorrect priority code index.")

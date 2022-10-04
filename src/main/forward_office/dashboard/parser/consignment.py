@@ -1,6 +1,8 @@
 from src.main.freight.consignment.consignment import Consignment, Reference
 from src.main.forward_office.dashboard.parser.address import AddressParser
 from src.main.forward_office.dashboard.parser.cargo.model import CargoParser
+from src.main.forward_office.dashboard.parser.service.model \
+    import ServiceParser
 
 
 class ConsignmentParser:
@@ -24,6 +26,9 @@ class ConsignmentParser:
 
         consignment.client_name = dashboard_input[
             self._field_indexes["principal_client"]]
+
+        consignment.service = ServiceParser(
+            self._field_indexes).parse(dashboard_input)
 
         return consignment
 
