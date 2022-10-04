@@ -1,4 +1,6 @@
 import unittest
+from src.main.forward_office.dashboard.parser.consignment \
+    import ConsignmentParser
 
 
 class TestConsignmentParser(unittest.TestCase):
@@ -43,7 +45,7 @@ class TestConsignmentParser(unittest.TestCase):
         self._simple_example = [
             "Mr Susan Cheshire", "10 BRAMBLING RISE",
             "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
-            "GR220806951", "(078)413 32424",
+            "GR220806951", "(078)41 332424",
             "1000", "1", "PALL", "PALLETS N/D",
             "PROP PAL LTD",
             "", "", "",  "",
@@ -55,8 +57,20 @@ class TestConsignmentParser(unittest.TestCase):
             "2", "Yes"
         ]
 
-    def test_should_parse_consignment(self):
-        self.fail("Dummy fail on consignment parser.")
+    def test_should_parse_consignment_address(self):
+        parser = ConsignmentParser(self._field_indexes)
+        consignment = parser.parse(self._simple_example)
+
+        address = consignment.address
+        self.assertEqual("Mr Susan Cheshire", address.contact_name)
+        self.assertEqual("10 BRAMBLING RISE", address.name)
+        self.assertEqual("HEMEL HEMPSTEAD", address.line_1)
+        self.assertEqual("", address.line_2)
+        self.assertEqual("", address.line_3)
+        self.assertEqual("HEMEL HEMPSTEAD", address.town)
+        self.assertEqual("HP2 6DT", address.post_code)
+        self.assertEqual("(078)41 332424", address.telephone_number)
+        self.assertEqual("GB", address.country)
 
 
 if __name__ == '__main__':
