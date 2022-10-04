@@ -103,6 +103,12 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertListEqual(
             correct_instructions, consignment.delivery_instructions)
 
+    def test_should_parse_principal_client(self):
+        parser = ConsignmentParser(self._field_indexes)
+        consignment = parser.parse(self._simple_example)
+
+        self.assertEqual("PROP PAL LTD", consignment.client_name)
+
 
 if __name__ == '__main__':
     unittest.main()

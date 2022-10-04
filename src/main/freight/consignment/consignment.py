@@ -66,3 +66,11 @@ class Consignment:
     def delivery_instructions(self, new_instructions: list[str]):
         self._delivery_instructions = new_instructions
 
+    @property
+    def client_name(self) -> str:
+        return self._client_name
+
+    @client_name.setter
+    def client_name(self, new_name: str) -> None:
+        self._client_name = new_name
+

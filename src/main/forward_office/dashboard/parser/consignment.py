@@ -22,6 +22,9 @@ class ConsignmentParser:
         consignment.delivery_instructions = self._parse_delivery_instructions(
             dashboard_input)
 
+        consignment.client_name = dashboard_input[
+            self._field_indexes["principal_client"]]
+
         return consignment
 
     def _parse_reference(self, dashboard_input: list[str]) -> Reference:
