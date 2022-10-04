@@ -23,10 +23,13 @@ class Service:
         self._options.premium_service = PremiumService.PRE_10AM
 
     def timed(self) -> None:
-        self._options.premium_service = PremiumService.Timed
+        self._options.premium_service = PremiumService.TIMED
 
     def saturday(self) -> None:
-        self._options.premium_service = PremiumService.SATURDAY_AM
+        self._options.saturday = True
+
+    def clear_saturday(self) -> None:
+        self._options.saturday = False
 
     def no_premium_service(self):
         self._options.premium_service = None
@@ -53,7 +56,10 @@ class Service:
         return self._options.main_service is MainService.ECONOMY
 
     def has_premium_service(self) -> bool:
-        return self._options.premium_service is PremiumService
+        return (
+            self._options.premium_service is PremiumService
+            or self.is_saturday()
+        )
 
     def is_am(self) -> bool:
         return self._options.premium_service is PremiumService.AM
@@ -65,7 +71,7 @@ class Service:
         return self._options.premium_service is PremiumService.TIMED
 
     def is_saturday(self) -> bool:
-        return self._options.premium_service is PremiumService.SATURDAY_AM
+        return self._options.saturday
 
     def has_booked_service(self) -> bool:
         return self._options.booked_service is BookedService

@@ -11,7 +11,6 @@ class PremiumService(Enum):
     AM = 1
     PRE_10AM = 2
     TIMED = 3
-    SATURDAY_AM = 4
 
 
 class BookedService(Enum):
@@ -24,4 +23,4 @@ class ServiceOptions:
     main_service: MainService = MainService.PRIORITY
     premium_service: PremiumService or None = None
     booked_service: BookedService or None = None
-
+    saturday: bool = False
