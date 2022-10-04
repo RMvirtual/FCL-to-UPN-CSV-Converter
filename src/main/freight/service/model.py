@@ -31,7 +31,7 @@ class Service:
     def clear_saturday(self) -> None:
         self._options.saturday = False
 
-    def no_premium_service(self):
+    def clear_premium_service(self):
         self._options.premium_service = None
 
     def book_in(self) -> None:
@@ -40,13 +40,13 @@ class Service:
     def booked(self) -> None:
         self._options.booked_service = BookedService.BOOKED
 
-    def no_booked_service(self) -> None:
+    def clear_booked_service(self) -> None:
         self._options.booked_service = None
 
     def tail_lift(self) -> None:
         self._tail_lift = True
 
-    def no_tail_lift(self) -> None:
+    def clear_tail_lift(self) -> None:
         self._tail_lift = False
 
     def is_priority(self) -> bool:
@@ -57,7 +57,7 @@ class Service:
 
     def has_premium_service(self) -> bool:
         if self._options.premium_service is None:
-            return False
+            return self.is_saturday()
 
         else:
             return (
@@ -78,7 +78,11 @@ class Service:
         return self._options.saturday
 
     def has_booked_service(self) -> bool:
-        return self._options.booked_service is BookedService
+        if self._options.booked_service is None:
+            return False
+
+        else:
+            return self._options.booked_service in BookedService
 
     def is_book_in(self) -> bool:
         return self._options.booked_service is BookedService.BOOK_IN
