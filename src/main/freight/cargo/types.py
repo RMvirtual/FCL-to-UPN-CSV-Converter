@@ -5,13 +5,17 @@ from src.main.freight.cargo import oversize_options
 
 
 def load_package_type(type_name: str) -> PackageType:
-    matches = [
-        package for package in _package_types() if package.name == type_name]
+    matching_types = _matching_package_types(type_name)
 
-    if not matches:
+    if not matching_types:
         raise ValueError("Package type does not exist.")
 
-    return matches.pop()
+    return matching_types.pop()
+
+
+def _matching_package_types(type_name: str) -> list[PackageType]:
+    return [
+        package for package in _package_types() if package.name == type_name]
 
 
 def _package_types():
