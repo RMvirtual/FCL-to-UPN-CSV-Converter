@@ -20,12 +20,19 @@ class Consignment:
         return None if self._reference is None else str(self._reference)
 
     @reference.setter
-    def reference(self, new_reference: str) -> None:
-        try:
-            self._reference = Reference(new_reference)
+    def reference(self, new_reference: str or Reference) -> None:
+        if type(new_reference) is Reference:
+            self._reference = new_reference
 
-        except ValueError as error:
-            raise error
+        elif type(new_reference) is str:
+            try:
+                self._reference = Reference(new_reference)
+
+            except ValueError as error:
+                raise error
+
+        else:
+            raise TypeError("Incorrect input type for a reference.")
 
     @property
     def address(self) -> Address:
