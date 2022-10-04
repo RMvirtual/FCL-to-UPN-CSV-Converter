@@ -1,3 +1,4 @@
+import datetime
 from src.main.freight.consignment.address import Address
 from src.main.freight.consignment.reference import Reference
 from src.main.freight.cargo.model import Cargo
@@ -14,6 +15,8 @@ class Consignment:
         self._cargo = Cargo()
         self._service = Service()
         self._delivery_instructions: list[str] = []
+        self._delivery_date: datetime.date or None = None
+        self._delivery_time: datetime.time or None = None
 
     @property
     def reference(self) -> str:
@@ -74,3 +77,18 @@ class Consignment:
     def client_name(self, new_name: str) -> None:
         self._client_name = new_name
 
+    @property
+    def delivery_date(self) -> datetime.date:
+        return self._delivery_date
+
+    @delivery_date.setter
+    def delivery_date(self, new_date: datetime.date) -> None:
+        self._delivery_date = new_date
+
+    @property
+    def delivery_time(self) -> datetime.time:
+        return self._delivery_time
+
+    @delivery_time.setter
+    def delivery_time(self, new_time: datetime.time) -> None:
+        self._delivery_time = new_time
