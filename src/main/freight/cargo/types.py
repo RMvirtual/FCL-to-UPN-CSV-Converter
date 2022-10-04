@@ -14,8 +14,8 @@ def load_package_type(type_name: str) -> PackageType:
 
 
 def _matching_package_types(type_name: str) -> list[PackageType]:
-    return [
-        package for package in _package_types() if package.name == type_name]
+    return list(filter(
+        lambda package_type: package_type.name == type_name, _package_types()))
 
 
 def _package_types():
