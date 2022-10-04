@@ -46,7 +46,7 @@ class TestConsignmentParser(unittest.TestCase):
             "Mr Susan Cheshire", "10 BRAMBLING RISE",
             "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
             "GR220806951", "(078)41 332424",
-            "1000", "1", "PALL", "PALLETS N/D",
+            "1000", "1", "PALL", "PALLETS N/D AM",
             "PROP PAL LTD",
             "", "", "",  "",
             "", "", "", "",
@@ -54,7 +54,7 @@ class TestConsignmentParser(unittest.TestCase):
             "TEL: 07841 332424, TAIL LIFT", "",
             "", "23-Aug-22",
             "", "1",
-            "2", "Yes"
+            "5", "Yes"
         ]
 
     def test_should_parse_consignment_address(self):
@@ -113,7 +113,12 @@ class TestConsignmentParser(unittest.TestCase):
         parser = ConsignmentParser(self._field_indexes)
         consignment = parser.parse(self._simple_example)
 
-        self.fail("DUMMY FAIL FOR SERVICE PARSING")
+        service = consignment.service
+
+        self.assertTrue(service.is_priority())
+        self.assertFalse(service.has_booked_service())
+        self.assertTrue(service.has_premium_service())
+        self.assertTrue(service.is_am())
 
 
 if __name__ == '__main__':
