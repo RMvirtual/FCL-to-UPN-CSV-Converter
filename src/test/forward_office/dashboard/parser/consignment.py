@@ -52,9 +52,9 @@ class TestConsignmentParser(unittest.TestCase):
             "", "", "", "",
             "", "", "", "",
             "TEL: 07841 332424, TAIL LIFT", "",
-            "", "23-Aug-22",
+            "1:00pm", "23-Aug-22",
             "", "1",
-            "5", "Yes"
+            "3", "Yes"
         ]
 
     def test_should_parse_consignment_address(self):
@@ -116,11 +116,11 @@ class TestConsignmentParser(unittest.TestCase):
         service = consignment.service
 
         self.assertTrue(service.is_priority())
-        self.assertTrue(service.is_am())
+        self.assertTrue(service.is_timed())
         self.assertTrue(service.has_premium_service())
         self.assertFalse(service.has_booked_service())
 
-    def test_should_parse_date(self):
+    def test_should_parse_delivery_date(self):
         parser = ConsignmentParser(self._field_indexes)
         consignment = parser.parse(self._simple_example)
 
@@ -129,6 +129,14 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual(23, date.day)
         self.assertEqual(8, date.month)
         self.assertEqual(2022, date.year)
+
+    def test_should_parse_delivery_time(self):
+        parser = ConsignmentParser(self._field_indexes)
+        consignment = parser.parse(self._simple_example)
+
+        time = consignment.delivery_time
+        self.assertEqual(13, time.hour)
+        self.assertEqual(0, time.minute)
 
 
 if __name__ == '__main__':
