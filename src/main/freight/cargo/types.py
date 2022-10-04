@@ -5,34 +5,22 @@ from src.main.freight.cargo import oversize_options
 
 
 def load_package_type(type_name: str) -> PackageType:
-    result = None
+    matches = [
+        package for package in _package_types() if package.name == type_name]
 
-    for package in _deserialised_package_types():
-        if package.name == type_name:
-            result = package
-            break
-
-    if result is None:
+    if not matches:
         raise ValueError("Package type does not exist.")
 
-    return result
+    return matches.pop()
 
 
-def _deserialised_package_types():
+def _package_types():
     return [_deserialise(package) for package in _serialised_package_types()]
 
 
 def _serialised_package_types():
     with open(_base_packages_file(), "r") as json_file:
         return json.load(json_file)
-
-
-def _base_packages_file():
-    return runfiles.load_path(_cargo_types_file())
-
-
-def _cargo_types_file():
-    return system_files.load_path("CARGO_TYPES")
 
 
 def _deserialise(package_type_definitions: dict[str, str]):
@@ -53,6 +41,14 @@ def _deserialise(package_type_definitions: dict[str, str]):
     result.override_options = package_type_definitions["override_options"]
 
     return result
+
+
+def _base_packages_file():
+    return runfiles.load_path(_cargo_types_file())
+
+
+def _cargo_types_file():
+    return system_files.load_path("CARGO_TYPES")
 
 
 class PackageType:
