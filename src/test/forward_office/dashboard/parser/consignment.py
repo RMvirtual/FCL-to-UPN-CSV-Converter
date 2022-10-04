@@ -79,6 +79,21 @@ class TestConsignmentParser(unittest.TestCase):
         reference = consignment.reference
         self.assertEqual("GR220806951", str(reference))
 
+    def test_should_parse_cargo(self):
+        parser = ConsignmentParser(self._field_indexes)
+        consignment = parser.parse(self._simple_example)
+
+        cargo = consignment.cargo
+        self.assertEqual(1, len(cargo))
+
+        entry = cargo[0]
+        self.assertTupleEqual((1, 1000), entry.quantity_and_weight)
+
+        package_type = entry.package_type
+        self.assertEqual("full", package_type.name)
+        self.assertEqual("pallet", package_type.base_type)
+        self.assertEqual("normal", package_type.oversize_option)
+
 
 if __name__ == '__main__':
     unittest.main()
