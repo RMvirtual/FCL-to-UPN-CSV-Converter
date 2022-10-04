@@ -49,6 +49,18 @@ class TestServiceParser(unittest.TestCase):
         self.assertFalse(service.has_booked_service())
         self.assertFalse(service.is_saturday())
 
+    def test_should_parse_complex_example(self):
+        self._load_complex_example()
+        parser = ServiceParser(self._dashboard_format)
+        service = parser.parse(self._dashboard_input)
+
+        self.assertTrue(service.is_economy())
+        self.assertTrue(service.has_premium_service())
+        self.assertTrue(service.is_saturday())
+        self.assertTrue(service.is_am())
+        self.assertTrue(service.is_tail_lift_required())
+        self.assertFalse(service.is_booked())
+
 
 if __name__ == '__main__':
     unittest.main()
