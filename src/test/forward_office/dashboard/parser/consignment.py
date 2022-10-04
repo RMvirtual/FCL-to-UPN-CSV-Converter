@@ -116,9 +116,9 @@ class TestConsignmentParser(unittest.TestCase):
         service = consignment.service
 
         self.assertTrue(service.is_priority())
-        self.assertFalse(service.has_booked_service())
-        self.assertTrue(service.has_premium_service())
         self.assertTrue(service.is_am())
+        self.assertTrue(service.has_premium_service())
+        self.assertFalse(service.has_booked_service())
 
 
 if __name__ == '__main__':

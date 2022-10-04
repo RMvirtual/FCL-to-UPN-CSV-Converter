@@ -56,10 +56,14 @@ class Service:
         return self._options.main_service is MainService.ECONOMY
 
     def has_premium_service(self) -> bool:
-        return (
-            self._options.premium_service is PremiumService
-            or self.is_saturday()
-        )
+        if self._options.premium_service is None:
+            return False
+
+        else:
+            return (
+                self._options.premium_service in PremiumService
+                or self.is_saturday()
+            )
 
     def is_am(self) -> bool:
         return self._options.premium_service is PremiumService.AM
