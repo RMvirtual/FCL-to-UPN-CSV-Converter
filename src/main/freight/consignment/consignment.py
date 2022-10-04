@@ -13,7 +13,7 @@ class Consignment:
         self._address: Address = Address()
         self._cargo = Cargo()
         self._service = Service()
-        self._delivery_instructions = ""
+        self._delivery_instructions: list[str] = []
 
     @property
     def reference(self) -> str:
@@ -57,3 +57,12 @@ class Consignment:
     @service.setter
     def service(self, new_service: Service) -> None:
         self._service = new_service
+
+    @property
+    def delivery_instructions(self) -> list[str]:
+        return self._delivery_instructions
+
+    @delivery_instructions.setter
+    def delivery_instructions(self, new_instructions: list[str]):
+        self._delivery_instructions = new_instructions
+

@@ -94,6 +94,15 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual("pallet", package_type.base_type)
         self.assertEqual("normal", package_type.oversize_option)
 
+    def test_should_parse_delivery_instructions(self):
+        parser = ConsignmentParser(self._field_indexes)
+        consignment = parser.parse(self._simple_example)
+
+        correct_instructions = ["TEL: 07841 332424, TAIL LIFT"]
+
+        self.assertListEqual(
+            correct_instructions, consignment.delivery_instructions)
+
 
 if __name__ == '__main__':
     unittest.main()
