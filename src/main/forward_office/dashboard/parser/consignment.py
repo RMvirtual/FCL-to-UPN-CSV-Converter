@@ -19,9 +19,21 @@ class ConsignmentParser:
         cargo_parser.parse(dashboard_input)
         consignment.cargo = cargo_parser.cargo
 
+        consignment.delivery_instructions = self._parse_delivery_instructions(
+            dashboard_input)
+
         return consignment
 
     def _parse_reference(self, dashboard_input: list[str]) -> Reference:
         dashboard_reference = dashboard_input[self._field_indexes["reference"]]
 
         return Reference(dashboard_reference)
+
+    def _parse_delivery_instructions(
+            self, dashboard_input: list[str]) -> list[str]:
+        start = self._field_indexes["delivery_instruction_1"]
+        end = self._field_indexes["delivery_instruction_2"] + 1
+
+        instructions = dashboard_input[start:end]
+
+        return list(filter(bool, instructions))
