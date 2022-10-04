@@ -109,6 +109,12 @@ class TestConsignmentParser(unittest.TestCase):
 
         self.assertEqual("PROP PAL LTD", consignment.client_name)
 
+    def test_should_parse_service(self):
+        parser = ConsignmentParser(self._field_indexes)
+        consignment = parser.parse(self._simple_example)
+
+        self.fail("DUMMY FAIL FOR SERVICE PARSING")
+
 
 if __name__ == '__main__':
     unittest.main()
