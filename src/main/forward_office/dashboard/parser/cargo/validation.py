@@ -1,6 +1,6 @@
 import copy
 import dataclasses
-from src.main.forward_office.cargo.type_mappings import FclCargoTypeMap
+from src.main.forward_office.mapping.cargo import FclCargoTypeMap
 
 
 # noinspection PyClassHasNoInit

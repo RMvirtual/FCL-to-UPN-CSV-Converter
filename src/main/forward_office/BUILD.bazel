@@ -7,7 +7,7 @@ py_library(
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/forward_office/cargo",
+        "//src/main/forward_office/mapping",
         "//src/main/forward_office/dashboard",
     ],
 )

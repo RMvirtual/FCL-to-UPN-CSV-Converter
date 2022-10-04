@@ -1,5 +1,5 @@
 import unittest
-from src.main.forward_office.cargo.type_mappings \
+from src.main.forward_office.mapping.cargo \
     import FclCargoTypeMap
 
 
