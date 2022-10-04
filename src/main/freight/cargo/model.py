@@ -6,17 +6,28 @@ class Cargo:
     def __init__(self):
         self._entries: list[CargoEntry] = []
 
-    def add(self, new_entry: CargoEntry) -> None:
-        existing_entry = self.entry_by_package_type(new_entry.package_type)
-
-        if existing_entry:
-            existing_entry += new_entry
-
-        else:
-            self._entries.append(new_entry)
+    def add(self, entry: CargoEntry) -> None:
+        self._combine(entry) if entry in self else self._add(entry)
 
     def clear(self) -> None:
         self._entries.clear()
+
+    def __contains__(self, entry: CargoEntry) -> bool:
+        if type(entry) is CargoEntry:
+            return self.contains(entry)
+
+        else:
+            raise TypeError("Incorrect containing type to check for.")
+
+    def contains(self, entry: CargoEntry) -> bool:
+        return bool(self._matching_entries(entry.package_type))
+
+    def _combine(self, new_entry: CargoEntry):
+        current_entry = self.entry_by_package_type(new_entry.package_type)
+        current_entry += new_entry
+
+    def _add(self, entry: CargoEntry) -> None:
+        self._entries.append(entry)
 
     def entry_by_package_type(self, package_type: PackageType) -> CargoEntry:
         matching_entries = self._matching_entries(package_type)
