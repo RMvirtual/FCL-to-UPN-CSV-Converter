@@ -1,0 +1,146 @@
+[
+  {
+    "priority_code": 1,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": false,
+      "booked_service": false,
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 2,
+    "maps_to": {
+      "main_service": "PRIORITY",
+      "premium_service": false,
+      "booked_service": false,
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 3,
+    "maps_to": {
+      "main_service": "PRIORITY",
+      "premium_service": "TIMED",
+      "booked_service": false,
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 4,
+    "maps_to": {
+      "main_service": "PRIORITY",
+      "premium_service": "PRE-10AM",
+      "booked_service": false,
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 5,
+    "maps_to": {
+      "main_service": "PRIORITY",
+      "premium_service": "AM",
+      "booked_service": false,
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 6,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": "TIMED",
+      "booked_service": false,
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 7,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": "PRE-10AM",
+      "booked_service": false,
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 8,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": "AM",
+      "booked_service": false,
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 10,
+    "maps_to": {
+      "main_service": "PRIORITY",
+      "premium_service": "AM",
+      "booked_service": false,
+      "saturday_service": true
+    }
+  },
+  {
+    "priority_code": 11,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": "AM",
+      "booked_service": false,
+      "saturday_service": true
+    }
+  },
+  {
+    "priority_code": 12,
+    "maps_to": {
+      "main_service": "PRIORITY",
+      "premium_service": "TIMED",
+      "booked_service": false,
+      "saturday_service": true
+    }
+  },
+  {
+    "priority_code": 17,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": false,
+      "booked_service": "BOOK-IN",
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 19,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": false,
+      "booked_service": "BOOKED",
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 29,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": "PRE-10AM",
+      "booked_service": "BOOKED",
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 30,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": "AM",
+      "booked_service": "BOOKED",
+      "saturday_service": false
+    }
+  },
+  {
+    "priority_code": 31,
+    "maps_to": {
+      "main_service": "ECONOMY",
+      "premium_service": "TIMED",
+      "booked_service": "BOOKED",
+      "saturday_service": false
+    }
+  }
+]
