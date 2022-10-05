@@ -8,14 +8,14 @@ from src.main.forward_office.dashboard.parser.requests.types \
 class TestCargoEntryParser(unittest.TestCase):
     def test_should_find_missing_weight_error(self):
         errors = validation.find_errors(
-            CargoEntryParseRequest("PALL", "1", ""))
+            CargoEntryParseRequest("1", "PALL", "", "PALLET N/D"))
 
         self.assertEqual(1, len(errors))
         self.assertTrue(errors.weight_incorrect)
 
     def test_should_find_missing_quantity_and_package_type_errors(self):
         errors = validation.find_errors(
-            CargoEntryParseRequest("", "", "1000"))
+            CargoEntryParseRequest("", "", "1000", "FORGOTTEN"))
 
         self.assertEqual(3, len(errors))
         self.assertTrue(errors.blank_package_type)
@@ -24,7 +24,7 @@ class TestCargoEntryParser(unittest.TestCase):
 
     def test_should_raise_invalid_package_type_error(self):
         errors = validation.find_errors(
-            CargoEntryParseRequest("LIFT", "1", "1000"))
+            CargoEntryParseRequest("1", "LIFT", "1000", "LIFT"))
 
         self.assertEqual(1, len(errors))
         self.assertTrue(errors.invalid_package_type)

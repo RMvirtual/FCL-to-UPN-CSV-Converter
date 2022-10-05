@@ -16,17 +16,22 @@ class CargoParser:
         self._cargo = Cargo()
         self._mappings = FclCargoTypeMap()
 
-    @property
-    def cargo(self) -> Cargo:
-        return copy.copy(self._cargo)
-
-    def parse(self, request: CargoParseRequest) -> None:
+    def parse(self, request: CargoParseRequest) -> Cargo:
         self._cargo.clear()
 
-        self._process_request(request.line_1)
-        self._process_request(request.line_2)
-        self._process_request(request.line_3)
-        self._process_request(request.line_4)
+        if not request.line_1.is_empty():
+            self._process_request(request.line_1)
+
+        if not request.line_2.is_empty():
+            self._process_request(request.line_2)
+
+        if not request.line_3.is_empty():
+            self._process_request(request.line_3)
+
+        if not request.line_4.is_empty():
+            self._process_request(request.line_4)
+
+        return copy.copy(self._cargo)
 
     def _process_request(self, request: CargoEntryParseRequest) -> None:
         errors = validation.find_errors(request)
@@ -50,7 +55,7 @@ class CargoParser:
     def _process_error(errors) -> None:
         if errors.are_critical():
             raise validation.CargoParseException(
-                message="Cargo parse errors", errors=errors)
+                message=("Cargo parse errors", errors), errors=errors)
 
     def _process_cargo_entry(self, request: CargoEntryParseRequest) -> None:
         package_type = getattr(self._mappings, request.package_type)

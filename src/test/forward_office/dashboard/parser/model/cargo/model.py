@@ -19,19 +19,6 @@ class TestCargoParser(unittest.TestCase):
         self._example.line_1.weight = "1000"
         self._example.line_1.goods_description = "PALLETS N/D"
 
-        _ = [
-            "Mr Susan Cheshire", "10 BRAMBLING RISE",
-            "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
-            "GR220806951", "(078)41332424",
-            "1000", "1", "PAL2", "PALLETS N/D",
-            "PROP PAL LTD",
-            "", "", "", "",
-            "", "", "", "",
-            "", "", "", "",
-            "TEL: 07841 332424, TAIL LIFT", "",
-            "", "23-Aug-22", "", "1", "2", "Yes"
-        ]
-
     def _load_complex_example(self):
         self._example = CargoParseRequest()
 
@@ -59,25 +46,11 @@ class TestCargoParser(unittest.TestCase):
         self._example.line_4.weight = "1000"
         self._example.line_4.goods_description = "DOUBLE HALF PALLET"
 
-        _ = [
-            "Mr Susan Cheshire", "10 BRAMBLING RISE",
-            "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
-            "GR220806951", "(078)41332424",
-            "2000", "2", "PALL", "PALLETS N/D",
-            "PROP PAL LTD",
-            "600", "2", "QPL3", "",
-            "800", "8", "MPAL", "",
-            "1000", "2", "HPL2", "",
-            "TEL: 07841 332424, TAIL LIFT", "",
-            "", "23-Aug-22", "", "1", "2", "Yes"
-        ]
-
     def test_should_parse_one_cargo_line(self):
         self._load_simple_example()
 
         parser = CargoParser()
-        parser.parse(self._example)
-        cargo = parser.cargo
+        cargo = parser.parse(self._example)
 
         self.assertEqual(1, len(cargo))
 
@@ -93,8 +66,7 @@ class TestCargoParser(unittest.TestCase):
         self._load_complex_example()
 
         parser = CargoParser()
-        parser.parse(self._example)
-        cargo = parser.cargo
+        cargo = parser.parse(self._example)
 
         self.assertEqual(4, len(cargo))
 

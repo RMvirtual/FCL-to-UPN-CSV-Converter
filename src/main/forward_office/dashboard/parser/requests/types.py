@@ -27,11 +27,20 @@ class CargoEntryParseRequest:
     weight: float = 0
     goods_description: str = ""
 
+    def __bool__(self):
+        return not (
+            not self.quantity and not self.package_type
+            and not self.weight and not self.goods_description
+        )
+
+    def is_empty(self) -> bool:
+        return dataclasses.fields(self) in (0, "")
+
 
 @dataclasses.dataclass
 class CargoParseRequest:
-    line_1: CargoEntryParseRequest = None
-    line_2: CargoEntryParseRequest = None
-    line_3: CargoEntryParseRequest = None
-    line_4: CargoEntryParseRequest = None
+    line_1: CargoEntryParseRequest = CargoEntryParseRequest()
+    line_2: CargoEntryParseRequest = CargoEntryParseRequest()
+    line_3: CargoEntryParseRequest = CargoEntryParseRequest()
+    line_4: CargoEntryParseRequest = CargoEntryParseRequest()
 

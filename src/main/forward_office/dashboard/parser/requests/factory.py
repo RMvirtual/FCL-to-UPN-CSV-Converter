@@ -38,6 +38,7 @@ class ParseRequestFactory:
         cleaned_values = list(map(self._trim_whitespace, values))
 
         result = CargoParseRequest()
+
         result.line_1 = self.cargo_entry(1, cleaned_values)
         result.line_2 = self.cargo_entry(2, cleaned_values)
         result.line_3 = self.cargo_entry(3, cleaned_values)
@@ -46,7 +47,8 @@ class ParseRequestFactory:
         return result
 
     def cargo_entry(
-            self, line: int, values: list[str]) -> CargoEntryParseRequest:
+            self, line: int, values: list[str]) -> \
+            CargoEntryParseRequest or None:
         cleaned_values = list(map(self._trim_whitespace, values))
 
         return self._cargo_entry(line, cleaned_values)
@@ -55,9 +57,11 @@ class ParseRequestFactory:
             self, line: int, values: list[str]) -> CargoEntryParseRequest:
         result = CargoEntryParseRequest()
 
-        result.short_code = values[self._line_string(line, "package_type")]
+        result.package_type = values[self._line_string(line, "package_type")]
         result.quantity = values[self._line_string(line, "quantity")]
         result.weight = values[self._line_string(line, "weight")]
+        result.goods_description = values[
+            self._line_string(line, "description")]
 
         return result
 
