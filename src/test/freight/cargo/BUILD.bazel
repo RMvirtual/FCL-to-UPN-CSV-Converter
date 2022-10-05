@@ -6,17 +6,15 @@ py_test(
     data = [],
     deps = [
         "//src/main/freight/cargo",
-        "//src/main/file_system",
     ],
 )
 
 py_test(
     name = "package_types",
     srcs = glob(["*.py"]),
-    data = ["//resources/cargo_types:base_packages.json"],
+    data = [],
     deps = [
         "//src/main/freight/cargo",
-        "//src/main/file_system",
     ],
 )
 
@@ -26,6 +24,6 @@ py_test(
     data = [],
     deps = [
         "//src/main/freight/cargo",
-        "//src/main/file_system",
     ],
 )
+

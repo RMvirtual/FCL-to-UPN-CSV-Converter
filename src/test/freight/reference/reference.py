@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.consignment.reference import Reference
+from src.main.freight.reference.model import Reference
 
 
 class TestReference(unittest.TestCase):

@@ -1,5 +1,4 @@
 import unittest
-from src.main.file_system.runfiles import load_path
 from src.main.freight.cargo.types import load_package_type
 
 
@@ -57,10 +56,6 @@ class TestPackageTypesJsonReader(unittest.TestCase):
 
         self.assertTrue(package_1 != package_2)
         self.assertFalse(package_1 == package_2)
-
-    @property
-    def _test_json_file(self) -> str:
-        return load_path("resources/test_inputs/base_packages.json")
 
 
 if __name__ == '__main__':

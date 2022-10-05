@@ -1,10 +1,8 @@
-import re
+from src.main.freight.address.validation import AddressValidationStrategy
 
 
 class Address:
     def __init__(self):
-        self._initialise_uk_post_code_pattern()
-
         self._name = ""
         self._line_1 = ""
         self._line_2 = ""
@@ -15,25 +13,7 @@ class Address:
         self._telephone_number = ""
         self._contact_name = ""
 
-    def is_valid(self):
-        return (
-            self._name != ""
-            and self._line_1 != ""
-            and self._town != ""
-            and self._post_code != ""
-            and self._country != ""
-        )
-
-    def _initialise_uk_post_code_pattern(self):
-        self._uk_post_code_pattern = re.compile(
-            r"([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})"
-            + r"|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})"
-            + r"|(([A-Za-z][0-9][A-Za-z])"
-            + r"|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
-        )
-
-    def _post_code_pattern_matches(self, post_code: str) -> bool:
-        return bool(self._uk_post_code_pattern.fullmatch(post_code))
+        self._validation = AddressValidationStrategy()
 
     @property
     def name(self):
@@ -41,6 +21,9 @@ class Address:
 
     @name.setter
     def name(self, new_name):
+        if not self._validation.validate_name(new_name):
+            raise ValueError("Requested name is invalid.")
+
         self._name = new_name
 
     @property
@@ -49,6 +32,9 @@ class Address:
 
     @line_1.setter
     def line_1(self, new_line):
+        if not self._validation.validate_line_1(new_line):
+            raise ValueError("Line 1 is invalid.")
+
         self._line_1 = new_line
 
     @property
@@ -72,7 +58,10 @@ class Address:
         return self._town
 
     @town.setter
-    def town(self, new_town):
+    def town(self, new_town: str):
+        if not self._validation.validate_town(new_town):
+            raise ValueError("Town is invalid.")
+
         self._town = new_town
 
     @property
@@ -81,11 +70,10 @@ class Address:
 
     @post_code.setter
     def post_code(self, new_post_code: str):
-        if self._post_code_pattern_matches(new_post_code):
-            self._post_code = new_post_code
+        if not self._validation.validate_post_code(new_post_code):
+            raise ValueError("Post code is invalid.")
 
-        else:
-            raise ValueError("Incorrect pattern for post code.")
+        self._post_code = new_post_code
 
     @property
     def country(self):

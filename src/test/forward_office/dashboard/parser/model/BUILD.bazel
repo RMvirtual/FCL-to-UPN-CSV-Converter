@@ -5,7 +5,16 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/forward_office/dashboard",
+        "//src/main/forward_office/dashboard/parser/model",
+    ],
+)
+
+py_test(
+    name = "cargo",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/forward_office/dashboard/parser/model",
     ],
 )
 
@@ -14,7 +23,7 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/forward_office/dashboard",
+        "//src/main/forward_office/dashboard/parser/model",
     ],
 )
 
@@ -23,6 +32,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/forward_office/dashboard",
+        "//src/main/forward_office/dashboard/parser/model",
     ],
 )

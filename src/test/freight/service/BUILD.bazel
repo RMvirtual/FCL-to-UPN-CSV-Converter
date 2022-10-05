@@ -6,6 +6,5 @@ py_test(
     data = [],
     deps = [
         "//src/main/freight/service",
-        "//src/main/file_system",
     ],
 )

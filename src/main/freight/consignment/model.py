@@ -1,6 +1,6 @@
 import datetime
-from src.main.freight.consignment.address import Address
-from src.main.freight.consignment.reference import Reference
+from src.main.freight.address.model import Address
+from src.main.freight.reference.model import Reference
 from src.main.freight.cargo.model import Cargo
 from src.main.freight.service.model import Service
 

@@ -1,5 +1,5 @@
 import unittest
-from src.main.forward_office.dashboard.format.all import DashboardFormats
+from src.main.forward_office.dashboard.format.models import DashboardFormats
 
 
 class TestDashboardFormats(unittest.TestCase):

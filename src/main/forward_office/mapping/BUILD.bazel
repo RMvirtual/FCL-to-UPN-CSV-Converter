@@ -9,5 +9,7 @@ py_library(
         "//resources/forward_office:service_mappings.json"
     ],
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+        "//src/main/freight"
+    ],
 )

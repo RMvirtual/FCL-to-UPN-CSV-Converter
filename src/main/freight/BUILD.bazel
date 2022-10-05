@@ -6,7 +6,9 @@ py_library(
   deps = [
     "//src/main/freight/cargo",
     "//src/main/freight/consignment",
-    "//src/main/freight/service"
+    "//src/main/freight/service",
+    "//src/main/freight/reference",
+    "//src/main/freight/address"
   ],
   visibility = ["//visibility:public"]
 )

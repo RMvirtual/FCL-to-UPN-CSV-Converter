@@ -1,14 +1,18 @@
 import copy
-from src.main.freight.consignment.consignment import Cargo
+from src.main.freight.cargo.model import Cargo
 from src.main.freight.cargo.entry import CargoEntry
 from src.main.forward_office.mapping.cargo import FclCargoTypeMap
-from src.main.forward_office.dashboard.parser.model.cargo import validation
-
-from src.main.forward_office.dashboard.parser.model.cargo.validation \
-    import CargoParseErrors
+from src.main.freight.cargo import validation
+from src.main.freight.cargo.validation import CargoErrors
 
 from src.main.forward_office.dashboard.parser.requests.types \
     import CargoParseRequest, CargoEntryParseRequest
+
+
+class CargoParseException(ValueError):
+    def __init__(self, message, errors: CargoErrors):
+        super().__init__(message)
+        self.errors = errors
 
 
 class CargoParser:
@@ -34,14 +38,14 @@ class CargoParser:
         return copy.copy(self._cargo)
 
     def _process_request(self, request: CargoEntryParseRequest) -> None:
-        errors = validation.find_errors(request)
+        errors = find_errors(request)
         self._process(errors) if errors else self._process(request)
 
     def _process(
-            self, request: CargoEntryParseRequest or CargoParseErrors) -> None:
+            self, request: CargoEntryParseRequest or CargoErrors) -> None:
         request_type_handlers = {
             CargoEntryParseRequest: self._process_cargo_entry,
-            CargoParseErrors: self._process_error
+            CargoErrors: self._process_error
         }
 
         if type(request) in request_type_handlers:
@@ -54,7 +58,7 @@ class CargoParser:
     @staticmethod
     def _process_error(errors) -> None:
         if errors.are_critical():
-            raise validation.CargoParseException(
+            raise CargoParseException(
                 message=("Cargo parse errors", errors), errors=errors)
 
     def _process_cargo_entry(self, request: CargoEntryParseRequest) -> None:
@@ -65,3 +69,21 @@ class CargoParser:
         new_entry.weight_kgs = float(request.weight)
 
         self._cargo.add(new_entry)
+
+
+def find_errors(request: CargoEntryParseRequest) -> CargoErrors:
+    validator = validation.CargoValidationStrategy()
+    errors = CargoErrors()
+
+    errors.invalid_package_type = not validator.validate_package_type(
+        request.package_type)
+
+    errors.blank_package_type = not validator.validate_package_type(
+        request.package_type)
+
+    errors.weight_incorrect = not validator.validate_weight(request.weight)
+    errors.invalid_quantity = not validator.validate_quantity(request.quantity)
+    errors.blank_line = errors.blank_package_type and errors.weight_incorrect
+
+    return errors
+

@@ -1,6 +1,5 @@
 import unittest
-from src.main.forward_office.mapping.cargo \
-    import FclCargoTypeMap
+from src.main.forward_office.mapping.cargo import FclCargoTypeMap
 
 
 class TestFclCargoTypeMappings(unittest.TestCase):
