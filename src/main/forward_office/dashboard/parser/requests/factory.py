@@ -59,7 +59,7 @@ class ParseRequestFactory:
 
         result.priority_code = values[self._column_indexes["priority_code"]]
         result.tail_lift_requested = values[
-            self._column_indexes["tail_lift_required"]]
+            self._column_indexes["tail_lift_required"]].lower() == "yes"
 
         return result
 
