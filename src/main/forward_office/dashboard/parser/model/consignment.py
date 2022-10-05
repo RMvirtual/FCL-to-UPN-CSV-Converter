@@ -1,4 +1,4 @@
-from src.main.freight.consignment.consignment import Consignment, Reference
+from src.main.freight.consignment.consignment import Consignment
 
 from src.main.forward_office.dashboard.parser.model.address.model \
     import AddressParser
@@ -19,32 +19,16 @@ class ConsignmentParser:
         self._requests = ParseRequestFactory(self._field_indexes)
 
     def parse(self, dashboard_input: list[str]) -> Consignment:
+        request = self._requests.consignment_request(dashboard_input)
         consignment = Consignment()
 
-        address_request = self._requests.address_request(dashboard_input)
-        consignment.address = AddressParser().parse(address_request)
-
-        reference_request = self._requests.reference_request(dashboard_input)
-        consignment.reference = Reference(reference_request)
-
-        cargo_parser = CargoParser()
-        cargo_request = self._requests.cargo_request(dashboard_input)
-        consignment.cargo = cargo_parser.parse(cargo_request)
-
-        consignment.delivery_instructions = (
-            self._requests.delivery_instructions(dashboard_input))
-
-        consignment.client_name = self._requests.principal_client(
-            dashboard_input)
-
-        service_request = self._requests.service_request(dashboard_input)
-        consignment.service = ServiceParser().parse(service_request)
-
-        consignment.delivery_date = self._requests.delivery_date(
-            dashboard_input)
-
-        consignment.delivery_time = self._requests.delivery_time(
-            dashboard_input)
+        consignment.client_name = request.principal_client
+        consignment.reference = request.reference
+        consignment.cargo = CargoParser().parse(request.cargo)
+        consignment.delivery_instructions = request.delivery_instructions
+        consignment.delivery_date = request.delivery_date
+        consignment.delivery_time = request.delivery_time
+        consignment.address = AddressParser().parse(request.address)
+        consignment.service = ServiceParser().parse(request.service)
 
         return consignment
-

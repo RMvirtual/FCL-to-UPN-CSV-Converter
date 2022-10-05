@@ -3,13 +3,32 @@ import calendar
 
 from src.main.forward_office.dashboard.parser.requests.types import (
     AddressParseRequest, ServiceParseRequest, CargoEntryParseRequest,
-    CargoParseRequest
+    CargoParseRequest, ConsignmentParseRequest
 )
 
 
 class ParseRequestFactory:
     def __init__(self, parsing_format: dict[str, int]):
         self._column_indexes = parsing_format
+
+    def consignment_request(self, values: list[str]):
+        cleaned_values = list(map(self._trim_whitespace, values))
+
+        request = ConsignmentParseRequest()
+
+        request.cargo = self._cargo_request(cleaned_values)
+        request.service = self._service_request(cleaned_values)
+        request.address = self._address_request(cleaned_values)
+        request.principal_client = self.principal_client(cleaned_values)
+        request.reference = self.reference_request(cleaned_values)
+
+        request.delivery_instructions = self.delivery_instructions(
+            cleaned_values)
+
+        request.delivery_date = self.delivery_date(cleaned_values)
+        request.delivery_time = self.delivery_time(cleaned_values)
+
+        return request
 
     def address_request(self, values: list[str]) -> AddressParseRequest:
         cleaned_values = list(map(self._trim_whitespace, values))

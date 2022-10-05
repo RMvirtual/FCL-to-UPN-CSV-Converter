@@ -1,4 +1,5 @@
 import dataclasses
+import datetime
 
 
 @dataclasses.dataclass
@@ -43,4 +44,16 @@ class CargoParseRequest:
     line_2: CargoEntryParseRequest = CargoEntryParseRequest()
     line_3: CargoEntryParseRequest = CargoEntryParseRequest()
     line_4: CargoEntryParseRequest = CargoEntryParseRequest()
+
+
+@dataclasses.dataclass
+class ConsignmentParseRequest:
+    reference: str = None
+    address: AddressParseRequest = None
+    service: ServiceParseRequest = None
+    cargo: CargoParseRequest = None
+    delivery_instructions: list[str] = None
+    principal_client: str = None
+    delivery_date: datetime.date = None
+    delivery_time: datetime.time = None
 
