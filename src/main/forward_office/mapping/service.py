@@ -12,6 +12,7 @@ class ServiceCodeMapBuilder:
     def _build_map(self):
         self._mappings = {}
         self._parse_mappings()
+        self._service = Service()
 
     def _parse_mappings(self):
         for service_mapping in self._mapping_file_contents():
@@ -19,40 +20,52 @@ class ServiceCodeMapBuilder:
 
     def _add(self, service_mapping):
         priority_code = service_mapping["priority_code"]
-        service = self._deserialise(service_mapping)
+        self._mappings[priority_code] = self._deserialise(service_mapping)
 
-        self._mappings[priority_code] = service
-
-    @staticmethod
-    def _deserialise(service_mapping):
+    def _deserialise(self, service_mapping):
         mapping_info = service_mapping["maps_to"]
 
-        result = Service()
+        self._service = Service()
+        self._parse_main_service(mapping_info)
+        self._parse_premium_service(mapping_info)
+        self._parse_booked_service(mapping_info)
+        self._parse_saturday_service(mapping_info)
 
-        result.priority() if mapping_info["main_service"] == "PRIORITY" else \
-            result.economy()
+        return copy.copy(self._service)
+
+    def _parse_main_service(self, mapping_info):
+        _service_callbacks = {
+            "PRIORITY": self._service.priority,
+            "ECONOMY": self._service.economy
+        }
+
+        service_callback = mapping_info["main_service"]
+        _service_callbacks[service_callback]()
+
+    def _parse_premium_service(self, mapping_info):
+        _service_callbacks = {
+            "AM": self._service.am,
+            "PRE-10AM": self._service.pre_10am,
+            "TIMED": self._service.timed
+        }
 
         if mapping_info["premium_service"]:
-            if mapping_info["premium_service"] == "AM":
-                result.am()
+            service_callback = mapping_info["premium_service"]
+            _service_callbacks[service_callback]()
 
-            elif mapping_info["premium_service"] == "PRE-10AM":
-                result.pre_10am()
-
-            elif mapping_info["premium_service"] == "TIMED":
-                result.timed()
+    def _parse_booked_service(self, mapping_info):
+        _service_callbacks = {
+            "BOOK-IN": self._service.book_in,
+            "BOOKED": self._service.booked
+        }
 
         if mapping_info["booked_service"]:
-            if mapping_info["booked_service"] == "BOOK-IN":
-                result.book_in()
+            service_callback = mapping_info["booked_service"]
+            _service_callbacks[service_callback]()
 
-            elif mapping_info["booked_service"] == "BOOKED":
-                result.booked()
-
+    def _parse_saturday_service(self, mapping_info):
         if mapping_info["saturday_service"]:
-            result.saturday()
-
-        return result
+            self._service.saturday()
 
     def _mapping_file_contents(self):
         with open(self._file_path()) as json_file:
@@ -90,4 +103,4 @@ class FclServiceCodeMap:
             return priority_code
 
         else:
-            raise TypeError("Incorrect priority code index.")
+            raise TypeError("Invalid priority code:", priority_code)
