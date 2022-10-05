@@ -28,7 +28,7 @@ class ServiceCodeMapBuilder:
 
         self._service = Service()
         self._process_main_service(mapping_info["main_service"])
-        self._process_premium_service(mapping_info)
+        self._process_premium_service(mapping_info["premium_service"])
         self._process_booked_service(mapping_info)
         self._process_saturday_service(mapping_info)
 
@@ -43,9 +43,9 @@ class ServiceCodeMapBuilder:
             }
         )
 
-    def _process_premium_service(self, mapping_info):
-        if mapping_info["premium_service"]:
-            self._set_premium_service(mapping_info["premium_service"])
+    def _process_premium_service(self, service_key):
+        if service_key:
+            self._set_premium_service(service_key)
 
     def _set_premium_service(self, service_key: str):
         self._execute_callback_by_key(
