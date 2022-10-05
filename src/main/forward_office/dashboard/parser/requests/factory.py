@@ -29,6 +29,43 @@ class ParseRequestFactory:
 
         return result
 
+    def cargo_request(self, values: list[str]) -> CargoParseRequest:
+        cleaned_values = list(map(self._trim_whitespace, values))
+
+        return self._cargo_request(cleaned_values)
+
+    def _cargo_request(self, values: list[str]) -> CargoParseRequest:
+        cleaned_values = list(map(self._trim_whitespace, values))
+
+        result = CargoParseRequest()
+        result.line_1 = self.cargo_entry(1, cleaned_values)
+        result.line_2 = self.cargo_entry(2, cleaned_values)
+        result.line_3 = self.cargo_entry(3, cleaned_values)
+        result.line_4 = self.cargo_entry(4, cleaned_values)
+
+        return result
+
+    def cargo_entry(
+            self, line: int, values: list[str]) -> CargoEntryParseRequest:
+        cleaned_values = list(map(self._trim_whitespace, values))
+
+        return self._cargo_entry(line, cleaned_values)
+
+    def _cargo_entry(
+            self, line: int, values: list[str]) -> CargoEntryParseRequest:
+        result = CargoEntryParseRequest()
+
+        result.short_code = values[self._line_string(line, "package_type")]
+        result.quantity = values[self._line_string(line, "quantity")]
+        result.weight = values[self._line_string(line, "weight")]
+
+        return result
+
+    def _line_string(self, line_number: int, name: str) -> int:
+        full_field = "line_" + str(line_number) + "_" + name
+
+        return self._column_indexes[full_field]
+
     @staticmethod
     def _trim_whitespace(value: str):
         return " ".join(value.split()) if value else value

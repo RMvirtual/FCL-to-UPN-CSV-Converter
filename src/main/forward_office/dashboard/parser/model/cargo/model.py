@@ -3,13 +3,16 @@ from src.main.freight.consignment.consignment import Cargo
 from src.main.freight.cargo.entry import CargoEntry
 from src.main.forward_office.mapping.cargo import FclCargoTypeMap
 from src.main.forward_office.dashboard.parser.model.cargo import validation
+
 from src.main.forward_office.dashboard.parser.model.cargo.validation \
-    import CargoParseRequest, CargoParseErrors
+    import CargoParseErrors
+
+from src.main.forward_office.dashboard.parser.requests.types \
+    import CargoParseRequest, CargoEntryParseRequest
 
 
 class CargoParser:
-    def __init__(self, field_indexes: dict[str, int]):
-        self._fields = field_indexes
+    def __init__(self):
         self._cargo = Cargo()
         self._mappings = FclCargoTypeMap()
 
@@ -17,19 +20,22 @@ class CargoParser:
     def cargo(self) -> Cargo:
         return copy.copy(self._cargo)
 
-    def parse(self, values: list[str]) -> None:
+    def parse(self, request: CargoParseRequest) -> None:
         self._cargo.clear()
 
-        for request in self._requests_from_dashboard_input(values):
-            self._process_request(request)
+        self._process_request(request.line_1)
+        self._process_request(request.line_2)
+        self._process_request(request.line_3)
+        self._process_request(request.line_4)
 
-    def _process_request(self, request: CargoParseRequest) -> None:
+    def _process_request(self, request: CargoEntryParseRequest) -> None:
         errors = validation.find_errors(request)
         self._process(errors) if errors else self._process(request)
 
-    def _process(self, request: CargoParseRequest or CargoParseErrors) -> None:
+    def _process(
+            self, request: CargoEntryParseRequest or CargoParseErrors) -> None:
         request_type_handlers = {
-            CargoParseRequest: self._process_cargo_entry,
+            CargoEntryParseRequest: self._process_cargo_entry,
             CargoParseErrors: self._process_error
         }
 
@@ -46,28 +52,8 @@ class CargoParser:
             raise validation.CargoParseException(
                 message="Cargo parse errors", errors=errors)
 
-    def _requests_from_dashboard_input(
-            self, values: list[str]) -> list[CargoParseRequest]:
-        return [
-            self._request_by_line(number, values) for number in range(1, 5)]
-
-    def _request_by_line(
-            self, line_number: int, values: list[str]) -> CargoParseRequest:
-        result = CargoParseRequest()
-
-        result.short_code = values[self._field(line_number, "package_type")]
-        result.quantity = values[self._field(line_number, "quantity")]
-        result.weight = values[self._field(line_number, "weight")]
-
-        return result
-
-    def _field(self, line_number: int, name: str) -> int:
-        full_field = "line_" + str(line_number) + "_" + name
-
-        return self._fields[full_field]
-
-    def _process_cargo_entry(self, request: CargoParseRequest) -> None:
-        package_type = getattr(self._mappings, request.short_code)
+    def _process_cargo_entry(self, request: CargoEntryParseRequest) -> None:
+        package_type = getattr(self._mappings, request.package_type)
 
         new_entry = CargoEntry(package_type)
         new_entry.quantity = int(request.quantity)

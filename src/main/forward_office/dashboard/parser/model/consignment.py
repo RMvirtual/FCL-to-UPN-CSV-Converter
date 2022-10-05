@@ -31,8 +31,9 @@ class ConsignmentParser:
 
         consignment.reference = self._parse_reference(dashboard_input)
 
-        cargo_parser = CargoParser(self._field_indexes)
-        cargo_parser.parse(dashboard_input)
+        cargo_request = self._requests_generator.cargo_request(dashboard_input)
+        cargo_parser = CargoParser()
+        cargo_parser.parse(cargo_request)
         consignment.cargo = cargo_parser.cargo
 
         consignment.delivery_instructions = self._parse_delivery_instructions(

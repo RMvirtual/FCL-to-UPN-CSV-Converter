@@ -2,6 +2,9 @@ import copy
 import dataclasses
 from src.main.forward_office.mapping.cargo import FclCargoTypeMap
 
+from src.main.forward_office.dashboard.parser.requests.types \
+    import CargoEntryParseRequest
+
 
 # noinspection PyClassHasNoInit
 @dataclasses.dataclass
@@ -32,23 +35,16 @@ class CargoParseErrors:
         return bool(self) and not self.blank_line
 
 
-@dataclasses.dataclass
-class CargoParseRequest:
-    short_code: str = ""
-    quantity: str or int = 0
-    weight: str or float = 0
-
-
 class CargoParseException(ValueError):
     def __init__(self, message, errors: CargoParseErrors):
         super().__init__(message)
         self.errors = errors
 
 
-def find_errors(request: CargoParseRequest) -> CargoParseErrors:
+def find_errors(request: CargoEntryParseRequest) -> CargoParseErrors:
     errors = CargoParseErrors()
 
-    errors.blank_package_type = not request.short_code
+    errors.blank_package_type = not request.package_type
     errors.invalid_quantity = not request.quantity
     errors.weight_incorrect = not request.weight
 
@@ -59,6 +55,6 @@ def find_errors(request: CargoParseRequest) -> CargoParseErrors:
     ))
 
     errors.invalid_package_type = not FclCargoTypeMap().contains(
-        request.short_code)
+        request.package_type)
 
     return copy.copy(errors)

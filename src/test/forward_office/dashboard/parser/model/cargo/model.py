@@ -1,30 +1,25 @@
 import unittest
-from src.main.forward_office.dashboard.parser.model.cargo.model import CargoParser
+from src.main.forward_office.dashboard.parser.model.cargo.model \
+    import CargoParser
+
+from src.main.forward_office.dashboard.parser.requests.types \
+    import CargoParseRequest, CargoEntryParseRequest
 
 
-class TestCargoEntryParser(unittest.TestCase):
+class TestCargoParser(unittest.TestCase):
     def setUp(self) -> None:
-        self._dashboard_format = {
-            "line_1_weight": 9,
-            "line_1_quantity": 10,
-            "line_1_package_type": 11,
-            "line_1_description": 12,
-            "line_2_weight": 14,
-            "line_2_quantity": 15,
-            "line_2_package_type": 16,
-            "line_2_description": 17,
-            "line_3_weight": 18,
-            "line_3_quantity": 19,
-            "line_3_package_type": 20,
-            "line_3_description": 21,
-            "line_4_weight": 22,
-            "line_4_quantity": 23,
-            "line_4_package_type": 24,
-            "line_4_description": 25
-        }
+        pass
 
     def _load_simple_example(self):
-        self._dashboard_input = [
+        self._example = CargoParseRequest()
+
+        self._example.line_1 = CargoEntryParseRequest()
+        self._example.line_1.package_type = "PAL2"
+        self._example.line_1.quantity = "1"
+        self._example.line_1.weight = "1000"
+        self._example.line_1.goods_description = "PALLETS N/D"
+
+        _ = [
             "Mr Susan Cheshire", "10 BRAMBLING RISE",
             "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
             "GR220806951", "(078)41332424",
@@ -38,7 +33,33 @@ class TestCargoEntryParser(unittest.TestCase):
         ]
 
     def _load_complex_example(self):
-        self._dashboard_input = [
+        self._example = CargoParseRequest()
+
+        self._example.line_1 = CargoEntryParseRequest()
+        self._example.line_1.package_type = "PALL"
+        self._example.line_1.quantity = "2"
+        self._example.line_1.weight = "2000"
+        self._example.line_1.goods_description = "PALLETS N/D"
+
+        self._example.line_2 = CargoEntryParseRequest()
+        self._example.line_2.package_type = "QPL3"
+        self._example.line_2.quantity = "2"
+        self._example.line_2.weight = "600"
+        self._example.line_2.goods_description = "TRIPLE QUARTER PALLET"
+
+        self._example.line_3 = CargoEntryParseRequest()
+        self._example.line_3.package_type = "MPAL"
+        self._example.line_3.quantity = "8"
+        self._example.line_3.weight = "800"
+        self._example.line_3.goods_description = "MICRO PALLET"
+
+        self._example.line_4 = CargoEntryParseRequest()
+        self._example.line_4.package_type = "HPL2"
+        self._example.line_4.quantity = "2"
+        self._example.line_4.weight = "1000"
+        self._example.line_4.goods_description = "DOUBLE HALF PALLET"
+
+        _ = [
             "Mr Susan Cheshire", "10 BRAMBLING RISE",
             "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
             "GR220806951", "(078)41332424",
@@ -53,8 +74,9 @@ class TestCargoEntryParser(unittest.TestCase):
 
     def test_should_parse_one_cargo_line(self):
         self._load_simple_example()
-        parser = CargoParser(self._dashboard_format)
-        parser.parse(self._dashboard_input)
+
+        parser = CargoParser()
+        parser.parse(self._example)
         cargo = parser.cargo
 
         self.assertEqual(1, len(cargo))
@@ -69,8 +91,9 @@ class TestCargoEntryParser(unittest.TestCase):
 
     def test_should_parse_four_different_cargo_lines(self):
         self._load_complex_example()
-        parser = CargoParser(self._dashboard_format)
-        parser.parse(self._dashboard_input)
+
+        parser = CargoParser()
+        parser.parse(self._example)
         cargo = parser.cargo
 
         self.assertEqual(4, len(cargo))
