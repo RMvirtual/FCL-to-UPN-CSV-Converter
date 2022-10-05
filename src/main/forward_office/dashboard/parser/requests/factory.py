@@ -9,11 +9,10 @@ from src.main.forward_office.dashboard.parser.requests.types import (
 
 class ParseRequestFactory:
     def __init__(self, parsing_format: dict[str, int]):
-        self._column_indexes = parsing_format
+        self._columns = parsing_format
 
     def consignment_request(self, values: list[str]):
         cleaned_values = list(map(self._trim_whitespace, values))
-
         request = ConsignmentParseRequest()
 
         request.cargo = self._cargo_request(cleaned_values)
@@ -38,14 +37,14 @@ class ParseRequestFactory:
     def _address_request(self, values: list[str]):
         result = AddressParseRequest()
 
-        result.name = values[self._column_indexes["company_name"]]
-        result.line_1 = values[self._column_indexes["address_line_1"]]
-        result.line_2 = values[self._column_indexes["address_line_2"]]
-        result.line_3 = values[self._column_indexes["address_line_3"]]
-        result.town = values[self._column_indexes["town"]]
-        result.post_code = values[self._column_indexes["post_code"]]
-        result.contact_name = values[self._column_indexes["contact_name"]]
-        result.telephone_number = values[self._column_indexes["telephone_no"]]
+        result.name = values[self._columns["company_name"]]
+        result.line_1 = values[self._columns["address_line_1"]]
+        result.line_2 = values[self._columns["address_line_2"]]
+        result.line_3 = values[self._columns["address_line_3"]]
+        result.town = values[self._columns["town"]]
+        result.post_code = values[self._columns["post_code"]]
+        result.contact_name = values[self._columns["contact_name"]]
+        result.telephone_number = values[self._columns["telephone_no"]]
 
         return result
 
@@ -57,9 +56,10 @@ class ParseRequestFactory:
     def _service_request(self, values: list[str]) -> ServiceParseRequest:
         result = ServiceParseRequest()
 
-        result.priority_code = values[self._column_indexes["priority_code"]]
+        result.priority_code = values[self._columns["priority_code"]]
+
         result.tail_lift_requested = values[
-            self._column_indexes["tail_lift_required"]].lower() == "yes"
+            self._columns["tail_lift_required"]].lower() == "yes"
 
         return result
 
@@ -94,6 +94,7 @@ class ParseRequestFactory:
         result.package_type = values[self._line_string(line, "package_type")]
         result.quantity = values[self._line_string(line, "quantity")]
         result.weight = values[self._line_string(line, "weight")]
+
         result.goods_description = values[
             self._line_string(line, "description")]
 
@@ -102,18 +103,18 @@ class ParseRequestFactory:
     def _line_string(self, line_number: int, name: str) -> int:
         full_field = "line_" + str(line_number) + "_" + name
 
-        return self._column_indexes[full_field]
+        return self._columns[full_field]
 
     def reference_request(self, values: list[str]):
         cleaned_values = list(map(self._trim_whitespace, values))
 
-        return cleaned_values[self._column_indexes["reference"]]
+        return cleaned_values[self._columns["reference"]]
 
     def delivery_instructions(self, values: list[str]):
         cleaned_values = list(map(self._trim_whitespace, values))
 
-        start = self._column_indexes["delivery_instruction_1"]
-        end = self._column_indexes["delivery_instruction_2"] + 1
+        start = self._columns["delivery_instruction_1"]
+        end = self._columns["delivery_instruction_2"] + 1
 
         instructions = cleaned_values[start:end]
 
@@ -122,11 +123,11 @@ class ParseRequestFactory:
     def principal_client(self, values: list[str]):
         cleaned_values = list(map(self._trim_whitespace, values))
 
-        return cleaned_values[self._column_indexes["principal_client"]]
+        return cleaned_values[self._columns["principal_client"]]
 
     def delivery_date(self, values: list[str]):
         cleaned_values = list(map(self._trim_whitespace, values))
-        date_string = cleaned_values[self._column_indexes["delivery_date"]]
+        date_string = cleaned_values[self._columns["delivery_date"]]
         day, month, year = date_string.split("-")
 
         abbreviations = {
@@ -143,7 +144,7 @@ class ParseRequestFactory:
     def delivery_time(self, values: list[str]):
         cleaned_values = list(map(self._trim_whitespace, values))
 
-        time_string = cleaned_values[self._column_indexes["booking_time"]]
+        time_string = cleaned_values[self._columns["booking_time"]]
         # h:mmpm (fcl's time format).
         new_time = datetime.datetime.strptime(time_string, "%I:%M%p")
 
