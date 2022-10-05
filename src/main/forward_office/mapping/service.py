@@ -12,8 +12,8 @@ class ServiceCodeMapBuilder:
 
     def _build_map(self):
         self._mappings = {}
-        self._parse_mappings()
         self._service = Service()
+        self._parse_mappings()
 
     def _parse_mappings(self):
         for service_mapping in self._mapping_file_contents():
@@ -35,46 +35,38 @@ class ServiceCodeMapBuilder:
         return copy.copy(self._service)
 
     def _process_main_service(self, service_key: str):
-        self._execute_callback_by_key(
-            key=service_key,
-            callbacks={
-                "PRIORITY": self._service.priority,
-                "ECONOMY": self._service.economy
-            }
-        )
+        callbacks = {
+            "PRIORITY": self._service.priority,
+            "ECONOMY": self._service.economy
+        }
+
+        callbacks[service_key]()
 
     def _process_premium_service(self, service_key: str):
         self._set_premium_service(service_key) if service_key else ...
 
     def _set_premium_service(self, service_key: str):
-        self._execute_callback_by_key(
-            key=service_key,
-            callbacks={
-                "AM": self._service.am,
-                "PRE-10AM": self._service.pre_10am,
-                "TIMED": self._service.timed
-            }
-        )
+        callbacks = {
+            "AM": self._service.am,
+            "PRE-10AM": self._service.pre_10am,
+            "TIMED": self._service.timed
+        }
+
+        callbacks[service_key]()
 
     def _process_booked_service(self, service_key: str):
         self._set_booked_service(service_key) if service_key else ...
 
     def _set_booked_service(self, service_key: str):
-        self._execute_callback_by_key(
-            key=service_key,
-            callbacks={
-                "BOOK-IN": self._service.book_in,
-                "BOOKED": self._service.booked
-            }
-        )
+        callbacks = {
+            "BOOK-IN": self._service.book_in,
+            "BOOKED": self._service.booked
+        }
+
+        callbacks[service_key]()
 
     def _process_saturday_service(self, service_key: str):
         self._service.saturday() if service_key else ...
-
-    @staticmethod
-    def _execute_callback_by_key(
-            key: str, callbacks: dict[str, Callable[[], None]]) -> None:
-        callbacks[key]()
 
     def _mapping_file_contents(self):
         with open(self._file_path()) as json_file:
