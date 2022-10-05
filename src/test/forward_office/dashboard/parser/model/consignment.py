@@ -1,5 +1,5 @@
 import unittest
-from src.main.forward_office.dashboard.parser.model.consignment \
+from src.main.forward_office.dashboard.parser.model.consignment.model \
     import ConsignmentParser
 
 from src.main.forward_office.dashboard.parser.requests.factory \
