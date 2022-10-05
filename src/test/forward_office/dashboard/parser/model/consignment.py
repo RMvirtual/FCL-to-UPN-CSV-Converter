@@ -2,6 +2,9 @@ import unittest
 from src.main.forward_office.dashboard.parser.model.consignment \
     import ConsignmentParser
 
+from src.main.forward_office.dashboard.parser.requests.factory \
+    import ParseRequestFactory
+
 
 class TestConsignmentParser(unittest.TestCase):
     def setUp(self) -> None:
@@ -58,8 +61,12 @@ class TestConsignmentParser(unittest.TestCase):
         ]
 
     def test_should_parse_consignment_address(self):
-        parser = ConsignmentParser(self._field_indexes)
-        consignment = parser.parse(self._simple_example)
+        request = ParseRequestFactory(self._field_indexes).consignment_request(
+            self._simple_example
+        )
+
+        parser = ConsignmentParser()
+        consignment = parser.parse(request)
 
         address = consignment.address
         self.assertEqual("Mr Susan Cheshire", address.contact_name)
@@ -73,15 +80,23 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual("GB", address.country)
 
     def test_should_parse_reference(self):
-        parser = ConsignmentParser(self._field_indexes)
-        consignment = parser.parse(self._simple_example)
+        request = ParseRequestFactory(self._field_indexes).consignment_request(
+            self._simple_example
+        )
+
+        parser = ConsignmentParser()
+        consignment = parser.parse(request)
 
         reference = consignment.reference
         self.assertEqual("GR220806951", str(reference))
 
     def test_should_parse_cargo(self):
-        parser = ConsignmentParser(self._field_indexes)
-        consignment = parser.parse(self._simple_example)
+        request = ParseRequestFactory(self._field_indexes).consignment_request(
+            self._simple_example
+        )
+
+        parser = ConsignmentParser()
+        consignment = parser.parse(request)
 
         cargo = consignment.cargo
         self.assertEqual(1, len(cargo))
@@ -95,8 +110,12 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual("normal", package_type.oversize_option)
 
     def test_should_parse_delivery_instructions(self):
-        parser = ConsignmentParser(self._field_indexes)
-        consignment = parser.parse(self._simple_example)
+        request = ParseRequestFactory(self._field_indexes).consignment_request(
+            self._simple_example
+        )
+
+        parser = ConsignmentParser()
+        consignment = parser.parse(request)
 
         correct_instructions = ["TEL: 07841 332424, TAIL LIFT"]
 
@@ -104,14 +123,22 @@ class TestConsignmentParser(unittest.TestCase):
             correct_instructions, consignment.delivery_instructions)
 
     def test_should_parse_principal_client(self):
-        parser = ConsignmentParser(self._field_indexes)
-        consignment = parser.parse(self._simple_example)
+        request = ParseRequestFactory(self._field_indexes).consignment_request(
+            self._simple_example
+        )
+
+        parser = ConsignmentParser()
+        consignment = parser.parse(request)
 
         self.assertEqual("PROP PAL LTD", consignment.client_name)
 
     def test_should_parse_service(self):
-        parser = ConsignmentParser(self._field_indexes)
-        consignment = parser.parse(self._simple_example)
+        request = ParseRequestFactory(self._field_indexes).consignment_request(
+            self._simple_example
+        )
+
+        parser = ConsignmentParser()
+        consignment = parser.parse(request)
 
         service = consignment.service
 
@@ -121,8 +148,12 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertFalse(service.has_booked_service())
 
     def test_should_parse_delivery_date(self):
-        parser = ConsignmentParser(self._field_indexes)
-        consignment = parser.parse(self._simple_example)
+        request = ParseRequestFactory(self._field_indexes).consignment_request(
+            self._simple_example
+        )
+
+        parser = ConsignmentParser()
+        consignment = parser.parse(request)
 
         date = consignment.delivery_date
 
@@ -131,8 +162,12 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual(2022, date.year)
 
     def test_should_parse_delivery_time(self):
-        parser = ConsignmentParser(self._field_indexes)
-        consignment = parser.parse(self._simple_example)
+        request = ParseRequestFactory(self._field_indexes).consignment_request(
+            self._simple_example
+        )
+
+        parser = ConsignmentParser()
+        consignment = parser.parse(request)
 
         time = consignment.delivery_time
         self.assertEqual(13, time.hour)
