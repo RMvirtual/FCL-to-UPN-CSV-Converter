@@ -21,16 +21,16 @@ class ServiceCodeMapBuilder:
 
     def _add(self, service_mapping):
         priority_code = service_mapping["priority_code"]
-        self._mappings[priority_code] = self._deserialise(service_mapping)
-
-    def _deserialise(self, service_mapping) -> Service:
         mapping_info = service_mapping["maps_to"]
 
+        self._mappings[priority_code] = self._deserialise(mapping_info)
+
+    def _deserialise(self, mapping_info) -> Service:
         self._service = Service()
         self._process_main_service(mapping_info["main_service"])
         self._process_premium_service(mapping_info["premium_service"])
-        self._process_booked_service(mapping_info)
-        self._process_saturday_service(mapping_info)
+        self._process_booked_service(mapping_info["booked_service"])
+        self._process_saturday_service(mapping_info["saturday_service"])
 
         return copy.copy(self._service)
 
@@ -43,9 +43,8 @@ class ServiceCodeMapBuilder:
             }
         )
 
-    def _process_premium_service(self, service_key):
-        if service_key:
-            self._set_premium_service(service_key)
+    def _process_premium_service(self, service_key: str):
+        self._set_premium_service(service_key) if service_key else ...
 
     def _set_premium_service(self, service_key: str):
         self._execute_callback_by_key(
@@ -57,9 +56,8 @@ class ServiceCodeMapBuilder:
             }
         )
 
-    def _process_booked_service(self, mapping_info):
-        if mapping_info["booked_service"]:
-            self._set_booked_service(mapping_info["booked_service"])
+    def _process_booked_service(self, service_key: str):
+        self._set_booked_service(service_key) if service_key else ...
 
     def _set_booked_service(self, service_key: str):
         self._execute_callback_by_key(
@@ -70,9 +68,8 @@ class ServiceCodeMapBuilder:
             }
         )
 
-    def _process_saturday_service(self, mapping_info):
-        if mapping_info["saturday_service"]:
-            self._service.saturday()
+    def _process_saturday_service(self, service_key: str):
+        self._service.saturday() if service_key else ...
 
     @staticmethod
     def _execute_callback_by_key(
