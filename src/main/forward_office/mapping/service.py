@@ -27,16 +27,16 @@ class ServiceCodeMapBuilder:
         mapping_info = service_mapping["maps_to"]
 
         self._service = Service()
-        self._process_main_service(mapping_info)
+        self._process_main_service(mapping_info["main_service"])
         self._process_premium_service(mapping_info)
         self._process_booked_service(mapping_info)
         self._process_saturday_service(mapping_info)
 
         return copy.copy(self._service)
 
-    def _process_main_service(self, mapping_info):
+    def _process_main_service(self, service_key: str):
         self._execute_callback_by_key(
-            key=mapping_info["main_service"],
+            key=service_key,
             callbacks={
                 "PRIORITY": self._service.priority,
                 "ECONOMY": self._service.economy
