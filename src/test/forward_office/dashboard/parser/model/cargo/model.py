@@ -1,5 +1,5 @@
 import unittest
-from src.main.forward_office.dashboard.parser.cargo.model import CargoParser
+from src.main.forward_office.dashboard.parser.model.cargo.model import CargoParser
 
 
 class TestCargoEntryParser(unittest.TestCase):

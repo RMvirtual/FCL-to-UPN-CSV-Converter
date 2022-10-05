@@ -1,13 +1,13 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "parser",
+    name = "address",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/forward_office/mapping",
+        "//src/main/forward_office/dashboard/parser/requests",
         "//src/main/forward_office/dashboard/format",
-        "//src/main/forward_office/dashboard/parser/model",
         "//src/main/freight",
     ],
 )

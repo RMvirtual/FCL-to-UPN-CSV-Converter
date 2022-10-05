@@ -1,5 +1,5 @@
 import unittest
-from src.main.forward_office.dashboard.parser.service.model \
+from src.main.forward_office.dashboard.parser.model.service.model \
     import ServiceParser
 
 

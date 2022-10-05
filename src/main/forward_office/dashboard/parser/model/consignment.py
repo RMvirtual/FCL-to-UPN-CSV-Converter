@@ -2,9 +2,14 @@ import datetime
 import calendar
 
 from src.main.freight.consignment.consignment import Consignment, Reference
-from src.main.forward_office.dashboard.parser.address import AddressParser
-from src.main.forward_office.dashboard.parser.cargo.model import CargoParser
-from src.main.forward_office.dashboard.parser.service.model \
+
+from src.main.forward_office.dashboard.parser.model.address.model \
+    import AddressParser
+
+from src.main.forward_office.dashboard.parser.model.cargo.model \
+    import CargoParser
+
+from src.main.forward_office.dashboard.parser.model.service.model \
     import ServiceParser
 
 from src.main.forward_office.dashboard.parser.requests.factory \
