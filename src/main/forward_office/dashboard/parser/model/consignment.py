@@ -37,8 +37,8 @@ class ConsignmentParser:
         consignment.client_name = self._requests.principal_client(
             dashboard_input)
 
-        consignment.service = ServiceParser(
-            self._field_indexes).parse(dashboard_input)
+        service_request = self._requests.service_request(dashboard_input)
+        consignment.service = ServiceParser().parse(service_request)
 
         consignment.delivery_date = self._requests.delivery_date(
             dashboard_input)

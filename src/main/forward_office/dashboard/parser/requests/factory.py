@@ -6,8 +6,6 @@ from src.main.forward_office.dashboard.parser.requests.types import (
     CargoParseRequest
 )
 
-from src.main.forward_office.dashboard.format.all import DashboardFormats
-
 
 class ParseRequestFactory:
     def __init__(self, parsing_format: dict[str, int]):
@@ -29,6 +27,20 @@ class ParseRequestFactory:
         result.post_code = values[self._column_indexes["post_code"]]
         result.contact_name = values[self._column_indexes["contact_name"]]
         result.telephone_number = values[self._column_indexes["telephone_no"]]
+
+        return result
+
+    def service_request(self, values: list[str]) -> ServiceParseRequest:
+        cleaned_values = list(map(self._trim_whitespace, values))
+
+        return self._service_request(cleaned_values)
+
+    def _service_request(self, values: list[str]) -> ServiceParseRequest:
+        result = ServiceParseRequest()
+
+        result.priority_code = values[self._column_indexes["priority_code"]]
+        result.tail_lift_requested = values[
+            self._column_indexes["tail_lift_required"]]
 
         return result
 

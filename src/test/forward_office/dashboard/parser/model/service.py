@@ -1,47 +1,30 @@
 import unittest
+
 from src.main.forward_office.dashboard.parser.model.service.model \
     import ServiceParser
+
+from src.main.forward_office.dashboard.parser.requests.types \
+    import ServiceParseRequest
 
 
 class TestServiceParser(unittest.TestCase):
     def setUp(self) -> None:
-        self._dashboard_format = {
-            "priority_code": 32,
-            "tail_lift_required": 33
-        }
+        pass
 
     def _load_simple_example(self):
-        self._dashboard_input = [
-            "Mr Susan Cheshire", "10 BRAMBLING RISE",
-            "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
-            "GR220806951", "(078)41332424",
-            "1000", "1", "PAL2", "PALLETS N/D",
-            "PROP PAL LTD",
-            "", "", "", "",
-            "", "", "", "",
-            "", "", "", "",
-            "TEL: 07841 332424, TAIL LIFT", "",
-            "", "23-Aug-22", "", "1", "2", "Yes"
-        ]
+        self._example = ServiceParseRequest()
+        self._example.priority_code = 2
+        self._example.tail_lift_requested = True
 
     def _load_complex_example(self):
-        self._dashboard_input = [
-            "Mr Susan Cheshire", "10 BRAMBLING RISE",
-            "HEMEL HEMPSTEAD", "", "", "HEMEL HEMPSTEAD", "HP2 6DT",
-            "GR220806951", "(078)41332424",
-            "2000", "2", "PALL", "PALLETS N/D",
-            "PROP PAL LTD",
-            "600", "2", "QPL3", "",
-            "800", "8", "MPAL", "",
-            "1000", "2", "HPL2", "",
-            "TEL: 07841 332424, TAIL LIFT", "",
-            "", "23-Aug-22", "", "1", "11", "Yes"
-        ]
+        self._example = ServiceParseRequest()
+        self._example.priority_code = 11
+        self._example.tail_lift_requested = False
 
     def test_should_parse_simple_example(self):
         self._load_simple_example()
-        parser = ServiceParser(self._dashboard_format)
-        service = parser.parse(self._dashboard_input)
+        parser = ServiceParser()
+        service = parser.parse(self._example)
 
         self.assertTrue(service.is_priority())
         self.assertTrue(service.is_tail_lift_required())
@@ -51,14 +34,14 @@ class TestServiceParser(unittest.TestCase):
 
     def test_should_parse_complex_example(self):
         self._load_complex_example()
-        parser = ServiceParser(self._dashboard_format)
-        service = parser.parse(self._dashboard_input)
+        parser = ServiceParser()
+        service = parser.parse(self._example)
 
         self.assertTrue(service.is_economy())
         self.assertTrue(service.has_premium_service())
         self.assertTrue(service.is_saturday())
         self.assertTrue(service.is_am())
-        self.assertTrue(service.is_tail_lift_required())
+        self.assertFalse(service.is_tail_lift_required())
         self.assertFalse(service.is_booked())
 
 
