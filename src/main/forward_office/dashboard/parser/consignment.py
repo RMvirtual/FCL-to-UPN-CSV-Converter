@@ -7,16 +7,22 @@ from src.main.forward_office.dashboard.parser.cargo.model import CargoParser
 from src.main.forward_office.dashboard.parser.service.model \
     import ServiceParser
 
+from src.main.forward_office.dashboard.parser.requests.factory \
+    import ParseRequestFactory
+
 
 class ConsignmentParser:
     def __init__(self, field_indexes: dict[str, int]):
         self._field_indexes = field_indexes
+        self._requests_generator = ParseRequestFactory(self._field_indexes)
 
     def parse(self, dashboard_input: list[str]) -> Consignment:
         consignment = Consignment()
 
-        consignment.address = AddressParser(self._field_indexes).parse(
+        address_request = self._requests_generator.address_request(
             dashboard_input)
+
+        consignment.address = AddressParser().parse(address_request)
 
         consignment.reference = self._parse_reference(dashboard_input)
 

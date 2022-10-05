@@ -9,6 +9,7 @@ py_library(
         "//src/main/forward_office/dashboard/format",
         "//src/main/forward_office/dashboard/parser/cargo",
         "//src/main/forward_office/dashboard/parser/service",
+        "//src/main/forward_office/dashboard/parser/requests",
         "//src/main/freight",
     ],
 )

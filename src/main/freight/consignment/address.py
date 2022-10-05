@@ -76,11 +76,11 @@ class Address:
         self._town = new_town
 
     @property
-    def post_code(self):
+    def post_code(self: str):
         return self._post_code
 
     @post_code.setter
-    def post_code(self, new_post_code):
+    def post_code(self, new_post_code: str):
         if self._post_code_pattern_matches(new_post_code):
             self._post_code = new_post_code
 
