@@ -3,11 +3,9 @@ from src.main.freight.consignment.model import Consignment
 from src.main.forward_office.dashboard.parser.requests.types \
     import ConsignmentParseRequest
 
-from src.main.forward_office.dashboard.parser.model import address
-from src.main.forward_office.dashboard.parser.model.cargo import CargoParser
-
-from src.main.forward_office.dashboard.parser.model.service \
-    import ServiceParser
+from src.main.forward_office.dashboard.parser import address
+from src.main.forward_office.dashboard.parser.cargo import CargoParser
+from src.main.forward_office.dashboard.parser.service import ServiceParser
 
 
 class ConsignmentParser:

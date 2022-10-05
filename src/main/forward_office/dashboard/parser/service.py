@@ -1,6 +1,8 @@
 import copy
+
 from src.main.forward_office.mapping.service import FclServiceCodeMap
 from src.main.freight.service.model import Service
+
 from src.main.forward_office.dashboard.parser.requests.types \
     import ServiceParseRequest
 

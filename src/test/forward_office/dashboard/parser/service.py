@@ -1,7 +1,6 @@
 import unittest
 
-from src.main.forward_office.dashboard.parser.model.service \
-    import ServiceParser
+from src.main.forward_office.dashboard.parser.service import ServiceParser
 
 from src.main.forward_office.dashboard.parser.requests.types \
     import ServiceParseRequest
