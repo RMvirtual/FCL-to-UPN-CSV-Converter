@@ -70,6 +70,27 @@ class ParseRequestFactory:
 
         return self._column_indexes[full_field]
 
+    def reference_request(self, values: list[str]):
+        cleaned_values = list(map(self._trim_whitespace, values))
+
+        return cleaned_values[self._column_indexes["reference"]]
+
+    def delivery_instructions(self, values: list[str]):
+        cleaned_values = list(map(self._trim_whitespace, values))
+
+        start = self._column_indexes["delivery_instruction_1"]
+        end = self._column_indexes["delivery_instruction_2"] + 1
+
+        instructions = cleaned_values[start:end]
+
+        return list(filter(bool, instructions))
+
+    def principal_client(self, values: list[str]):
+        cleaned_values = list(map(self._trim_whitespace, values))
+
+        return cleaned_values[self._column_indexes["principal_client"]]
+
+
     @staticmethod
     def _trim_whitespace(value: str):
         return " ".join(value.split()) if value else value

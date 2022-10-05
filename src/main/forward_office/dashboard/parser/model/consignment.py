@@ -29,17 +29,20 @@ class ConsignmentParser:
 
         consignment.address = AddressParser().parse(address_request)
 
-        consignment.reference = self._parse_reference(dashboard_input)
+        reference_request = self._requests_generator.reference_request(
+            dashboard_input)
+
+        consignment.reference = Reference(reference_request)
 
         cargo_parser = CargoParser()
         cargo_request = self._requests_generator.cargo_request(dashboard_input)
         consignment.cargo = cargo_parser.parse(cargo_request)
 
-        consignment.delivery_instructions = self._parse_delivery_instructions(
-            dashboard_input)
+        consignment.delivery_instructions = (
+            self._requests_generator.delivery_instructions(dashboard_input))
 
-        consignment.client_name = dashboard_input[
-            self._field_indexes["principal_client"]]
+        consignment.client_name = self._requests_generator.principal_client(
+            dashboard_input)
 
         consignment.service = ServiceParser(
             self._field_indexes).parse(dashboard_input)
@@ -48,20 +51,6 @@ class ConsignmentParser:
         consignment.delivery_time = self._parse_delivery_time(dashboard_input)
 
         return consignment
-
-    def _parse_reference(self, dashboard_input: list[str]) -> Reference:
-        dashboard_reference = dashboard_input[self._field_indexes["reference"]]
-
-        return Reference(dashboard_reference)
-
-    def _parse_delivery_instructions(
-            self, dashboard_input: list[str]) -> list[str]:
-        start = self._field_indexes["delivery_instruction_1"]
-        end = self._field_indexes["delivery_instruction_2"] + 1
-
-        instructions = dashboard_input[start:end]
-
-        return list(filter(bool, instructions))
 
     def _parse_delivery_date(
             self, dashboard_input: list[str]) -> datetime.date:
