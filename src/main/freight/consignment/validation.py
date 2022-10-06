@@ -32,15 +32,19 @@ class ConsignmentValidationStrategy:
 
     def validate_tail_lift_error(
             self, consignment: Consignment) -> ConsignmentErrors:
-        has_tail_lift_mention = False
+        has_tail_lift_mentioned = False
         instructions = consignment.delivery_instructions
 
         for instruction in instructions:
             if re.search(self._tail_lift_patterns, instruction):
-                has_tail_lift_mention = True
+                has_tail_lift_mentioned = True
 
         errors = ConsignmentErrors()
-        errors.tail_lift_advisory = has_tail_lift_mention
+
+        errors.tail_lift_advisory = (
+                has_tail_lift_mentioned
+                and not consignment.service.is_tail_lift_required()
+        )
 
         return errors
 
