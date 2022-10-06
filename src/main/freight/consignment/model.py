@@ -1,8 +1,10 @@
 import datetime
+
 from src.main.freight.address.model import Address
 from src.main.freight.reference.model import Reference
 from src.main.freight.cargo.model import Cargo
 from src.main.freight.service.model import Service
+from src.main.freight.dates.model import ShipmentDates
 
 
 class Consignment:
@@ -15,6 +17,7 @@ class Consignment:
         self._cargo = Cargo()
         self._service = Service()
         self._delivery_instructions: list[str] = []
+        self._shipment_dates = ShipmentDates()
         self._collection_date: datetime.date or None = None
         self._delivery_date: datetime.date or None = None
         self._delivery_time: datetime.time or None = None

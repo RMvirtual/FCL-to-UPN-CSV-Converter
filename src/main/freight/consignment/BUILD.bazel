@@ -9,5 +9,6 @@ py_library(
         "//src/main/freight/cargo",
         "//src/main/freight/reference",
         "//src/main/freight/service",
+        "//src/main/freight/dates"
     ],
 )
