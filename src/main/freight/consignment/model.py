@@ -14,8 +14,8 @@ class Consignment:
         self._address: Address = Address()
         self._cargo = Cargo()
         self._service = Service()
-        self._delivery_instructions: list[str] = []
         self._shipment_dates = ShipmentDates()
+        self._delivery_instructions: list[str] = []
 
     @property
     def reference(self) -> str:
