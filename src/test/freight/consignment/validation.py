@@ -29,21 +29,20 @@ class TestConsignmentValidation(unittest.TestCase):
             types.load_package_type("full"))
 
     def test_should_highlight_true_positive_tail_lift_errors(self):
-        positive_instructions = [
+        true_positives = [
             "Tail lift req", "TL required", "needs t/l",
             "Give meeee a T/L", "customer requires t-lift",
             "send tail-lift"
         ]
 
-        for instruction in positive_instructions:
+        for instruction in true_positives:
             errors = self._tail_lift_errors_from_instruction(instruction)
             self.assertTrue(errors.tail_lift_advisory, msg=instruction)
 
     def test_should_not_highlight_false_positive_tail_lift_errors(self):
         false_positives = [
-            "Tail lift req", "TL required", "needs t/l",
-            "Give meeee a T/L", "customer requires t-lift",
-            "send tail-lift"
+            "reference: fat/lad", "also reference: fat /lad",
+            "ATTL64", "battle"
         ]
 
         for instruction in false_positives:
