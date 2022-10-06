@@ -24,8 +24,8 @@ class ConsignmentValidationStrategy:
     def _initialise_tail_lift_patterns(self):
         patterns = (
             "(tail lift|t/lift|t-lift|tail-lift|"
-            "^tl( )+|( )+tl( )+|( )+tl$|"
-            "^t/l( )+|( )+t/l( )+|( )+t/l$)"
+            "^tl( )+|( )+tl( )+|( )+tl$|^tl$|"
+            "^t/l( )+|( )+t/l( )+|( )+t/l$|^t/l$)"
         )
 
         self._tail_lift_patterns = re.compile(patterns, flags=re.I)

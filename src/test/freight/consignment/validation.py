@@ -32,7 +32,7 @@ class TestConsignmentValidation(unittest.TestCase):
         true_positives = [
             "Tail lift req", "TL required", "needs t/l",
             "Give meeee a T/L", "customer requires t-lift",
-            "send tail-lift"
+            "send tail-lift" "TL"
         ]
 
         for instruction in true_positives:
