@@ -30,9 +30,6 @@ class ConsignmentValidationStrategy:
 
         self._tail_lift_patterns = re.compile(patterns, flags=re.I)
 
-    def validate(self, consignment: Consignment) -> ConsignmentErrors:
-        return ConsignmentErrors()
-
     def validate_tail_lift_error(
             self, consignment: Consignment) -> ConsignmentErrors:
         has_tail_lift_mention = False
@@ -44,5 +41,12 @@ class ConsignmentValidationStrategy:
 
         errors = ConsignmentErrors()
         errors.tail_lift_advisory = has_tail_lift_mention
+
+        return errors
+
+    def validate_dates_and_service(
+            self, consignment: Consignment) -> ConsignmentErrors:
+        errors = ConsignmentErrors()
+        errors.incongruent_delivery_date = True
 
         return errors

@@ -23,23 +23,24 @@ class TestConsignmentValidation(unittest.TestCase):
 
         self._consignment.reference = "GR221000100"
         self._consignment.client_name = "UPN"
-        self._consignment.delivery_date = "23/10/2022"
+        self._consignment.collection_date = "03/10/2022"
+        self._consignment.delivery_date = "04/10/2022"
 
         self._consignment.cargo.entry_by_package_type(
             types.load_package_type("full"))
 
-    def test_should_highlight_true_positive_tail_lift_errors(self):
-        true_positives = [
+    def test_should_highlight_tail_lift_errors(self):
+        tail_lift_instructions = [
             "Tail lift req", "TL required", "needs t/l",
             "Give meeee a T/L", "customer requires t-lift",
             "send tail-lift" "TL"
         ]
 
-        for instruction in true_positives:
+        for instruction in tail_lift_instructions:
             errors = self._tail_lift_errors_from_instruction(instruction)
             self.assertTrue(errors.tail_lift_advisory, msg=instruction)
 
-    def test_should_not_highlight_false_positive_tail_lift_errors(self):
+    def test_should_avoid_false_positive_tail_lift_errors(self):
         false_positives = [
             "reference: fat/lad", "also reference: fat /lad",
             "ATTL64", "battle"
@@ -55,6 +56,11 @@ class TestConsignmentValidation(unittest.TestCase):
         self._consignment.delivery_instructions.append(instruction)
 
         return self._validation.validate_tail_lift_error(self._consignment)
+
+    def test_should_highlight_date_is_congruent(self):
+        errors = self._validation.validate_dates_and_service(self._consignment)
+        self.assertFalse(errors.incongruent_delivery_date)
+        self.assertFalse(errors.priority_code_advisory)
 
 
 if __name__ == '__main__':

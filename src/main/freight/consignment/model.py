@@ -15,6 +15,7 @@ class Consignment:
         self._cargo = Cargo()
         self._service = Service()
         self._delivery_instructions: list[str] = []
+        self._collection_date: datetime.date or None = None
         self._delivery_date: datetime.date or None = None
         self._delivery_time: datetime.time or None = None
 
@@ -84,6 +85,14 @@ class Consignment:
     @delivery_date.setter
     def delivery_date(self, new_date: datetime.date) -> None:
         self._delivery_date = new_date
+
+    @property
+    def collection_date(self) -> datetime.date:
+        return self._collection_date
+
+    @collection_date.setter
+    def collection_date(self, new_date: datetime.date) -> None:
+        self._collection_date = new_date
 
     @property
     def delivery_time(self) -> datetime.time:
