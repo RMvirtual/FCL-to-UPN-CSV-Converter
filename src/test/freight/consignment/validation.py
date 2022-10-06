@@ -23,8 +23,8 @@ class TestConsignmentValidation(unittest.TestCase):
 
         self._consignment.reference = "GR221000100"
         self._consignment.client_name = "UPN"
-        self._consignment.collection_date = "03/10/2022"
-        self._consignment.delivery_date = "04/10/2022"
+        self._consignment.shipment_dates.collection_date = "03/10/2022"
+        self._consignment.shipment_dates.delivery_date = "04/10/2022"
 
         self._consignment.cargo.entry_by_package_type(
             types.load_package_type("full"))
