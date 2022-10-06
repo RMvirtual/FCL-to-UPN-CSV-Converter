@@ -16,21 +16,30 @@ class TestConsignmentValidation(unittest.TestCase):
         self._consignment.address.post_code = "WN8 9TA"
 
         self._consignment.service.priority()
-        self._consignment.service.tail_lift()
 
         self._consignment.reference = "GR221000100"
         self._consignment.client_name = "UPN"
-        self._consignment.delivery_instructions.append("Tail Lift")
         self._consignment.delivery_date = "23/10/2022"
 
         self._consignment.cargo.entry_by_package_type(
             types.load_package_type("full"))
 
     def test_should_highlight_tail_lift_advisory(self):
+        self._load_basic_consignment()
+        self._consignment.delivery_instructions.append("Tail Lift")
+
         validation = ConsignmentValidationStrategy()
         errors = validation.validate_tail_lift_error(self._consignment)
 
         self.assertTrue(errors.tail_lift_advisory)
+
+    def test_should_not_highlight_tail_lift_advisory(self):
+        self._load_basic_consignment()
+
+        validation = ConsignmentValidationStrategy()
+        errors = validation.validate_tail_lift_error(self._consignment)
+
+        self.assertFalse(errors.tail_lift_advisory)
 
 
 if __name__ == '__main__':

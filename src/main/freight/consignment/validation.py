@@ -1,4 +1,5 @@
 import dataclasses
+import re
 from src.main.freight.consignment.model import Consignment
 
 
@@ -18,7 +19,11 @@ class ConsignmentErrors:
 
 class ConsignmentValidationStrategy:
     def __init__(self):
-        pass
+        self._initialise_tail_lift_patterns()
+
+    def _initialise_tail_lift_patterns(self):
+        patterns = "(tail lift|t/lift|t-lift| tl )"
+        self._tail_lift_patterns = re.compile(patterns, flags=re.I)
 
     def validate(self, consignment: Consignment) -> ConsignmentErrors:
         return ConsignmentErrors()
@@ -29,7 +34,8 @@ class ConsignmentValidationStrategy:
         instructions = consignment.delivery_instructions
 
         for instruction in instructions:
-            ...
+            if re.match(self._tail_lift_patterns, instruction):
+                has_tail_lift_mention = True
 
         errors = ConsignmentErrors()
         errors.tail_lift_advisory = has_tail_lift_mention
