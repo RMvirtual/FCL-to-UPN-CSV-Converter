@@ -12,7 +12,10 @@ class Date:
         self._date = datetime.date(day=day, month=month, year=year)
 
     def __sub__(self, other: Date) -> int:
-        return 5
+        other_date = datetime.date(
+            day=other.day, month=other.month, year=other.year)
+
+        return abs((self._date - other_date)).days
 
     @property
     def day(self) -> int:
