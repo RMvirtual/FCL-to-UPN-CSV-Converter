@@ -6,7 +6,7 @@ from src.main.forward_office.consignment_import.controller \
 
 class TestFclImportController(unittest.TestCase):
     def setUp(self) -> None:
-        self._correct_format = {
+        self._import_format = {
             'contact_name': 0, 'company_name': 1, 'address_line_1': 2,
             'address_line_2': 3, 'address_line_3': 4, 'town': 5,
             'post_code': 6, 'reference': 7, 'telephone_no': 8,
@@ -25,8 +25,27 @@ class TestFclImportController(unittest.TestCase):
             'tail_lift_required': 33
         }
 
-    def test_can_do_stuff_and_things(self):
-        self.fail("DUMMY FAIL FOR FCL IMPORT CONTROLLER.")
+        self._simple_example = [[
+            "Ryan Matfen", "Graylaw Freight Group", "Gillibrands Road",
+            "", "", "Skelmersdale",
+            "WN8 9TA", "GR221003000", "01695 729101",
+            "500", "1", "PALL", "PALLETS N/D",
+            "Disneyworld",
+            "", "", "", "",
+            "", "", "", "",
+            "", "", "", "",
+            "Tail Lift", "",
+            "", "06-Oct-23", "OL1234",
+            "1", "02", "Yes"
+        ]]
+
+    def test_should_import_one_liner_consignment(self):
+        importer = FclImportController(self._import_format)
+        report = importer.import_consignments(self._simple_example)
+
+        self.assertEqual(1, len(report.consignments))
+        self.assertFalse(report.errors)
+        self.assertFalse(report.advisories)
 
 
 if __name__ == '__main__':
