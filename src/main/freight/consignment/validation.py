@@ -22,3 +22,16 @@ class ConsignmentValidationStrategy:
 
     def validate(self, consignment: Consignment) -> ConsignmentErrors:
         return ConsignmentErrors()
+
+    def validate_tail_lift_error(
+            self, consignment: Consignment) -> ConsignmentErrors:
+        has_tail_lift_mention = False
+        instructions = consignment.delivery_instructions
+
+        for instruction in instructions:
+            ...
+
+        errors = ConsignmentErrors()
+        errors.tail_lift_advisory = has_tail_lift_mention
+
+        return errors

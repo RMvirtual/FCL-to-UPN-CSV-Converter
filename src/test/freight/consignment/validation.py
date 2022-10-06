@@ -26,13 +26,11 @@ class TestConsignmentValidation(unittest.TestCase):
         self._consignment.cargo.entry_by_package_type(
             types.load_package_type("full"))
 
-    def test_should_invalidate_incorrect_post_code(self):
-        self._load_basic_consignment()
-
+    def test_should_highlight_tail_lift_advisory(self):
         validation = ConsignmentValidationStrategy()
-        errors = validation.validate(self._consignment)
+        errors = validation.validate_tail_lift_error(self._consignment)
 
-        self.assertTrue(errors)
+        self.assertTrue(errors.tail_lift_advisory)
 
 
 if __name__ == '__main__':
