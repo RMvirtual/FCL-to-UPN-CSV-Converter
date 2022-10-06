@@ -28,16 +28,28 @@ class TestConsignmentValidation(unittest.TestCase):
         self._consignment.cargo.entry_by_package_type(
             types.load_package_type("full"))
 
-    def test_should_highlight_tail_lift_advisory(self):
-        danger_instructions = [
+    def test_should_highlight_true_positive_tail_lift_errors(self):
+        positive_instructions = [
             "Tail lift req", "TL required", "needs t/l",
             "Give meeee a T/L", "customer requires t-lift",
             "send tail-lift"
         ]
 
-        for instruction in danger_instructions:
+        for instruction in positive_instructions:
             errors = self._tail_lift_errors_from_instruction(instruction)
             self.assertTrue(errors.tail_lift_advisory, msg=instruction)
+
+    def test_should_not_highlight_false_positive_tail_lift_errors(self):
+        false_positives = [
+            "Tail lift req", "TL required", "needs t/l",
+            "Give meeee a T/L", "customer requires t-lift",
+            "send tail-lift"
+        ]
+
+        for instruction in false_positives:
+            errors = self._tail_lift_errors_from_instruction(instruction)
+            self.assertFalse(errors.tail_lift_advisory, msg=instruction)
+
 
     def test_should_not_highlight_tail_lift_advisory(self):
         errors = self._validation.validate_tail_lift_error(self._consignment)
