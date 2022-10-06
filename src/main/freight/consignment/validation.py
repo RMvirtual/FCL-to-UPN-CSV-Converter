@@ -48,20 +48,19 @@ class ConsignmentValidationStrategy:
 
         return errors
 
-    def validate_dates_and_service(
+    def validate_dates_against_service(
             self, consignment: Consignment) -> ConsignmentErrors:
         dates = consignment.shipment_dates
         difference = dates.delivery_date - dates.collection_date
-        speed = consignment.service.is_priority()
         errors = ConsignmentErrors()
 
-        if speed:
-            errors.incongruent_delivery_date = not difference == 1
-
-        elif not consignment.service.is_booked():
-            errors.incongruent_delivery_date = not difference == 2
+        if consignment.service.is_priority():
+            errors.incongruent_delivery_date = difference != 1
 
         elif consignment.service.is_booked():
-            errors.incongruent_delivery_date = not difference >= 2
+            errors.incongruent_delivery_date = difference < 2
+
+        else:
+            errors.incongruent_delivery_date = difference != 2
 
         return errors
