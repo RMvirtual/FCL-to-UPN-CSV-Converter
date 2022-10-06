@@ -56,9 +56,9 @@ class ConsignmentValidationStrategy:
         errors = ConsignmentErrors()
 
         if speed:
-            errors.incongruent_delivery_date = difference == 1
+            errors.incongruent_delivery_date = not difference == 1
 
         elif not consignment.service.is_booked():
-            errors.incongruent_delivery_date = difference == 2
+            errors.incongruent_delivery_date = not difference == 2
 
         return errors

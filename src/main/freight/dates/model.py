@@ -68,16 +68,16 @@ class ShipmentDates:
         return self._delivery_date
 
     @delivery_date.setter
-    def delivery_date(self, new_date: Date) -> None:
-        self._delivery_date = new_date
+    def delivery_date(self, new_date: str) -> None:
+        self._delivery_date = Date(new_date)
 
     @property
     def collection_date(self) -> Date:
         return self._collection_date
 
     @collection_date.setter
-    def collection_date(self, new_date: Date) -> None:
-        self._collection_date = new_date
+    def collection_date(self, new_date: str) -> None:
+        self._collection_date = Date(new_date)
 
     @property
     def delivery_time(self) -> datetime.time:
