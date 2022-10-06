@@ -47,6 +47,10 @@ class TestFclImportController(unittest.TestCase):
         self.assertFalse(report.errors)
         self.assertFalse(report.advisories)
 
+        consignment = report.consignments.popitem()[1]
+        self.assertEqual("GR221003000", consignment.reference)
+
+
 
 if __name__ == '__main__':
     unittest.main()
