@@ -22,7 +22,11 @@ class ConsignmentValidationStrategy:
         self._initialise_tail_lift_patterns()
 
     def _initialise_tail_lift_patterns(self):
-        patterns = "(tail lift|t/lift|t-lift| tl )"
+        patterns = (
+            "(tail lift|t/lift|t-lift|tail-lift| tl |tl | tl|t/l|t/l | t/l| "
+            "t/l )"
+        )
+
         self._tail_lift_patterns = re.compile(patterns, flags=re.I)
 
     def validate(self, consignment: Consignment) -> ConsignmentErrors:
@@ -34,7 +38,7 @@ class ConsignmentValidationStrategy:
         instructions = consignment.delivery_instructions
 
         for instruction in instructions:
-            if re.match(self._tail_lift_patterns, instruction):
+            if re.search(self._tail_lift_patterns, instruction):
                 has_tail_lift_mention = True
 
         errors = ConsignmentErrors()
