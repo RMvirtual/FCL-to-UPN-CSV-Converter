@@ -30,18 +30,11 @@ class Date:
         )
 
     def __lt__(self, other: Date) -> bool:
-        if self.year < other.year:
-            return True
-
-        elif self.year == other.year:
-            if self.month < other.month:
-                return True
-
-            elif self.month == other.month:
-                if self.day < other.day:
-                    return True
-
-        return False
+        return (
+            True if self.year < other.year else
+            True if self.month < other.month
+            else self.day < other.day
+        )
 
     def __le__(self, other: Date) -> bool:
         return self < other or self == other
