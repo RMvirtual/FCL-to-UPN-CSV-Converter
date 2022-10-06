@@ -11,6 +11,9 @@ class Date:
 
         self._date = datetime.date(day=day, month=month, year=year)
 
+    def __sub__(self, other: Date) -> int:
+        return 5
+
     @property
     def day(self) -> int:
         return self._date.day

@@ -16,6 +16,13 @@ class TestShipmentDates(unittest.TestCase):
         self.assertFalse(date_1 > date_2)
         self.assertFalse(date_1 >= date_2)
 
+    def test_dates_can_be_subtracted(self):
+        date_1 = Date("06/10/2022")
+        date_2 = Date("08/10/2022")
+
+        self.assertEqual(2, date_1 - date_2)
+        self.assertEqual(2, date_2 - date_1)
+
 
 if __name__ == '__main__':
     unittest.main()
