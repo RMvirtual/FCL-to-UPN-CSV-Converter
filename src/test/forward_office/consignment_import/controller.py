@@ -35,7 +35,7 @@ class TestFclImportController(unittest.TestCase):
             "", "", "", "",
             "", "", "", "",
             "Tail Lift", "",
-            "", "06-Oct-23", "OL1234",
+            "", "06-Oct-22", "OL1234",
             "1", "02", "Yes"
         ]]
 
