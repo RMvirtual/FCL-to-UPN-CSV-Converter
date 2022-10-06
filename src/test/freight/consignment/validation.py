@@ -49,12 +49,6 @@ class TestConsignmentValidation(unittest.TestCase):
             errors = self._tail_lift_errors_from_instruction(instruction)
             self.assertFalse(errors.tail_lift_advisory, msg=instruction)
 
-
-    def test_should_not_highlight_tail_lift_advisory(self):
-        errors = self._validation.validate_tail_lift_error(self._consignment)
-
-        self.assertFalse(errors.tail_lift_advisory)
-
     def _tail_lift_errors_from_instruction(
             self, instruction: str) -> ConsignmentErrors:
         self._consignment.delivery_instructions.clear()
