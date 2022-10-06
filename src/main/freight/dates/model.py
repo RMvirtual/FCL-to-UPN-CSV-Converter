@@ -4,18 +4,17 @@ import datetime
 
 class Date:
     def __init__(self, date: str):
-        date = date.replace("/", "")
-        day = int(date[0:2])
-        month = int(date[2:4])
-        year = int(date[4:8])
-
+        day, month, year = self._parse_date(date)
         self._date = datetime.date(day=day, month=month, year=year)
 
-    def __sub__(self, other: Date) -> int:
-        other_date = datetime.date(
-            day=other.day, month=other.month, year=other.year)
+    @staticmethod
+    def _parse_date(stripped_date: str) -> tuple[int, int, int]:
+        stripped_date = stripped_date.replace("/", "")
+        day = int(stripped_date[0:2])
+        month = int(stripped_date[2:4])
+        year = int(stripped_date[4:8])
 
-        return abs((self._date - other_date)).days
+        return day, month, year
 
     @property
     def day(self) -> int:
@@ -28,6 +27,12 @@ class Date:
     @property
     def year(self) -> int:
         return self._date.year
+
+    def __sub__(self, other: Date) -> int:
+        other_date = datetime.date(
+            day=other.day, month=other.month, year=other.year)
+
+        return abs((self._date - other_date).days)
 
     def __eq__(self, other: Date) -> bool:
         return (
@@ -52,27 +57,26 @@ class Date:
         return not self <= other
 
 
-
 class ShipmentDates:
     def __init__(self):
         self._collection_date: Date or None = None
         self._delivery_date: Date or None = None
-        self._delivery_time: Date or None = None
+        self._delivery_time: datetime.time or None = None
 
     @property
-    def delivery_date(self) -> datetime.date:
+    def delivery_date(self) -> Date:
         return self._delivery_date
 
     @delivery_date.setter
-    def delivery_date(self, new_date: datetime.date) -> None:
+    def delivery_date(self, new_date: Date) -> None:
         self._delivery_date = new_date
 
     @property
-    def collection_date(self) -> datetime.date:
+    def collection_date(self) -> Date:
         return self._collection_date
 
     @collection_date.setter
-    def collection_date(self, new_date: datetime.date) -> None:
+    def collection_date(self, new_date: Date) -> None:
         self._collection_date = new_date
 
     @property

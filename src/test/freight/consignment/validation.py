@@ -57,10 +57,13 @@ class TestConsignmentValidation(unittest.TestCase):
 
         return self._validation.validate_tail_lift_error(self._consignment)
 
-    def test_should_highlight_date_is_congruent(self):
+    def test_should_approve_priority_date(self):
         errors = self._validation.validate_dates_and_service(self._consignment)
         self.assertFalse(errors.incongruent_delivery_date)
-        self.assertFalse(errors.priority_code_advisory)
+
+    def test_should_approve_economy_date(self):
+        errors = self._validation.validate_dates_and_service(self._consignment)
+        self.assertFalse(errors.incongruent_delivery_date)
 
 
 if __name__ == '__main__':
