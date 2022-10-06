@@ -50,6 +50,39 @@ class TestFclImportController(unittest.TestCase):
         consignment = report.consignments.popitem()[1]
         self.assertEqual("GR221003000", consignment.reference)
 
+        # Check service.
+        self.assertTrue(consignment.service.is_priority())
+        self.assertTrue(consignment.service.is_tail_lift_required())
+
+        # Check address.
+        self.assertEqual("Disneyworld", consignment.client_name)
+        self.assertEqual("Ryan Matfen", consignment.address.contact_name)
+        self.assertEqual("Graylaw Freight Group", consignment.address.name)
+        self.assertEqual("Gillibrands Road", consignment.address.line_1)
+        self.assertEqual("Skelmersdale", consignment.address.town)
+        self.assertEqual("WN8 9TA", consignment.address.post_code)
+        self.assertEqual("01695 729101", consignment.address.telephone_number)
+
+        # Check cargo.
+        self.assertEqual(1, len(consignment.cargo))
+        self.assertEqual(1, consignment.cargo[0].quantity)
+        self.assertEqual("full", consignment.cargo[0].package_type.name)
+        self.assertEqual("pallet", consignment.cargo[0].package_type.base_type)
+
+        self.assertEqual(
+            "normal", consignment.cargo[0].package_type.oversize_option)
+
+        self.assertTupleEqual(
+            (1, 500), consignment.cargo[0].quantity_and_weight)
+
+        # Check dates.
+        self.assertEqual(6, consignment.shipment_dates.delivery_date.day)
+        self.assertEqual(10, consignment.shipment_dates.delivery_date.month)
+        self.assertEqual(2022, consignment.shipment_dates.delivery_date.year)
+
+        # Check instructions
+        self.assertEqual(1, len(consignment.delivery_instructions))
+        self.assertEqual("Tail Lift", consignment.delivery_instructions[0])
 
 
 if __name__ == '__main__':
