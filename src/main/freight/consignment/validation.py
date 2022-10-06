@@ -61,4 +61,7 @@ class ConsignmentValidationStrategy:
         elif not consignment.service.is_booked():
             errors.incongruent_delivery_date = not difference == 2
 
+        elif consignment.service.is_booked():
+            errors.incongruent_delivery_date = not difference >= 2
+
         return errors

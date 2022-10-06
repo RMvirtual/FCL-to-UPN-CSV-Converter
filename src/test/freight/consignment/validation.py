@@ -77,6 +77,22 @@ class TestConsignmentValidation(unittest.TestCase):
         errors = self._validation.validate_dates_and_service(self._consignment)
         self.assertFalse(errors.incongruent_delivery_date)
 
+    def test_should_approve_economy_booked_date(self):
+        self._consignment.service.economy()
+        self._consignment.service.booked()
+        self._consignment.shipment_dates.delivery_date = "06/10/2022"
+
+        errors = self._validation.validate_dates_and_service(self._consignment)
+        self.assertFalse(errors.incongruent_delivery_date)
+
+    def test_should_highlight_economy_booked_date_error(self):
+        self._consignment.service.economy()
+        self._consignment.service.clear_booked_service()
+        self._consignment.shipment_dates.delivery_date = "06/10/2022"
+
+        errors = self._validation.validate_dates_and_service(self._consignment)
+        self.assertTrue(errors.incongruent_delivery_date)
+
 
 if __name__ == '__main__':
     unittest.main()
