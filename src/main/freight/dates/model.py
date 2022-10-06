@@ -43,18 +43,7 @@ class Date:
         return self > other or self == other
 
     def __gt__(self, other: Date) -> bool:
-        if self.year > other.year:
-            return True
-
-        elif self.year == other.year:
-            if self.month > other.month:
-                return True
-
-            elif self.month == other.month:
-                if self.day > other.day:
-                    return True
-
-        return False
+        return not self <= other
 
 
 
