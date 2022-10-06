@@ -26,7 +26,8 @@ class FormatLoader:
         self._add_format(format_file.name, format_contents)
 
     def _file_path(self, format_file: dataclasses.dataclass):
-        return runfiles.load_path(getattr(self._format_files, format_file.name))
+        return runfiles.load_path(
+            getattr(self._format_files, format_file.name))
 
     def _add_format(self, format_name: str, format_contents):
         new_format = [
