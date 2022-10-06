@@ -1,7 +1,7 @@
 import unittest
-from src.main.forward_office.dashboard.parser.cargo import CargoParser
+from src.main.forward_office.consignment_import.parser.cargo import CargoParser
 
-from src.main.forward_office.dashboard.parser.requests.types \
+from src.main.forward_office.consignment_import.parser.requests.types \
     import CargoParseRequest, CargoEntryParseRequest
 
 

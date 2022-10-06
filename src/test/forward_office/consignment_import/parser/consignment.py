@@ -1,9 +1,9 @@
 import unittest
 
-from src.main.forward_office.dashboard.parser.consignment \
+from src.main.forward_office.consignment_import.parser.consignment \
     import ConsignmentParser
 
-from src.main.forward_office.dashboard.parser.requests.factory \
+from src.main.forward_office.consignment_import.parser.requests.factory \
     import ParseRequestFactory
 
 

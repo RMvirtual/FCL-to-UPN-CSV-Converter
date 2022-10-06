@@ -6,7 +6,7 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/freight",
-        "//src/main/forward_office/dashboard/parser/requests",
+        "//src/main/forward_office/consignment_import/parser/requests",
         "//src/main/forward_office/mapping",
     ],
 )

@@ -1,6 +1,6 @@
 from src.main.freight.address.model import Address
 
-from src.main.forward_office.dashboard.parser.requests.types \
+from src.main.forward_office.consignment_import.parser.requests.types \
     import AddressParseRequest
 
 from src.main.freight.address.validation import (

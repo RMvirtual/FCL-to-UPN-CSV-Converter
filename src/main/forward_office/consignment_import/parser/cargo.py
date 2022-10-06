@@ -5,7 +5,7 @@ from src.main.forward_office.mapping.cargo import FclCargoTypeMap
 from src.main.freight.cargo import validation
 from src.main.freight.cargo.validation import CargoErrors
 
-from src.main.forward_office.dashboard.parser.requests.types \
+from src.main.forward_office.consignment_import.parser.requests.types \
     import CargoParseRequest, CargoEntryParseRequest
 
 

@@ -1,8 +1,8 @@
 import unittest
 
-from src.main.forward_office.dashboard.parser import address
+from src.main.forward_office.consignment_import.parser import address
 
-from src.main.forward_office.dashboard.parser.requests.types \
+from src.main.forward_office.consignment_import.parser.requests.types \
     import AddressParseRequest
 
 

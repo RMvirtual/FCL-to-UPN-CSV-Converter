@@ -8,6 +8,6 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/forward_office/mapping",
-        "//src/main/forward_office/dashboard",
+        "//src/main/forward_office/consignment_import",
     ],
 )

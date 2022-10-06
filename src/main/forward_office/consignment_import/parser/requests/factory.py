@@ -1,7 +1,7 @@
 import datetime
 import calendar
 
-from src.main.forward_office.dashboard.parser.requests.types import (
+from src.main.forward_office.consignment_import.parser.requests.types import (
     AddressParseRequest, ServiceParseRequest, CargoEntryParseRequest,
     CargoParseRequest, ConsignmentParseRequest
 )

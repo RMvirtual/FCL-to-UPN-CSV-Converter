@@ -2,12 +2,12 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "dashboard",
+    name = "consignment_import",
     srcs = glob(["*.py"]),
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/forward_office/dashboard/format",
-        "//src/main/forward_office/dashboard/parser",
+        "//src/main/forward_office/consignment_import/format",
+        "//src/main/forward_office/consignment_import/parser",
     ],
 )
