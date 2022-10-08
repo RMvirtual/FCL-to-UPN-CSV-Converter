@@ -6,17 +6,21 @@ def parse(date: str) -> tuple[int, int, int]:
         return int(date[0:2]), int(date[2:4]), int(date[4:8])
 
     elif re.fullmatch(r"\d{6}", date):  # ddmmyy
-        return int(date[0:2]), int(date[2:4]), (2000 + int(date[4:6]))
+        return int(date[0:2]), int(date[2:4]), int("20" + date[4:6])
 
     elif re.fullmatch(r"\d{2}[./\\-]\d{2}[./\\-]\d{2}", date):  # dd\mm\yy
-        day, month, year = re.split(r"[./\\-]", date)
+        day, month, year = _split_by_separators(date)
 
-        return int(day), int(month), (2000 + int(year))
+        return int(day), int(month), int("20" + year)
 
     elif re.fullmatch(r"\d{2}[./\\-]\d{2}[./\\-]\d{4}", date):  # dd\mm\yyyy
-        day, month, year = re.split(r"[./\\-]", date)
+        day, month, year = _split_by_separators(date)
 
         return int(day), int(month), int(year)
 
     else:
         return None
+
+
+def _split_by_separators(value: str) -> tuple[str]:
+    return re.split(r"[./\\-]", value)
