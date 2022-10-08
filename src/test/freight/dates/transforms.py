@@ -6,30 +6,41 @@ class TestDateTransforms(unittest.TestCase):
     def setUp(self) -> None:
         pass
 
-    def test_should_transform_ddmmyyyy_without_slashes(self):
+    def test_should_transform_ddmmyyyy_without_separators(self):
         date = "23102022"
         day, month, year = transforms.parse(date)
 
         self.assertTupleEqual((23, 10, 2022), (day, month, year))
 
-    def test_should_transform_ddmmyy_without_slashes(self):
+    def test_should_transform_ddmmyy_without_separators(self):
         date = "231022"
         day, month, year = transforms.parse(date)
 
         self.assertTupleEqual((23, 10, 2022), (day, month, year))
 
-    def test_should_transform_ddmmyy_with_slashes(self):
-        date = "23\\10\\22"
-        day, month, year = transforms.parse(date)
+    def test_should_transform_ddmmyy_with_separators(self):
+        date_formats = [
+            "23\\10\\22", "23-10-22", "23/10/22", "23.10.22"]
 
-        self.assertTupleEqual((23, 10, 2022), (day, month, year))
+        for format in date_formats:
+            day, month, year = transforms.parse(format)
 
-    def test_should_transform_ddmmyyyy_with_slashes(self):
-        date = "23\\10\\2022"
-        day, month, year = transforms.parse(date)
+            self.assertTupleEqual(
+                (23, 10, 2022), (day, month, year), msg=(
+                    "Failed format:", format)
+            )
 
-        self.assertTupleEqual((23, 10, 2022), (day, month, year))
+    def test_should_transform_ddmmyyyy_with_separators(self):
+        date_formats = [
+            "23\\10\\2022", "23-10-2022", "23/10/2022", "23.10.2022"]
 
+        for format in date_formats:
+            day, month, year = transforms.parse(format)
+
+            self.assertTupleEqual(
+                (23, 10, 2022), (day, month, year), msg=(
+                    "Failed format:", format)
+            )
 
 
 if __name__ == '__main__':
