@@ -7,7 +7,10 @@ class TestDateTransforms(unittest.TestCase):
         pass
 
     def test_should_transform_dd_mm_yyyy_date(self):
-        self.fail("DUMMY DATE TRANSFORM FAIL.")
+        date = "23/10/2022"
+        day, month, year = transforms.parse(date)
+
+        self.assertTupleEqual((23, 10, 2022), (day, month, year))
 
 
 if __name__ == '__main__':
