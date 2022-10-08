@@ -18,6 +18,19 @@ class TestDateTransforms(unittest.TestCase):
 
         self.assertTupleEqual((23, 10, 2022), (day, month, year))
 
+    def test_should_transform_ddmmyy_with_slashes(self):
+        date = "23\\10\\22"
+        day, month, year = transforms.parse(date)
+
+        self.assertTupleEqual((23, 10, 2022), (day, month, year))
+
+    def test_should_transform_ddmmyyyy_with_slashes(self):
+        date = "23\\10\\2022"
+        day, month, year = transforms.parse(date)
+
+        self.assertTupleEqual((23, 10, 2022), (day, month, year))
+
+
 
 if __name__ == '__main__':
     unittest.main()
