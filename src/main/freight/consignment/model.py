@@ -79,3 +79,7 @@ class Consignment:
     @property
     def shipment_dates(self):
         return self._shipment_dates
+
+    @shipment_dates.setter
+    def shipment_dates(self, new_dates: ShipmentDates):
+        self._shipment_dates = new_dates

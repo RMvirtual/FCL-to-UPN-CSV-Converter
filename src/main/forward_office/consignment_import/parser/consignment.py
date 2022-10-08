@@ -4,6 +4,7 @@ from src.main.forward_office.consignment_import.parser.requests.types \
     import ConsignmentParseRequest
 
 from src.main.forward_office.consignment_import.parser import address
+from src.main.forward_office.consignment_import.parser import dates
 from src.main.forward_office.consignment_import.parser.cargo import CargoParser
 from src.main.forward_office.consignment_import.parser.service \
     import ServiceParser
@@ -20,8 +21,7 @@ class ConsignmentParser:
         consignment.reference = request.reference
         consignment.cargo = CargoParser().parse(request.cargo)
         consignment.delivery_instructions = request.delivery_instructions
-        consignment.delivery_date = request.delivery_date
-        consignment.delivery_time = request.delivery_time
+        consignment.shipment_dates = dates.parse(request.shipment_dates)
         consignment.address = address.parse(request.address)
         consignment.service = ServiceParser().parse(request.service)
 
