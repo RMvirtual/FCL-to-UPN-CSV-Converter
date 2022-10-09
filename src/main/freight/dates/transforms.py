@@ -1,4 +1,5 @@
 import re
+import calendar
 
 
 def parse(date: str) -> tuple[int, int, int]:
@@ -17,6 +18,22 @@ def parse(date: str) -> tuple[int, int, int]:
         day, month, year = _split_by_separator_characters(date)
 
         return int(day), int(month), int(year)
+
+    elif re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,5}[./\\-]\d{4}", date):
+        # dd\mmm\yyyy
+
+        month_abbreviations = list(calendar.month_abbr)
+        day, month, year = _split_by_separator_characters(date)
+
+        return int(day), month_abbreviations.index(month), int(year)
+
+    elif re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,5}[./\\-]\d{2}", date):
+        # dd\mmm\yyyy
+
+        month_abbreviations = list(calendar.month_abbr)
+        day, month, year = _split_by_separator_characters(date)
+
+        return int(day), month_abbreviations.index(month), int("20" + year)
 
     else:
         return None
