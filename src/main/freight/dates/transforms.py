@@ -4,33 +4,35 @@ import calendar
 
 def parse(date: str) -> tuple[int, int, int]:
     cleaned_date = date.strip()
+    date_validation = DateValidation(cleaned_date)
+    date_transformation = DateTransformation(cleaned_date)
 
-    if _is_ddmmyyyy(cleaned_date):
+    if date_validation.is_ddmmyyyy():
         return (
             int(cleaned_date[0:2]),
             int(cleaned_date[2:4]),
             int(cleaned_date[4:8])
         )
 
-    elif _is_ddmmyy(cleaned_date):
+    elif date_validation.is_ddmmyy():
         return (
             int(cleaned_date[0:2]),
             int(cleaned_date[2:4]),
             int("20" + cleaned_date[4:6])
         )
 
-    elif _is_ddmmyy_with_separators(cleaned_date):
-        day, month, year = _split_by_separator_characters(cleaned_date)
+    elif date_validation.is_ddmmyy_with_separators():
+        day, month, year = date_transformation.split_by_separator_characters()
 
         return int(day), int(month), int("20" + year)
 
-    elif _is_ddmmyyyy_with_separators(cleaned_date):
-        day, month, year = _split_by_separator_characters(cleaned_date)
+    elif date_validation.is_ddmmyyyy_with_separators():
+        day, month, year = date_transformation.split_by_separator_characters()
 
         return int(day), int(month), int(year)
 
-    elif _is_ddmmmyyyy(cleaned_date):
-        day, month, year = _split_by_separator_characters(cleaned_date)
+    elif date_validation.is_ddmmmyyyy():
+        day, month, year = date_transformation.split_by_separator_characters()
 
         month_abbreviations = list(calendar.month_abbr)
         full_months = list(calendar.month_name)
@@ -43,8 +45,8 @@ def parse(date: str) -> tuple[int, int, int]:
 
         return int(day), month, int(year)
 
-    elif _is_ddmmmyy(cleaned_date):
-        day, month, year = _split_by_separator_characters(cleaned_date)
+    elif date_validation.is_ddmmmyy():
+        day, month, year = date_transformation.split_by_separator_characters()
 
         month_abbreviations = list(calendar.month_abbr)
         full_months = list(calendar.month_name)
@@ -57,8 +59,8 @@ def parse(date: str) -> tuple[int, int, int]:
 
         return int(day), month, int("20" + year)
 
-    elif _is_full_month(cleaned_date):
-        day, month, year = _split_by_separator_characters(cleaned_date)
+    elif date_validation.is_full_month():
+        day, month, year = date_transformation.split_by_separator_characters()
 
         month_abbreviations = list(calendar.month_abbr)
         full_months = list(calendar.month_name)
@@ -75,33 +77,38 @@ def parse(date: str) -> tuple[int, int, int]:
         raise ValueError("Cannot parse date from value of " + cleaned_date)
 
 
-def _is_ddmmyy(date: str) -> bool:
-    return re.fullmatch(r"\d{6}", date)
+class DateValidation:
+    def __init__(self, date: str):
+        self._date = date
+
+    def is_ddmmyy(self) -> bool:
+        return re.fullmatch(r"\d{6}", self._date)
+
+    def is_ddmmyy_with_separators(self) -> bool:
+        return re.fullmatch(r"\d{2}[./\\-]\d{2}[./\\-]\d{2}", self._date)
+
+    def is_ddmmyyyy(self) -> bool:
+        return re.fullmatch(r"\d{8}", self._date)
+
+    def is_ddmmyyyy_with_separators(self) -> bool:
+        return re.fullmatch(r"\d{2}[./\\-]\d{2}[./\\-]\d{4}", self._date)
+
+    def is_ddmmmyyyy(self) -> bool:
+        return re.fullmatch(
+            r"\d{1,2}[./\\-][a-zA-z]{3,9}[./\\-]\d{4}",self._date)
+
+    def is_ddmmmyy(self) -> bool:
+        return re.fullmatch(
+            r"\d{1,2}[./\\-][a-zA-z]{3,9}[./\\-]\d{2}", self._date)
+
+    def is_full_month(self) -> bool:
+        return re.fullmatch(
+            r"\d{1,2}\s+[a-zA-z]{3,9}\s+\d{4}", self._date)
 
 
-def _is_ddmmyy_with_separators(date: str) -> bool:
-    return re.fullmatch(r"\d{2}[./\\-]\d{2}[./\\-]\d{2}", date)
+class DateTransformation:
+    def __init__(self, date: str):
+        self._date = date
 
-
-def _is_ddmmyyyy(date: str) -> bool:
-    return re.fullmatch(r"\d{8}", date)
-
-
-def _is_ddmmyyyy_with_separators(date: str) -> bool:
-    return re.fullmatch(r"\d{2}[./\\-]\d{2}[./\\-]\d{4}", date)
-
-
-def _is_ddmmmyyyy(date: str) -> bool:
-    return re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,9}[./\\-]\d{4}", date)
-
-
-def _is_ddmmmyy(date: str) -> bool:
-    return re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,9}[./\\-]\d{2}", date)
-
-
-def _is_full_month(date: str) -> bool:
-    return re.fullmatch(r"\d{1,2}\s+[a-zA-z]{3,9}\s+\d{4}", date)
-
-
-def _split_by_separator_characters(value: str) -> tuple[str]:
-    return re.split(r"\s|[./\\-]", value)
+    def split_by_separator_characters(self) -> tuple[str]:
+        return re.split(r"\s|[./\\-]", self._date)
