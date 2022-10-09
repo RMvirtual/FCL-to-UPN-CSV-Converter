@@ -22,18 +22,34 @@ def parse(date: str) -> tuple[int, int, int]:
     elif re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,5}[./\\-]\d{4}", date):
         # dd\mmm\yyyy
 
-        month_abbreviations = list(calendar.month_abbr)
         day, month, year = _split_by_separator_characters(date)
 
-        return int(day), month_abbreviations.index(month), int(year)
+        month_abbreviations = list(calendar.month_abbr)
+        full_months = list(calendar.month_name)
+
+        if month in month_abbreviations:
+            month = month_abbreviations.index(month)
+
+        else:
+            month = full_months.index(month)
+
+        return int(day), month, int(year)
 
     elif re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,5}[./\\-]\d{2}", date):
-        # dd\mmm\yyyy
+        # dd\mmmmm\yyyy
 
-        month_abbreviations = list(calendar.month_abbr)
         day, month, year = _split_by_separator_characters(date)
 
-        return int(day), month_abbreviations.index(month), int("20" + year)
+        month_abbreviations = list(calendar.month_abbr)
+        full_months = list(calendar.month_name)
+
+        if month in month_abbreviations:
+            month = month_abbreviations.index(month)
+
+        else:
+            month = full_months.index(month)
+
+        return int(day), month, int("20" + year)
 
     else:
         return None
