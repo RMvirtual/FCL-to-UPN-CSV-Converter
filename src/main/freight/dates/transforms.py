@@ -7,7 +7,8 @@ def parse(date: str) -> tuple[int, int, int]:
 
     if _is_ddmmyyyy(cleaned_date):
         return (
-            int(cleaned_date[0:2]), int(cleaned_date[2:4]),
+            int(cleaned_date[0:2]),
+            int(cleaned_date[2:4]),
             int(cleaned_date[4:8])
         )
 
@@ -43,8 +44,6 @@ def parse(date: str) -> tuple[int, int, int]:
         return int(day), month, int(year)
 
     elif _is_ddmmmyy(cleaned_date):
-        # dd\mmmmm\yyyy
-
         day, month, year = _split_by_separator_characters(cleaned_date)
 
         month_abbreviations = list(calendar.month_abbr)
@@ -59,9 +58,7 @@ def parse(date: str) -> tuple[int, int, int]:
         return int(day), month, int("20" + year)
 
     elif _is_full_month(cleaned_date):
-        # dd\mmmmmmmmm\yyyy
-
-        day, month, year = _split_by_whitespace(cleaned_date)
+        day, month, year = _split_by_separator_characters(cleaned_date)
 
         month_abbreviations = list(calendar.month_abbr)
         full_months = list(calendar.month_name)
@@ -107,8 +104,4 @@ def _is_full_month(date: str) -> bool:
 
 
 def _split_by_separator_characters(value: str) -> tuple[str]:
-    return re.split(r"[./\\-]", value)
-
-
-def _split_by_whitespace(value: str) -> tuple[str]:
-    return re.split(r"\s", value)
+    return re.split(r"\s|[./\\-]", value)
