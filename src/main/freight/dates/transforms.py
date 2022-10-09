@@ -3,6 +3,8 @@ import calendar
 
 
 def parse(date: str) -> tuple[int, int, int]:
+    date = date.strip()
+
     if re.fullmatch(r"\d{8}", date):  # ddmmyyyy
         return int(date[0:2]), int(date[2:4]), int(date[4:8])
 
@@ -68,7 +70,7 @@ def parse(date: str) -> tuple[int, int, int]:
         return int(day), month, int(year)
 
     else:
-        raise ValueError("Cannot parse date from value of", date)
+        raise ValueError("Cannot parse date from value of" + date)
 
 
 def _split_by_separator_characters(value: str) -> tuple[str]:
