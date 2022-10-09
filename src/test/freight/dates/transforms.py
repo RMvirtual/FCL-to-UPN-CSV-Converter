@@ -55,5 +55,18 @@ class TestDateTransforms(unittest.TestCase):
             )
 
 
+    def test_should_transform_dd_mmmmm_yyyy_(self):
+        date_formats = [
+            "23-April-2022", "23-April-22"]
+
+        for format in date_formats:
+            day, month, year = transforms.parse(format)
+
+            self.assertTupleEqual(
+                (23, 4, 2022), (day, month, year), msg=(
+                    "Failed format:", format)
+            )
+
+
 if __name__ == '__main__':
     unittest.main()
