@@ -1,7 +1,6 @@
 import unittest
 from src.main.freight.dates import transforms
 
-
 class TestDateTransforms(unittest.TestCase):
     def setUp(self) -> None:
         pass
