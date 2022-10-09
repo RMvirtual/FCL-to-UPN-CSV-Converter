@@ -3,78 +3,90 @@ import calendar
 
 
 def parse(date: str) -> tuple[int, int, int]:
-    cleaned_date = date.strip()
-    date_validation = DateValidation(cleaned_date)
-    date_transformation = DateTransformation(cleaned_date)
+    return DateParser(date).parse()
 
-    if date_validation.is_ddmmyyyy():
-        return (
-            int(cleaned_date[0:2]),
-            int(cleaned_date[2:4]),
-            int(cleaned_date[4:8])
-        )
 
-    elif date_validation.is_ddmmyy():
-        return (
-            int(cleaned_date[0:2]),
-            int(cleaned_date[2:4]),
-            int("20" + cleaned_date[4:6])
-        )
+class DateParser:
+    def __init__(self, date: str):
+        self._date = date.strip()
+        self._validation = DateValidation(self._date)
+        self._transformation = DateTransformation(self._date)
 
-    elif date_validation.is_ddmmyy_with_separators():
-        day, month, year = date_transformation.split_by_separator_characters()
+    def parse(self) -> tuple[int, int, int]:
+        if self._validation.is_ddmmyyyy():
 
-        return int(day), int(month), int("20" + year)
+            return (
+                int(self._date[0:2]),
+                int(self._date[2:4]),
+                int(self._date[4:8])
+            )
 
-    elif date_validation.is_ddmmyyyy_with_separators():
-        day, month, year = date_transformation.split_by_separator_characters()
+        elif self._validation.is_ddmmyy():
+            return (
+                int(self._date[0:2]),
+                int(self._date[2:4]),
+                int("20" + self._date[4:6])
+            )
 
-        return int(day), int(month), int(year)
+        elif self._validation.is_ddmmyy_with_separators():
+            day, month, year = \
+                self._transformation.split_by_separator_characters()
 
-    elif date_validation.is_ddmmmyyyy():
-        day, month, year = date_transformation.split_by_separator_characters()
+            return int(day), int(month), int("20" + year)
 
-        month_abbreviations = list(calendar.month_abbr)
-        full_months = list(calendar.month_name)
+        elif self._validation.is_ddmmyyyy_with_separators():
+            day, month, year = (
+                self._transformation.split_by_separator_characters())
 
-        if month in month_abbreviations:
-            month = month_abbreviations.index(month)
+            return int(day), int(month), int(year)
+
+        elif self._validation.is_ddmmmyyyy():
+            day, month, year = (
+                self._transformation.split_by_separator_characters())
+
+            month_abbreviations = list(calendar.month_abbr)
+            full_months = list(calendar.month_name)
+
+            if month in month_abbreviations:
+                month = month_abbreviations.index(month)
+
+            else:
+                month = full_months.index(month)
+
+            return int(day), month, int(year)
+
+        elif self._validation.is_ddmmmyy():
+            day, month, year = \
+                self._transformation.split_by_separator_characters()
+
+            month_abbreviations = list(calendar.month_abbr)
+            full_months = list(calendar.month_name)
+
+            if month in month_abbreviations:
+                month = month_abbreviations.index(month)
+
+            else:
+                month = full_months.index(month)
+
+            return int(day), month, int("20" + year)
+
+        elif self._validation.is_full_month():
+            day, month, year = \
+                self._transformation.split_by_separator_characters()
+
+            month_abbreviations = list(calendar.month_abbr)
+            full_months = list(calendar.month_name)
+
+            if month in month_abbreviations:
+                month = month_abbreviations.index(month)
+
+            else:
+                month = full_months.index(month)
+
+            return int(day), month, int(year)
 
         else:
-            month = full_months.index(month)
-
-        return int(day), month, int(year)
-
-    elif date_validation.is_ddmmmyy():
-        day, month, year = date_transformation.split_by_separator_characters()
-
-        month_abbreviations = list(calendar.month_abbr)
-        full_months = list(calendar.month_name)
-
-        if month in month_abbreviations:
-            month = month_abbreviations.index(month)
-
-        else:
-            month = full_months.index(month)
-
-        return int(day), month, int("20" + year)
-
-    elif date_validation.is_full_month():
-        day, month, year = date_transformation.split_by_separator_characters()
-
-        month_abbreviations = list(calendar.month_abbr)
-        full_months = list(calendar.month_name)
-
-        if month in month_abbreviations:
-            month = month_abbreviations.index(month)
-
-        else:
-            month = full_months.index(month)
-
-        return int(day), month, int(year)
-
-    else:
-        raise ValueError("Cannot parse date from value of " + cleaned_date)
+            raise ValueError("Cannot parse date from value of " + self._date)
 
 
 class DateValidation:
