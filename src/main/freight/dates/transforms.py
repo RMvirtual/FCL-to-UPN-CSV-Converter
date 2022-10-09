@@ -19,7 +19,7 @@ def parse(date: str) -> tuple[int, int, int]:
 
         return int(day), int(month), int(year)
 
-    elif re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,5}[./\\-]\d{4}", date):
+    elif re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,9}[./\\-]\d{4}", date):
         # dd\mmm\yyyy
 
         day, month, year = _split_by_separator_characters(date)
@@ -35,7 +35,7 @@ def parse(date: str) -> tuple[int, int, int]:
 
         return int(day), month, int(year)
 
-    elif re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,5}[./\\-]\d{2}", date):
+    elif re.fullmatch(r"\d{1,2}[./\\-][a-zA-z]{3,9}[./\\-]\d{2}", date):
         # dd\mmmmm\yyyy
 
         day, month, year = _split_by_separator_characters(date)
