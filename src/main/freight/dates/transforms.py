@@ -90,45 +90,37 @@ class DateTransformation:
     def dd_mm_yy_with_separators(self):
         day, month, year = self._split_by_separator_characters()
 
-        return int(day), int(month), int("20" + year)
+        return int(day), int(month), int("20" + str(year))
 
     def dd_mm_yyyy_with_separators(self):
-        day, month, year = self._split_by_separator_characters()
-
-        return int(day), int(month), int(year)
+        return tuple(map(int, self._split_by_separator_characters()))
 
     def dd_mmm_yyyy(self):
-        day, month, year = self._split_by_separator_characters()
-
-        if month in self._month_abbreviations:
-            month = self._month_abbreviations.index(month)
-
-        else:
-            month = self._month_names.index(month)
-
-        return int(day), month, int(year)
+        return self._values_by_split_separator()
 
     def dd_mmm_yy(self):
-        day, month, year = self._split_by_separator_characters()
+        day, month, year = self._values_by_split_separator()
 
-        if month in self._month_abbreviations:
-            month = self._month_abbreviations.index(month)
-
-        else:
-            month = self._month_names.index(month)
-
-        return int(day), month, int("20" + year)
+        return int(day), month, int("20" + str(year))
 
     def full_month(self):
-        day, month, year = self._split_by_separator_characters()
+        return self._values_by_split_separator()
 
-        if month in self._month_abbreviations:
-            month = self._month_abbreviations.index(month)
+    def _values_by_split_separator(self) -> tuple[int, int, int]:
+        day, month_name, year = self._split_by_separator_characters()
 
-        else:
-            month = self._month_names.index(month)
+        month = self.month_to_index(month_name)
 
         return int(day), month, int(year)
+
+    def month_to_index(self, month_name: str) -> int:
+        if month_name in self._month_abbreviations:
+            month_name = self._month_abbreviations.index(month_name)
+
+        else:
+            month_name = self._month_names.index(month_name)
+
+        return int(month_name)
 
     def _split_by_separator_characters(self) -> tuple[str, str, str]:
         return re.split(r"\s|[./\\-]", self._date)
