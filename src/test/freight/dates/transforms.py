@@ -37,8 +37,7 @@ class TestDateTransforms(unittest.TestCase):
         )
 
     def _assert_date_transforms_produce(
-            self, correct_dd_mm_yyyy: tuple[int, int, int],
-            dates: list[str]
+            self, correct_dd_mm_yyyy: tuple[int, int, int], dates: list[str]
     ) -> None:
         for date in dates:
             self._assert_date_transform_produces(correct_dd_mm_yyyy, date)

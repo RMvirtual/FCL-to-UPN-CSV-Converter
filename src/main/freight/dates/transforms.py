@@ -56,7 +56,7 @@ class DateValidation:
 
     def is_ddmmmyyyy(self) -> bool:
         return re.fullmatch(
-            r"\d{1,2}[./\\-][a-zA-z]{3,9}[./\\-]\d{4}",self._date)
+            r"\d{1,2}[./\\-][a-zA-z]{3,9}[./\\-]\d{4}", self._date)
 
     def is_ddmmmyy(self) -> bool:
         return re.fullmatch(
@@ -70,6 +70,8 @@ class DateValidation:
 class DateTransformation:
     def __init__(self, date: str):
         self._date = date
+        self._month_abbreviations = list(calendar.month_abbr)
+        self._month_names = list(calendar.month_name)
 
     def dd_mm_yyyy(self):
         return (
@@ -98,44 +100,35 @@ class DateTransformation:
     def dd_mmm_yyyy(self):
         day, month, year = self._split_by_separator_characters()
 
-        month_abbreviations = list(calendar.month_abbr)
-        full_months = list(calendar.month_name)
-
-        if month in month_abbreviations:
-            month = month_abbreviations.index(month)
+        if month in self._month_abbreviations:
+            month = self._month_abbreviations.index(month)
 
         else:
-            month = full_months.index(month)
+            month = self._month_names.index(month)
 
         return int(day), month, int(year)
 
     def dd_mmm_yy(self):
         day, month, year = self._split_by_separator_characters()
 
-        month_abbreviations = list(calendar.month_abbr)
-        full_months = list(calendar.month_name)
-
-        if month in month_abbreviations:
-            month = month_abbreviations.index(month)
+        if month in self._month_abbreviations:
+            month = self._month_abbreviations.index(month)
 
         else:
-            month = full_months.index(month)
+            month = self._month_names.index(month)
 
         return int(day), month, int("20" + year)
 
     def full_month(self):
         day, month, year = self._split_by_separator_characters()
 
-        month_abbreviations = list(calendar.month_abbr)
-        full_months = list(calendar.month_name)
-
-        if month in month_abbreviations:
-            month = month_abbreviations.index(month)
+        if month in self._month_abbreviations:
+            month = self._month_abbreviations.index(month)
 
         else:
-            month = full_months.index(month)
+            month = self._month_names.index(month)
 
         return int(day), month, int(year)
 
-    def _split_by_separator_characters(self) -> tuple[str]:
+    def _split_by_separator_characters(self) -> tuple[str, str, str]:
         return re.split(r"\s|[./\\-]", self._date)
