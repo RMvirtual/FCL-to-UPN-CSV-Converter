@@ -74,18 +74,12 @@ class DateTransformation:
         self._month_names = list(calendar.month_name)
 
     def dd_mm_yyyy(self):
-        return (
-            int(self._date[0:2]),
-            int(self._date[2:4]),
-            int(self._date[4:8])
-        )
+        return tuple(map(
+            int, (self._date[0:2], self._date[2:4], self._date[4:8])))
 
     def dd_mm_yy(self):
-        return (
-            int(self._date[0:2]),
-            int(self._date[2:4]),
-            int("20" + self._date[4:6])
-        )
+        return tuple(map(
+            int, (self._date[0:2], self._date[2:4], "20" + self._date[4:6])))
 
     def dd_mm_yy_with_separators(self):
         day, month, year = self._split_by_separator_characters()
@@ -108,7 +102,6 @@ class DateTransformation:
 
     def _values_by_split_separator(self) -> tuple[int, int, int]:
         day, month_name, year = self._split_by_separator_characters()
-
         month = self.month_to_index(month_name)
 
         return int(day), month, int(year)
