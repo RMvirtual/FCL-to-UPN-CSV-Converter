@@ -84,7 +84,7 @@ class DateTransformation:
     def dd_mm_yy_with_separators(self):
         day, month, year = self._split_by_separator_characters()
 
-        return int(day), int(month), int("20" + str(year))
+        return tuple(map(int, (day, month, "20" + year)))
 
     def dd_mm_yyyy_with_separators(self):
         return tuple(map(int, self._split_by_separator_characters()))
