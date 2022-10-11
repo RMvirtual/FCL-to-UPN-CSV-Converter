@@ -9,3 +9,11 @@ py_test(
     ],
 )
 
+py_test(
+    name = "complex_example",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/forward_office/consignment_import",
+    ],
+)
