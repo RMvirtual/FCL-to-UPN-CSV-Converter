@@ -1,53 +1,67 @@
 import unittest
 from src.main.freight.dates import transforms
+from src.main.freight.dates.transforms import DatesAsIntegers
 
 
 class TestDateTransforms(unittest.TestCase):
     def setUp(self) -> None:
-        pass
+        self._correct_date = DatesAsIntegers()
+
+    def _set_up_correct_date(self, day: int, month: int, year: int) -> None:
+        self._correct_date.day = day
+        self._correct_date.month = month
+        self._correct_date.year = year
 
     def test_should_transform_ddmmyyyy_without_separators(self):
-        self._assert_date_transform_produces((23, 10, 2022), "23102022")
-
-    def test_should_transform_ddmmyy_without_separators(self):
-        self._assert_date_transform_produces((23, 10, 2022), "231022")
-
-    def test_should_transform_ddmmyy_with_separators(self):
-        self._assert_date_transforms_produce(
-            (23, 10, 2022), ["23\\10\\22", "23-10-22", "23/10/22", "23.10.22"])
+        self._set_up_correct_date(23, 10, 2022)
+        self._assert_date_transform_matches_correct_date("23102022")
 
     def test_should_transform_ddmmyyyy_with_separators(self):
-        self._assert_date_transforms_produce(
-            (23, 10, 2022),
-            ["23\\10\\2022", "23-10-2022", "23/10/2022", "23.10.2022"]
-        )
+        self._set_up_correct_date(23, 10, 2022)
+
+        self._assert_date_transforms_match_correct_date(
+            ["23\\10\\2022", "23-10-2022", "23/10/2022", "23.10.2022"])
+
+    def test_should_transform_ddmmyy_without_separators(self):
+        self._set_up_correct_date(23, 10, 2022)
+        self._assert_date_transform_matches_correct_date("231022")
+
+    def test_should_transform_ddmmyy_with_separators(self):
+        self._set_up_correct_date(23, 10, 2022)
+
+        self._assert_date_transforms_match_correct_date(
+            ["23\\10\\22", "23-10-22", "23/10/22", "23.10.22"])
 
     def test_should_transform_dd_mmm_yyyy_(self):
-        self._assert_date_transforms_produce(
-            (23, 10, 2022), ["23-Oct-2022", "23-Oct-22"])
+        self._set_up_correct_date(23, 10, 2022)
+
+        self._assert_date_transforms_match_correct_date(
+            ["23-Oct-2022", "23-Oct-22"])
 
     def test_should_transform_dd_mmmmm_yyyy_(self):
-        self._assert_date_transforms_produce(
-            (23, 4, 2022), ["23-April-2022", "23-April-22"])
+        self._set_up_correct_date(23, 4, 2022)
+
+        self._assert_date_transforms_match_correct_date(
+            ["23-April-2022", "23-April-22"])
 
     def test_should_transform_date_with_full_month_name(self):
-        self._assert_date_transforms_produce(
-            (23, 9, 2022),
-            ["23-September-2022", "23/September/22", " 23 September 2022"]
-        )
+        self._set_up_correct_date(23, 9, 2022)
 
-    def _assert_date_transforms_produce(
-            self, correct_dd_mm_yyyy: tuple[int, int, int], dates: list[str]
-    ) -> None:
+        self._assert_date_transforms_match_correct_date(
+            ["23-September-2022", "23/September/22", " 23 September 2022"])
+
+    def _assert_date_transforms_match_correct_date(
+            self, dates: list[str]) -> None:
         for date in dates:
-            self._assert_date_transform_produces(correct_dd_mm_yyyy, date)
+            self._assert_date_transform_matches_correct_date(date)
 
-    def _assert_date_transform_produces(
-            self, correct_dd_mm_yyyy: tuple[int, int, int], date: str) -> None:
-        fail_message = "Failed date: " + date
-        dd_mm_yyyy = transforms.parse(date)
+    def _assert_date_transform_matches_correct_date(self, date: str) -> None:
+        dates = transforms.parse(date)
+        message = "Failed date: " + date
 
-        self.assertTupleEqual(correct_dd_mm_yyyy, dd_mm_yyyy, msg=fail_message)
+        self.assertEqual(self._correct_date.day, dates.day, msg=message)
+        self.assertEqual(self._correct_date.month, dates.month, msg=message)
+        self.assertEqual(self._correct_date.year, dates.year, msg=message)
 
 
 if __name__ == '__main__':

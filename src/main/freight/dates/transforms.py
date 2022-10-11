@@ -1,44 +1,72 @@
 import re
 import calendar
+import dataclasses
 
 
-def parse(date: str) -> tuple[int, int, int]:
+@dataclasses.dataclass
+class DatesAsIntegers:
+    day: int = 0
+    month: int = 0
+    year: int = 0
+
+    def pad_year(self) -> None:
+        self.year = int("20" + str(self.year)) \
+            if len(str(self.year)) == 2 else self.year
+
+
+@dataclasses.dataclass
+class DatesAsStrings:
+    day: str = ""
+    month: str = ""
+    year: str = ""
+
+    def to_integers(self) -> DatesAsIntegers:
+        result = DatesAsIntegers()
+
+        result.day = int(self.day)
+        result.month = int(self.month)
+        result.year = int(self.year)
+
+        return result
+
+
+def parse(date: str) -> DatesAsIntegers:
     return DateParser(date).parse()
 
 
 class DateParser:
     def __init__(self, date: str):
         self._date = date.strip()
-        self._validation = DateValidation(self._date)
+        self._date_format = DateFormatRecognition(self._date)
         self._transformation = DateTransformation(self._date)
 
-    def parse(self) -> tuple[int, int, int]:
-        if self._validation.is_ddmmyyyy():
-            return self._transformation.dd_mm_yyyy()
+    def parse(self) -> DatesAsIntegers:
+        if self._date_format.is_ddmmyy():
+            return self._transformation.from_dd_mm_yy()
 
-        elif self._validation.is_ddmmyy():
-            return self._transformation.dd_mm_yy()
+        elif self._date_format.is_ddmmyyyy():
+            return self._transformation.from_dd_mm_yyyy()
 
-        elif self._validation.is_ddmmyy_with_separators():
-            return self._transformation.dd_mm_yy_with_separators()
+        elif self._date_format.is_ddmmyy_with_separators():
+            return self._transformation.from_dd_mm_yy_with_separators()
 
-        elif self._validation.is_ddmmyyyy_with_separators():
-            return self._transformation.dd_mm_yyyy_with_separators()
+        elif self._date_format.is_ddmmyyyy_with_separators():
+            return self._transformation.from_dd_mm_yyyy_with_separators()
 
-        elif self._validation.is_ddmmmyyyy():
-            return self._transformation.dd_mmm_yyyy()
+        elif self._date_format.is_ddmmmyyyy():
+            return self._transformation.from_dd_mmm_yyyy()
 
-        elif self._validation.is_ddmmmyy():
-            return self._transformation.dd_mmm_yy()
+        elif self._date_format.is_ddmmmyy():
+            return self._transformation.from_dd_mmm_yy()
 
-        elif self._validation.is_full_month():
-            return self._transformation.full_month()
+        elif self._date_format.is_full_month():
+            return self._transformation.from_full_month()
 
         else:
             raise ValueError("Cannot parse date from value of " + self._date)
 
 
-class DateValidation:
+class DateFormatRecognition:
     def __init__(self, date: str):
         self._date = date
 
@@ -46,13 +74,13 @@ class DateValidation:
         return re.fullmatch(r"\d{6}", self._date)
 
     def is_ddmmyy_with_separators(self) -> bool:
-        return re.fullmatch(r"\d{2}[./\\-]\d{2}[./\\-]\d{2}", self._date)
+        return re.fullmatch(r"\d{1,2}[./\\-]\d{1,2}[./\\-]\d{2}", self._date)
 
     def is_ddmmyyyy(self) -> bool:
         return re.fullmatch(r"\d{8}", self._date)
 
     def is_ddmmyyyy_with_separators(self) -> bool:
-        return re.fullmatch(r"\d{2}[./\\-]\d{2}[./\\-]\d{4}", self._date)
+        return re.fullmatch(r"\d{1,2}[./\\-]\d{2}[./\\-]\d{4}", self._date)
 
     def is_ddmmmyyyy(self) -> bool:
         return re.fullmatch(
@@ -73,47 +101,83 @@ class DateTransformation:
         self._month_abbreviations = list(calendar.month_abbr)
         self._month_names = list(calendar.month_name)
 
-    def dd_mm_yyyy(self):
-        return tuple(map(
-            int, (self._date[0:2], self._date[2:4], self._date[4:8])))
+    def from_dd_mm_yy(self) -> DatesAsIntegers:
+        result = self._extract_as_numeric_yy()
+        result.pad_year()
 
-    def dd_mm_yy(self):
-        return tuple(map(
-            int, (self._date[0:2], self._date[2:4], "20" + self._date[4:6])))
+        return result
 
-    def dd_mm_yy_with_separators(self):
-        day, month, year = self._split_by_separator_characters()
+    def from_dd_mm_yyyy(self) -> DatesAsIntegers:
+        return self._extract_as_numeric_yyyy()
 
-        return tuple(map(int, (day, month, "20" + year)))
+    def from_dd_mm_yy_with_separators(self) -> DatesAsIntegers:
+        result = self._extract_as_numeric_with_separators()
+        result.pad_year()
 
-    def dd_mm_yyyy_with_separators(self):
-        return tuple(map(int, self._split_by_separator_characters()))
+        return result
 
-    def dd_mmm_yyyy(self):
-        return self._values_by_split_separator()
+    def from_dd_mm_yyyy_with_separators(self) -> DatesAsIntegers:
+        return self._extract_as_numeric_with_separators()
 
-    def dd_mmm_yy(self):
-        day, month, year = self._values_by_split_separator()
+    def from_dd_mmm_yyyy(self) -> DatesAsIntegers:
+        return self._extract_as_alphabetical()
 
-        return int(day), month, int("20" + str(year))
+    def from_dd_mmm_yy(self) -> DatesAsIntegers:
+        result = self._extract_as_alphabetical()
+        result.pad_year()
 
-    def full_month(self):
-        return self._values_by_split_separator()
+        return result
 
-    def _values_by_split_separator(self) -> tuple[int, int, int]:
-        day, month_name, year = self._split_by_separator_characters()
-        month = self.month_to_index(month_name)
+    def from_full_month(self) -> DatesAsIntegers:
+        return self._extract_as_alphabetical()
 
-        return int(day), month, int(year)
+    def _extract_as_numeric_yyyy(self) -> DatesAsIntegers:
+        return self._split_as_dd_mm_yyyy().to_integers()
 
-    def month_to_index(self, month_name: str) -> int:
+    def _extract_as_numeric_yy(self) -> DatesAsIntegers:
+        return self._split_as_dd_mm_yy().to_integers()
+
+    def _extract_as_numeric_with_separators(self) -> DatesAsIntegers:
+        return self._split_by_separator_characters().to_integers()
+
+    def _extract_as_alphabetical(self) -> DatesAsIntegers:
+        dates = self._split_by_separator_characters()
+        dates.month = self._alphabetic_month_index(dates.month)
+
+        return dates.to_integers()
+
+    def _alphabetic_month_index(self, month_name: str) -> int:
         if month_name in self._month_abbreviations:
-            month_name = self._month_abbreviations.index(month_name)
+            result = self._month_abbreviations.index(month_name)
 
         else:
-            month_name = self._month_names.index(month_name)
+            result = self._month_names.index(month_name)
 
-        return int(month_name)
+        return result
 
-    def _split_by_separator_characters(self) -> tuple[str, str, str]:
-        return re.split(r"\s|[./\\-]", self._date)
+    def _split_as_dd_mm_yy(self) -> DatesAsStrings:
+        result = DatesAsStrings()
+        result.day = self._date[0:2]
+        result.month = self._date[2:4]
+        result.year = self._date[4:6]
+
+        return result
+
+    def _split_as_dd_mm_yyyy(self) -> DatesAsStrings:
+        result = DatesAsStrings()
+        result.day = self._date[0:2]
+        result.month = self._date[2:4]
+        result.year = self._date[4:8]
+
+        return result
+
+    def _split_by_separator_characters(self) -> DatesAsStrings:
+        split_values = re.split(r"\s|[./\\-]", self._date)
+
+        result = DatesAsStrings()
+        result.day = split_values[0]
+        result.month = split_values[1]
+        result.year = split_values[2]
+
+        return result
+
