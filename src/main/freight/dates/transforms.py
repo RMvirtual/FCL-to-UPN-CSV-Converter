@@ -4,6 +4,7 @@ import dataclasses
 
 from src.main.freight.dates.format_recognition import DateFormatRecognition
 
+
 @dataclasses.dataclass
 class DatesAsIntegers:
     day: int = 0

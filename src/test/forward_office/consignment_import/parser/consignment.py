@@ -156,7 +156,7 @@ class TestConsignmentParser(unittest.TestCase):
         parser = ConsignmentParser()
         consignment = parser.parse(request)
 
-        date = consignment.delivery_date
+        date = consignment.shipment_dates.delivery_date
 
         self.assertEqual(23, date.day)
         self.assertEqual(8, date.month)
@@ -170,7 +170,7 @@ class TestConsignmentParser(unittest.TestCase):
         parser = ConsignmentParser()
         consignment = parser.parse(request)
 
-        time = consignment.delivery_time
+        time = consignment.shipment_dates.delivery_time
         self.assertEqual(13, time.hour)
         self.assertEqual(0, time.minute)
 

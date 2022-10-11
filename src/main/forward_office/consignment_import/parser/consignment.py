@@ -21,7 +21,10 @@ class ConsignmentParser:
         consignment.reference = request.reference
         consignment.cargo = CargoParser().parse(request.cargo)
         consignment.delivery_instructions = request.delivery_instructions
-        consignment.shipment_dates = dates.parse(request.shipment_dates)
+
+        consignment.shipment_dates = dates.parse(
+            request.shipment_dates.delivery_date)
+
         consignment.address = address.parse(request.address)
         consignment.service = ServiceParser().parse(request.service)
 

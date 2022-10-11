@@ -1,20 +1,18 @@
 from __future__ import annotations
 import datetime
 
+from src.main.freight.dates import transforms
+
 
 class Date:
     def __init__(self, date: str):
-        day, month, year = self._parse_date(date)
-        self._date = datetime.date(day=day, month=month, year=year)
+        parsed_date = transforms.parse(date)
 
-    @staticmethod
-    def _parse_date(stripped_date: str) -> tuple[int, int, int]:
-        stripped_date = stripped_date.replace("/", "")
-        day = int(stripped_date[0:2])
-        month = int(stripped_date[2:4])
-        year = int(stripped_date[4:8])
-
-        return day, month, year
+        self._date = datetime.date(
+            day=parsed_date.day,
+            month=parsed_date.month,
+            year=parsed_date.year
+        )
 
     @property
     def day(self) -> int:

@@ -3,7 +3,7 @@ import calendar
 
 from src.main.forward_office.consignment_import.parser.requests.types import (
     AddressParseRequest, ServiceParseRequest, CargoEntryParseRequest,
-    CargoParseRequest, ConsignmentParseRequest
+    CargoParseRequest, ConsignmentParseRequest, ShipmentDatesRequest
 )
 
 
@@ -24,8 +24,13 @@ class ParseRequestFactory:
         request.delivery_instructions = self.delivery_instructions(
             cleaned_values)
 
-        request.delivery_date = self.delivery_date(cleaned_values)
-        request.delivery_time = self.delivery_time(cleaned_values)
+        request.shipment_dates = ShipmentDatesRequest()
+
+        request.shipment_dates.delivery_date = self.delivery_date(
+            cleaned_values)
+
+        request.shipment_dates.delivery_time = self.delivery_time(
+            cleaned_values)
 
         return request
 
@@ -125,30 +130,19 @@ class ParseRequestFactory:
 
         return cleaned_values[self._columns["principal_client"]]
 
-    def delivery_date(self, values: list[str]):
+    def delivery_date(self, values: list[str]) -> ShipmentDatesRequest:
         cleaned_values = list(map(self._trim_whitespace, values))
-        date_string = cleaned_values[self._columns["delivery_date"]]
-        day, month, year = date_string.split("-")
 
-        abbreviations = {
-            month: index for index, month in enumerate(calendar.month_abbr)
-            if month
-        }
-
-        return datetime.date(
-            day=int(day),
-            month=abbreviations[month],
-            year=int("20" + year)
-        )
+        return cleaned_values[self._columns["delivery_date"]]
 
     def delivery_time(self, values: list[str]):
         cleaned_values = list(map(self._trim_whitespace, values))
 
         time_string = cleaned_values[self._columns["booking_time"]]
         # h:mmpm (fcl's time format).
-        new_time = datetime.datetime.strptime(time_string, "%I:%M%p")
+        # new_time = datetime.datetime.strptime(time_string, "%I:%M%p")
 
-        return new_time
+        return time_string
 
     @staticmethod
     def _trim_whitespace(value: str):
