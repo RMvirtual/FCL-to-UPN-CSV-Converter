@@ -1,0 +1,7 @@
+{
+  "FULL": 1,
+  "EURO": 2,
+  "HALF": 3,
+  "QUARTER": 4,
+  "MICRO": 5
+}
