@@ -4,7 +4,7 @@ from src.main.forward_office.consignment_import.controller \
     import FclImportController
 
 
-class TestFclImportController(unittest.TestCase):
+class TestCanImportOneLinerConsignment(unittest.TestCase):
     def setUp(self) -> None:
         self._import_format = {
             'contact_name': 0, 'company_name': 1, 'address_line_1': 2,
@@ -43,18 +43,29 @@ class TestFclImportController(unittest.TestCase):
         importer = FclImportController(self._import_format)
         report = importer.import_consignments(self._simple_example)
 
+        self._check_errors(report)
+        consignment = report.consignments.popitem()[1]
+
+        self._check_reference(consignment)
+        self._check_service(consignment)
+        self._check_address(consignment)
+        self._check_cargo(consignment)
+        self._check_shipment_dates(consignment)
+        self._check_instructions(consignment)
+
+    def _check_errors(self, report):
         self.assertEqual(1, len(report.consignments))
         self.assertFalse(report.errors)
         self.assertFalse(report.advisories)
 
-        consignment = report.consignments.popitem()[1]
+    def _check_reference(self, consignment):
         self.assertEqual("GR221003000", consignment.reference)
 
-        # Check service.
+    def _check_service(self, consignment):
         self.assertTrue(consignment.service.is_priority())
         self.assertTrue(consignment.service.is_tail_lift_required())
 
-        # Check address.
+    def _check_address(self, consignment):
         self.assertEqual("Disneyworld", consignment.client_name)
         self.assertEqual("Ryan Matfen", consignment.address.contact_name)
         self.assertEqual("Graylaw Freight Group", consignment.address.name)
@@ -63,7 +74,7 @@ class TestFclImportController(unittest.TestCase):
         self.assertEqual("WN8 9TA", consignment.address.post_code)
         self.assertEqual("01695 729101", consignment.address.telephone_number)
 
-        # Check cargo.
+    def _check_cargo(self, consignment):
         self.assertEqual(1, len(consignment.cargo))
         self.assertEqual(1, consignment.cargo[0].quantity)
         self.assertEqual("full", consignment.cargo[0].package_type.name)
@@ -75,12 +86,12 @@ class TestFclImportController(unittest.TestCase):
         self.assertTupleEqual(
             (1, 500), consignment.cargo[0].quantity_and_weight)
 
-        # Check dates.
+    def _check_shipment_dates(self, consignment):
         self.assertEqual(6, consignment.shipment_dates.delivery_date.day)
         self.assertEqual(10, consignment.shipment_dates.delivery_date.month)
         self.assertEqual(2022, consignment.shipment_dates.delivery_date.year)
 
-        # Check instructions
+    def _check_instructions(self, consignment):
         self.assertEqual(1, len(consignment.delivery_instructions))
         self.assertEqual("Tail Lift", consignment.delivery_instructions[0])
 

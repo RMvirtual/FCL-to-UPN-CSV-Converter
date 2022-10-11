@@ -25,14 +25,14 @@ class Service:
     def timed(self) -> None:
         self._options.premium_service = PremiumService.TIMED
 
+    def clear_premium_service(self):
+        self._options.premium_service = None
+
     def saturday(self) -> None:
         self._options.saturday = True
 
     def clear_saturday(self) -> None:
         self._options.saturday = False
-
-    def clear_premium_service(self):
-        self._options.premium_service = None
 
     def book_in(self) -> None:
         self._options.booked_service = BookedService.BOOK_IN

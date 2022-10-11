@@ -2,7 +2,8 @@ import re
 import calendar
 import dataclasses
 
-from src.main.freight.dates.format_recognition import DateFormatRecognition
+from src.main.freight.shipment_dates.format_recognition \
+    import DateFormatRecognition
 
 
 @dataclasses.dataclass

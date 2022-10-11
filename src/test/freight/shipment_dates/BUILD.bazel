@@ -1,11 +1,10 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "controller",
+    name = "dates",
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/forward_office/consignment_import",
+        "//src/main/freight/shipment_dates",
     ],
 )
-

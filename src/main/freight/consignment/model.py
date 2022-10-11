@@ -2,7 +2,7 @@ from src.main.freight.address.model import Address
 from src.main.freight.reference.model import Reference
 from src.main.freight.cargo.model import Cargo
 from src.main.freight.service.model import Service
-from src.main.freight.dates.model import ShipmentDates
+from src.main.freight.shipment_dates.model import ShipmentDates
 
 
 class Consignment:

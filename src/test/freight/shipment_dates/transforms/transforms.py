@@ -1,6 +1,6 @@
 import unittest
-from src.main.freight.dates import transforms
-from src.main.freight.dates.transforms import DatesAsIntegers
+from src.main.freight.shipment_dates import transforms
+from src.main.freight.shipment_dates.transforms import DatesAsIntegers
 
 
 class TestDateTransforms(unittest.TestCase):
