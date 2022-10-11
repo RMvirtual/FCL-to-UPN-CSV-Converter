@@ -70,6 +70,23 @@ class DateFormatRecognition:
     def __init__(self, date: str):
         self._date = date
 
+    def is_numeric(self) -> bool:
+        return re.fullmatch(r"\d{6,8}", self._date)
+
+    def is_alphabetic(self) -> bool:
+        return re.fullmatch(
+            r"\d{1,2}([./\\-]|\s+)[a-zA-z]{3,9}([./\\-]|\s+)(\d{2}|\d{4})",
+            self._date
+        )
+
+    def has_separators(self) -> bool:
+        return re.fullmatch(
+            r"\d{1,2}[./\\-]\d{1,2}[./\\-](\d{2}|\d{4})", self._date)
+
+    def has_whitespace(self) -> bool:
+        return re.fullmatch(
+            r"\d{1,2}\s+[a-zA-z]{3,9}\s+(\d{2}|\d{4})", self._date)
+
     def is_ddmmyy(self) -> bool:
         return re.fullmatch(r"\d{6}", self._date)
 
@@ -147,13 +164,12 @@ class DateTransformation:
         return dates.to_integers()
 
     def _alphabetic_month_index(self, month_name: str) -> int:
-        if month_name in self._month_abbreviations:
-            result = self._month_abbreviations.index(month_name)
+        is_abbreviated = month_name in self._month_abbreviations
 
-        else:
-            result = self._month_names.index(month_name)
+        months = (
+            self._month_abbreviations if is_abbreviated else self._month_names)
 
-        return result
+        return months.index(month_name)
 
     def _split_as_dd_mm_yy(self) -> DatesAsStrings:
         result = DatesAsStrings()

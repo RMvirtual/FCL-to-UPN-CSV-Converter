@@ -8,12 +8,3 @@ py_test(
         "//src/main/freight/dates",
     ],
 )
-
-py_test(
-    name = "transforms",
-    srcs = glob(["*.py"]),
-    data = [],
-    deps = [
-        "//src/main/freight/dates",
-    ],
-)
