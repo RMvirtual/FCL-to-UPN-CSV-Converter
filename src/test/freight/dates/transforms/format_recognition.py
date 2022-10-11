@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.dates.transforms import DateFormatRecognition
+from src.main.freight.dates.format_recognition import DateFormatRecognition
 
 
 class TestDateFormatRecognition(unittest.TestCase):
