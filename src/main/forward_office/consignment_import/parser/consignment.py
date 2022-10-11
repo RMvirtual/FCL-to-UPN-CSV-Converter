@@ -25,6 +25,9 @@ class ConsignmentParser:
         consignment.shipment_dates = dates.parse(
             request.shipment_dates.delivery_date)
 
+        consignment.shipment_dates.delivery_time = (
+            request.shipment_dates.delivery_time)
+
         consignment.address = address.parse(request.address)
         consignment.service = ServiceParser().parse(request.service)
 
