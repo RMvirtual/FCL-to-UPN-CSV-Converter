@@ -1,6 +1,3 @@
-import datetime
-import calendar
-
 from src.main.forward_office.consignment_import.parser.requests.types import (
     AddressParseRequest, ServiceParseRequest, CargoEntryParseRequest,
     CargoParseRequest, ConsignmentParseRequest, ShipmentDatesRequest
@@ -138,11 +135,7 @@ class ParseRequestFactory:
     def delivery_time(self, values: list[str]):
         cleaned_values = list(map(self._trim_whitespace, values))
 
-        time_string = cleaned_values[self._columns["booking_time"]]
-        # h:mmpm (fcl's time format).
-        # new_time = datetime.datetime.strptime(time_string, "%I:%M%p")
-
-        return time_string
+        return cleaned_values[self._columns["booking_time"]]
 
     @staticmethod
     def _trim_whitespace(value: str):

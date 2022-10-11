@@ -82,5 +82,5 @@ class ShipmentDates:
         return self._delivery_time
 
     @delivery_time.setter
-    def delivery_time(self, new_time: datetime.time) -> None:
-        self._delivery_time = new_time
+    def delivery_time(self, new_time: str) -> None:
+        self._delivery_time = datetime.datetime.strptime(new_time, "%I:%M%p")
