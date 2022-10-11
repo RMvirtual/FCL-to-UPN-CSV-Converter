@@ -1,10 +1,8 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "upn",
+    name = "mapping",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [
-        "//src/main/upn/mapping",
-    ],
+    deps = ["//src/main/forward_office"],
 )
