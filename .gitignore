@@ -146,3 +146,4 @@ user.bazelrc
 /resources/test/output/
 /resources/staging/
 
+/config/api/upn_api.json

@@ -4,6 +4,7 @@ py_library(
     name = "file_system",
     srcs = glob(["*.py"]),
     data = [
+        "//config/api:upn_api.json",
         "//resources:file_system.json",
         "//resources/forward_office:dashboard_format_files.json",
     ],
