@@ -1,5 +1,6 @@
 import zeep
 from src.main.file_system import api_files
+import datetime
 
 
 class ConsignmentApiCall:
@@ -12,8 +13,21 @@ class ConsignmentApiCall:
         url = upn_environment["url"]
         client = zeep.Client(url)
 
-        result = client.service.GetNetworkInput(
-            "75", "18/10/2022",
+        depot = 75
+        despatch_date = "2022-10-18T09:00:00"
+        test_job = "GR221005418"
+        barcode = "W213391123C"
+
+        base_64 = client.get_type(
+            "xsd:ArrayOfbase64Binary")
+
+        print(base_64)
+
+        """
+        result = client.service.PalletLabels(
+            barcode, depot,
             upn_environment["username"], upn_environment["password"]
         )
 
+        print(result)
+        """
