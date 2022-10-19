@@ -18,16 +18,14 @@ class ConsignmentApiCall:
         test_job = "GR221005418"
         barcode = "W213391123C"
 
-        base_64 = client.get_type(
-            "xsd:ArrayOfbase64Binary")
+        # zeep.xsd.String
+        # integer_type.accept(75)
+        # print(integer_type)
 
-        print(base_64)
-
-        """
-        result = client.service.PalletLabels(
-            barcode, depot,
-            upn_environment["username"], upn_environment["password"]
+        result = client.service.GetPostcodeRestrictions(
+            Postcode="AB10",
+            Username=upn_environment["username"],
+            Password=upn_environment["password"]
         )
 
         print(result)
-        """
