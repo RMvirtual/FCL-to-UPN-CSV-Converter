@@ -6,6 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python3_9_x86_64-pc-windows-msvc/DLLs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python3_9_x86_64-pc-windows-msvc/Lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python3_9_x86_64-pc-windows-msvc/Lib/site-packages" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python_third_party/pypi__requests" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python_third_party/pypi__requests_file/site-packages" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter/external/python_third_party/pypi__zeep/site-packages" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/bazel-fcl-to-upn-csv-converter" />
       <excludeFolder url="file://$MODULE_DIR$/bazel-bin" />
       <excludeFolder url="file://$MODULE_DIR$/bazel-out" />

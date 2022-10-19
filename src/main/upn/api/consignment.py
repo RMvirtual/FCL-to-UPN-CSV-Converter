@@ -1,4 +1,4 @@
-import requests
+import zeep
 from src.main.file_system import api_files
 
 
@@ -9,16 +9,11 @@ class ConsignmentApiCall:
     @staticmethod
     def get_network_input() -> None:
         upn_environment = api_files.upn_api()
+        url = upn_environment["url"]
+        client = zeep.Client(url)
 
-        response = requests.get(
-            url=upn_environment["url"],
-            params=(
-                "Depot=" + upn_environment["depot"]
-                + "&JobDate=" + "17/10/2022"
-                + "&Username=" + upn_environment["username"]
-                + "&Password=" + upn_environment["password"]
-            )
+        result = client.service.GetNetworkInput(
+            "75", "18/10/2022",
+            upn_environment["username"], upn_environment["password"]
         )
-
-        print(response.text)
 
