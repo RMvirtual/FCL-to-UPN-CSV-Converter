@@ -1,25 +1,16 @@
 from __future__ import annotations
-from src.main.file_system.file_readers import runfiles
-from src.main.file_system.file_readers import json_file
+from src.main.file_system.file_contents import oversize_options
 
 
 def all_options() -> dict[str, dict[str, float]]:
     result = {}
-    options_file = option_file_contents()
 
-    for entry in options_file:
+    for entry in oversize_options.contents():
         package_type = entry["base_type"]
         package_type_options = _package_type_from_json(entry)
         result[package_type] = package_type_options
 
     return result
-
-
-def option_file_contents() -> list[dict[str, str]]:
-    options_file = runfiles.absolute_path(
-        "resources/cargo_types/oversize_options.json")
-
-    return json_file.deserialise(options_file)
 
 
 def _package_type_from_json(json_entry):

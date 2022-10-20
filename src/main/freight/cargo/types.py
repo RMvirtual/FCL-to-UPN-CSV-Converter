@@ -1,6 +1,5 @@
 from __future__ import annotations
-import json
-from src.main.file_system.file_readers import runfiles, system_files
+from src.main.file_system.file_contents import cargo_types
 from src.main.freight.cargo import oversize_options
 
 
@@ -19,12 +18,8 @@ def _matching_package_types(type_name: str) -> list[PackageType]:
 
 
 def _package_types():
-    return [_deserialise(package) for package in _serialised_package_types()]
-
-
-def _serialised_package_types():
-    with open(_base_packages_file(), "r") as json_file:
-        return json.load(json_file)
+    return [
+        _deserialise(package) for package in cargo_types.base_packages_file()]
 
 
 def _deserialise(package_type_definitions: dict[str, str]):
@@ -45,14 +40,6 @@ def _deserialise(package_type_definitions: dict[str, str]):
     result.override_options = package_type_definitions["override_options"]
 
     return result
-
-
-def _base_packages_file():
-    return runfiles.absolute_path(_cargo_types_file())
-
-
-def _cargo_types_file():
-    return system_files.load_path("CARGO_TYPES")
 
 
 class PackageType:
