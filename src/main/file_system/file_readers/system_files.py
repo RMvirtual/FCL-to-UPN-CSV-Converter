@@ -23,4 +23,4 @@ def _json_contents():
 
 
 def _file_path():
-    return runfiles.load_path("resources/file_system.json")
+    return runfiles.absolute_path("resources/file_system.json")

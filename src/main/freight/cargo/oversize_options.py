@@ -16,7 +16,7 @@ def all_options() -> dict[str, dict[str, float]]:
 
 
 def option_file_contents() -> list[dict[str, str]]:
-    options_file = runfiles.load_path(
+    options_file = runfiles.absolute_path(
         "resources/cargo_types/oversize_options.json")
 
     return json_file.deserialise(options_file)

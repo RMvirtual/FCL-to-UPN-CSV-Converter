@@ -11,7 +11,7 @@ class ImportStructure:
 
 
 def read(src: str) -> dataclasses.dataclass:
-    file_path = runfiles.load_path(src)
+    file_path = runfiles.absolute_path(src)
     deserialise(file_path)
 
     return None

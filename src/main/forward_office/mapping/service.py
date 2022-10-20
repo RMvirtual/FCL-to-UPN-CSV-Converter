@@ -1,6 +1,5 @@
-import json
 import copy
-from src.main.file_system.file_readers import runfiles, system_files
+from src.main.file_system.file_contents import forward_office
 from src.main.freight.service.model import Service
 
 
@@ -14,8 +13,8 @@ class ServiceCodeMapBuilder:
         self._parse_mappings()
 
     def _parse_mappings(self):
-        for service_mapping in self._mapping_file_contents():
-            self._add(service_mapping)
+        for mapping in forward_office.service_code_mappings():
+            self._add(mapping)
 
     def _add(self, service_mapping):
         priority_code = service_mapping["priority_code"]
@@ -65,16 +64,6 @@ class ServiceCodeMapBuilder:
 
     def _process_saturday_service(self, service_key: str):
         self._service.saturday() if service_key else ...
-
-    def _mapping_file_contents(self):
-        with open(self._file_path()) as json_file:
-            return json.load(json_file)
-
-    @staticmethod
-    def _file_path():
-        relative_path = system_files.load_path("FCL_SERVICE_CODE_MAPPINGS")
-
-        return runfiles.load_path(relative_path)
 
     def mappings(self):
         return copy.copy(self._mappings)

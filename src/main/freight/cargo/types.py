@@ -48,7 +48,7 @@ def _deserialise(package_type_definitions: dict[str, str]):
 
 
 def _base_packages_file():
-    return runfiles.load_path(_cargo_types_file())
+    return runfiles.absolute_path(_cargo_types_file())
 
 
 def _cargo_types_file():
