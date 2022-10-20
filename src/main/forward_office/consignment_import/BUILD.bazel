@@ -7,7 +7,6 @@ py_library(
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/forward_office/consignment_import/format",
         "//src/main/forward_office/consignment_import/parser",
     ],
 )

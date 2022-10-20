@@ -3,8 +3,8 @@ from src.main.file_system.file_contents import cargo_types
 from src.main.freight.cargo import oversize_options
 
 
-def load_package_type(type_name: str) -> PackageType:
-    matching_types = _matching_package_types(type_name)
+def load(package_type_name: str) -> PackageType:
+    matching_types = _matching_package_types(package_type_name)
 
     if not matching_types:
         raise ValueError("Package type does not exist.")

@@ -1,10 +1,10 @@
 import unittest
 
-from src.main.freight.consignment.validation \
-    import ConsignmentValidationStrategy, ConsignmentErrors
+from src.main.freight.consignment.validation import (
+    ConsignmentValidationStrategy, ConsignmentErrors)
 
 from src.main.freight.consignment.model import Consignment
-from src.main.freight.cargo import types
+from src.main.freight.cargo import package_types
 
 
 class TestConsignmentValidation(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestConsignmentValidation(unittest.TestCase):
         self._consignment.shipment_dates.delivery_date = "04/10/2022"
 
         self._consignment.cargo.entry_by_package_type(
-            types.load_package_type("full"))
+            package_types.load("full"))
 
     def test_should_highlight_tail_lift_errors(self):
         tail_lift_instructions = [
