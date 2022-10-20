@@ -1,3 +1,7 @@
-exports_files([
-    "graylaw_to_upn.json"
-])
+filegroup(
+    name = "export_profiles",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

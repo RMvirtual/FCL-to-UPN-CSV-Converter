@@ -1,1 +1,7 @@
-exports_files(["simple_scenario.csv"])
+filegroup(
+    name = "test_outputs",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

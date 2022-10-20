@@ -1,8 +1,7 @@
-exports_files([
-    "booked_services.json",
-    "pallet_sizes.json",
-    "pallet_types.json",
-    "premium_services.json",
-    "main_services.json",
-    "tail_lift_options.json"
-])
+filegroup(
+    name = "export_mappings",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

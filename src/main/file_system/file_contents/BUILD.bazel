@@ -4,9 +4,9 @@ py_library(
     name = "file_contents",
     srcs = glob(["*.py"]),
     data = [
-        "//config/api:upn_api.json",
-        "//resources:file_system.json",
-        "//resources/forward_office/dashboard_formats:short_codes.json",
+        "//config/api",
+        "//resources:file_system",
+        "//resources/forward_office/dashboard_formats",
     ],
     visibility = ["//visibility:public"],
     deps = [

@@ -1,3 +1,7 @@
-exports_files([
-    "cargo_type_mappings.json",
-])
+filegroup(
+    name = "package_types",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

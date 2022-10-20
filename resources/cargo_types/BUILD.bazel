@@ -1,4 +1,7 @@
-exports_files([
-    "base_packages.json",
-    "oversize_options.json"
-])
+filegroup(
+    name = "cargo_types",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

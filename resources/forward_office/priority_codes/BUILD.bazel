@@ -1,3 +1,7 @@
-exports_files([
-    "upn.json",
-])
+filegroup(
+    name = "priority_codes",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

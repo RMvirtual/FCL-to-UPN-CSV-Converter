@@ -3,7 +3,7 @@ load("@rules_python//python:defs.bzl", "py_test")
 py_test(
     name = "csv_file",
     srcs = glob(["*.py"]),
-    data = ["//resources/test_inputs:simple_scenario.csv"],
+    data = ["//resources/test_inputs"],
     deps = [
         "//src/main/file_system",
     ],

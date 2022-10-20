@@ -1,10 +1,7 @@
 filegroup(
     name = "dashboard_formats",
     srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
 )
 
-exports_files([
-    "plan_iom.json",
-    "short_codes.json",
-    "upn_edi_imp.json",
-])
+exports_files(glob(["*"]))

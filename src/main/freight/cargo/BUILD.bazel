@@ -4,8 +4,7 @@ py_library(
     name = "cargo",
     srcs = glob(["*.py"]),
     data = [
-        "//resources/cargo_types:base_packages.json",
-        "//resources/cargo_types:oversize_options.json",
+        "//resources/cargo_types",
     ],
     visibility = ["//visibility:public"],
     deps = [
