@@ -1,5 +1,6 @@
 import unittest
-from src.main.file_system.file_contents.dashboard_format_files import DashboardFormatFiles
+from src.main.file_system.file_contents.forward_office \
+    import DashboardFormatFiles
 
 
 class TestDashboardFormats(unittest.TestCase):
