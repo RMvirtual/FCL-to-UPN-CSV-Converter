@@ -21,8 +21,6 @@ class FormatLoader:
 
     def _add(self, format_file):
         file_path = self._file_path(format_file)
-        print("Super Path:", file_path)
-
         format_contents = self._json_contents(file_path)
 
         self._add_format(format_file.name, format_contents)
