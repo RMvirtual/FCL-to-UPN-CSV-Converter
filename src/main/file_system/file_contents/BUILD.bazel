@@ -6,9 +6,12 @@ py_library(
     data = [
         "//config/api",
         "//resources:file_system",
+        "//resources/cargo_types",
         "//resources/forward_office/dashboard_formats",
         "//resources/forward_office/package_types",
         "//resources/forward_office/priority_codes",
+        "//resources/test_inputs",
+        "//resources/test_outputs",
         "//resources/upn/export_mappings",
         "//resources/upn/export_profiles",
     ],

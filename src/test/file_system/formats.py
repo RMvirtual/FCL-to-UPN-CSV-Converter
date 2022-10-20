@@ -1,6 +1,5 @@
 import unittest
-from src.main.file_system.file_contents.forward_office \
-    import DashboardFormatFiles
+from src.main.file_system.file_contents import forward_office
 
 
 class TestDashboardFormats(unittest.TestCase):
@@ -8,8 +7,7 @@ class TestDashboardFormats(unittest.TestCase):
         pass
 
     def test_can_get_a_dashboard_format_file(self):
-        format_files = DashboardFormatFiles()
-        format_path = format_files.UPNEDIIMP
+        format_path = forward_office.DashboardFormatFiles().UPNEDIIMP
 
         self.assertEqual(
             "resources/forward_office/dashboard_formats/upn_edi_imp.json",

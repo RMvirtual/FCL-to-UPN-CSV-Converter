@@ -1,7 +1,4 @@
 import dataclasses
-import json
-import copy
-
 from src.main.freight.cargo.types import PackageType
 
 

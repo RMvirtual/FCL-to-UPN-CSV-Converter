@@ -4,10 +4,7 @@ load("@python_third_party//:requirements.bzl", "requirement")
 py_library(
     name = "mapping",
     srcs = glob(["*.py"]),
-    data = [
-        "//resources/forward_office/package_types",
-        "//resources/forward_office/priority_codes",
-    ],
+    data = [],
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/freight",

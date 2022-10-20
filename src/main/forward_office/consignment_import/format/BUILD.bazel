@@ -4,7 +4,7 @@ load("@python_third_party//:requirements.bzl", "requirement")
 py_library(
     name = "format",
     srcs = glob(["*.py"]),
-    data = ["//resources/forward_office/dashboard_formats"],
+    data = [],
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/file_system",
