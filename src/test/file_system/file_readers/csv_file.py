@@ -1,6 +1,6 @@
 import unittest
 from src.main.file_system.file_readers import csv_file
-from src.main.file_system.runfiles import load_path
+from src.main.file_system.file_readers.runfiles import load_path
 
 
 class TestCsvReader(unittest.TestCase):

@@ -4,5 +4,7 @@ py_library(
     name = "file_readers",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+        "@rules_python//python/runfiles",
+    ],
 )

@@ -1,3 +1,8 @@
+filegroup(
+    name = "dashboard_formats",
+    srcs = glob(["*"]),
+)
+
 exports_files([
     "plan_iom.json",
     "short_codes.json",

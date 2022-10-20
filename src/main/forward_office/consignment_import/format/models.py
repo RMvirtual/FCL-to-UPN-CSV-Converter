@@ -2,8 +2,8 @@ import dataclasses
 import json
 import copy
 
-from src.main.file_system import runfiles
-from src.main.file_system.dashboard_format_files import DashboardFormatFiles
+from src.main.file_system.file_readers import runfiles
+from src.main.file_system.file_contents.dashboard_format_files import DashboardFormatFiles
 
 
 class FormatLoader:

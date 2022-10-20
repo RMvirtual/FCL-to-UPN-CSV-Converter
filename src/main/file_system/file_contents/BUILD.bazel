@@ -1,12 +1,15 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "file_system",
+    name = "file_contents",
     srcs = glob(["*.py"]),
-    data = [],
+    data = [
+        "//config/api:upn_api.json",
+        "//resources:file_system.json",
+        "//resources/forward_office/dashboard_formats:short_codes.json",
+    ],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/file_system/file_contents",
         "//src/main/file_system/file_readers",
     ],
 )

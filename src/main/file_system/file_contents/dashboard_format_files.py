@@ -1,8 +1,7 @@
 import dataclasses
 import json
 
-from src.main.file_system import system_files, runfiles
-from src.main.file_system.file_readers import json_to_dataclass
+from src.main.file_system.file_readers import runfiles, system_files
 
 
 def _format_files():
