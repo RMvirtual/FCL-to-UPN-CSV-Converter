@@ -1,0 +1,3 @@
+exports_files([
+    "cargo_type_mappings.json",
+])

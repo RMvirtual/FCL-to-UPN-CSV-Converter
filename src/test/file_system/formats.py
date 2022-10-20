@@ -11,7 +11,9 @@ class TestDashboardFormats(unittest.TestCase):
         format_path = format_files.UPNEDIIMP
 
         self.assertEqual(
-            "resources/forward_office/formats/upn_edi_imp.json", format_path)
+            "resources/forward_office/dashboard_formats/upn_edi_imp.json",
+            format_path
+        )
 
 
 if __name__ == '__main__':

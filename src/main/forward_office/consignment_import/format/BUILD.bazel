@@ -5,7 +5,8 @@ py_library(
     name = "format",
     srcs = glob(["*.py"]),
     data = [
-        "//resources/forward_office/formats:upn_edi_imp.json",
+        "//resources/forward_office/dashboard_formats:plan_iom.json",
+        "//resources/forward_office/dashboard_formats:upn_edi_imp.json",
     ],
     visibility = ["//visibility:public"],
     deps = [

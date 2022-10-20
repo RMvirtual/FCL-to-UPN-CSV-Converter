@@ -1,5 +1,6 @@
 import unittest
-from src.main.forward_office.consignment_import.format.models import DashboardFormats
+from src.main.forward_office.consignment_import.format.models \
+    import DashboardFormats
 
 
 class TestDashboardFormats(unittest.TestCase):

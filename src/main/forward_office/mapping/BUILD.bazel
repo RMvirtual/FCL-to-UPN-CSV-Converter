@@ -5,11 +5,11 @@ py_library(
     name = "mapping",
     srcs = glob(["*.py"]),
     data = [
-        "//resources/forward_office:cargo_type_mappings.json",
-        "//resources/forward_office:service_mappings.json"
+        "//resources/forward_office/package_types:cargo_type_mappings.json",
+        "//resources/forward_office/priority_codes:upn.json",
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/freight"
+        "//src/main/freight",
     ],
 )

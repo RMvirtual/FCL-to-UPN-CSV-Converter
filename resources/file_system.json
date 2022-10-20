@@ -1,7 +1,7 @@
 {
-  "FCL_DASHBOARD_FORMATS": "resources/forward_office/dashboard_format_files.json",
-  "FCL_CARGO_TYPE_MAPPINGS": "resources/forward_office/cargo_type_mappings.json",
-  "FCL_SERVICE_CODE_MAPPINGS": "resources/forward_office/service_mappings.json",
+  "FCL_DASHBOARD_FORMATS": "resources/forward_office/dashboard_formats/short_codes.json",
+  "FCL_CARGO_TYPE_MAPPINGS": "resources/forward_office/package_types/cargo_type_mappings.json",
+  "FCL_SERVICE_CODE_MAPPINGS": "resources/forward_office/priority_codes/upn.json",
   "CARGO_TYPES": "resources/cargo_types/base_packages.json",
   "OVERSIZE_OPTIONS": "resources/cargo_types/oversize_options.json"
 }
