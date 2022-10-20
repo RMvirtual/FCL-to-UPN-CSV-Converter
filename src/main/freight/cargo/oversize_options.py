@@ -1,6 +1,6 @@
 from __future__ import annotations
-import json
 from src.main.file_system.file_readers import runfiles
+from src.main.file_system.file_readers import json_file
 
 
 def all_options() -> dict[str, dict[str, float]]:
@@ -19,10 +19,7 @@ def option_file_contents() -> list[dict[str, str]]:
     options_file = runfiles.load_path(
         "resources/cargo_types/oversize_options.json")
 
-    with open(options_file, "r") as json_file:
-        result = json.load(json_file)
-
-    return result
+    return json_file.deserialise(options_file)
 
 
 def _package_type_from_json(json_entry):
