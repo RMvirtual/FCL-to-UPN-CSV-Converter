@@ -1,6 +1,6 @@
 {
   "on_hold": 1,
-  "go": 2,
+  "removed_from_hold": 2,
   "goods_received": 3,
   "hazard": 4,
   "haz_level": 5,
@@ -29,5 +29,5 @@
   "collecting_haulier_code": 28,
   "delivering_haulier_code": 29,
   "is_over_180_cm": 30,
-  "c_p_att": 31
+  "customer_pw_attached": 31
 }

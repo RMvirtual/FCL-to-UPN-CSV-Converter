@@ -1,6 +1,6 @@
 import unittest
 
-from src.main.forward_office.consignment_import.controller \
+from src.main.forward_office.consignment_import.controllers.controller \
     import FclImportController
 
 
