@@ -1,5 +1,5 @@
 import unittest
-from src.main.file_system.file_readers import system_files
+from src.main.file_system.file_contents import system_files
 
 
 class TestSystemPaths(unittest.TestCase):

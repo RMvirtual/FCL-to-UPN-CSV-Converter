@@ -1,4 +1,5 @@
-from src.main.file_system.file_readers import runfiles, system_files
+from src.main.file_system.file_readers import runfiles
+from src.main.file_system.file_contents import system_files
 
 
 def base_packages_file():
