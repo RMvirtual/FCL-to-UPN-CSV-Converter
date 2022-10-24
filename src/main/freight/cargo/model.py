@@ -16,15 +16,13 @@ class Cargo:
         if type(entry) is CargoEntry:
             return self.contains(entry)
 
-        else:
-            raise TypeError("Incorrect containing type to check for.")
+        raise TypeError("Incorrect containing type to check for.")
 
     def contains(self, entry: CargoEntry) -> bool:
         return bool(self._matching_entries(entry.package_type))
 
     def _combine(self, new_entry: CargoEntry):
-        current_entry = self.entry_by_package_type(new_entry.package_type)
-        current_entry += new_entry
+        self.entry_by_package_type(new_entry.package_type).__iadd__(new_entry)
 
     def _add(self, entry: CargoEntry) -> None:
         self._entries.append(entry)

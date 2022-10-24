@@ -17,11 +17,11 @@ def _matching_package_types(type_name: str) -> list[PackageType]:
         lambda package_type: package_type.name == type_name, _package_types()))
 
 
-def _package_types():
+def _package_types() -> list[PackageType]:
     return list(map(_deserialise, cargo_types.base_packages_file()))
 
 
-def _deserialise(package_type_definitions: dict[str, str]):
+def _deserialise(package_type_definitions: dict[str, str]) -> PackageType:
     result = PackageType()
     result.name = package_type_definitions["name"]
     result.base_type = package_type_definitions["type"]
@@ -80,7 +80,7 @@ class PackageType:
             raise ValueError("Oversize option not found.")
 
     @property
-    def oversize_multiplier(self):
+    def oversize_multiplier(self) -> float:
         return self._oversize_options[self._oversize_option]
 
     @property
