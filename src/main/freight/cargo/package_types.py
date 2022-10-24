@@ -18,8 +18,7 @@ def _matching_package_types(type_name: str) -> list[PackageType]:
 
 
 def _package_types():
-    return [
-        _deserialise(package) for package in cargo_types.base_packages_file()]
+    return list(map(_deserialise, cargo_types.base_packages_file()))
 
 
 def _deserialise(package_type_definitions: dict[str, str]):

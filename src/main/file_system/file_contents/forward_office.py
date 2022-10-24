@@ -49,13 +49,10 @@ class FormatLoader:
         self._add_format(format_file.name, format_contents)
 
     def _add_format(self, name: str, contents: dict[str, int]) -> None:
-        new_format = [
-            name,
-            dict[str, int],
+        self._formats.append([
+            name, dict[str, int],
             dataclasses.field(default_factory=lambda: contents)
-        ]
-
-        self._formats.append(new_format)
+        ])
 
     def all(self):
         return copy.copy(self._formats)

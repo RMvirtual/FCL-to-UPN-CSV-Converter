@@ -27,11 +27,7 @@ class Consignment:
             self._reference = new_reference
 
         elif type(new_reference) is str:
-            try:
-                self._reference = Reference(new_reference)
-
-            except ValueError as error:
-                raise error
+            self._reference = Reference(new_reference)
 
         else:
             raise TypeError("Incorrect input type for a reference.")
