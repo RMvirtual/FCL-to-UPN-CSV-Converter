@@ -23,6 +23,19 @@ class ConsignmentApiCall:
             Password=self._environment["password"]
         )
 
+    def get_network_deliveries(self, date: str) -> list[dict]:
+        """Returns a list of deliveries completed on behalf of the
+        network for a particular day (does not include collections
+        received).
+        :param date: A string in yyyy-mm-dd format.
+        """
+        return self._client.service.GetNetworkDeliveries(
+            Depot=75,
+            JobDate=date,
+            Username=self._environment["username"],
+            Password=self._environment["password"]
+        )
+
     def get_post_code_restrictions(self, post_code: str) -> list[dict]:
         """Returns a list of restriction information for a particular
         postcode.

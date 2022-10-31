@@ -16,6 +16,13 @@ class TestUpnAPI(unittest.TestCase):
 
         self.assertEqual(correct_no_of_consignments, len(network_input))
 
+    def test_should_get_network_deliveries(self):
+        caller = ConsignmentApiCall()
+        network_input = caller.get_network_deliveries("2022-10-18")
+        correct_no_of_consignments = 152
+
+        self.assertEqual(correct_no_of_consignments, len(network_input))
+
 
 if __name__ == '__main__':
     unittest.main()
