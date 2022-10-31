@@ -23,6 +23,14 @@ class TestUpnAPI(unittest.TestCase):
 
         self.assertEqual(correct_no_of_consignments, len(network_input))
 
+    def test_should_get_network_delivery_by_con_no(self):
+        caller = ConsignmentApiCall()
+        consignment = caller.get_network_delivery_by_con_no("GR221005418")
+
+        print(consignment)
+        self.assertEqual(1, len(consignment))
+        self.fail("DUMMY FAIL")
+
 
 if __name__ == '__main__':
     unittest.main()

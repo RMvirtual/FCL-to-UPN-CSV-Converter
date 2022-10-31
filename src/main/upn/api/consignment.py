@@ -36,6 +36,14 @@ class ConsignmentApiCall:
             Password=self._environment["password"]
         )
 
+    def get_network_delivery_by_con_no(self, con_no: str):
+        return self._client.service.GetNetworkDeliveryByConNo(
+            Depot=75,
+            ConNo=["GR221005418"],
+            Username=self._environment["username"],
+            Password=self._environment["password"]
+        )
+
     def get_post_code_restrictions(self, post_code: str) -> list[dict]:
         """Returns a list of restriction information for a particular
         postcode.
