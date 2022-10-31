@@ -28,3 +28,14 @@ class ConsignmentApiCall:
         )
 
         print(result)
+
+    def get_post_code_restrictions(self, post_code: str):
+        upn_environment = api_files.upn_api()
+        url = upn_environment["url"]
+        client = zeep.Client(url)
+
+        return client.service.GetPostcodeRestrictions(
+            Postcode=post_code,
+            Username=upn_environment["username"],
+            Password=upn_environment["password"]
+        )

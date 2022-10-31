@@ -9,3 +9,4 @@ class ConsignmentImportReport:
 
     errors: list[str] = dataclasses.field(default_factory=list[str])
     advisories: list[str] = dataclasses.field(default_factory=list[str])
+
