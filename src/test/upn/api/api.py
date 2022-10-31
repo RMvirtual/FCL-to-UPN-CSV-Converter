@@ -15,10 +15,7 @@ class TestUpnAPI(unittest.TestCase):
         caller = ConsignmentApiCall()
         network_input = caller.get_network_input()
 
-        print("Printing network input:")
-        print(network_input)
-
-        self.fail("DUMMY FAIL")
+        self.assertEqual(174, len(network_input))
 
 
 if __name__ == '__main__':

@@ -7,7 +7,10 @@ class ConsignmentApiCall:
         pass
 
     @staticmethod
-    def get_network_input():
+    def get_network_input() -> list[dict]:
+        """Returns a list of inbound consignments, collections
+        requested and non-network input for a particular day.
+        """
         upn_environment = api_files.upn_api()
         client = zeep.Client(upn_environment["url"])
 
@@ -15,10 +18,6 @@ class ConsignmentApiCall:
         despatch_date = "2022-10-18T09:00:00"
         test_job = "GR221005418"
         barcode = "W213391123C"
-
-        # zeep.xsd.String
-        # integer_type.accept(75)
-        # print(integer_type)
 
         return client.service.GetNetworkInput(
             Depot=75,
@@ -28,7 +27,10 @@ class ConsignmentApiCall:
         )
 
     @staticmethod
-    def get_post_code_restrictions(post_code: str):
+    def get_post_code_restrictions(post_code: str) -> list[dict]:
+        """Returns a list of restriction information for a particular
+        postcode.
+        """
         upn_environment = api_files.upn_api()
         client = zeep.Client(upn_environment["url"])
 
