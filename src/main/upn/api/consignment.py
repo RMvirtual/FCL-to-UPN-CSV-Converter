@@ -37,9 +37,15 @@ class ConsignmentApiCall:
         )
 
     def get_network_delivery_by_con_no(self, con_no: str):
+        # xsd, ns0 - ns4
+        array_of_string = self._client.get_type("ns3:ArrayOfstring")
+        print(array_of_string)
+        value_to_pass = array_of_string([con_no, con_no])
+        print(value_to_pass)
+
         return self._client.service.GetNetworkDeliveryByConNo(
             Depot=75,
-            ConNo=["GR221005418"],
+            ConNo=value_to_pass,
             Username=self._environment["username"],
             Password=self._environment["password"]
         )
