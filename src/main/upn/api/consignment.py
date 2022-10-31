@@ -7,21 +7,21 @@ class ConsignmentApiCall:
         pass
 
     @staticmethod
-    def get_network_input() -> list[dict]:
+    def get_network_input(date: str) -> list[dict]:
         """Returns a list of inbound consignments, collections
         requested and non-network input for a particular day.
+        :param date: A string in yyyy-mm-dd format.
         """
         upn_environment = api_files.upn_api()
         client = zeep.Client(upn_environment["url"])
 
-        depot = 75
         despatch_date = "2022-10-18T09:00:00"
         test_job = "GR221005418"
         barcode = "W213391123C"
 
         return client.service.GetNetworkInput(
             Depot=75,
-            JobDate="2022-10-18",
+            JobDate=date,
             Username=upn_environment["username"],
             Password=upn_environment["password"]
         )
