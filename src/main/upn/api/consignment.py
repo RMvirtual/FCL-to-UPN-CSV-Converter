@@ -2,7 +2,7 @@ import zeep
 from src.main.file_system.file_contents import api_files
 
 
-class ConsignmentApiCall:
+class UpnSoapApi:
     def __init__(self):
         self._environment = api_files.upn_api()
         self._client = zeep.Client(self._environment["url"])
@@ -37,11 +37,12 @@ class ConsignmentApiCall:
         )
 
     def get_network_delivery_by_con_no(self, con_no: str):
-        # xsd, ns0 - ns4
+        """Only seems to work with the depot number api parameter
+        being the actual depot of delivery (e.g. 75 for local dels,
+        depot 9 for NE deliveries).
+        """
         array_of_string = self._client.get_type("ns3:ArrayOfstring")
-        print(array_of_string)
-        value_to_pass = array_of_string([con_no, con_no])
-        print(value_to_pass)
+        value_to_pass = array_of_string([con_no])
 
         return self._client.service.GetNetworkDeliveryByConNo(
             Depot=75,
