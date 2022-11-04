@@ -1,0 +1,25 @@
+{
+  "main_service": {
+    "P": "PRIORITY",
+    "S": "STANDARD",
+    "I": "INTERNATIONAL (NOT IMPLEMENTED)",
+    "R": "PALLET RETURN (NOT IMPLEMENTED)"
+  },
+  "premium_service": {
+    "": null,
+    "B10": "PRE_10AM",
+    "AM": "AM",
+    "Timed": "TIMED",
+    "Sat": "SATURDAY"
+  },
+  "tail_lift_required": {
+    "": false,
+    "TLift": true
+  },
+  "additional_service": {
+    "": null,
+    "BI": "BOOK_IN",
+    "Bkd": "BOOKED",
+    "OOH": "OUT-OF-HOURS"
+  }
+}
