@@ -22,6 +22,4 @@ def absolute_path(relative_path: str):
 
 
 def load_json_file(relative_path: str) -> dict:
-    file_path = absolute_path(relative_path)
-
-    return json_file.deserialise(file_path)
+    return json_file.deserialise(absolute_path(relative_path))
