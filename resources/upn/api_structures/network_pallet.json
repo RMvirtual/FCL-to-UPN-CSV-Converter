@@ -1,0 +1,20 @@
+{
+  "consignment_barcode_no": {
+    "type": "string",
+    "mapping": "ConBarcode"
+  },
+  "pallet_type": {
+    "type": "string",
+    "mapping": "PalletType",
+    "values": ["Full", "Euro", "Half", "Quarter", "Micro"]
+  },
+  "pallet_size": {
+    "type": "string",
+    "mapping": "PalletSize",
+    "values": ["N", "O", "2", "3"]
+  },
+  "pallet_barcode_no": {
+    "type": "string",
+    "mapping": "PltBarcode"
+  }
+}

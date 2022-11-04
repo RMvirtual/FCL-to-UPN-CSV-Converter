@@ -1,0 +1,102 @@
+{
+  "consignment_no": {
+    "type": "string",
+    "mapping": "ConNo"
+  },
+  "depot_no": {
+    "type": "int",
+    "mapping": "Depot"
+  },
+  "customer_reference": {
+    "type": "string",
+    "mapping": "CustRef"
+  },
+  "despatch_date": {
+    "type": "datetime",
+    "mapping": "DespatchDate"
+  },
+  "delivery_name": {
+    "type": "string",
+    "mapping": "DeliveryCoName"
+  },
+  "delivery_address_1": {
+    "type": "string",
+    "mapping": "DeliveryAdd1"
+  },
+  "delivery_address_2": {
+    "type": "string",
+    "mapping": "DeliveryAdd2"
+  },
+  "delivery_town": {
+    "type": "string",
+    "mapping": "DeliveryTown"
+  },
+  "delivery_county": {
+    "type": "string",
+    "mapping": "DeliveryCounty"
+  },
+  "delivery_post_code": {
+    "type": "string",
+    "mapping": "DeliveryPostcode"
+  },
+  "delivery_telephone_no": {
+    "type": "string",
+    "mapping": "DeliveryPhone"
+  },
+  "total_weight": {
+    "type": "int",
+    "mapping": "TotalWeight"
+  },
+  "special_instructions": {
+    "type": "string",
+    "mapping": "SpecialInstructions"
+  },
+  "customer_id": {
+    "type": "int",
+    "mapping": "CustomerID"
+  },
+  "delivery_contact_name": {
+    "type": "string",
+    "mapping": "DeliveryContactName"
+  },
+  "delivery_country": {
+    "type": "string",
+    "mapping": "DeliveryCountry"
+  },
+  "customer_paperwork_pages": {
+    "type": "int",
+    "mapping": "CustPaperwork"
+  },
+  "main_service": {
+    "type": "string",
+    "mapping": "MainService",
+    "values": ["P", "S", "I", "R"]
+  },
+  "premium_service": {
+    "type": "string",
+    "mapping": "PremiumService",
+    "values": ["", "B10", "AM", "Timed", "Sat"]
+  },
+  "tail_lift_required": {
+    "type": "string",
+    "mapping": "TailLift",
+    "values": ["", "TLift"]
+  },
+  "additional_service": {
+    "type": "string",
+    "mapping": "ExtraService",
+    "values": ["", "BI", "Bkd", "OOH"]
+  },
+  "delivery_datetime": {
+    "type": "datetime",
+    "mapping": "DeliveryDateTime"
+  },
+  "consignment_barcode_no": {
+    "type": "string",
+    "mapping": "ConBarcode"
+  },
+  "pallets": {
+    "type": "array[network_pallet]",
+    "mapping": "Pallets"
+  }
+}
