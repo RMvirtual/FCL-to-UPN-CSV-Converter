@@ -1,6 +1,7 @@
 import unittest
 
 
+@unittest.SkipTest
 class TestGroupage(unittest.TestCase):
     def setUp(self) -> None:
         pass
