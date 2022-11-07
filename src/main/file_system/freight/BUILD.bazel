@@ -1,14 +1,10 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "structures",
+    name = "freight",
     srcs = glob(["*.py"]),
     data = [
-        "//config/api",
-        "//resources:file_system",
-        "//resources/upn/api_structures",
-        "//resources/upn/export_mappings",
-        "//resources/upn/export_profiles",
+        "//resources/freight/cargo_types",
     ],
     visibility = ["//visibility:public"],
     deps = [

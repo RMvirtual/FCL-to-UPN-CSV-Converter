@@ -6,7 +6,9 @@ py_library(
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/file_system/file_contents",
         "//src/main/file_system/file_readers",
+        "//src/main/file_system/forward_office",
+        "//src/main/file_system/freight",
+        "//src/main/file_system/upn",
     ],
 )

@@ -2,7 +2,7 @@ import dataclasses
 import copy
 
 from src.main.freight.cargo import package_types
-from src.main.file_system.file_contents.forward_office import freight_mappings
+from src.main.file_system.forward_office import freight_mappings
 
 
 class CargoTypeMapBuilder:

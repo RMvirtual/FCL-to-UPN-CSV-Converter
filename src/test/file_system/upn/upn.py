@@ -1,7 +1,6 @@
 import unittest
 
-from src.main.file_system.file_contents.upn.api.structures\
-    .network_consignment import NetworkConsignmentStructure
+from src.main.file_system.upn.api.structures.network_consignment import NetworkConsignmentStructure
 
 
 class TestNetworkConsignmentStruct(unittest.TestCase):

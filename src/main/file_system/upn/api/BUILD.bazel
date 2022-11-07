@@ -5,14 +5,13 @@ py_library(
     srcs = glob(["*.py"]),
     data = [
         "//config/api",
-        "//resources:file_system",
         "//resources/upn/api_structures",
         "//resources/upn/export_mappings",
         "//resources/upn/export_profiles",
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/file_system/file_contents/upn/api/structures",
         "//src/main/file_system/file_readers",
+        "//src/main/file_system/upn/api/structures",
     ],
 )

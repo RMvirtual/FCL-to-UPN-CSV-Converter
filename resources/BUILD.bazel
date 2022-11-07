@@ -1,7 +1,0 @@
-filegroup(
-    name = "file_system",
-    srcs = glob(["*"]),
-    visibility = ["//visibility:public"],
-)
-
-exports_files(glob(["*"]))

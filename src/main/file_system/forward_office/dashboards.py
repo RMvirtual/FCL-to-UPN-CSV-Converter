@@ -1,11 +1,16 @@
 import copy
 import dataclasses
 from src.main.file_system.file_readers import runfiles
-from src.main.file_system.file_contents import system_files
+
+
+def _forward_office_resource(relative_path: str) -> str:
+    return "resources/forward_office/" + relative_path
 
 
 def _format_files():
-    relative_path = system_files.load_path("FCL_DASHBOARD_FORMATS")
+    relative_path = _forward_office_resource(
+        "dashboard_formats/short_codes.json")
+
     contents = runfiles.load_json_file(relative_path)
 
     return [[item, str, contents[item]] for item in contents]

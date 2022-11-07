@@ -1,5 +1,5 @@
 import zeep
-from src.main.file_system.file_contents.upn.api import configuration
+from src.main.file_system.upn.api import configuration
 
 
 class UpnSoapApi:

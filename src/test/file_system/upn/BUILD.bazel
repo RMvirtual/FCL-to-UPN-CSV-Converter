@@ -5,6 +5,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = ["//resources/test_inputs"],
     deps = [
-        "//src/main/file_system/file_contents",
+        "//src/main/file_system/upn",
     ],
 )

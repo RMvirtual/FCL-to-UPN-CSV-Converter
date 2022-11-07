@@ -1,5 +1,5 @@
 from __future__ import annotations
-from src.main.file_system.file_contents.freight import oversize_options
+from src.main.file_system.freight import oversize_options
 
 
 def all_options() -> dict[str, dict[str, float]]:

@@ -1,5 +1,5 @@
 import unittest
-from src.main.file_system.file_contents.forward_office.dashboards import (
+from src.main.file_system.forward_office.dashboards import (
     DashboardFormatFiles, DashboardFormats)
 
 
