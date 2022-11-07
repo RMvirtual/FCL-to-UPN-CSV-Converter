@@ -2,7 +2,7 @@ import dataclasses
 import copy
 
 from src.main.freight.cargo import package_types
-from src.main.file_system.file_contents import forward_office
+from src.main.file_system.file_contents.forward_office import freight_mappings
 
 
 class CargoTypeMapBuilder:
@@ -14,7 +14,7 @@ class CargoTypeMapBuilder:
         self._deserialise_mappings()
 
     def _deserialise_mappings(self):
-        for short_code_to_map in forward_office.cargo_type_mappings():
+        for short_code_to_map in freight_mappings.cargo_type_mappings():
             self._add(short_code_to_map)
 
     def _add(self, short_code_to_map):

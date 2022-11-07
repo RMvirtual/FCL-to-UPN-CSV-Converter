@@ -1,5 +1,5 @@
 import copy
-from src.main.file_system.file_contents import forward_office
+from src.main.file_system.file_contents.forward_office import freight_mappings
 from src.main.freight.service.model import Service
 
 
@@ -13,7 +13,7 @@ class ServiceCodeMapBuilder:
         self._parse_mappings()
 
     def _parse_mappings(self):
-        for mapping in forward_office.service_code_mappings():
+        for mapping in freight_mappings.service_code_mappings():
             self._add(mapping)
 
     def _add(self, service_mapping):
