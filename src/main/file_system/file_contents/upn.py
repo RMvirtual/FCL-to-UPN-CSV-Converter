@@ -10,26 +10,32 @@ class MappingValues:
 
 
 def network_consignment_contents():
-    contents = runfiles.load_json_file(
-        "resources/upn/api_structures/network_consignment.json")
-
-    return [
-        _extract_field(field_name, mapping_values)
-        for field_name, mapping_values in list(contents.items())
-    ]
+    return extract_network_consignment_fields(
+        _network_consignment_file_contents())
 
 
-def _extract_field(field_name, mapping_values):
-    return [field_name, MappingValues, _mapping_values(mapping_values)]
+def extract_network_consignment_fields(contents: dict[str, dict]):
+    return [_extract_item(field) for field in list(contents.items())]
 
 
-def _mapping_values(values: dict):
+def _extract_item(field):
+    key, value = field
+
+    return [key, MappingValues, _to_mapping_values(value)]
+
+
+def _to_mapping_values(values: dict):
     result = MappingValues()
     result.type = values["type"]
     result.mapping = values["mapping"]
     result.values = values["values"] if "values" in values else []
 
     return result
+
+
+def _network_consignment_file_contents():
+    return runfiles.load_json_file(
+        "resources/upn/api_structures/network_consignment.json")
 
 
 NetworkConsignment = dataclasses.make_dataclass(
