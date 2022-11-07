@@ -13,13 +13,14 @@ def network_consignment_contents():
     contents = runfiles.load_json_file(
         "resources/upn/api_structures/network_consignment.json")
 
-    fields = []
+    return [
+        _extract_field(field_name, mapping_values)
+        for field_name, mapping_values in list(contents.items())
+    ]
 
-    for field_name, mapping_values in list(contents.items()):
-        field = [field_name, MappingValues, _mapping_values(mapping_values)]
-        fields.append(field)
 
-    return fields
+def _extract_field(field_name, mapping_values):
+    return [field_name, MappingValues, _mapping_values(mapping_values)]
 
 
 def _mapping_values(values: dict):
