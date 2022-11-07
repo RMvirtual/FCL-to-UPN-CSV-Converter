@@ -15,12 +15,20 @@ def network_consignment_contents():
 
     fields = []
 
-    for key, values in list(contents.items()):
-        field = [key, MappingValues, MappingValues()]
-        print(field)
+    for field_name, mapping_values in list(contents.items()):
+        field = [field_name, MappingValues, _mapping_values(mapping_values)]
         fields.append(field)
 
     return fields
+
+
+def _mapping_values(values: dict):
+    result = MappingValues()
+    result.type = values["type"]
+    result.mapping = values["mapping"]
+    result.values = values["values"] if "values" in values else []
+
+    return result
 
 
 NetworkConsignment = dataclasses.make_dataclass(
