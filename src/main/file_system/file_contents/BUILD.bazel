@@ -12,6 +12,7 @@ py_library(
         "//resources/forward_office/priority_codes",
         "//resources/test_inputs",
         "//resources/test_outputs",
+        "//resources/upn/api_structures",
         "//resources/upn/export_mappings",
         "//resources/upn/export_profiles",
     ],
