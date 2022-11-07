@@ -1,10 +1,10 @@
 import zeep
-from src.main.file_system.file_contents import api_files
+from src.main.file_system.file_contents.upn.api import configuration
 
 
 class UpnSoapApi:
     def __init__(self):
-        self._environment = api_files.upn_api()
+        self._environment = configuration.upn_api()
         self._client = zeep.Client(self._environment["url"])
 
     def get_network_input(self, date: str) -> list[dict]:

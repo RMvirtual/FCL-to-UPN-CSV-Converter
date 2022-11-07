@@ -1,24 +1,17 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "file_contents",
+    name = "structures",
     srcs = glob(["*.py"]),
     data = [
         "//config/api",
         "//resources:file_system",
-        "//resources/cargo_types",
-        "//resources/forward_office/dashboard_formats",
-        "//resources/forward_office/package_types",
-        "//resources/forward_office/priority_codes",
-        "//resources/test_inputs",
-        "//resources/test_outputs",
         "//resources/upn/api_structures",
         "//resources/upn/export_mappings",
         "//resources/upn/export_profiles",
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/file_system/file_contents/upn",
         "//src/main/file_system/file_readers",
     ],
 )

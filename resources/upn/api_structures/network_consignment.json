@@ -96,7 +96,7 @@
     "mapping": "ConBarcode"
   },
   "pallets": {
-    "type": "array[network_pallet]",
+    "type": "array_of_network_pallet",
     "mapping": "Pallets"
   }
 }

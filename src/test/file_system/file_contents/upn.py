@@ -1,5 +1,7 @@
 import unittest
-from src.main.file_system.file_contents import upn
+
+from src.main.file_system.file_contents.upn.api.structures\
+    .network_consignment import NetworkConsignmentStructure
 
 
 class TestNetworkConsignmentStruct(unittest.TestCase):
@@ -7,7 +9,7 @@ class TestNetworkConsignmentStruct(unittest.TestCase):
         pass
 
     def test_should_create_fields(self):
-        structure = upn.NetworkConsignment()
+        structure = NetworkConsignmentStructure()
 
         self.assertTrue(hasattr(structure, "consignment_no"))
         self.assertTrue(hasattr(structure.consignment_no, "type"))
@@ -15,14 +17,14 @@ class TestNetworkConsignmentStruct(unittest.TestCase):
         self.assertTrue(hasattr(structure.consignment_no, "values"))
 
     def test_should_populate_field_without_strict_values(self):
-        structure = upn.NetworkConsignment().consignment_no
+        structure = NetworkConsignmentStructure().consignment_no
 
         self.assertEqual(structure.type, "string")
         self.assertEqual(structure.mapping, "ConNo")
         self.assertListEqual(structure.values, [])
 
     def test_should_populate_field_with_strict_values(self):
-        structure = upn.NetworkConsignment().additional_service
+        structure = NetworkConsignmentStructure().additional_service
 
         self.assertEqual(structure.type, "string")
         self.assertEqual(structure.mapping, "ExtraService")
