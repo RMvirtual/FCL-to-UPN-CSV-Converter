@@ -1,5 +1,5 @@
 from __future__ import annotations
-from src.main.file_system.file_contents import cargo_types
+from src.main.file_system.file_contents.freight import cargo_types
 from src.main.freight.cargo import oversize_options
 
 
