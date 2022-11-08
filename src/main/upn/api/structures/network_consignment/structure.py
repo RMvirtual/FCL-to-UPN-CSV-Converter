@@ -1,9 +1,14 @@
 import dataclasses
 import datetime
-from src.main.upn.api.structures.mapping import NetworkConsignmentStructure
-from src.main.upn.api.structures.network_pallet import NetworkPallet
-from src.main.upn.api.structures import primitives
-from src.main.upn.api.structures import arrays
+
+from src.main.upn.api.structures.network_consignment.mapping \
+    import NetworkConsignmentStructure
+
+from src.main.upn.api.structures.network_pallet.structure \
+    import NetworkPallet
+
+from src.main.upn.api.structures.primitives import base_types
+from src.main.upn.api.structures.primitives import arrays
 
 
 def network_consignment_fields():
@@ -23,8 +28,8 @@ def network_consignment_fields():
 
 
 def get_field_type(mapping_type_name: str) -> type:
-    if primitives.is_primitive(mapping_type_name):
-        return primitives.get_primitive(mapping_type_name)
+    if base_types.is_primitive(mapping_type_name):
+        return base_types.get_primitive(mapping_type_name)
 
     elif mapping_type_name == "network_pallet":
         return NetworkPallet

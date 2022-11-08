@@ -1,5 +1,5 @@
 import unittest
-from src.main.upn.api.structures.network_pallet import NetworkPallet
+from src.main.upn.api.structures.network_pallet.structure import NetworkPallet
 
 
 class TestNetworkPallet(unittest.TestCase):

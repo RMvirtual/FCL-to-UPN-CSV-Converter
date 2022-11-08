@@ -1,6 +1,8 @@
-from src.main.upn.api.structures.network_consignment \
+from src.main.upn.api.structures.network_consignment.structure \
     import NetworkConsignment
-from src.main.upn.api.structures.network_pallet import NetworkPallet
+
+from src.main.upn.api.structures.network_pallet.structure \
+    import NetworkPallet
 
 
 def get_data_structure(mapping_name: str):

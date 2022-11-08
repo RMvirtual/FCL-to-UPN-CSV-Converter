@@ -1,5 +1,4 @@
 import dataclasses
-from src.main.file_system.upn.api import structures
 
 
 @dataclasses.dataclass
@@ -7,14 +6,6 @@ class MappingValues:
     type: str = ""
     mapping: str = ""
     values: list = None
-
-
-def network_pallet_fields():
-    return _field_values(structures.network_pallet())
-
-
-def network_consignment_fields():
-    return _field_values(structures.network_consignment())
 
 
 def _field_values(contents: dict[str, dict]):
@@ -34,14 +25,3 @@ def _to_mapping_values(values: dict[str, str or list[str]]) -> MappingValues:
     result.values = values["values"] if "values" in values else []
 
     return result
-
-
-NetworkConsignmentStructure = dataclasses.make_dataclass(
-    cls_name="NetworkConsignmentStructure",
-    fields=network_consignment_fields()
-)
-
-NetworkPalletStructure = dataclasses.make_dataclass(
-    cls_name="NetworkPalletStructure",
-    fields=network_pallet_fields()
-)

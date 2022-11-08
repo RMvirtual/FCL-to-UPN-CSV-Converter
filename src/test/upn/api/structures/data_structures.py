@@ -1,6 +1,6 @@
 import unittest
 from src.main.upn.api.structures import data_structures
-from src.main.upn.api.structures.network_pallet import NetworkPallet
+from src.main.upn.api.structures.network_pallet.structure import NetworkPallet
 
 
 class TestUpnDataStructures(unittest.TestCase):

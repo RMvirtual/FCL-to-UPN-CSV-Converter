@@ -1,6 +1,6 @@
 import datetime
 import unittest
-from src.main.upn.api.structures.network_consignment import NetworkConsignment
+from src.main.upn.api.structures.network_consignment.structure import NetworkConsignment
 from src.main.upn.api.parser import UpnApiParser
 
 
