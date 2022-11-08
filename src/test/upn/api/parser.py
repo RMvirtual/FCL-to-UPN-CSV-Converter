@@ -1,9 +1,7 @@
-import dataclasses
 import datetime
 import unittest
-from src.main.upn.api.parser import UpnApiParser
-from src.main.upn.api.structures import NetworkConsignment
-from src.main.upn.api.structures import network_consignment_fields
+from src.main.upn.api.structures.network_consignment import NetworkConsignment
+from src.main.upn.api.structures.network_consignment import network_consignment_fields
 
 
 class TestUpnApiParser(unittest.TestCase):

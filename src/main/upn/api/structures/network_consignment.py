@@ -1,5 +1,5 @@
 import dataclasses
-from src.main.upn.api.mapping_structures import NetworkConsignmentStructure
+from src.main.upn.api.structures.mapping import NetworkConsignmentStructure
 
 
 def network_consignment_fields():
@@ -8,7 +8,8 @@ def network_consignment_fields():
 
     for field in field_names:
         name = field.name
-        print(getattr(structure, name))
+        mapping_values = getattr(structure, name)
+        field_type = mapping_values.type
 
 
 @dataclasses.dataclass

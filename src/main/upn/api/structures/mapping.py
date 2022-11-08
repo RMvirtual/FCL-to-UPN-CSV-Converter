@@ -9,15 +9,19 @@ class MappingValues:
     values: list = None
 
 
-def fields():
-    return _network_consignment_fields(structures.network_consignment())
+def network_pallet_fields():
+    return _field_values(structures.network_pallet())
 
 
-def _network_consignment_fields(contents: dict[str, dict]):
-    return map(json_entry_to_field_values, contents.items())
+def network_consignment_fields():
+    return _field_values(structures.network_consignment())
 
 
-def json_entry_to_field_values(field) -> list[str, any, MappingValues]:
+def _field_values(contents: dict[str, dict]):
+    return map(_json_entry_to_field_values, contents.items())
+
+
+def _json_entry_to_field_values(field) -> list[str, any, MappingValues]:
     key, value = field
 
     return [key, MappingValues, _to_mapping_values(value)]
@@ -33,6 +37,11 @@ def _to_mapping_values(values: dict[str, str or list[str]]) -> MappingValues:
 
 
 NetworkConsignmentStructure = dataclasses.make_dataclass(
-    cls_name="NetworkConsignment",
-    fields=fields()
+    cls_name="NetworkConsignmentStructure",
+    fields=network_consignment_fields()
+)
+
+NetworkPalletStructure = dataclasses.make_dataclass(
+    cls_name="NetworkPalletStructure",
+    fields=network_pallet_fields()
 )

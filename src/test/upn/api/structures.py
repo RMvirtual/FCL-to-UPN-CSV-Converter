@@ -1,32 +1,18 @@
 import unittest
-from src.main.upn.api.mapping_structures import NetworkConsignmentStructure
+from src.main.upn.api.structures.network_pallet import NetworkPallet
 
 
-class TestNetworkConsignmentStruct(unittest.TestCase):
+class TestNetworkPallet(unittest.TestCase):
     def setUp(self) -> None:
         pass
 
     def test_should_create_fields(self):
-        structure = NetworkConsignmentStructure()
+        structure = NetworkPallet()
 
-        self.assertTrue(hasattr(structure, "consignment_no"))
-        self.assertTrue(hasattr(structure.consignment_no, "type"))
-        self.assertTrue(hasattr(structure.consignment_no, "mapping"))
-        self.assertTrue(hasattr(structure.consignment_no, "values"))
-
-    def test_should_populate_field_without_strict_values(self):
-        structure = NetworkConsignmentStructure().consignment_no
-
-        self.assertEqual(structure.type, "string")
-        self.assertEqual(structure.mapping, "ConNo")
-        self.assertListEqual(structure.values, [])
-
-    def test_should_populate_field_with_strict_values(self):
-        structure = NetworkConsignmentStructure().additional_service
-
-        self.assertEqual(structure.type, "string")
-        self.assertEqual(structure.mapping, "ExtraService")
-        self.assertListEqual(structure.values, ["", "BI", "Bkd", "OOH"])
+        self.assertTrue(hasattr(structure, "consignment_barcode_no"))
+        self.assertTrue(hasattr(structure, "pallet_type"))
+        self.assertTrue(hasattr(structure, "pallet_size"))
+        self.assertTrue(hasattr(structure.consignment_no, "pallet_barcode_no"))
 
 
 if __name__ == '__main__':

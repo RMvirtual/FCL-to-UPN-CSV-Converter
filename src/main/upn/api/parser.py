@@ -1,6 +1,4 @@
-import dataclasses
-from src.main.upn.api import mapping_structures
-from src.main.upn.api.mapping_structures import NetworkConsignmentStructure
+from src.main.upn.api.structures.mapping import NetworkConsignmentStructure
 
 
 class UpnApiParser:

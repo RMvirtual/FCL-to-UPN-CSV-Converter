@@ -1,6 +1,6 @@
 {
   "string": "str",
   "int": "int",
-  "datetime": "datetime",
+  "datetime": "datetime.datetime",
   "array_of_network_pallet": "list[NetworkPallet]"
 }
