@@ -1,7 +1,7 @@
 import datetime
 import unittest
 from src.main.upn.api.structures.network_consignment import NetworkConsignment
-from src.main.upn.api.structures.network_consignment import network_consignment_fields
+from src.main.upn.api.parser import UpnApiParser
 
 
 class TestUpnApiParser(unittest.TestCase):
@@ -84,12 +84,10 @@ class TestUpnApiParser(unittest.TestCase):
 
     @unittest.SkipTest
     def test_should_parse_network_consignment(self):
-        #self._set_up_network_consignment()
-        #parser = UpnApiParser()
-        network_consignment_fields()
-        #result = parser.network_consignment(
-        # self._set_up_network_consignment())
-        # self._validate(result)
+        self._set_up_network_consignment()
+        parser = UpnApiParser()
+        result = parser.network_consignment(self._set_up_network_consignment())
+        self._validate(result)
         self.fail("DUMMY FAIL")
 
 
