@@ -5,6 +5,15 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/upn",
+        "//src/main/upn/api",
+    ],
+)
+
+py_test(
+    name = "structures",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/upn/api",
     ],
 )

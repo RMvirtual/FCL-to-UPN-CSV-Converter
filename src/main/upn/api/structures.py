@@ -1,5 +1,5 @@
 import dataclasses
-from src.main.file_system.file_readers import runfiles
+from src.main.file_system.upn.api import structures
 
 
 @dataclasses.dataclass
@@ -9,8 +9,8 @@ class MappingValues:
     values: list = None
 
 
-def network_consignment_dataclass_fields():
-    return _network_consignment_fields(_network_consignment_json())
+def fields():
+    return _network_consignment_fields(structures.network_consignment())
 
 
 def _network_consignment_fields(contents: dict[str, dict]):
@@ -32,12 +32,7 @@ def _to_mapping_values(values: dict[str, str or list[str]]) -> MappingValues:
     return result
 
 
-def _network_consignment_json():
-    return runfiles.load_json_file(
-        "resources/upn/api_structures/network_consignment.json")
-
-
 NetworkConsignmentStructure = dataclasses.make_dataclass(
     cls_name="NetworkConsignment",
-    fields=network_consignment_dataclass_fields()
+    fields=fields()
 )
