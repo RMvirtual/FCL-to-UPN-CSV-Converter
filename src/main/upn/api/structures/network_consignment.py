@@ -42,12 +42,14 @@ def get_field_type(mapping_type_name: str) -> type:
 
 def get_field_instance(field_type):
     if field_type is list:
+        print("Is list.")
         field_instance = dataclasses.field(default_factory=list[NetworkPallet])
 
     elif field_type is datetime.datetime:
         field_instance = None
 
     else:
+        print("In the else")
         field_instance = field_type()
 
     return field_instance

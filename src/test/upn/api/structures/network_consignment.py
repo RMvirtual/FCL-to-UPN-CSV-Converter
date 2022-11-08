@@ -24,6 +24,12 @@ class TestNetworkConsignment(unittest.TestCase):
 
         self.assertEqual(list[NetworkPallet], field_type)
 
+    def test_should_get_array_structure_instance(self):
+        array_structure = network_consignment.get_field_instance(
+            list[NetworkPallet])
+
+        self.assertIs(list[NetworkPallet], array_structure)
+
 
 if __name__ == '__main__':
     unittest.main()
