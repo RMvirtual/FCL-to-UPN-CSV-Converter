@@ -12,7 +12,7 @@ class TestNetworkPallet(unittest.TestCase):
         self.assertTrue(hasattr(structure, "consignment_barcode_no"))
         self.assertTrue(hasattr(structure, "pallet_type"))
         self.assertTrue(hasattr(structure, "pallet_size"))
-        self.assertTrue(hasattr(structure.consignment_no, "pallet_barcode_no"))
+        self.assertTrue(hasattr(structure, "pallet_barcode_no"))
 
 
 if __name__ == '__main__':
