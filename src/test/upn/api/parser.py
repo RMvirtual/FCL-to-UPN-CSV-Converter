@@ -2,6 +2,7 @@ import unittest
 from src.main.upn.api.parser import UpnApiParser
 from src.main.upn.api.structures import NetworkConsignmentStructure
 
+
 class TestUpnApiParser(unittest.TestCase):
     def setUp(self):
         self._my_input = {
