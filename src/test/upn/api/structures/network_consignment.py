@@ -9,38 +9,16 @@ class TestNetworkConsignment(unittest.TestCase):
 
     @unittest.SkipTest
     def test_should_create_fields(self):
-        ...
-        # structure = NetworkConsignment()
+        structure = network_consignment.NetworkConsignment()
 
-        # self.assertTrue(hasattr(structure, "consignment_no"))
-        # self.assertIsInstance(structure.consignment_no, str)
+        self.assertTrue(hasattr(structure, "consignment_no"))
+        self.assertIsInstance(structure.consignment_no, str)
 
-    def test_should_get_data_structure(self):
-        structure = network_consignment.get_data_structure("network_pallet")
-        self.assertEqual(NetworkPallet, structure)
-
-    def test_should_extract_underlying_array_object_type(self):
-        result = network_consignment.extract_array_object_name(
-            "array_of_network_pallet")
-
-        self.assertEqual("network_pallet", result)
-
-    def test_should_get_field_type_of_primitive(self):
-        field_type = network_consignment.get_field_type("string")
-        self.assertEqual(str, field_type)
-
-    def test_should_get_field_type_of_data_structure(self):
+    def test_should_get_data_structure_field_type(self):
         field_type = network_consignment.get_field_type("network_pallet")
         self.assertEqual(NetworkPallet, field_type)
 
-    def test_should_detect_field_type_as_data_structure(self):
-        self.assertTrue(
-            network_consignment.is_data_structure("network_pallet"))
-
-        self.assertFalse(
-            network_consignment.is_data_structure("array_of_network_pallet"))
-
-    def test_should_get_field_type_of_array(self):
+    def test_should_get_array_structure_field_type(self):
         field_type = network_consignment.get_field_type(
             "array_of_network_pallet")
 

@@ -7,3 +7,15 @@ class UpnApiPrimitives:
     string: type = str
     int: type = int
     datetime: type = datetime.datetime
+
+
+def get_primitive(mapping_name: str):
+    primitives = UpnApiPrimitives()
+
+    return getattr(primitives, mapping_name)
+
+
+def is_primitive(mapping_name: str):
+    primitives = UpnApiPrimitives()
+
+    return hasattr(primitives, mapping_name)

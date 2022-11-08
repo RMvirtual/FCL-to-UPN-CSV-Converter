@@ -2,7 +2,7 @@ import unittest
 from src.main.upn.api.structures.mapping import NetworkConsignmentStructure
 
 
-class TestNetworkConsignmentStruct(unittest.TestCase):
+class TestUpnMapping(unittest.TestCase):
     def setUp(self) -> None:
         pass
 
