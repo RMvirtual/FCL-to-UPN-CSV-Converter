@@ -5,9 +5,6 @@ py_library(
     srcs = glob(["*.py"]),
     data = [
         "//config/api",
-        "//resources/upn/api_structures",
-        "//resources/upn/export_mappings",
-        "//resources/upn/export_profiles",
     ],
     visibility = ["//visibility:public"],
     deps = [

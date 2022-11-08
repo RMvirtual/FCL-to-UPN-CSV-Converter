@@ -4,7 +4,6 @@ py_library(
     name = "structures",
     srcs = glob(["*.py"]),
     data = [
-        "//config/api",
         "//resources/upn/api_structures",
     ],
     visibility = ["//visibility:public"],

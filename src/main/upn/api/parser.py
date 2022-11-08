@@ -1,11 +1,11 @@
-from src.main.upn.api.consignment import UpnSoapApi
+from src.main.upn.api.client import UpnApiClient
 from src.main.freight.consignment.model import Consignment
 from src.main.freight.cargo import package_types
 
 
 class UpnApiParser:
     def __init__(self):
-        self._api = UpnSoapApi()
+        self._api = UpnApiClient()
 
         self._type_map = {
             "Full": "full",
