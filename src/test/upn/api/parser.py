@@ -2,11 +2,11 @@ import dataclasses
 import datetime
 import unittest
 from src.main.upn.api.parser import UpnApiParser
-from src.main.upn.api.structures import NetworkConsignmentStructure
+from src.main.upn.api.structures import NetworkConsignment
+from src.main.upn.api.structures import network_consignment_fields
 
 
 class TestUpnApiParser(unittest.TestCase):
-
     @staticmethod
     def _set_up_network_consignment():
         return {
@@ -53,8 +53,8 @@ class TestUpnApiParser(unittest.TestCase):
         }
 
     @staticmethod
-    def _correct_output() -> NetworkConsignmentStructure:
-        result = NetworkConsignmentStructure()
+    def _correct_output() -> NetworkConsignment:
+        result = NetworkConsignment()
         result.consignment_no = "gr221004388"
         result.depot_no = 75
         result.customer_reference = "49632"
@@ -81,15 +81,17 @@ class TestUpnApiParser(unittest.TestCase):
 
         return result
 
-    def _validate(self, consignment: NetworkConsignmentStructure):
+    def _validate(self, consignment: NetworkConsignment):
         self.assertEqual(self._correct_output(), consignment)
 
     def test_should_parse_network_consignment(self):
-        self._set_up_network_consignment()
-        parser = UpnApiParser()
-        result = parser.network_consignment(self._set_up_network_consignment())
-        self._validate(result)
-
+        #self._set_up_network_consignment()
+        #parser = UpnApiParser()
+        network_consignment_fields()
+        #result = parser.network_consignment(
+        # self._set_up_network_consignment())
+        # self._validate(result)
+        self.fail("DUMMY FAIL")
 
 if __name__ == '__main__':
     unittest.main()
