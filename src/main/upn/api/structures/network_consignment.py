@@ -10,16 +10,16 @@ def network_consignment_fields():
     structure = NetworkConsignmentStructure()
     field_names = dataclasses.fields(structure)
 
-    pallet_fields = []
+    new_fields = []
 
     for field in field_names:
         mapping_values = getattr(structure, field.name)
         field_type = get_field_type(mapping_values.type)
-        new_field = create_field(field.name, field_type)
+        field_instance = get_field_instance(field_type)
 
-        pallet_fields.append(new_field)
+        new_fields.append([field.name, field_type, field_instance])
 
-    return pallet_fields
+    return new_fields
 
 
 def get_field_type(mapping_type_name: str) -> type:
@@ -61,7 +61,7 @@ def extract_array_object_name(mapping_name: str) -> str:
     return re.sub("array_of_", "", mapping_name)
 
 
-def create_field(name, field_type):
+def get_field_instance(field_type):
     if field_type is list:
         field_instance = dataclasses.field(default_factory=list)
 
@@ -71,7 +71,7 @@ def create_field(name, field_type):
     else:
         field_instance = field_type()
 
-    return [name, field_type, field_instance]
+    return field_instance
 
 
 def get_primitive(mapping_name: str):
@@ -86,7 +86,13 @@ def is_primitive(mapping_name: str):
     return hasattr(primitives, mapping_name)
 
 
+@dataclasses.dataclass
+class NetworkConsignment:
+    foo: str = ""
+
+"""
 NetworkConsignment = dataclasses.make_dataclass(
     cls_name="NetworkConsignment",
     fields=network_consignment_fields()
 )
+"""
