@@ -82,6 +82,7 @@ class TestUpnApiParser(unittest.TestCase):
     def _validate(self, consignment: NetworkConsignment):
         self.assertEqual(self._correct_output(), consignment)
 
+    @unittest.SkipTest
     def test_should_parse_network_consignment(self):
         #self._set_up_network_consignment()
         #parser = UpnApiParser()
@@ -90,6 +91,7 @@ class TestUpnApiParser(unittest.TestCase):
         # self._set_up_network_consignment())
         # self._validate(result)
         self.fail("DUMMY FAIL")
+
 
 if __name__ == '__main__':
     unittest.main()

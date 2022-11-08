@@ -26,12 +26,3 @@ py_test(
         "//src/main/upn/api",
     ],
 )
-
-py_test(
-    name = "structures",
-    srcs = glob(["*.py"]),
-    data = [],
-    deps = [
-        "//src/main/upn/api",
-    ],
-)
