@@ -7,7 +7,7 @@ class UpnApiClient:
         self._environment = configuration.upn_api()
         self._client = zeep.Client(self._environment["url"])
 
-    def get_network_input(self, date: str) -> list[dict]:
+    def network_input(self, date: str) -> list[dict]:
         """Returns a list of inbound consignments, collections
         requested and non-network input for a particular day.
         :param date: A string in yyyy-mm-dd format.
@@ -23,7 +23,7 @@ class UpnApiClient:
             Password=self._environment["password"]
         )
 
-    def get_network_deliveries(self, date: str) -> list[dict]:
+    def network_deliveries(self, date: str) -> list[dict]:
         """Returns a list of deliveries completed on behalf of the
         network for a particular day (does not include collections
         received).
@@ -36,7 +36,7 @@ class UpnApiClient:
             Password=self._environment["password"]
         )
 
-    def get_network_delivery_by_con_no(self, con_no: str):
+    def network_delivery_by_con_no(self, con_no: str):
         """Only seems to work with the depot number api parameter
         being the actual depot of delivery (e.g. 75 for local dels,
         depot 9 for NE deliveries).
@@ -51,7 +51,7 @@ class UpnApiClient:
             Password=self._environment["password"]
         )
 
-    def get_post_code_restrictions(self, post_code: str) -> list[dict]:
+    def post_code_restrictions(self, post_code: str) -> list[dict]:
         """Returns a list of restriction information for a particular
         postcode.
 

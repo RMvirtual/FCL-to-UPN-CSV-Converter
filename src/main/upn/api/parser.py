@@ -23,7 +23,7 @@ class UpnApiParser:
         }
 
     def network_input(self, date: str) -> list[Consignment]:
-        raw_consignment = self._api.get_network_input(date)
+        raw_consignment = self._api.network_input(date)
 
         consignment = Consignment()
         consignment.reference = raw_consignment["ConNo"]
