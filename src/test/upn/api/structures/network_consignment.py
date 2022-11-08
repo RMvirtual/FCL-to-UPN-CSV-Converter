@@ -33,6 +33,13 @@ class TestNetworkConsignment(unittest.TestCase):
         field_type = network_consignment.get_field_type("network_pallet")
         self.assertEqual(NetworkPallet, field_type)
 
+    def test_should_detect_field_type_as_data_structure(self):
+        self.assertTrue(
+            network_consignment.is_data_structure("network_pallet"))
+
+        self.assertFalse(
+            network_consignment.is_data_structure("array_of_network_pallet"))
+
     def test_should_get_field_type_of_array(self):
         field_type = network_consignment.get_field_type(
             "array_of_network_pallet")
