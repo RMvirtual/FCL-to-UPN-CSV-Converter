@@ -14,6 +14,10 @@ class TestNetworkConsignment(unittest.TestCase):
         self.assertTrue(hasattr(structure, "consignment_no"))
         self.assertIsInstance(structure.consignment_no, str)
 
+    def test_should_create_empty_pallets_list(self):
+        structure = network_consignment.NetworkConsignment()
+        self.assertListEqual([], structure.pallets)
+
     def test_should_get_data_structure_field_type(self):
         field_type = network_consignment.get_field_type("network_pallet")
         self.assertEqual(NetworkPallet, field_type)
