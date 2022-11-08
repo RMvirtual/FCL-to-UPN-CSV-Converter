@@ -10,6 +10,15 @@ py_test(
 )
 
 py_test(
+    name = "network_consignment",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/upn/api/structures",
+    ],
+)
+
+py_test(
     name = "mapping",
     srcs = glob(["*.py"]),
     data = [],
