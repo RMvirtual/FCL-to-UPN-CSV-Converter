@@ -1,6 +1,5 @@
 import dataclasses
 import datetime
-import typing
 from src.main.upn.api.structures.mapping import NetworkConsignmentStructure
 from src.main.upn.api.structures.network_pallet import NetworkPallet
 from src.main.upn.api.structures import primitives
@@ -42,31 +41,17 @@ def get_field_type(mapping_type_name: str) -> type:
 
 
 def get_field_instance(field_type: type):
-    print(field_type)
-    print(list[NetworkPallet])
-
     if field_type == list[NetworkPallet]:
-        print("Is list.")
-        field_instance = dataclasses.field(default_factory=list[NetworkPallet])
+        return dataclasses.field(default_factory=list[NetworkPallet])
 
     elif field_type is datetime.datetime:
-        field_instance = None
+        return None
 
     else:
-        print("In the else")
-        field_instance = field_type()
+        return field_type()
 
-    return field_instance
-
-
-
-@dataclasses.dataclass
-class NetworkConsignment:
-    foo: str = ""
-"""
 
 NetworkConsignment = dataclasses.make_dataclass(
     cls_name="NetworkConsignment",
     fields=network_consignment_fields()
 )
-"""
