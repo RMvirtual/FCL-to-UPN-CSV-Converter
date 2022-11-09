@@ -36,7 +36,7 @@ class TestUpnApiParser(unittest.TestCase):
             'DeliveryPostcode': 'WN8  9TA',
             'DeliveryTown': 'SKELMERSDALE',
             'Depot': 75,
-            'Despatchdate': datetime.datetime(2022, 10, 18, 0, 0),
+            'DespatchDate': datetime.datetime(2022, 10, 18, 0, 0),
             'ExtraService': None,
             'MainService': 'P',
             'Pallets': {
@@ -94,26 +94,146 @@ class TestUpnApiParser(unittest.TestCase):
 
         return result
 
-    def _validate(self, consignment: NetworkConsignment):
-        self.assertEqual(self._correct_output(), consignment)
-
     def test_should_parse_barcode(self):
-        barcode = self._parser.barcode(self._consignment)
-        correct_barcode = self._correct_consignment.consignment_barcode_no
-
-        self.assertEqual(correct_barcode, barcode)
+        self._parse_and_compare_equality(
+            self._parser.barcode,
+            self._correct_consignment.barcode
+        )
 
     def test_should_parse_consignment_no(self):
-        con_no = self._parser.consignment_no(self._consignment)
-        correct_con_no = self._correct_consignment.consignment_no
-
-        self.assertEqual(correct_con_no, con_no)
+        self._parse_and_compare_equality(
+            self._parser.consignment_no,
+            self._correct_consignment.consignment_no
+        )
 
     def test_should_parse_customer_name(self):
-        customer_name = self._parser.customer_name(self._consignment)
-        correct_customer_name = self._correct_consignment.customer_name
+        self._parse_and_compare_equality(
+            self._parser.customer_name,
+            self._correct_consignment.customer_name
+        )
 
-        self.assertEqual(correct_customer_name, customer_name)
+    def test_should_parse_customer_id(self):
+        self._parse_and_compare_equality(
+            self._parser.customer_id,
+            self._correct_consignment.customer_id
+        )
+
+    def test_should_parse_depot_no(self):
+        self._parse_and_compare_equality(
+            self._parser.depot_no,
+            self._correct_consignment.depot_no
+        )
+
+    def test_should_parse_despatch_date(self):
+        self._parse_and_compare_equality(
+            self._parser.despatch_date,
+            self._correct_consignment.despatch_date
+        )
+
+    def test_should_parse_delivery_name(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_name,
+            self._correct_consignment.delivery_name
+        )
+
+    def test_should_parse_delivery_address_1(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_address_1,
+            self._correct_consignment.delivery_address_1
+        )
+
+    def test_should_parse_delivery_address_2(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_address_2,
+            self._correct_consignment.delivery_address_2
+        )
+
+    def test_should_parse_delivery_town(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_town,
+            self._correct_consignment.delivery_town
+        )
+
+    def test_should_parse_delivery_county(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_county,
+            self._correct_consignment.delivery_county
+        )
+
+    def test_should_parse_delivery_post_code(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_post_code,
+            self._correct_consignment.delivery_post_code
+        )
+
+    def test_should_parse_delivery_telephone_no(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_telephone_no,
+            self._correct_consignment.delivery_telephone_no
+        )
+
+    def test_should_parse_total_weight(self):
+        self._parse_and_compare_equality(
+            self._parser.total_weight,
+            self._correct_consignment.total_weight
+        )
+
+    def test_should_parse_special_instructions(self):
+        self._parse_and_compare_equality(
+            self._parser.special_instructions,
+            self._correct_consignment.special_instructions
+        )
+
+    def test_should_parse_delivery_contact_name(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_contact_name,
+            self._correct_consignment.delivery_contact_name
+        )
+
+    def test_should_parse_delivery_country(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_country,
+            self._correct_consignment.delivery_country
+        )
+
+    def test_should_parse_customer_paperwork_pages(self):
+        self._parse_and_compare_equality(
+            self._parser.customer_paperwork_pages,
+            self._correct_consignment.customer_paperwork_pages
+        )
+
+    def test_should_parse_main_service(self):
+        self._parse_and_compare_equality(
+            self._parser.main_service,
+            self._correct_consignment.main_service
+        )
+
+    def test_should_parse_premium_service(self):
+        self._parse_and_compare_equality(
+            self._parser.premium_service,
+            self._correct_consignment.premium_service
+        )
+
+    def test_should_parse_tail_lift_required(self):
+        self._parse_and_compare_equality(
+            self._parser.tail_lift_required,
+            self._correct_consignment.tail_lift_required
+        )
+
+    def test_should_parse_additional_service(self):
+        self._parse_and_compare_equality(
+            self._parser.additional_service,
+            self._correct_consignment.additional_service
+        )
+
+    def test_should_parse_delivery_datetime(self):
+        self._parse_and_compare_equality(
+            self._parser.delivery_datetime,
+            self._correct_consignment.delivery_datetime
+        )
+
+    def _parse_and_compare_equality(self, parser_callback, correct_value):
+        self.assertEqual(parser_callback(self._consignment), correct_value)
 
 
 if __name__ == '__main__':
