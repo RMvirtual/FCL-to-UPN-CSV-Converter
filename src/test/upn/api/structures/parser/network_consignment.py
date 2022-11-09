@@ -96,8 +96,8 @@ class TestUpnApiParser(unittest.TestCase):
 
     def test_should_parse_barcode(self):
         self._parse_and_compare_equality(
-            self._parser.barcode,
-            self._correct_consignment.barcode
+            self._parser.consignment_barcode_no,
+            self._correct_consignment.consignment_barcode_no
         )
 
     def test_should_parse_consignment_no(self):

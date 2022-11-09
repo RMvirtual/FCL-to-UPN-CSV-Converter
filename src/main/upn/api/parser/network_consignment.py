@@ -10,7 +10,7 @@ class NetworkConsignmentParser:
         self._structure = NetworkConsignmentStructure()
         self._consignment = NetworkConsignment()
 
-    def barcode(self, parse_values: dict):
+    def consignment_barcode_no(self, parse_values: dict):
         return parse_values[self._structure.consignment_barcode_no.mapping]
 
     def consignment_no(self, parse_values: dict):
