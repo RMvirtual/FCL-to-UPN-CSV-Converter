@@ -15,16 +15,14 @@ def network_pallet_fields():
 class NetworkPalletFields:
     def __init__(self):
         self._primitives = UpnApiPrimitives()
-        self._fields = []
 
     def from_dataclass(self, structure: dataclasses.dataclass) -> list:
         field_names = dataclasses.fields(structure)
 
-        self._fields = [
+        return [
             self._field_from_structure(field, structure)
-            for field in field_names]
-
-        return self._fields
+            for field in field_names
+        ]
 
     def _field_from_structure(
             self, field: dataclasses.Field, structure: dataclasses.dataclass
