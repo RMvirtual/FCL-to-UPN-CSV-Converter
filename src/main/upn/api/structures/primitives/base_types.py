@@ -18,4 +18,4 @@ def get_primitive(mapping_name: str):
 def is_primitive(mapping_name: str):
     primitives = UpnApiPrimitives()
 
-    return hasattr(primitives, mapping_name)
+    return hasattr(UpnApiPrimitives, mapping_name)

@@ -1,13 +1,9 @@
 import dataclasses
-from src.main.file_system.upn.api import structures
-from src.main.upn.api.structures.mapping.mapping import _field_values
-
-
-def network_consignment_fields():
-    return _field_values(structures.network_consignment())
+from src.main.file_system.upn.api import structures as file_structures
+from src.main.upn.api.structures.mapping.mapping import mapping_fields
 
 
 NetworkConsignmentStructure = dataclasses.make_dataclass(
     cls_name="NetworkConsignmentStructure",
-    fields=network_consignment_fields()
+    fields=mapping_fields(file_structures.network_consignment())
 )

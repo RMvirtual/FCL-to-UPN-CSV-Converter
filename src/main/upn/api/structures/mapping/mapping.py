@@ -8,7 +8,7 @@ class MappingValues:
     values: list = None
 
 
-def _field_values(contents: dict[str, dict]):
+def mapping_fields(contents: dict[str, dict]):
     return map(_json_entry_to_field_values, contents.items())
 
 
