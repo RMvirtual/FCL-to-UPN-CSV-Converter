@@ -7,20 +7,32 @@ from src.main.upn.api.structures.primitives.base_types import UpnApiPrimitives
 
 
 def network_pallet_fields():
-    structure = NetworkPalletStructure()
-    field_names = dataclasses.fields(structure)
+    fields = NetworkPalletFields()
 
-    pallet_fields = []
-    primitives = UpnApiPrimitives()
+    return fields.from_dataclass(NetworkPalletStructure())
 
-    for field in field_names:
-        name = field.name
-        mapping_values = getattr(structure, name)
-        field_type = primitives.get(mapping_values.type)
-        field_value = field_type()
-        pallet_fields.append([name, field_type, field_value])
 
-    return pallet_fields
+class NetworkPalletFields:
+    def __init__(self):
+        self._primitives = UpnApiPrimitives()
+        self._fields = []
+
+    def from_dataclass(self, structure: dataclasses.dataclass) -> list:
+        field_names = dataclasses.fields(structure)
+        self._fields = []
+
+        for field in field_names:
+            self._fields.append(self._field_from_structure(field, structure))
+
+        return self._fields
+
+    def _field_from_structure(
+            self, field: dataclasses.Field, structure: dataclasses.dataclass
+    ) -> list:
+        mapping_values = structure.field(field.name)
+        field_type = self._primitives[mapping_values.type]
+
+        return [field.name, field_type, field_type()]
 
 
 NetworkPallet = dataclasses.make_dataclass(
