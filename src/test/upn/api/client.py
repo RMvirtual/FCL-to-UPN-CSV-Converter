@@ -5,9 +5,14 @@ from src.main.upn.api.client import UpnApiClient
 class TestUpnApiClient(unittest.TestCase):
     def test_should_get_post_code_restrictions(self):
         client = UpnApiClient()
-        restrictions = client.post_code_restrictions("AB10")
-        restrictions_dict = restrictions[0]
-        self.assertEqual("AB10", restrictions_dict["Postcode"])
+        post_code = "AB10"
+
+        matching_retrictions = list(filter(
+            lambda restriction: restriction["Postcode"] == post_code,
+            client.post_code_restrictions(post_code)
+        ))
+
+        self.assertTrue(matching_retrictions)
 
     def test_should_get_network_input(self):
         client = UpnApiClient()
