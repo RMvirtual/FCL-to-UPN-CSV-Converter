@@ -70,7 +70,7 @@ class TestUpnApiParser(unittest.TestCase):
         result.consignment_no = "gr221004388"
         result.depot_no = 75
         result.customer_reference = "49632"
-        result.despatch_date = datetime.datetime(2022, 10, 18, 0, 0),
+        result.despatch_date = datetime.datetime(2022, 10, 18, 0, 0)
         result.delivery_name = "GRAYLAW FREIGHT GROUP"
         result.delivery_address_1 = "GRAYLAW FREIGHT TERMINAL"
         result.delivery_address_2 = "GILLBRANDS ROAD"
