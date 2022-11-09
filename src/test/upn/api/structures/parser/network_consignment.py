@@ -3,12 +3,13 @@ import unittest
 from src.main.upn.api.structures.network_consignment.structure \
     import NetworkConsignment
 
-from src.main.upn.api.parser import UpnApiParser
+from src.main.upn.api.parser.network_consignment \
+    import NetworkConsignmentParser
 
 
 class TestUpnApiParser(unittest.TestCase):
     def setUp(self):
-        self._parser = UpnApiParser()
+        self._parser = NetworkConsignmentParser()
         self._set_up_raw_network_consignment()
         self._set_up_correct_consignment()
 
@@ -80,6 +81,7 @@ class TestUpnApiParser(unittest.TestCase):
         result.total_weight = 11000
         result.special_instructions = "Don't smash up this consignment."
         result.customer_id = 4236
+        result.customer_name = "GRAYLAW"
         result.delivery_contact_name = "Katherine   01695 729101"
         result.delivery_country = "UNITED KINGDOM"
         result.customer_paperwork_pages = 0
@@ -95,14 +97,23 @@ class TestUpnApiParser(unittest.TestCase):
     def _validate(self, consignment: NetworkConsignment):
         self.assertEqual(self._correct_output(), consignment)
 
-    def test_should_parse_network_consignment(self):
-        result = self._parser.network_consignment(self._consignment)
-        self._validate(result)
-
     def test_should_parse_barcode(self):
         barcode = self._parser.barcode(self._consignment)
-        self.assertEqual(
-            self._correct_consignment.consignment_barcode_no, barcode)
+        correct_barcode = self._correct_consignment.consignment_barcode_no
+
+        self.assertEqual(correct_barcode, barcode)
+
+    def test_should_parse_consignment_no(self):
+        con_no = self._parser.consignment_no(self._consignment)
+        correct_con_no = self._correct_consignment.consignment_no
+
+        self.assertEqual(correct_con_no, con_no)
+
+    def test_should_parse_customer_name(self):
+        customer_name = self._parser.customer_name(self._consignment)
+        correct_customer_name = self._correct_consignment.customer_name
+
+        self.assertEqual(correct_customer_name, customer_name)
 
 
 if __name__ == '__main__':

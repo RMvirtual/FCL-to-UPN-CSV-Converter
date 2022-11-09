@@ -55,6 +55,10 @@
     "type": "int",
     "mapping": "CustomerID"
   },
+  "customer_name": {
+    "type": "string",
+    "mapping": "Consignor"
+  },
   "delivery_contact_name": {
     "type": "string",
     "mapping": "DeliveryContactName"

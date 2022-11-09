@@ -1,5 +1,5 @@
 from src.main.upn.api.client import UpnApiClient
-from src.main.upn.api.parser import UpnApiParser
+from src.main.upn.api.parser.parser import UpnApiParser
 
 
 class UpnApi:
