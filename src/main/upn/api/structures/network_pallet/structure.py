@@ -19,10 +19,10 @@ class NetworkPalletFields:
 
     def from_dataclass(self, structure: dataclasses.dataclass) -> list:
         field_names = dataclasses.fields(structure)
-        self._fields = []
 
-        for field in field_names:
-            self._fields.append(self._field_from_structure(field, structure))
+        self._fields = [
+            self._field_from_structure(field, structure)
+            for field in field_names]
 
         return self._fields
 
