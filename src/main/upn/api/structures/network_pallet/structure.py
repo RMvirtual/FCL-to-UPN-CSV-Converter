@@ -17,20 +17,40 @@ class NetworkPalletFields:
         self._primitives = UpnApiPrimitives()
 
     def from_dataclass(self, structure: dataclasses.dataclass) -> list:
-        field_names = dataclasses.fields(structure)
+        return list(map(
+            lambda field: [field.name, field.type, field.instance],
+            self.field_attributes_from_structure(structure)
+        ))
 
-        return [
-            self._field_from_structure(field, structure)
-            for field in field_names
-        ]
+    @dataclasses.dataclass
+    class MappingAttributes:
+        name = None
+        type = None
+        instance = None
 
-    def _field_from_structure(
-            self, field: dataclasses.Field, structure: dataclasses.dataclass
-    ) -> list:
-        mapping_values = structure.field(field.name)
-        field_type = self._primitives[mapping_values.type]
+    def field_attributes_from_structure(
+            self, structure: dataclasses.dataclass) -> MappingAttributes:
+        result = []
 
-        return [field.name, field_type, field_type()]
+        for structure_field in dataclasses.fields(structure):
+            mapping_values = structure.field(structure_field.name)
+
+            result.append(
+                self.mapping_attributes_from_field(
+                    structure_field, mapping_values
+                )
+            )
+
+        return result
+
+    def mapping_attributes_from_field(self, structure_field, mapping_values):
+        result = self.MappingAttributes()
+
+        result.name = structure_field.name
+        result.type = self._primitives[mapping_values.type]
+        result.instance = result.type()
+
+        return result
 
 
 NetworkPallet = dataclasses.make_dataclass(

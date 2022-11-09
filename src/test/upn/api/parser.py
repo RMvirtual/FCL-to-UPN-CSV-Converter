@@ -1,12 +1,22 @@
 import datetime
 import unittest
-from src.main.upn.api.structures.network_consignment.structure import NetworkConsignment
+from src.main.upn.api.structures.network_consignment.structure \
+    import NetworkConsignment
+
 from src.main.upn.api.parser import UpnApiParser
 
 
 class TestUpnApiParser(unittest.TestCase):
+    def setUp(self):
+        self._parser = UpnApiParser()
+        self._set_up_raw_network_consignment()
+        self._set_up_correct_consignment()
+
+    def _set_up_raw_network_consignment(self):
+        self._consignment = self._raw_network_consignment()
+
     @staticmethod
-    def _set_up_network_consignment():
+    def _raw_network_consignment():
         return {
             'ConBarcode': 'W213359799C',
             'ConNo': 'gr221004388',
@@ -50,6 +60,9 @@ class TestUpnApiParser(unittest.TestCase):
             'TotalWeight': 11000
         }
 
+    def _set_up_correct_consignment(self):
+        self._correct_consignment = self._correct_output()
+
     @staticmethod
     def _correct_output() -> NetworkConsignment:
         result = NetworkConsignment()
@@ -82,13 +95,14 @@ class TestUpnApiParser(unittest.TestCase):
     def _validate(self, consignment: NetworkConsignment):
         self.assertEqual(self._correct_output(), consignment)
 
-    @unittest.SkipTest
     def test_should_parse_network_consignment(self):
-        self._set_up_network_consignment()
-        parser = UpnApiParser()
-        result = parser.network_consignment(self._set_up_network_consignment())
+        result = self._parser.network_consignment(self._consignment)
         self._validate(result)
-        self.fail("DUMMY FAIL")
+
+    def test_should_parse_barcode(self):
+        barcode = self._parser.barcode(self._consignment)
+        self.assertEqual(
+            self._correct_consignment.consignment_barcode_no, barcode)
 
 
 if __name__ == '__main__':
