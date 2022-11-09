@@ -7,7 +7,7 @@ from src.main.upn.api.parser.network_consignment \
     import NetworkConsignmentParser
 
 
-class TestUpnApiParser(unittest.TestCase):
+class TestNetworkConsignmentParser(unittest.TestCase):
     def setUp(self):
         self._parser = NetworkConsignmentParser()
         self._set_up_raw_network_consignment()
