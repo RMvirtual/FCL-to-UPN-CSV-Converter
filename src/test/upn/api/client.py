@@ -28,15 +28,12 @@ class TestUpnApiClient(unittest.TestCase):
         consignments = client.network_delivery_by_con_no("22302")
         correct_barcode = "D001446027C"
 
-        barcode_matches = False
+        matching_consignments = list(filter(
+            lambda consignment: consignment["ConBarcode"] == correct_barcode,
+            consignments
+        ))
 
-        for con in consignments:
-            barcode_matches = con["ConBarcode"] == correct_barcode
-
-            if barcode_matches:
-                break
-
-        self.assertTrue(barcode_matches)
+        self.assertTrue(matching_consignments)
 
 
 if __name__ == '__main__':
