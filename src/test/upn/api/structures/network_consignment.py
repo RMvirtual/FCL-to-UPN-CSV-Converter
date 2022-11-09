@@ -2,6 +2,7 @@ import unittest
 from src.main.upn.api.structures.network_consignment.structure import \
     NetworkConsignment
 from src.main.upn.api.structures.network_pallet.structure import NetworkPallet
+from src.main.upn.api.structures.network_consignment import structure
 
 
 class TestNetworkConsignment(unittest.TestCase):
@@ -10,21 +11,21 @@ class TestNetworkConsignment(unittest.TestCase):
 
     @unittest.SkipTest
     def test_should_create_fields(self):
-        structure = NetworkConsignment()
+        consignment = NetworkConsignment()
 
-        self.assertTrue(hasattr(structure, "consignment_no"))
-        self.assertIsInstance(structure.consignment_no, str)
+        self.assertTrue(hasattr(consignment, "consignment_no"))
+        self.assertIsInstance(consignment.consignment_no, str)
 
     def test_should_create_empty_pallets_list(self):
-        structure = NetworkConsignment()
-        self.assertListEqual([], structure.pallets)
+        consignment = NetworkConsignment()
+        self.assertListEqual([], consignment.pallets)
 
     def test_should_get_data_structure_field_type(self):
-        field_type = network_consignment.get_field_type("network_pallet")
+        field_type = structure.get_field_type("network_pallet")
         self.assertEqual(NetworkPallet, field_type)
 
     def test_should_get_array_structure_field_type(self):
-        field_type = network_consignment.get_field_type(
+        field_type = structure.get_field_type(
             "array_of_network_pallet")
 
         self.assertEqual(list[NetworkPallet], field_type)
