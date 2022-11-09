@@ -15,14 +15,9 @@ def network_pallet_fields():
 
     for field in field_names:
         name = field.name
-
         mapping_values = getattr(structure, name)
-
-        field_type = mapping_values.type
-        field_type = getattr(primitives, field_type)
-
+        field_type = primitives.get(mapping_values.type)
         field_value = field_type()
-
         pallet_fields.append([name, field_type, field_value])
 
     return pallet_fields

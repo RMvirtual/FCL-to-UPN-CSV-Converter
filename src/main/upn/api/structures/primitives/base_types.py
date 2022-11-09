@@ -8,14 +8,14 @@ class UpnApiPrimitives:
     int: type = int
     datetime: type = datetime.datetime
 
+    def contains(self, mapping_name: str):
+        return hasattr(self, mapping_name)
 
-def get_primitive(mapping_name: str):
-    primitives = UpnApiPrimitives()
+    def __contains__(self, mapping_name: str):
+        return self.contains(mapping_name)
 
-    return getattr(primitives, mapping_name)
+    def get(self, mapping_name: str) -> type:
+        return getattr(self, mapping_name)
 
-
-def is_primitive(mapping_name: str):
-    primitives = UpnApiPrimitives()
-
-    return hasattr(UpnApiPrimitives, mapping_name)
+    def __getitem__(self, mapping_name: str) -> type:
+        return self.get(mapping_name)

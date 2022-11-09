@@ -7,7 +7,7 @@ from src.main.upn.api.structures.network_consignment.mapping \
 from src.main.upn.api.structures.network_pallet.structure \
     import NetworkPallet
 
-from src.main.upn.api.structures.primitives import base_types
+from src.main.upn.api.structures.primitives.base_types import UpnApiPrimitives
 from src.main.upn.api.structures.primitives import arrays
 
 
@@ -28,8 +28,10 @@ def network_consignment_fields():
 
 
 def get_field_type(mapping_type_name: str) -> type:
-    if base_types.is_primitive(mapping_type_name):
-        return base_types.get_primitive(mapping_type_name)
+    primitives = UpnApiPrimitives()
+
+    if mapping_type_name in primitives:
+        return primitives[mapping_type_name]
 
     elif mapping_type_name == "network_pallet":
         return NetworkPallet
