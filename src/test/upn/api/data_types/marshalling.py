@@ -44,6 +44,15 @@ class TestUpnApiTypeMarshalling(unittest.TestCase):
         self._validate_callback_against_marshalling_candidates(
             self._marshaller.unmarshall_to_instance, unmarshalling_candidates)
 
+    def test_should_unmarshall_empty_primitive_instances(self):
+        unmarshalling_candidates = (
+            self.InstanceToUnmarshall("string", None, ""),
+            self.InstanceToUnmarshall("int", None, 0)
+        )
+
+        self._validate_callback_against_marshalling_candidates(
+            self._marshaller.unmarshall_to_instance, unmarshalling_candidates)
+
     def test_should_unmarshall_empty_container_instances(self):
         unmarshalling_candidates = (
             self.InstanceToUnmarshall("array", "test_1", []),
