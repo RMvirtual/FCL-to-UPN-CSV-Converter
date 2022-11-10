@@ -5,14 +5,14 @@ from datetime import datetime
 
 
 class TestUpnApiTypeMarshalling(unittest.TestCase):
+    def setUp(self):
+        self._marshaller = DataTypeMarshaller()
+
     @dataclasses.dataclass
     class InstanceToUnmarshall:
         type_name: str
         value: str or int
         correct_value: any
-
-    def setUp(self):
-        self._marshaller = DataTypeMarshaller()
 
     def test_should_unmarshall_primitive_types(self):
         self.assertEqual(str, self._marshaller.unmarshall_to_type("string"))
@@ -39,7 +39,7 @@ class TestUpnApiTypeMarshalling(unittest.TestCase):
 
             self.assertEqual(candidate.correct_value, result)
 
-    def test_should_unmarshall_container_instances(self):
+    def test_should_unmarshall_empty_container_instances(self):
         marshalling_candidates = [
             self.InstanceToUnmarshall("array", "test_1", []),
             self.InstanceToUnmarshall("dictionary", "1", {})

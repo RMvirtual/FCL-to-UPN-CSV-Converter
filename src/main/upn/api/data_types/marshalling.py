@@ -39,10 +39,19 @@ class DataTypeMarshaller:
         return self._type(type_name)
 
     def unmarshall_to_instance(self, type_name: str, value: any = None) -> any:
-        unmarshalled_type = self.unmarshall_to_type(type_name)
+        self._validate_data_type_exists(type_name)
 
-        if callable(unmarshalled_type):
-            return unmarshalled_type(value)
+        if self.is_primitive(type_name):
+            return self._unmarshall_primitive(type_name, value)
+
+        else:
+            return self._unmarshall_container(type_name, value)
+
+    def _unmarshall_primitive(self, type_name: str, value: any = None) -> any:
+        return self._primitives[type_name](value)
+
+    def _unmarshall_container(self, type_name: str, value: any = None):
+        return self._containers[type_name]()
 
     def _type(self, type_name: str) -> type:
         type_container = (
