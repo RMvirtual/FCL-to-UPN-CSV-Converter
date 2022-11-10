@@ -32,14 +32,15 @@ class TestNetworkPalletMarshaller(unittest.TestCase):
 
     def set_up_correct_mapping_with_values(self):
         self._correct_result = Mapping()
-        self._correct_result.mapping = ""
-        self._correct_result.type = ""
-        self._correct_result.values = []
+        self._correct_result.type = str
+        self._correct_result.mapping = "PalletType"
+        self._correct_result.values = [
+            "Full", "Euro", "Half", "Quarter", "Micro"]
 
     def set_up_correct_mapping_without_values(self):
         self._correct_result = Mapping()
-        self._correct_result.mapping = ""
-        self._correct_result.type = ""
+        self._correct_result.type = str
+        self._correct_result.mapping = "ConBarcode"
         self._correct_result.values = []
 
     def test_should_marshall_mapping_without_values(self) -> None:
