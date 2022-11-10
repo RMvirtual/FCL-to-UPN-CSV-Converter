@@ -28,16 +28,16 @@ class TestUpnApiTypeMarshalling(unittest.TestCase):
             dict, self._marshaller.unmarshall_to_type("dictionary"))
 
     def test_should_unmarshall_primitive_instances(self):
-        marshall_values = [
+        marshalling_candidates = [
             self.InstanceToUnmarshall("string", "test_1", "test_1"),
             self.InstanceToUnmarshall("int", "1", 1)
         ]
 
-        for marshall_value in marshall_values:
+        for candidate in marshalling_candidates:
             result = self._marshaller.unmarshall_to_instance(
-                marshall_value.type_name, marshall_value.value)
+                candidate.type_name, candidate.value)
 
-            self.assertEqual(marshall_value.correct_value, result)
+            self.assertEqual(candidate.correct_value, result)
 
 
 if __name__ == '__main__':
