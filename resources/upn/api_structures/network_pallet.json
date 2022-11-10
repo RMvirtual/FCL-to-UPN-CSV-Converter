@@ -13,7 +13,7 @@
     "mapping": "PalletSize",
     "values": ["N", "O", "2", "3"]
   },
-  "barcode_no": {
+  "barcode": {
     "type": "string",
     "mapping": "PltBarcode"
   }

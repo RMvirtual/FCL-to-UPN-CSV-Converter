@@ -9,7 +9,7 @@ class UpnNetworkPalletMarshaller:
 
     def unmarshall(self, candidate: dict) -> NetworkPallet:
         result = NetworkPallet()
-        result.barcode = candidate[self._interface.barcode_no.mapping]
+        result.barcode = candidate[self._interface.barcode.mapping]
 
         result.consignment_barcode = candidate[
             self._interface.consignment_barcode.mapping]

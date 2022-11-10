@@ -22,10 +22,10 @@ class TestNetworkPalletMarshaller(unittest.TestCase):
 
     def _set_up_correct_unmarshalled_pallet(self) -> None:
         result = NetworkPallet()
-        result.consignment_barcode_no = "W213359799C"
+        result.consignment_barcode = "W213359799C"
         result.pallet_size = "N"
         result.pallet_type = "FULL"
-        result.pallet_barcode_no = "W213359800P"
+        result.pallet_barcode = "W213359800P"
 
         self._correct = result
 

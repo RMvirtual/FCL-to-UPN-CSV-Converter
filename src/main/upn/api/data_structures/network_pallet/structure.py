@@ -1,5 +1,4 @@
 import copy
-
 from src.main.upn.api.data_structures.network_pallet import interface
 
 
