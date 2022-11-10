@@ -1,5 +1,5 @@
 import unittest
-from src.main.upn.api.structures.primitives import arrays
+from src.main.upn.api.structures.data_types import containers
 
 
 class TestArrays(unittest.TestCase):

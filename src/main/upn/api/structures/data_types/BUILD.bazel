@@ -5,7 +5,5 @@ py_library(
     name = "primitives",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [
-        "//src/main/file_system",
-    ],
+    deps = [],
 )

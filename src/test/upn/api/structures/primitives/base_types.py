@@ -1,5 +1,5 @@
 import unittest
-from src.main.upn.api.structures.primitives.base_types import UpnApiPrimitives
+from src.main.upn.api.structures.data_types.primitives import UpnApiPrimitives
 
 
 class TestUpnApiPrimitives(unittest.TestCase):

@@ -232,6 +232,9 @@ class TestNetworkConsignmentParser(unittest.TestCase):
             self._correct_consignment.delivery_datetime
         )
 
+    def test_should_parse_network_pallets(self):
+        pallets = self._parser.pallets(self._consignment)
+
     def _parse_and_compare_equality(self, parser_callback, correct_value):
         self.assertEqual(parser_callback(self._consignment), correct_value)
 

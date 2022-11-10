@@ -100,7 +100,7 @@
     "mapping": "ConBarcode"
   },
   "pallets": {
-    "type": "array_of_network_pallet",
+    "type": "dictionary",
     "mapping": "Pallets"
   }
 }
