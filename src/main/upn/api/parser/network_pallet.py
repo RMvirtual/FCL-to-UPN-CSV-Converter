@@ -8,4 +8,7 @@ class NetworkPalletParser:
     def __init__(self):
         self._structure = NetworkPalletStructure()
 
+    def parse(self, parse_values: dict[str, str]):
+        result = NetworkPallet()
 
+        return result
