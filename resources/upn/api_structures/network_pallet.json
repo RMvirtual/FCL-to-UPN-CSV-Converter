@@ -6,7 +6,7 @@
   "type": {
     "type": "string",
     "mapping": "PalletType",
-    "values": ["Full", "Euro", "Half", "Quarter", "Micro"]
+    "values": ["FULL", "EURO", "HALF", "QUARTER", "MICRO"]
   },
   "size": {
     "type": "string",
