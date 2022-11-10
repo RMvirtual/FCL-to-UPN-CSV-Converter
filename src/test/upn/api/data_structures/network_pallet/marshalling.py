@@ -27,17 +27,16 @@ class TestNetworkPalletMarshaller(unittest.TestCase):
         result.pallet_type = "FULL"
         result.pallet_barcode_no = "W213359800P"
 
-        self._correct_pallet = result
+        self._correct = result
 
     def test_should_unmarshall_network_pallet(self):
-        result = self._marshaller.unmarshall(self._unmarshall_candidate)
+        pallet = self._marshaller.unmarshall(self._unmarshall_candidate)
 
         received_to_correct_results = list({
-            result.consignment_barcode_no:
-                self._correct_pallet.consignment_barcode_no,
-            result.pallet_size: self._correct_pallet.pallet_size,
-            result.pallet_type: self._correct_pallet.type,
-            result.pallet_barcode_no: self._correct_pallet.pallet_barcode_no
+            pallet.consignment_barcode: self._correct.consignment_barcode,
+            pallet.size: self._correct.size,
+            pallet.type: self._correct.type,
+            pallet.barcode: self._correct.barcode
         }.items())
 
         for result, correct_result in received_to_correct_results:

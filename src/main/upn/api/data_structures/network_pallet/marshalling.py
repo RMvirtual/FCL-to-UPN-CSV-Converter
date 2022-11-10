@@ -7,6 +7,14 @@ class UpnNetworkPalletMarshaller:
     def __init__(self):
         self._interface = interface.network_pallet()
 
-    def unmarshall(self, candidate: dict):
-        return None
+    def unmarshall(self, candidate: dict) -> NetworkPallet:
+        result = NetworkPallet()
+        result.barcode = candidate[self._interface.barcode_no.mapping]
 
+        result.consignment_barcode = candidate[
+            self._interface.consignment_barcode.mapping]
+
+        result.type = candidate[self._interface.type.mapping]
+        result.size = candidate[self._interface.size.mapping]
+
+        return result
