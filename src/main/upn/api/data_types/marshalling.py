@@ -44,11 +44,12 @@ class DataTypeMarshaller:
         if self.is_primitive(type_name):
             return self._unmarshall_primitive(type_name, value)
 
-        else:
-            return self._unmarshall_container(type_name, value)
+        return self._unmarshall_container(type_name, value)
 
     def _unmarshall_primitive(self, type_name: str, value: any = None) -> any:
-        return self._primitives[type_name](value)
+        unmarshall_type = self._primitives[type_name]
+
+        return unmarshall_type(value) if value else unmarshall_type()
 
     def _unmarshall_container(self, type_name: str, value: any = None):
         return self._containers[type_name]()
