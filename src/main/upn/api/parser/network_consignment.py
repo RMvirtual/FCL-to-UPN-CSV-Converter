@@ -4,14 +4,11 @@ from src.main.upn.api.data_structures.network_consignment.structure \
 from src.main.upn.api.data_structures.network_consignment.mapping \
     import NetworkConsignmentStructure
 
-from src.main.upn.api.parser.network_pallet import NetworkPalletParser
-
 
 class NetworkConsignmentParser:
     def __init__(self):
         self._structure = NetworkConsignmentStructure()
         self._consignment = NetworkConsignment()
-        self._network_pallet_parser = NetworkPalletParser()
 
     def consignment_barcode_no(self, parse_values: dict):
         return parse_values[self._structure.consignment_barcode_no.mapping]

@@ -1,67 +1,61 @@
-import dataclasses
-import datetime
-
-from src.main.upn.api.data_structures.network_consignment.mapping \
-    import NetworkConsignmentStructure
-
-from src.main.upn.api.data_structures.network_pallet.structure \
-    import NetworkPallet
-
-from src.main.upn.api.data_types.primitives import UpnApiPrimitives
-from src.main.upn.api.data_types.containers import UpnApiContainers
+import copy
+from src.main.upn.api.data_structures.network_pallet import interface
 
 
-def network_consignment_fields():
-    structure = NetworkConsignmentStructure()
-    field_names = dataclasses.fields(structure)
+class NetworkPallet:
+    def __init__(self):
+        upn_interface = interface.network_pallet()
+        self._types = upn_interface.type.values
+        self._sizes = upn_interface.size.values
+        self._barcode = ""
+        self._consignment_barcode = ""
+        self._size = self._sizes[0]
+        self._type = self._types[0]
 
-    new_fields = []
+    @property
+    def types(self) -> list[str]:
+        return copy.copy(self._types)
 
-    for field in field_names:
-        mapping_values = getattr(structure, field.name)
-        field_type = get_field_type(mapping_values.type)
-        field_instance = get_field_instance(field_type)
+    @property
+    def sizes(self) -> list[str]:
+        return copy.copy(self._sizes)
 
-        new_fields.append([field.name, field_type, field_instance])
+    @property
+    def barcode(self) -> str:
+        return self._barcode
 
-    return new_fields
+    @barcode.setter
+    def barcode(self, new_barcode) -> None:
+        self._barcode = new_barcode
 
+    @property
+    def consignment_barcode(self) -> str:
+        return self._consignment_barcode
 
-def get_field_type(mapping_type_name: str) -> type:
-    primitives = UpnApiPrimitives()
-    containers = UpnApiContainers()
+    @consignment_barcode.setter
+    def consignment_barcode(self, new_barcode):
+        self._consignment_barcode = new_barcode
 
-    if mapping_type_name in primitives:
-        return primitives[mapping_type_name]
+    @property
+    def size(self) -> str:
+        return self._size
 
-    elif mapping_type_name == "network_pallet":
-        return NetworkPallet
+    @size.setter
+    def size(self, new_size: str) -> None:
+        if new_size in self._sizes:
+            self._size = new_size
 
-    elif mapping_type_name in containers:
-        container_type = containers[mapping_type_name]
+        else:
+            raise ValueError("Size", new_size, "is invalid.")
 
-        nested_type_name = arrays.extract_array_object_name(mapping_type_name)
-        nested_type = get_field_type(nested_type_name)
+    @property
+    def type(self) -> str:
+        return self._type
 
-        return list[nested_type]
+    @type.setter
+    def type(self, new_type: str) -> None:
+        if new_type in self._types:
+            self._type = new_type
 
-    else:
-        raise ValueError(
-            "Mapping type of " + mapping_type_name + " not found.")
-
-
-def get_field_instance(field_type: type):
-    if field_type == list[NetworkPallet]:
-        return dataclasses.field(default_factory=list[NetworkPallet])
-
-    elif field_type is datetime.datetime:
-        return None
-
-    else:
-        return field_type()
-
-
-NetworkConsignment = dataclasses.make_dataclass(
-    cls_name="NetworkConsignment",
-    fields=network_consignment_fields()
-)
+        else:
+            raise ValueError("Type", new_type, "is invalid.")
