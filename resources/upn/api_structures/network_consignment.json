@@ -95,7 +95,7 @@
     "type": "datetime",
     "mapping": "DeliveryDateTime"
   },
-  "consignment_barcode_no": {
+  "consignment_barcode": {
     "type": "string",
     "mapping": "ConBarcode"
   },

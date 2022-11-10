@@ -1,4 +1,5 @@
 from src.main.upn.api.data_structures.network_pallet import interface
+
 from src.main.upn.api.data_structures.network_pallet.structure \
     import NetworkPallet
 

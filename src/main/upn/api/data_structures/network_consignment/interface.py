@@ -30,7 +30,7 @@ class NetworkConsignmentInterface:
     tail_lift_required: Mapping = None
     additional_service: Mapping = None
     delivery_datetime: Mapping = None
-    consignment_barcode_no: Mapping = None
+    consignment_barcode: Mapping = None
     pallets: Mapping = None
 
 
