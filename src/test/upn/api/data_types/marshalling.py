@@ -15,40 +15,51 @@ class TestUpnApiTypeMarshalling(unittest.TestCase):
         correct_value: any
 
     def test_should_unmarshall_primitive_types(self):
-        self.assertEqual(str, self._marshaller.unmarshall_to_type("string"))
-        self.assertEqual(int, self._marshaller.unmarshall_to_type("int"))
+        unmarshall_candidates_to_correct_types = list({
+            "string": str,
+            "int": int,
+            "datetime": datetime
+        }.items())
 
-        self.assertEqual(
-            datetime, self._marshaller.unmarshall_to_type("datetime"))
+        for candidate, correct_type in unmarshall_candidates_to_correct_types:
+            unmarshalled_type = self._marshaller.unmarshall_to_type(candidate)
+            self.assertEqual(correct_type, unmarshalled_type)
 
     def test_should_unmarshall_container_types(self):
-        self.assertEqual(list, self._marshaller.unmarshall_to_type("array"))
+        unmarshall_candidates_to_correct_types = list({
+            "array": list,
+            "dictionary": dict
+        }.items())
 
-        self.assertEqual(
-            dict, self._marshaller.unmarshall_to_type("dictionary"))
+        for candidate, correct_type in unmarshall_candidates_to_correct_types:
+            unmarshalled_type = self._marshaller.unmarshall_to_type(candidate)
+            self.assertEqual(correct_type, unmarshalled_type)
 
-    def test_should_unmarshall_primitive_instances(self):
-        marshalling_candidates = [
+    def test_should_unmarshall_primitive_instances_with_values(self):
+        unmarshalling_candidates = (
             self.InstanceToUnmarshall("string", "test_1", "test_1"),
             self.InstanceToUnmarshall("int", "1", 1)
-        ]
+        )
 
-        for candidate in marshalling_candidates:
-            result = self._marshaller.unmarshall_to_instance(
-                candidate.type_name, candidate.value)
-
-            self.assertEqual(candidate.correct_value, result)
+        self._validate_callback_against_marshalling_candidates(
+            self._marshaller.unmarshall_to_instance, unmarshalling_candidates)
 
     def test_should_unmarshall_empty_container_instances(self):
-        marshalling_candidates = [
+        unmarshalling_candidates = (
             self.InstanceToUnmarshall("array", "test_1", []),
             self.InstanceToUnmarshall("dictionary", "1", {})
-        ]
+        )
 
-        for candidate in marshalling_candidates:
-            result = self._marshaller.unmarshall_to_instance(
-                candidate.type_name, candidate.value)
+        self._validate_callback_against_marshalling_candidates(
+            self._marshaller.unmarshall_to_instance, unmarshalling_candidates
+        )
 
+    def _validate_callback_against_marshalling_candidates(
+            self,  marshaller_callback: callable,
+            unmarshalling_candidates: tuple[InstanceToUnmarshall, ...]
+    ) -> None:
+        for candidate in unmarshalling_candidates:
+            result = marshaller_callback(candidate.type_name, candidate.value)
             self.assertEqual(candidate.correct_value, result)
 
 
