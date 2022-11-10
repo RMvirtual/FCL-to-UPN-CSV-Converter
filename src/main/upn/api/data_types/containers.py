@@ -3,8 +3,8 @@ import dataclasses
 
 @dataclasses.dataclass
 class UpnApiContainers:
-    dictionary: dict = dataclasses.field(default_factory=dict)
-    array: list = dataclasses.field(default_factory=list)
+    dictionary: type = dict
+    array: type = list
 
     def contains(self, mapping_name: str):
         return hasattr(self, mapping_name)
