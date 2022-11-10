@@ -28,7 +28,7 @@ def _to_mapping_values(values: dict[str, str or list[str]]) -> Mapping:
     return result
 
 
-class UpnApiMarshaller:
+class DataTypeMarshaller:
     def __init__(self):
         self._primitives = UpnApiPrimitives()
         self._containers = UpnApiContainers()
@@ -40,7 +40,7 @@ class UpnApiMarshaller:
         if type_name in self._containers:
             return self._containers[type_name]
 
-
+        raise ValueError("Type", type_name, "is invalid UPN data type.")
 
     def unmarshall_to_instance(self) -> any:
         return None

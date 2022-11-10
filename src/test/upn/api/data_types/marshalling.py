@@ -1,11 +1,11 @@
 import unittest
-from src.main.upn.api.data_types.marshalling import UpnApiMarshaller
+from src.main.upn.api.data_types.marshalling import DataTypeMarshaller
 from datetime import datetime
 
 
 class TestUpnApiTypeMarshalling(unittest.TestCase):
     def setUp(self):
-        self._marshaller = UpnApiMarshaller()
+        self._marshaller = DataTypeMarshaller()
 
     def test_should_unmarshall_primitive_types(self):
         self.assertEqual(str, self._marshaller.unmarshall_to_type("string"))
