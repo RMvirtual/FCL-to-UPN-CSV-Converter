@@ -14,15 +14,15 @@ class NetworkPalletInterface:
 
 
 def network_pallet() -> NetworkPalletInterface:
+    """Reliant on the network pallet UPN JSON file having the same
+    fields as the NetworkPalletInterface dataclass.
+    """
     marshaller = MappingMarshaller()
     structure = structures.network_pallet()
     result = NetworkPalletInterface()
 
-    result.barcode = marshaller.unmarshal_to_mapping(structure["barcode"])
-    result.type = marshaller.unmarshal_to_mapping(structure["type"])
-    result.size = marshaller.unmarshal_to_mapping(structure["size"])
-
-    result.consignment_barcode = marshaller.unmarshal_to_mapping(
-        structure["consignment_barcode"])
+    for field in list(dataclasses.fields(NetworkPalletInterface)):
+        mapping = marshaller.unmarshal_to_mapping(structure[field.name])
+        setattr(result, field.name, mapping)
 
     return result
