@@ -1,7 +1,7 @@
-from src.main.upn.api.structures.network_consignment.structure \
+from src.main.upn.api.data_structures.network_consignment.structure \
     import NetworkConsignment
 
-from src.main.upn.api.structures.network_pallet.structure \
+from src.main.upn.api.data_structures.network_pallet.structure \
     import NetworkPallet
 
 

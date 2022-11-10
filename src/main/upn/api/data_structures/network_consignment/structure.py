@@ -1,12 +1,12 @@
 import dataclasses
 import datetime
 
-from src.main.upn.api.structures.network_consignment.mapping \
+from src.main.upn.api.data_structures.network_consignment.mapping \
     import NetworkConsignmentStructure
 
-from src.main.upn.api.structures.network_pallet.structure import NetworkPallet
-from src.main.upn.api.structures.data_types.primitives import UpnApiPrimitives
-from src.main.upn.api.structures.data_types.containers import UpnApiContainers
+from src.main.upn.api.data_structures.network_pallet.structure import NetworkPallet
+from src.main.upn.api.data_types.primitives import UpnApiPrimitives
+from src.main.upn.api.data_types.containers import UpnApiContainers
 
 
 def network_consignment_fields():

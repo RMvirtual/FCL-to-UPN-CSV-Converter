@@ -1,9 +1,9 @@
 import dataclasses
 
-from src.main.upn.api.structures.network_pallet.mapping \
+from src.main.upn.api.data_structures.network_pallet.mapping \
     import NetworkPalletStructure
 
-from src.main.upn.api.structures.data_types.primitives import UpnApiPrimitives
+from src.main.upn.api.data_types.primitives import UpnApiPrimitives
 
 
 def network_pallet_fields():

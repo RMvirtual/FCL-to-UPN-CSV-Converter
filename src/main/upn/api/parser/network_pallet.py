@@ -1,6 +1,6 @@
-from src.main.upn.api.structures.network_pallet.structure import NetworkPallet
+from src.main.upn.api.data_structures.network_pallet.structure import NetworkPallet
 
-from src.main.upn.api.structures.network_pallet.mapping \
+from src.main.upn.api.data_structures.network_pallet.mapping \
     import NetworkPalletStructure
 
 

@@ -1,6 +1,6 @@
 import unittest
 from src.main.upn.api.parser.network_pallet import NetworkPalletParser
-from src.main.upn.api.structures.network_pallet.structure import NetworkPallet
+from src.main.upn.api.data_structures.network_pallet.structure import NetworkPallet
 
 
 class TestNetworkPalletParser(unittest.TestCase):
