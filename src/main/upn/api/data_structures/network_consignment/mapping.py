@@ -1,6 +1,6 @@
 import dataclasses
 from src.main.file_system.upn.api import structures as file_structures
-from src.main.upn.api.data_types.marshalling import map_fields
+from src.main.upn.api.data_structures.mapping.structure import map_fields
 
 
 NetworkConsignmentStructure = dataclasses.make_dataclass(

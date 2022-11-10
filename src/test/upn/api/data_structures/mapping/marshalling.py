@@ -1,0 +1,59 @@
+import unittest
+from src.main.upn.api.data_structures.mapping.structure import Mapping
+
+from src.main.upn.api.data_structures.mapping.marshalling \
+    import MappingMarshaller
+
+
+class TestNetworkPalletMarshaller(unittest.TestCase):
+    def setUp(self) -> None:
+        self._marshaller = MappingMarshaller()
+
+    def set_up_mapping_without_values_test_case(self):
+        self.set_up_unmarshalling_candidate_without_values()
+        self.set_up_correct_mapping_without_values()
+
+    def set_up_mapping_with_values_test_case(self):
+        self.set_up_unmarshalling_candidate_with_values()
+        self.set_up_correct_mapping_with_values()
+
+    def set_up_unmarshalling_candidate_without_values(self):
+        self._candidate = {
+            "type": "string",
+            "mapping": "ConBarcode",
+        }
+
+    def set_up_unmarshalling_candidate_with_values(self):
+        self._candidate = {
+            "type": "string",
+            "mapping": "PalletType",
+            "values": ["Full", "Euro", "Half", "Quarter", "Micro"]
+        }
+
+    def set_up_correct_mapping_with_values(self):
+        self._correct_result = Mapping()
+        self._correct_result.mapping = ""
+        self._correct_result.type = ""
+        self._correct_result.values = []
+
+    def set_up_correct_mapping_without_values(self):
+        self._correct_result = Mapping()
+        self._correct_result.mapping = ""
+        self._correct_result.type = ""
+        self._correct_result.values = []
+
+    def test_should_marshall_mapping_without_values(self) -> None:
+        self.set_up_mapping_without_values_test_case()
+        result = self._marshaller.to_mapping_values(self._candidate)
+
+        self.assertEqual(self._correct_result, result)
+
+    def test_should_marshall_mapping_with_values(self) -> None:
+        self.set_up_mapping_with_values_test_case()
+        result = self._marshaller.to_mapping_values(self._candidate)
+
+        self.assertEqual(self._correct_result, result)
+
+
+if __name__ == '__main__':
+    unittest.main()
