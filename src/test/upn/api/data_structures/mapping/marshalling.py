@@ -45,13 +45,13 @@ class TestNetworkPalletMarshaller(unittest.TestCase):
 
     def test_should_marshall_mapping_without_values(self) -> None:
         self.set_up_mapping_without_values_test_case()
-        result = self._marshaller.to_mapping_values(self._candidate)
+        result = self._marshaller.unmarshal_to_mapping(self._candidate)
 
         self.assertEqual(self._correct_result, result)
 
     def test_should_marshall_mapping_with_values(self) -> None:
         self.set_up_mapping_with_values_test_case()
-        result = self._marshaller.to_mapping_values(self._candidate)
+        result = self._marshaller.unmarshal_to_mapping(self._candidate)
 
         self.assertEqual(self._correct_result, result)
 

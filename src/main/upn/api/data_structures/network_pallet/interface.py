@@ -1,46 +1,30 @@
-import abc
-from abc import ABC
+import dataclasses
+from src.main.upn.api.data_structures.mapping.marshalling import (
+    Mapping, MappingMarshaller)
+
+from src.main.file_system.upn.api import structures
 
 
-class NetworkPallet(ABC):
-    @property
-    @abc.abstractmethod
-    def barcode(self) -> str:
-        """The pallet's barcode number (not the consignment)."""
+@dataclasses.dataclass
+class NetworkPalletInterface:
+    barcode_no: Mapping = None
+    type: Mapping = None
+    size: Mapping = None
+    consignment_barcode: Mapping = None
 
-    @abc.abstractmethod
-    @barcode.setter
-    def barcode(self, new_barcode_no: str) -> None:
-        """Sets the pallet's barcode number (not the consignment)."""
 
-    @property
-    @abc.abstractmethod
-    def consignment_barcode(self) -> str:
-        """The parent consignment's barcode number (not the individual
-        pallet's).
-        """
+def network_pallet() -> NetworkPalletInterface:
+    marshaller = MappingMarshaller()
+    structure = structures.network_pallet()
+    result = NetworkPalletInterface()
 
-    @abc.abstractmethod
-    @consignment_barcode.setter
-    def consignment_barcode(self, new_barcode_no: str) -> None:
-        """Changes the parent consignment barcode number."""
+    result.barcode_no = marshaller.unmarshal_to_mapping(
+        structure["barcode_no"])
 
-    @property
-    @abc.abstractmethod
-    def size(self) -> str:
-        """The pallet's size as a string."""
+    result.type = marshaller.unmarshal_to_mapping(structure["type"])
+    result.size = marshaller.unmarshal_to_mapping(structure["size"])
 
-    @abc.abstractmethod
-    @size.setter
-    def size(self, new_size: str) -> None:
-        """Sets a new pallet size."""
+    result.consignment_barcode = marshaller.unmarshal_to_mapping(
+        structure["consignment_barcode"])
 
-    @property
-    @abc.abstractmethod
-    def type(self) -> str:
-        """The pallet's type"""
-
-    @abc.abstractmethod
-    @type.setter
-    def type(self, new_type: str) -> None:
-        """Sets the pallet's type."""
+    return result

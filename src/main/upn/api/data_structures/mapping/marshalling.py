@@ -6,19 +6,19 @@ class MappingMarshaller:
     def __init__(self):
         self._data_types = DataTypeMarshaller()
 
-    def to_mapping_values(self, values: dict) -> Mapping:
+    def unmarshal_to_mapping(self, candidate: dict) -> Mapping:
         result = Mapping()
 
-        result.type = self._data_types.unmarshall_to_type(values["type"])
-        result.mapping = values["mapping"]
-        result.values = values["values"] if "values" in values else []
+        result.type = self._data_types.unmarshall_to_type(candidate["type"])
+        result.mapping = candidate["mapping"]
+        result.values = candidate["values"] if "values" in candidate else []
 
         return result
 
-    def map_fields(self, contents: dict[str, dict]):
-        return map(self._json_entry_to_field_values, contents.items())
+    def unmarshal_to_dataclass_fields(self, candidate: dict[str, dict]):
+        return map(self._json_entry_to_field_values, candidate.items())
 
     def _json_entry_to_field_values(self, field) -> list[str, any, Mapping]:
         key, value = field
 
-        return [key, Mapping, self.to_mapping_values(value)]
+        return [key, Mapping, self.unmarshal_to_mapping(value)]

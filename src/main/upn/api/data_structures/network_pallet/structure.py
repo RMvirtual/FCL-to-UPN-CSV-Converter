@@ -1,59 +1,62 @@
-import dataclasses
+import copy
 
-from src.main.upn.api.data_structures.network_pallet.mapping \
-    import NetworkPalletStructure
-
-from src.main.upn.api.data_types.primitives import UpnApiPrimitives
+from src.main.upn.api.data_structures.network_pallet import interface
 
 
-def network_pallet_fields():
-    fields = NetworkPalletFields()
-
-    return fields.from_dataclass(NetworkPalletStructure())
-
-
-class NetworkPalletFields:
+class NetworkPallet:
     def __init__(self):
-        self._primitives = UpnApiPrimitives()
+        upn_interface = interface.network_pallet()
+        self._types = upn_interface.type.values
+        self._sizes = upn_interface.size.values
+        self._barcode = ""
+        self._consignment_barcode = ""
+        self._size = self._sizes[0]
+        self._type = self._types[0]
 
-    def from_dataclass(self, structure: dataclasses.dataclass) -> list:
-        return list(map(
-            lambda field: [field.name, field.type, field.instance],
-            self.field_attributes_from_structure(structure)
-        ))
+    @property
+    def types(self) -> list[str]:
+        return copy.copy(self._types)
 
-    @dataclasses.dataclass
-    class MappingAttributes:
-        name = None
-        type = None
-        instance = None
+    @property
+    def sizes(self) -> list[str]:
+        return copy.copy(self._sizes)
 
-    def field_attributes_from_structure(
-            self, structure: dataclasses.dataclass) -> MappingAttributes:
-        result = []
+    @property
+    def barcode(self) -> str:
+        return self._barcode
 
-        for structure_field in dataclasses.fields(structure):
-            mapping_values = structure.field(structure_field.name)
+    @barcode.setter
+    def barcode(self, new_barcode) -> None:
+        self._barcode = new_barcode
 
-            result.append(
-                self.mapping_attributes_from_field(
-                    structure_field, mapping_values
-                )
-            )
+    @property
+    def consignment_barcode(self) -> str:
+        return self._consignment_barcode
 
-        return result
+    @consignment_barcode.setter
+    def consignment_barcode(self, new_barcode):
+        self._consignment_barcode = new_barcode
 
-    def mapping_attributes_from_field(self, structure_field, mapping_values):
-        result = self.MappingAttributes()
+    @property
+    def size(self) -> str:
+        return self._size
 
-        result.name = structure_field.name
-        result.type = self._primitives[mapping_values.type]
-        result.instance = result.type()
+    @size.setter
+    def size(self, new_size: str) -> None:
+        if new_size in self._sizes:
+            self._size = new_size
 
-        return result
+        else:
+            raise ValueError("Size", new_size, "is invalid.")
 
+    @property
+    def type(self) -> str:
+        return self._type
 
-NetworkPallet = dataclasses.make_dataclass(
-    cls_name="NetworkPallet",
-    fields=network_pallet_fields()
-)
+    @type.setter
+    def type(self, new_type: str) -> None:
+        if new_type in self._types:
+            self._type = new_type
+
+        else:
+            raise ValueError("Type", new_type, "is invalid.")
