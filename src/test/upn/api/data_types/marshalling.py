@@ -1,9 +1,16 @@
+import dataclasses
 import unittest
 from src.main.upn.api.data_types.marshalling import DataTypeMarshaller
 from datetime import datetime
 
 
 class TestUpnApiTypeMarshalling(unittest.TestCase):
+    @dataclasses.dataclass
+    class InstanceToUnmarshall:
+        type_name: str
+        value: str or int
+        correct_value: any
+
     def setUp(self):
         self._marshaller = DataTypeMarshaller()
 
@@ -19,6 +26,18 @@ class TestUpnApiTypeMarshalling(unittest.TestCase):
 
         self.assertEqual(
             dict, self._marshaller.unmarshall_to_type("dictionary"))
+
+    def test_should_unmarshall_primitive_instances(self):
+        marshall_values = [
+            self.InstanceToUnmarshall("string", "test_1", "test_1"),
+            self.InstanceToUnmarshall("int", "1", 1)
+        ]
+
+        for marshall_value in marshall_values:
+            result = self._marshaller.unmarshall_to_instance(
+                marshall_value.type_name, marshall_value.value)
+
+            self.assertEqual(marshall_value.correct_value, result)
 
 
 if __name__ == '__main__':
