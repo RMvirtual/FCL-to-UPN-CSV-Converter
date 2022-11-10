@@ -34,7 +34,13 @@ class UpnApiMarshaller:
         self._containers = UpnApiContainers()
 
     def unmarshall_to_type(self, type_name: str) -> type:
-        return None
+        if type_name in self._primitives:
+            return self._primitives[type_name]
+
+        if type_name in self._containers:
+            return self._containers[type_name]
+
+
 
     def unmarshall_to_instance(self) -> any:
         return None

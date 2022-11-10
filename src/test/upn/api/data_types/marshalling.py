@@ -14,6 +14,12 @@ class TestUpnApiTypeMarshalling(unittest.TestCase):
         self.assertEqual(
             datetime, self._marshaller.unmarshall_to_type("datetime"))
 
+    def test_should_unmarshall_container_types(self):
+        self.assertEqual(list, self._marshaller.unmarshall_to_type("array"))
+
+        self.assertEqual(
+            dict, self._marshaller.unmarshall_to_type("dictionary"))
+
 
 if __name__ == '__main__':
     unittest.main()
