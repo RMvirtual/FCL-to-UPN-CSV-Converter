@@ -1,5 +1,6 @@
 import dataclasses
-
+from src.main.upn.api.data_types.primitives import UpnApiPrimitives
+from src.main.upn.api.data_types.containers import UpnApiContainers
 
 @dataclasses.dataclass
 class Mapping:
@@ -25,3 +26,15 @@ def _to_mapping_values(values: dict[str, str or list[str]]) -> Mapping:
     result.values = values["values"] if "values" in values else []
 
     return result
+
+
+class UpnApiMarshaller:
+    def __init__(self):
+        self._primitives = UpnApiPrimitives()
+        self._containers = UpnApiContainers()
+
+    def unmarshall_to_type(self, type_name: str) -> type:
+        return None
+
+    def unmarshall_to_instance(self) -> any:
+        return None
