@@ -2,6 +2,7 @@ import dataclasses
 from src.main.upn.api.data_types.primitives import UpnApiPrimitives
 from src.main.upn.api.data_types.containers import UpnApiContainers
 
+
 @dataclasses.dataclass
 class Mapping:
     type: str = ""
