@@ -38,12 +38,11 @@ class DataTypeMarshaller:
 
         return self._type(type_name)
 
-    def unmarshall_to_instance(self, type_name: str, value: any) -> any:
+    def unmarshall_to_instance(self, type_name: str, value: any = None) -> any:
         unmarshalled_type = self.unmarshall_to_type(type_name)
 
         if callable(unmarshalled_type):
             return unmarshalled_type(value)
-
 
     def _type(self, type_name: str) -> type:
         type_container = (

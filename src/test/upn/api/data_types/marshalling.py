@@ -39,6 +39,18 @@ class TestUpnApiTypeMarshalling(unittest.TestCase):
 
             self.assertEqual(candidate.correct_value, result)
 
+    def test_should_unmarshall_container_instances(self):
+        marshalling_candidates = [
+            self.InstanceToUnmarshall("array", "test_1", []),
+            self.InstanceToUnmarshall("dictionary", "1", {})
+        ]
+
+        for candidate in marshalling_candidates:
+            result = self._marshaller.unmarshall_to_instance(
+                candidate.type_name, candidate.value)
+
+            self.assertEqual(candidate.correct_value, result)
+
 
 if __name__ == '__main__':
     unittest.main()
