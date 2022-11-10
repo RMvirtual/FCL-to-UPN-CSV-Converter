@@ -36,6 +36,8 @@ def get_field_type(mapping_type_name: str) -> type:
         return NetworkPallet
 
     elif mapping_type_name in containers:
+        container_type = containers[mapping_type_name]
+
         nested_type_name = arrays.extract_array_object_name(mapping_type_name)
         nested_type = get_field_type(nested_type_name)
 

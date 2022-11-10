@@ -1,6 +1,6 @@
 import dataclasses
 from src.main.file_system.upn.api import structures
-from src.main.upn.api.structures.mapping.mapping import map_fields
+from src.main.upn.api.structures.data_types.marshalling import map_fields
 
 
 NetworkPalletStructure = dataclasses.make_dataclass(

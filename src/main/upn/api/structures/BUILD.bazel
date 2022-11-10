@@ -8,9 +8,9 @@ py_library(
     deps = [
         requirement("zeep"),
         "//src/main/file_system",
+        "//src/main/upn/api/structures/data_types",
         "//src/main/upn/api/structures/mapping",
         "//src/main/upn/api/structures/network_consignment",
         "//src/main/upn/api/structures/network_pallet",
-        "//src/main/upn/api/structures/primitives",
     ],
 )

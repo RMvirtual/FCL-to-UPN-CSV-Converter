@@ -8,6 +8,6 @@ py_library(
     deps = [
         requirement("zeep"),
         "//src/main/file_system",
-        "//src/main/upn/api/structures/primitives",
+        "//src/main/upn/api/structures/data_types",
     ],
 )
