@@ -1,4 +1,4 @@
-from src.main.upn.api.client import UpnApiClient
+from src.main.upn.api.client.soap_api import UpnApiClient
 from src.main.upn.api.parser.parser import UpnApiParser
 
 

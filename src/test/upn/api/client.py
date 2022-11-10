@@ -1,5 +1,5 @@
 import unittest
-from src.main.upn.api.client import UpnApiClient
+from src.main.upn.api.client.soap_api import UpnApiClient
 
 
 class TestUpnApiClient(unittest.TestCase):

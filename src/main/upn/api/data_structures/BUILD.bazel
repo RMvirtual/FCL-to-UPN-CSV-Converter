@@ -2,14 +2,14 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "structures",
+    name = "data_structures",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
         requirement("zeep"),
         "//src/main/file_system",
+        "//src/main/upn/api/data_structures/network_consignment",
+        "//src/main/upn/api/data_structures/network_pallet",
         "//src/main/upn/api/data_types",
-        "//src/main/upn/api/structures/network_consignment",
-        "//src/main/upn/api/structures/network_pallet",
     ],
 )
