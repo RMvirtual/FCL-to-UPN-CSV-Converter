@@ -2,13 +2,11 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "network_consignment",
+    name = "freight",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/file_system",
-        "//src/main/upn/api/data_structures/freight",
-        "//src/main/upn/api/data_structures/network_pallet",
         "//src/main/upn/api/data_types",
     ],
 )

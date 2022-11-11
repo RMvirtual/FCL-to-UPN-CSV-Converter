@@ -1,33 +1,68 @@
 import copy
 from src.main.upn.api.data_structures.network_consignment import interface
 import datetime
+from src.main.upn.api.data_structures.freight.address import Address
+from src.main.upn.api.data_structures.freight.references import References
+from src.main.upn.api.data_structures.freight.services import Services
 
 
 class NetworkConsignment:
     def __init__(self):
         self._interface = interface.NetworkConsignmentInterface()
-        self._consignment_no = ""
-        self._depot_no = 75
-        self._customer_reference = ""
-        self._despatch_date = None
-        self._delivery_name = ""
-        self._delivery_address_1 = ""
-        self._delivery_address_2 = ""
-        self._delivery_town = ""
-        self._delivery_county = ""
-        self._delivery_post_code = ""
-        self._delivery_telephone_no = ""
-        self._total_weight = 0
-        self._special_instructions = ""
         self._customer_id = 0
-        self._delivery_contact_name = ""
-        self._delivery_country = ""
-        self._customer_paperwork_pages = 0
-        self._main_service = ""
-        self._premium_service = ""
-        self._tail_lift_required = ""
-        self._additional_service = ""
-        self._delivery_datetime = None
-        self._consignment_barcode = ""
+        self._depot_no = 75
+        self._delivery_address = Address()
+        self._references = References()
+        self._services = Services()
+        self._special_instructions = ""
         self._pallets = []
+        self._total_weight = 0
+        self._customer_paperwork_pages = 0
+        self._despatch_date = None
+        self._delivery_datetime = None
+
+    @property
+    def delivery_address(self) -> Address:
+        return self._delivery_address
+
+    @property
+    def references(self) -> References:
+        return self._references
+
+    @property
+    def services(self) -> Services:
+        return self._services
+
+    @property
+    def customer_id(self) -> int:
+        return self._customer_id
+
+    @customer_id.setter
+    def customer_id(self, new_id: int) -> None:
+        self._customer_id = new_id
+
+    @property
+    def depot_no(self) -> int:
+        return self._depot_no
+
+    @depot_no.setter
+    def depot_no(self, new_depot_no: int) -> None:
+        self._depot_no = new_depot_no
+
+    @property
+    def special_instructions(self) -> str:
+        return self._special_instructions
+
+    @special_instructions.setter
+    def special_instructions(self, new_instructions: str) -> None:
+        self._special_instructions = new_instructions
+
+    @property
+    def customer_paperwork_pages(self) -> int:
+        return self._customer_paperwork_pages
+
+    @customer_paperwork_pages.setter
+    def customer_paperwork_pages(self, new_quantity: int) -> None:
+        self._customer_paperwork_pages = new_quantity
+
 
