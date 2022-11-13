@@ -17,7 +17,7 @@ class NetworkPallet:
 
     def __eq__(self, other: NetworkPallet):
         return (
-            self.barcode == other._barcode
+            self.barcode == other.barcode
             and self.consignment_barcode == other.consignment_barcode
             and self.size == other.size
             and self.type == other.type
