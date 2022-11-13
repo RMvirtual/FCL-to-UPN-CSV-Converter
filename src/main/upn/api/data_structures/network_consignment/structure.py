@@ -29,6 +29,13 @@ class NetworkConsignment:
     def references(self) -> References:
         return self._references
 
+    @references.setter
+    def references(self, new_references: References) -> None:
+        if new_references is not References:
+            raise ValueError("Incorrect type for references.")
+
+        self._references = new_references
+
     @property
     def services(self) -> Services:
         return self._services

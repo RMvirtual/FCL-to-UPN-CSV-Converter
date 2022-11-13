@@ -15,10 +15,8 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._marshaller = UpnNetworkConsignmentMarshaller()
 
     def test_should_unmarshall_consignment_references(self) -> None:
-        result = self._marshaller.unmarshall(self._raw_consignment)
-
-        self.assertEqual(
-            self._correct_consignment.references, result.references)
+        result = self._marshaller.unmarshall_references(self._raw_consignment)
+        self.assertEqual(self._correct_consignment.references, result)
 
     def _set_up_raw_network_consignment(self):
         self._raw_consignment = {
