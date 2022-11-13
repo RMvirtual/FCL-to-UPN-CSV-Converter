@@ -19,54 +19,40 @@ class UpnNetworkConsignmentMarshaller:
 
     def unmarshall_references(self, candidate: dict) -> References:
         result = References()
-        result.barcode = candidate[self._interface.barcode.mapping]
+        result.barcode = self._unmarshall(candidate, "barcode")
+        result.consignment_no = self._unmarshall(candidate, "consignment_no")
 
-        result.consignment_no = candidate[
-            self._interface.consignment_no.mapping]
-
-        result.customer_reference = candidate[
-            self._interface.customer_reference.mapping]
+        result.customer_reference = self._unmarshall(
+            candidate, "customer_reference")
 
         return result
 
     def unmarshall_depot_no(self, candidate: dict) -> int:
-        return candidate[self._interface.depot_no.mapping]
+        return self._unmarshall(candidate, "depot_no")
 
     def unmarshall_customer_id(self, candidate: dict) -> int:
-        return candidate[self._interface.customer_id.mapping]
+        return self._unmarshall(candidate, "customer_id")
 
     def unmarshall_delivery_address(self, candidate: dict) -> Address:
         result = Address()
-        result.name = self.candidate_from_interface(candidate, "delivery_name")
+        result.name = self._unmarshall(candidate, "delivery_name")
+        result.line_1 = self._unmarshall(candidate, "delivery_address_1")
+        result.line_2 = self._unmarshall(candidate, "delivery_address_2")
+        result.town = self._unmarshall(candidate, "delivery_town")
+        result.county = self._unmarshall(candidate, "delivery_county")
+        result.post_code = self._unmarshall(candidate, "delivery_post_code")
+        result.country = self._unmarshall(candidate, "delivery_country")
 
-        result.line_1 = self.candidate_from_interface(
-            candidate, "delivery_address_1")
-
-        result.line_2 = self.candidate_from_interface(
-            candidate, "delivery_address_2")
-
-        result.town = self.candidate_from_interface(
-            candidate, "delivery_town")
-
-        result.county = self.candidate_from_interface(
-            candidate, "delivery_county")
-
-        result.post_code = self.candidate_from_interface(
-            candidate, "delivery_post_code")
-
-        result.country = self.candidate_from_interface(
-            candidate, "delivery_country")
-
-        result.contact_name = self.candidate_from_interface(
+        result.contact_name = self._unmarshall(
             candidate, "delivery_contact_name")
 
-        result.telephone_no = self.candidate_from_interface(
+        result.telephone_no = self._unmarshall(
             candidate, "delivery_telephone_no")
 
         return result
 
-    def candidate_from_interface(self, candidate: dict, field_name) -> any:
-        return candidate[self._mapping_from_interface(field_name)]
+    def _unmarshall(self, candidate: dict, field_name) -> any:
+        return candidate[self._interface_mapping_from(field_name)]
 
-    def _mapping_from_interface(self, field_name):
+    def _interface_mapping_from(self, field_name):
         return getattr(self._interface, field_name).mapping
