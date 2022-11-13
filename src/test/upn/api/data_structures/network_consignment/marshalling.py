@@ -117,7 +117,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._set_up_correct_customer()
         self._set_up_correct_delivery_address()
         self._set_up_correct_cargo()
-        self._set_up_dates()
+        self._set_up_correct_dates()
 
         self._correct_consignment.special_instructions = (
             "Don't smash up this consignment.")
@@ -154,7 +154,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment.customer.name = "GRAYLAW"
         self._correct_consignment.customer.id = 4236
 
-    def _set_up_dates(self) -> None:
+    def _set_up_correct_dates(self) -> None:
         self._correct_consignment.dates.despatch = datetime.datetime(
             2022, 10, 18, 0, 0)
 
