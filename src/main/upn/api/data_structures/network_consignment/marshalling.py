@@ -6,6 +6,7 @@ from src.main.upn.api.data_structures.network_consignment.structure \
 from src.main.upn.consignments.references import References
 from src.main.upn.consignments.address import Address
 from src.main.upn.consignments.cargo import Cargo
+from src.main.upn.consignments.customer import Customer
 
 
 class UpnNetworkConsignmentMarshaller:
@@ -31,8 +32,12 @@ class UpnNetworkConsignmentMarshaller:
     def unmarshall_depot_no(self, candidate: dict) -> int:
         return self._unmarshall(candidate, "depot_no")
 
-    def unmarshall_customer_id(self, candidate: dict) -> int:
-        return self._unmarshall(candidate, "customer_id")
+    def unmarshall_customer(self, candidate: dict) -> int:
+        result = Customer()
+        result.name = self._unmarshall(candidate, "customer_name")
+        result.id = self._unmarshall(candidate, "customer_id")
+
+        return result
 
     def unmarshall_delivery_address(self, candidate: dict) -> Address:
         def _unmarshall_candidate(field_name) -> any:

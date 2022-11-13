@@ -22,9 +22,9 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         result = self._marshaller.unmarshall_depot_no(self._raw_consignment)
         self.assertEqual(self._correct_consignment.depot_no, result)
 
-    def test_should_unmarshall_customer_id(self) -> None:
-        result = self._marshaller.unmarshall_customer_id(self._raw_consignment)
-        self.assertEqual(self._correct_consignment.customer_id, result)
+    def test_should_unmarshall_customer(self) -> None:
+        result = self._marshaller.unmarshall_customer(self._raw_consignment)
+        self.assertEqual(self._correct_consignment.customer, result)
 
     def test_should_unmarshall_delivery_address(self) -> None:
         result = self._marshaller.unmarshall_delivery_address(
@@ -86,8 +86,8 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment = NetworkConsignment()
         self._set_up_correct_references()
         self._correct_consignment.depot_no = 75
-        self._correct_consignment.customer_id = 4236
         self._correct_consignment.customer_paperwork_pages = 0
+        self._set_up_correct_customer()
         self._set_up_correct_delivery_address()
         self._set_up_correct_cargo()
 
@@ -95,7 +95,6 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment.special_instructions = (
             "Don't smash up this consignment.")
 
-        self._correct_consignment.customer_name = "GRAYLAW"
         self._correct_consignment.main_service = "P"
         self._correct_consignment.premium_service = None
         self._correct_consignment.tail_lift_required = None
@@ -106,7 +105,6 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         self._correct_consignment.delivery_datetime = (
             datetime.datetime(2022, 10, 18, 16, 30))
-
         """
 
     def _set_up_correct_references(self) -> None:
@@ -128,6 +126,11 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
     def _set_up_correct_cargo(self):
         self._correct_consignment.cargo.total_weight = 11000
+
+    def _set_up_correct_customer(self):
+        self._correct_consignment.customer.name = "GRAYLAW"
+        self._correct_consignment.customer.id = 4236
+
 
 if __name__ == '__main__':
     unittest.main()

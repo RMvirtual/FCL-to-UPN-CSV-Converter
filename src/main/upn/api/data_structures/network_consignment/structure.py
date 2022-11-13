@@ -1,25 +1,25 @@
 import copy
-from src.main.upn.api.data_structures.network_consignment import interface
 import datetime
+
+from src.main.upn.api.data_structures.network_consignment import interface
 from src.main.upn.consignments.address import Address
 from src.main.upn.consignments.references import References
 from src.main.upn.consignments.services import Services
 from src.main.upn.consignments.cargo import Cargo
+from src.main.upn.consignments.customer import Customer
 
 
 class NetworkConsignment:
     def __init__(self):
         self._interface = interface.NetworkConsignmentInterface()
-        self._customer_id = 0
-        self._depot_no = 75
-        self._delivery_address = Address()
         self._references = References()
+        self._customer = Customer()
+        self._depot_no = 75
+        self._customer_paperwork_pages = 0
+        self._delivery_address = Address()
         self._services = Services()
         self._cargo = Cargo()
         self._special_instructions = ""
-        self._pallets = []
-        self._total_weight = 0
-        self._customer_paperwork_pages = 0
         self._despatch_date = None
         self._delivery_datetime = None
 
@@ -50,12 +50,15 @@ class NetworkConsignment:
         return self._services
 
     @property
-    def customer_id(self) -> int:
-        return self._customer_id
+    def customer(self) -> int:
+        return self._customer
 
-    @customer_id.setter
-    def customer_id(self, new_id: int) -> None:
-        self._customer_id = new_id
+    @customer.setter
+    def customer(self, new_customer: Customer) -> None:
+        if type(new_customer) is not Customer:
+            raise TypeError("Incorrect type for customer.")
+
+        self._customer = new_customer
 
     @property
     def depot_no(self) -> int:
