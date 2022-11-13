@@ -5,6 +5,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/upn/api/data_structures/network_pallet",
+        "//src/main/upn/api/data_structures/network_consignment",
     ],
 )

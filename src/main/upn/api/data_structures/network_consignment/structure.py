@@ -1,9 +1,9 @@
 import copy
 from src.main.upn.api.data_structures.network_consignment import interface
 import datetime
-from src.main.upn.api.data_structures.freight.address import Address
-from src.main.upn.api.data_structures.freight.references import References
-from src.main.upn.api.data_structures.freight.services import Services
+from src.main.upn.consignments.address import Address
+from src.main.upn.consignments.references import References
+from src.main.upn.consignments.services import Services
 
 
 class NetworkConsignment:
