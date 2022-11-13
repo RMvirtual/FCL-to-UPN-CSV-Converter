@@ -38,6 +38,20 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         self.assertEqual(self._correct_consignment.cargo.total_weight, result)
 
+    def test_should_unmarshall_special_instructions(self) -> None:
+        result = self._marshaller.unmarshall_special_instructions(
+            self._raw_consignment)
+
+        self.assertEqual(
+            self._correct_consignment.special_instructions, result)
+
+    def test_should_unmarshall_customer_paperwork_pages(self) -> None:
+        result = self._marshaller.unmarshall_customer_paperwork_pages(
+            self._raw_consignment)
+
+        self.assertEqual(
+            self._correct_consignment.customer_paperwork_pages, result)
+
     def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {
             'ConBarcode': 'W213359799C',
@@ -91,10 +105,10 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._set_up_correct_delivery_address()
         self._set_up_correct_cargo()
 
-        """
         self._correct_consignment.special_instructions = (
             "Don't smash up this consignment.")
 
+        """
         self._correct_consignment.main_service = "P"
         self._correct_consignment.premium_service = None
         self._correct_consignment.tail_lift_required = None

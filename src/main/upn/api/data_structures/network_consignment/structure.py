@@ -13,9 +13,9 @@ class NetworkConsignment:
     def __init__(self):
         self._interface = interface.NetworkConsignmentInterface()
         self._references = References()
-        self._customer = Customer()
         self._depot_no = 75
         self._customer_paperwork_pages = 0
+        self._customer = Customer()
         self._delivery_address = Address()
         self._services = Services()
         self._cargo = Cargo()

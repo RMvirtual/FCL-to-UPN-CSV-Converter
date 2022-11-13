@@ -59,6 +59,12 @@ class UpnNetworkConsignmentMarshaller:
     def unmarshall_total_weight(self, candidate: dict) -> int:
         return self._unmarshall(candidate, "total_weight")
 
+    def unmarshall_special_instructions(self, candidate: dict) -> str:
+        return self._unmarshall(candidate, "special_instructions")
+
+    def unmarshall_customer_paperwork_pages(self, candidate: dict) -> int:
+        return self._unmarshall(candidate, "customer_paperwork_pages")
+
     def _unmarshall(self, candidate: dict, field_name) -> any:
         return candidate[self._interface_mapping_from(field_name)]
 
