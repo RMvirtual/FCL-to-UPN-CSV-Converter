@@ -26,7 +26,6 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         result = self._marshaller.unmarshall_customer_id(self._raw_consignment)
         self.assertEqual(self._correct_consignment.customer_id, result)
 
-
     def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {
             'ConBarcode': 'W213359799C',
@@ -75,6 +74,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment = NetworkConsignment()
         self._set_up_references()
         self._correct_consignment.depot_no = 75
+        self._correct_consignment.customer_id = 4236
         self._correct_consignment.customer_paperwork_pages = 0
 
         """
@@ -91,7 +91,6 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment.special_instructions = (
             "Don't smash up this consignment.")
 
-        self._correct_consignment.customer_id = 4236
         self._correct_consignment.customer_name = "GRAYLAW"
         self._correct_consignment.delivery_contact_name = (
             "Katherine 01695 729101")
