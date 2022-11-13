@@ -4,6 +4,7 @@ import datetime
 from src.main.upn.consignments.address import Address
 from src.main.upn.consignments.references import References
 from src.main.upn.consignments.services import Services
+from src.main.upn.consignments.cargo import Cargo
 
 
 class NetworkConsignment:
@@ -14,6 +15,7 @@ class NetworkConsignment:
         self._delivery_address = Address()
         self._references = References()
         self._services = Services()
+        self._cargo = Cargo()
         self._special_instructions = ""
         self._pallets = []
         self._total_weight = 0
@@ -79,4 +81,10 @@ class NetworkConsignment:
     def customer_paperwork_pages(self, new_quantity: int) -> None:
         self._customer_paperwork_pages = new_quantity
 
+    @property
+    def cargo(self):
+        return self._cargo
 
+    @cargo.setter
+    def cargo(self, new_cargo) -> None:
+        self._cargo = new_cargo

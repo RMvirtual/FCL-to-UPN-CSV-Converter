@@ -32,6 +32,12 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         self.assertEqual(self._correct_consignment.delivery_address, result)
 
+    def test_should_unmarshall_total_weight(self) -> None:
+        result = self._marshaller.unmarshall_total_weight(
+            self._raw_consignment)
+
+        self.assertEqual(self._correct_consignment.cargo.total_weight, result)
+
     def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {
             'ConBarcode': 'W213359799C',
@@ -78,14 +84,14 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
     def _set_up_correct_consignment(self):
         self._correct_consignment = NetworkConsignment()
-        self._set_up_references()
+        self._set_up_correct_references()
         self._correct_consignment.depot_no = 75
         self._correct_consignment.customer_id = 4236
         self._correct_consignment.customer_paperwork_pages = 0
-        self._set_up_delivery_address()
+        self._set_up_correct_delivery_address()
+        self._set_up_correct_cargo()
 
         """
-        self._correct_consignment.total_weight = 11000
         self._correct_consignment.special_instructions = (
             "Don't smash up this consignment.")
 
@@ -103,12 +109,12 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         """
 
-    def _set_up_references(self) -> None:
+    def _set_up_correct_references(self) -> None:
         self._correct_consignment.references.consignment_no = "gr221004388"
         self._correct_consignment.references.customer_reference = "49632"
         self._correct_consignment.references.barcode = "W213359799C"
 
-    def _set_up_delivery_address(self) -> None:
+    def _set_up_correct_delivery_address(self) -> None:
         address = self._correct_consignment.delivery_address
         address.name = "GRAYLAW FREIGHT GROUP"
         address.line_1 = "GRAYLAW FREIGHT TERMINAL"
@@ -120,6 +126,8 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         address.contact_name = "Katherine   01695 729101"
         address.telephone_no = "0"
 
+    def _set_up_correct_cargo(self):
+        self._correct_consignment.cargo.total_weight = 11000
 
 if __name__ == '__main__':
     unittest.main()

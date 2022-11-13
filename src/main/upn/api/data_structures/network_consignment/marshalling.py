@@ -5,6 +5,7 @@ from src.main.upn.api.data_structures.network_consignment.structure \
 
 from src.main.upn.consignments.references import References
 from src.main.upn.consignments.address import Address
+from src.main.upn.consignments.cargo import Cargo
 
 
 class UpnNetworkConsignmentMarshaller:
@@ -34,22 +35,24 @@ class UpnNetworkConsignmentMarshaller:
         return self._unmarshall(candidate, "customer_id")
 
     def unmarshall_delivery_address(self, candidate: dict) -> Address:
+        def _unmarshall_candidate(field_name) -> any:
+            return self._unmarshall(candidate, field_name)
+
         result = Address()
-        result.name = self._unmarshall(candidate, "delivery_name")
-        result.line_1 = self._unmarshall(candidate, "delivery_address_1")
-        result.line_2 = self._unmarshall(candidate, "delivery_address_2")
-        result.town = self._unmarshall(candidate, "delivery_town")
-        result.county = self._unmarshall(candidate, "delivery_county")
-        result.post_code = self._unmarshall(candidate, "delivery_post_code")
-        result.country = self._unmarshall(candidate, "delivery_country")
-
-        result.contact_name = self._unmarshall(
-            candidate, "delivery_contact_name")
-
-        result.telephone_no = self._unmarshall(
-            candidate, "delivery_telephone_no")
+        result.name = _unmarshall_candidate("delivery_name")
+        result.line_1 = _unmarshall_candidate("delivery_address_1")
+        result.line_2 = _unmarshall_candidate("delivery_address_2")
+        result.town = _unmarshall_candidate("delivery_town")
+        result.county = _unmarshall_candidate("delivery_county")
+        result.post_code = _unmarshall_candidate("delivery_post_code")
+        result.country = _unmarshall_candidate("delivery_country")
+        result.contact_name = _unmarshall_candidate("delivery_contact_name")
+        result.telephone_no = _unmarshall_candidate("delivery_telephone_no")
 
         return result
+
+    def unmarshall_total_weight(self, candidate: dict) -> int:
+        return self._unmarshall(candidate, "total_weight")
 
     def _unmarshall(self, candidate: dict, field_name) -> any:
         return candidate[self._interface_mapping_from(field_name)]
