@@ -14,9 +14,11 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._set_up_correct_consignment()
         self._marshaller = UpnNetworkConsignmentMarshaller()
 
-    def test_should_unmarshall_depot_no(self) -> None:
+    def test_should_unmarshall_consignment_references(self) -> None:
         result = self._marshaller.unmarshall(self._raw_consignment)
-        self.assertEqual(result.depot_no, self._correct_consignment.depot_no)
+
+        self.assertEqual(
+            self._correct_consignment.references, result.references)
 
     def _set_up_raw_network_consignment(self):
         self._raw_consignment = {
@@ -64,11 +66,11 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
     def _set_up_correct_consignment(self):
         self._correct_consignment = NetworkConsignment()
-        self._correct_consignment.consignment_no = "gr221004388"
+        self._set_up_references()
         self._correct_consignment.depot_no = 75
-        self._correct_consignment.customer_reference = "49632"
         self._correct_consignment.customer_paperwork_pages = 0
 
+        """
         self._correct_consignment.delivery_name = "GRAYLAW FREIGHT GROUP"
         self._correct_consignment.delivery_address_1 = (
             "GRAYLAW FREIGHT TERMINAL")
@@ -98,7 +100,12 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment.delivery_datetime = (
             datetime.datetime(2022, 10, 18, 16, 30))
 
-        self._correct_consignment.consignment_barcode_no = "W213359799C"
+        """
+
+    def _set_up_references(self):
+        self._correct_consignment.references.consignment_no = "gr221004388"
+        self._correct_consignment.references.customer_reference = "49632"
+        self._correct_consignment.references.barcode = "W213359799C"
 
 
 if __name__ == '__main__':

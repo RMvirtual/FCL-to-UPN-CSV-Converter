@@ -3,17 +3,25 @@
     "type": "string",
     "mapping": "ConNo"
   },
-  "depot_no": {
-    "type": "int",
-    "mapping": "Depot"
+  "barcode": {
+    "type": "string",
+    "mapping": "ConBarcode"
   },
   "customer_reference": {
     "type": "string",
     "mapping": "CustRef"
   },
+  "depot_no": {
+    "type": "int",
+    "mapping": "Depot"
+  },
   "despatch_date": {
     "type": "datetime",
     "mapping": "DespatchDate"
+  },
+  "delivery_datetime": {
+    "type": "datetime",
+    "mapping": "DeliveryDateTime"
   },
   "delivery_name": {
     "type": "string",
@@ -90,14 +98,6 @@
     "type": "string",
     "mapping": "ExtraService",
     "values": ["", "BI", "Bkd", "OOH"]
-  },
-  "delivery_datetime": {
-    "type": "datetime",
-    "mapping": "DeliveryDateTime"
-  },
-  "consignment_barcode": {
-    "type": "string",
-    "mapping": "ConBarcode"
   },
   "pallets": {
     "type": "dictionary",

@@ -3,7 +3,6 @@ import dataclasses
 
 @dataclasses.dataclass
 class References:
-    barcode_no: str = ""
     consignment_no: str = ""
+    barcode: str = ""
     customer_reference: str = ""
-

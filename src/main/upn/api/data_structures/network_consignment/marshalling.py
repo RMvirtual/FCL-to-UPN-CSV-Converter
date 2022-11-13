@@ -1,24 +1,21 @@
-from src.main.upn.api.data_structures.network_pallet import interface
+from src.main.upn.api.data_structures.network_consignment import interface
+
 from src.main.upn.api.data_structures.network_consignment.structure \
     import NetworkConsignment
-
-from src.main.upn.api.data_structures.network_pallet.marshalling \
-    import UpnNetworkPalletMarshaller
 
 
 class UpnNetworkConsignmentMarshaller:
     def __init__(self):
-        self._interface = interface.network_pallet()
-        self._pallet_marshaller = UpnNetworkPalletMarshaller()
+        self._interface = interface.network_consignment()
 
     def unmarshall(self, candidate: dict) -> NetworkConsignment:
         result = NetworkConsignment()
-        result.barcode = candidate[self._interface.barcode.mapping]
+        result.references.barcode = candidate[self._interface.barcode.mapping]
 
-        result.consignment_barcode = candidate[
-            self._interface.consignment_barcode.mapping]
+        result.references.consignment_no = candidate[
+            self._interface.consignment_no.mapping]
 
-        result.type = candidate[self._interface.type.mapping]
-        result.size = candidate[self._interface.size.mapping]
+        result.references.customer_reference = candidate[
+            self._interface.customer_reference.mapping]
 
         return result
