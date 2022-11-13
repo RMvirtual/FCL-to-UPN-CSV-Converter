@@ -7,6 +7,9 @@ from src.main.upn.api.data_structures.network_consignment.marshalling \
 from src.main.upn.api.data_structures.network_consignment.structure \
     import NetworkConsignment
 
+from src.main.upn.api.data_structures.network_pallet.structure \
+    import NetworkPallet
+
 
 class TestNetworkConsignmentMarshaller(unittest.TestCase):
     def setUp(self) -> None:
@@ -65,6 +68,10 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         self.assertEqual(self._correct_consignment.services, result)
 
+    def test_should_unmarshall_pallets(self) -> None:
+        result = self._marshaller.unmarshall_pallets(self._raw_consignment)
+        self.assertListEqual(self._correct_consignment.cargo.pallets, result)
+
     def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {
             'ConBarcode': 'W213359799C',
@@ -85,8 +92,11 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
             'DeliveryPhone': '0',
             'DespatchDate': datetime.datetime(2022, 10, 18, 0, 0),
             'DeliveryDateTime': datetime.datetime(2022, 10, 18, 16, 30),
-            'ExtraService': None,
             'MainService': 'P',
+            'PremiumService': None,
+            'TailLift': None,
+            'ExtraService': None,
+            'SpecialInstructions': 'Don\'t smash up this consignment.',
             'Pallets': {
                 'NetworkPallet': [
                     {
@@ -103,9 +113,6 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
                     },
                 ]
             },
-            'PremiumService': None,
-            'SpecialInstructions': 'Don\'t smash up this consignment.',
-            'TailLift': None,
             'TotalWeight': 11000
         }
 
@@ -149,6 +156,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
     def _set_up_correct_cargo(self):
         self._correct_consignment.cargo.total_weight = 11000
+        self._set_up_correct_pallets()
 
     def _set_up_correct_customer(self):
         self._correct_consignment.customer.name = "GRAYLAW"
@@ -160,6 +168,21 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         self._correct_consignment.dates.delivery = datetime.datetime(
             2022, 10, 18, 16, 30)
+
+    def _set_up_correct_pallets(self) -> None:
+        pallet_1 = NetworkPallet()
+        pallet_1.consignment_barcode = "W213359799C"
+        pallet_1.size = "N"
+        pallet_1.type = "FULL"
+        pallet_1.barcode = "W213359800P"
+
+        pallet_2 = NetworkPallet()
+        pallet_2.consignment_barcode = "W213359799C"
+        pallet_2.size = "N"
+        pallet_2.type = "FULL"
+        pallet_2.barcode = "W213359801P"
+
+        self._correct_consignment.cargo.pallets = [pallet_1, pallet_2]
 
 
 if __name__ == '__main__':

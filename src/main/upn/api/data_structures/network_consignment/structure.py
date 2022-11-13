@@ -1,6 +1,3 @@
-import copy
-import datetime
-
 from src.main.upn.api.data_structures.network_consignment import interface
 from src.main.upn.consignments.address import Address
 from src.main.upn.consignments.references import References
@@ -57,7 +54,7 @@ class NetworkConsignment:
         self._services = new_services
 
     @property
-    def customer(self) -> int:
+    def customer(self) -> Customer:
         return self._customer
 
     @customer.setter
