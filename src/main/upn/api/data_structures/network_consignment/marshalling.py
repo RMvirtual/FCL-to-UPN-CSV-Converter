@@ -98,7 +98,15 @@ class UpnNetworkConsignmentMarshaller:
         return result
 
     def unmarshall_pallets(self, candidate: dict[str, any]) -> NetworkPallet:
-        return self._unmarshall(candidate, "pallets")
+        dictionary = self._unmarshall(candidate, "pallets")
+        outer_wrapper = dictionary["NetworkPallet"]
+
+        result = []
+
+        for pallet in outer_wrapper:
+            result.append(self._pallet_marshaller.unmarshall(pallet))
+
+        return result
 
     def _unmarshall(self, candidate: dict[str, any], field_name: str) -> any:
         return candidate[self._interface_mapping_from(field_name)]
