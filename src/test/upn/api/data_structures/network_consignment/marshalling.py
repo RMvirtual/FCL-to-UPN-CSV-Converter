@@ -70,7 +70,8 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
     def test_should_unmarshall_pallets(self) -> None:
         result = self._marshaller.unmarshall_pallets(self._raw_consignment)
-        self.assertListEqual(self._correct_consignment.cargo.pallets, result)
+
+        self.assertEqual(self._correct_consignment.cargo.pallets, result)
 
     def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {

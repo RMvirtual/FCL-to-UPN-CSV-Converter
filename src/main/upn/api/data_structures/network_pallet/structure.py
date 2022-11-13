@@ -1,16 +1,27 @@
+from __future__ import annotations
 import copy
 from src.main.upn.api.data_structures.network_pallet import interface
 
 
 class NetworkPallet:
     def __init__(self):
-        upn_interface = interface.network_pallet()
-        self._types = upn_interface.type.values
-        self._sizes = upn_interface.size.values
         self._barcode = ""
         self._consignment_barcode = ""
-        self._size = self._sizes[0]
+
+        upn_interface = interface.network_pallet()
+        self._types = upn_interface.type.values
         self._type = self._types[0]
+
+        self._sizes = upn_interface.size.values
+        self._size = self._sizes[0]
+
+    def __eq__(self, other: NetworkPallet):
+        return (
+            self.barcode == other._barcode
+            and self.consignment_barcode == other.consignment_barcode
+            and self.size == other.size
+            and self.type == other.type
+        )
 
     @property
     def types(self) -> list[str]:
