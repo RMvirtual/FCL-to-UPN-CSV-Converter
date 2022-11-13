@@ -43,6 +43,9 @@ class UpnNetworkConsignmentMarshaller:
         result.line_2 = candidate[
             self._mapping_from_interface("delivery_address_2")]
 
+        result.town = candidate[
+            self._mapping_from_interface("delivery_town")]
+
         result.county = candidate[
             self._mapping_from_interface("delivery_county")]
 

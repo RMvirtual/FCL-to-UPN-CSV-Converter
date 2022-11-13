@@ -36,22 +36,22 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._raw_consignment = {
             'ConBarcode': 'W213359799C',
             'ConNo': 'gr221004388',
-            'Consignor': 'GRAYLAW',
-            'CustPaperwork': 0,
             'CustRef': '49632',
+            'Depot': 75,
             'CustomerID': 4236,
+            'CustPaperwork': 0,
+            'Consignor': 'GRAYLAW',
+            'DeliveryCoName': 'GRAYLAW FREIGHT GROUP',
             'DeliveryAdd1': 'GRAYLAW FREIGHT TERMINAL',
             'DeliveryAdd2': 'GILLBRANDS ROAD',
-            'DeliveryCoName': 'GRAYLAW FREIGHT GROUP',
-            'DeliveryContactName': 'Katherine   01695 729101',
-            'DeliveryCountry': 'UNITED KINGDOM',
-            'DeliveryCounty': 'LANCS',
-            'DeliveryDateTime': datetime.datetime(2022, 10, 18, 16, 30),
-            'DeliveryPhone': '0',
-            'DeliveryPostcode': 'WN8  9TA',
             'DeliveryTown': 'SKELMERSDALE',
-            'Depot': 75,
+            'DeliveryCounty': 'LANCS',
+            'DeliveryPostcode': 'WN8  9TA',
+            'DeliveryCountry': 'UNITED KINGDOM',
+            'DeliveryContactName': 'Katherine   01695 729101',
+            'DeliveryPhone': '0',
             'DespatchDate': datetime.datetime(2022, 10, 18, 0, 0),
+            'DeliveryDateTime': datetime.datetime(2022, 10, 18, 16, 30),
             'ExtraService': None,
             'MainService': 'P',
             'Pallets': {
@@ -90,8 +90,6 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
             "Don't smash up this consignment.")
 
         self._correct_consignment.customer_name = "GRAYLAW"
-        self._correct_consignment.delivery_contact_name = (
-            "Katherine 01695 729101")
         self._correct_consignment.main_service = "P"
         self._correct_consignment.premium_service = None
         self._correct_consignment.tail_lift_required = None
@@ -118,8 +116,9 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         address.town = "SKELMERSDALE"
         address.county = "LANCS"
         address.post_code = "WN8  9TA"
-        address.telephone_no = "0"
         address.country = "UNITED KINGDOM"
+        address.contact_name = "Katherine   01695 729101"
+        address.telephone_no = "0"
 
 
 if __name__ == '__main__':

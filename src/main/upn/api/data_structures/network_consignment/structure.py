@@ -25,13 +25,20 @@ class NetworkConsignment:
     def delivery_address(self) -> Address:
         return self._delivery_address
 
+    @delivery_address.setter
+    def delivery_address(self, new_address: Address) -> None:
+        if type(new_address) is not Address:
+            raise ValueError("Incorrect type for address.")
+
+        self._delivery_address = new_address
+
     @property
     def references(self) -> References:
         return self._references
 
     @references.setter
     def references(self, new_references: References) -> None:
-        if new_references is not References:
+        if type(new_references) is not References:
             raise ValueError("Incorrect type for references.")
 
         self._references = new_references
