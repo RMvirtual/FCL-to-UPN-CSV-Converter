@@ -6,6 +6,7 @@ from src.main.upn.api.data_structures.network_consignment.structure \
 from src.main.upn.consignments.references import References
 from src.main.upn.consignments.address import Address
 
+
 class UpnNetworkConsignmentMarshaller:
     def __init__(self):
         self._interface = interface.network_consignment()
@@ -36,32 +37,36 @@ class UpnNetworkConsignmentMarshaller:
 
     def unmarshall_delivery_address(self, candidate: dict) -> Address:
         result = Address()
-        result.name = candidate[self._mapping_from_interface("delivery_name")]
-        result.line_1 = candidate[
-            self._mapping_from_interface("delivery_address_1")]
+        result.name = self.candidate_from_interface(candidate, "delivery_name")
 
-        result.line_2 = candidate[
-            self._mapping_from_interface("delivery_address_2")]
+        result.line_1 = self.candidate_from_interface(
+            candidate, "delivery_address_1")
 
-        result.town = candidate[
-            self._mapping_from_interface("delivery_town")]
+        result.line_2 = self.candidate_from_interface(
+            candidate, "delivery_address_2")
 
-        result.county = candidate[
-            self._mapping_from_interface("delivery_county")]
+        result.town = self.candidate_from_interface(
+            candidate, "delivery_town")
 
-        result.post_code = candidate[
-            self._mapping_from_interface("delivery_post_code")]
+        result.county = self.candidate_from_interface(
+            candidate, "delivery_county")
 
-        result.country = candidate[
-            self._mapping_from_interface("delivery_country")]
+        result.post_code = self.candidate_from_interface(
+            candidate, "delivery_post_code")
 
-        result.contact_name = candidate[
-            self._mapping_from_interface("delivery_contact_name")]
+        result.country = self.candidate_from_interface(
+            candidate, "delivery_country")
 
-        result.telephone_no = candidate[
-            self._mapping_from_interface("delivery_telephone_no")]
+        result.contact_name = self.candidate_from_interface(
+            candidate, "delivery_contact_name")
+
+        result.telephone_no = self.candidate_from_interface(
+            candidate, "delivery_telephone_no")
 
         return result
+
+    def candidate_from_interface(self, candidate: dict, field_name) -> any:
+        return candidate[self._mapping_from_interface(field_name)]
 
     def _mapping_from_interface(self, field_name):
         return getattr(self._interface, field_name).mapping
