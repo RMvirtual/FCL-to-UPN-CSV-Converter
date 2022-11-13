@@ -26,6 +26,12 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         result = self._marshaller.unmarshall_customer_id(self._raw_consignment)
         self.assertEqual(self._correct_consignment.customer_id, result)
 
+    def test_should_unmarshall_delivery_address(self) -> None:
+        result = self._marshaller.unmarshall_delivery_address(
+            self._raw_consignment)
+
+        self.assertEqual(self._correct_consignment.delivery_address, result)
+
     def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {
             'ConBarcode': 'W213359799C',
@@ -76,17 +82,9 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment.depot_no = 75
         self._correct_consignment.customer_id = 4236
         self._correct_consignment.customer_paperwork_pages = 0
+        self._set_up_delivery_address()
 
         """
-        self._correct_consignment.delivery_name = "GRAYLAW FREIGHT GROUP"
-        self._correct_consignment.delivery_address_1 = (
-            "GRAYLAW FREIGHT TERMINAL")
-
-        self._correct_consignment.delivery_address_2 = "GILLBRANDS ROAD"
-        self._correct_consignment.delivery_town = "SKELMERSDALE"
-        self._correct_consignment.delivery_county = "LANCS"
-        self._correct_consignment.delivery_post_code = "WN8  9TA"
-        self._correct_consignment.delivery_telephone_no = "0"
         self._correct_consignment.total_weight = 11000
         self._correct_consignment.special_instructions = (
             "Don't smash up this consignment.")
@@ -94,7 +92,6 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment.customer_name = "GRAYLAW"
         self._correct_consignment.delivery_contact_name = (
             "Katherine 01695 729101")
-        self._correct_consignment.delivery_country = "UNITED KINGDOM"
         self._correct_consignment.main_service = "P"
         self._correct_consignment.premium_service = None
         self._correct_consignment.tail_lift_required = None
@@ -108,10 +105,21 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         """
 
-    def _set_up_references(self):
+    def _set_up_references(self) -> None:
         self._correct_consignment.references.consignment_no = "gr221004388"
         self._correct_consignment.references.customer_reference = "49632"
         self._correct_consignment.references.barcode = "W213359799C"
+
+    def _set_up_delivery_address(self) -> None:
+        address = self._correct_consignment.delivery_address
+        address.name = "GRAYLAW FREIGHT GROUP"
+        address.line_1 = "GRAYLAW FREIGHT TERMINAL"
+        address.line_2 = "GILLBRANDS ROAD"
+        address.town = "SKELMERSDALE"
+        address.county = "LANCS"
+        address.post_code = "WN8  9TA"
+        address.telephone_no = "0"
+        address.country = "UNITED KINGDOM"
 
 
 if __name__ == '__main__':

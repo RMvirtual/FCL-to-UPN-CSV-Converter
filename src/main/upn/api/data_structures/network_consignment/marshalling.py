@@ -4,7 +4,7 @@ from src.main.upn.api.data_structures.network_consignment.structure \
     import NetworkConsignment
 
 from src.main.upn.consignments.references import References
-
+from src.main.upn.consignments.address import Address
 
 class UpnNetworkConsignmentMarshaller:
     def __init__(self):
@@ -33,3 +33,32 @@ class UpnNetworkConsignmentMarshaller:
 
     def unmarshall_customer_id(self, candidate: dict) -> int:
         return candidate[self._interface.customer_id.mapping]
+
+    def unmarshall_delivery_address(self, candidate: dict) -> Address:
+        result = Address()
+        result.name = candidate[self._mapping_from_interface("delivery_name")]
+        result.line_1 = candidate[
+            self._mapping_from_interface("delivery_address_1")]
+
+        result.line_2 = candidate[
+            self._mapping_from_interface("delivery_address_2")]
+
+        result.county = candidate[
+            self._mapping_from_interface("delivery_county")]
+
+        result.post_code = candidate[
+            self._mapping_from_interface("delivery_post_code")]
+
+        result.country = candidate[
+            self._mapping_from_interface("delivery_country")]
+
+        result.contact_name = candidate[
+            self._mapping_from_interface("delivery_contact_name")]
+
+        result.telephone_no = candidate[
+            self._mapping_from_interface("delivery_telephone_no")]
+
+        return result
+
+    def _mapping_from_interface(self, field_name):
+        return getattr(self._interface, field_name).mapping

@@ -9,6 +9,6 @@ class Address:
     town: str = ""
     county: str = ""
     post_code: str = ""
+    country: str = ""
     contact_name: str = ""
     telephone_no: str = ""
-
