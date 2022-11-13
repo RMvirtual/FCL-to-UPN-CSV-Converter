@@ -16,14 +16,17 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
     def test_should_unmarshall_consignment_references(self) -> None:
         result = self._marshaller.unmarshall_references(self._raw_consignment)
+
         self.assertEqual(self._correct_consignment.references, result)
 
     def test_should_unmarshall_depot_no(self) -> None:
         result = self._marshaller.unmarshall_depot_no(self._raw_consignment)
+
         self.assertEqual(self._correct_consignment.depot_no, result)
 
     def test_should_unmarshall_customer(self) -> None:
         result = self._marshaller.unmarshall_customer(self._raw_consignment)
+
         self.assertEqual(self._correct_consignment.customer, result)
 
     def test_should_unmarshall_delivery_address(self) -> None:
@@ -51,6 +54,11 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         self.assertEqual(
             self._correct_consignment.customer_paperwork_pages, result)
+
+    def test_should_unmarshall_dates(self) -> None:
+        result = self._marshaller.unmarshall_dates(self._raw_consignment)
+
+        self.assertEqual(self._correct_consignment.dates, result)
 
     def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {
@@ -104,6 +112,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._set_up_correct_customer()
         self._set_up_correct_delivery_address()
         self._set_up_correct_cargo()
+        self._set_up_dates()
 
         self._correct_consignment.special_instructions = (
             "Don't smash up this consignment.")
@@ -114,11 +123,6 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment.tail_lift_required = None
         self._correct_consignment.additional_service = None
 
-        self._correct_consignment.despatch_date = (
-            datetime.datetime(2022, 10, 18, 0, 0))
-
-        self._correct_consignment.delivery_datetime = (
-            datetime.datetime(2022, 10, 18, 16, 30))
         """
 
     def _set_up_correct_references(self) -> None:
@@ -144,6 +148,13 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
     def _set_up_correct_customer(self):
         self._correct_consignment.customer.name = "GRAYLAW"
         self._correct_consignment.customer.id = 4236
+
+    def _set_up_dates(self) -> None:
+        self._correct_consignment.dates.despatch = datetime.datetime(
+            2022, 10, 18, 0, 0)
+
+        self._correct_consignment.dates.delivery = datetime.datetime(
+            2022, 10, 18, 16, 30)
 
 
 if __name__ == '__main__':

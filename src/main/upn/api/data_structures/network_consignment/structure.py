@@ -7,6 +7,7 @@ from src.main.upn.consignments.references import References
 from src.main.upn.consignments.services import Services
 from src.main.upn.consignments.cargo import Cargo
 from src.main.upn.consignments.customer import Customer
+from src.main.upn.consignments.dates import Dates
 
 
 class NetworkConsignment:
@@ -20,8 +21,7 @@ class NetworkConsignment:
         self._services = Services()
         self._cargo = Cargo()
         self._special_instructions = ""
-        self._despatch_date = None
-        self._delivery_datetime = None
+        self._dates = Dates()
 
     @property
     def delivery_address(self) -> Address:
@@ -30,7 +30,7 @@ class NetworkConsignment:
     @delivery_address.setter
     def delivery_address(self, new_address: Address) -> None:
         if type(new_address) is not Address:
-            raise ValueError("Incorrect type for address.")
+            raise TypeError("Incorrect type for address.")
 
         self._delivery_address = new_address
 
@@ -41,7 +41,7 @@ class NetworkConsignment:
     @references.setter
     def references(self, new_references: References) -> None:
         if type(new_references) is not References:
-            raise ValueError("Incorrect type for references.")
+            raise TypeError("Incorrect type for references.")
 
         self._references = new_references
 
@@ -91,3 +91,14 @@ class NetworkConsignment:
     @cargo.setter
     def cargo(self, new_cargo) -> None:
         self._cargo = new_cargo
+
+    @property
+    def dates(self) -> Dates:
+        return self._dates
+
+    @dates.setter
+    def dates(self, new_dates: Dates) -> None:
+        if type(new_dates) is not Dates:
+            raise TypeError("Incorrect dates type.")
+
+        self._dates = new_dates

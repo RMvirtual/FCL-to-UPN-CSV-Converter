@@ -7,7 +7,7 @@ from src.main.upn.consignments.references import References
 from src.main.upn.consignments.address import Address
 from src.main.upn.consignments.cargo import Cargo
 from src.main.upn.consignments.customer import Customer
-
+from src.main.upn.consignments.dates import Dates
 
 class UpnNetworkConsignmentMarshaller:
     def __init__(self):
@@ -64,6 +64,13 @@ class UpnNetworkConsignmentMarshaller:
 
     def unmarshall_customer_paperwork_pages(self, candidate: dict) -> int:
         return self._unmarshall(candidate, "customer_paperwork_pages")
+
+    def unmarshall_dates(self, candidate) -> Dates:
+        result = Dates()
+        result.despatch = self._unmarshall(candidate, "despatch_date")
+        result.delivery = self._unmarshall(candidate, "delivery_datetime")
+
+        return result
 
     def _unmarshall(self, candidate: dict, field_name) -> any:
         return candidate[self._interface_mapping_from(field_name)]
