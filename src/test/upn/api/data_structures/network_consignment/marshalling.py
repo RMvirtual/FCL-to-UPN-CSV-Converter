@@ -18,7 +18,16 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         result = self._marshaller.unmarshall_references(self._raw_consignment)
         self.assertEqual(self._correct_consignment.references, result)
 
-    def _set_up_raw_network_consignment(self):
+    def test_should_unmarshall_depot_no(self) -> None:
+        result = self._marshaller.unmarshall_depot_no(self._raw_consignment)
+        self.assertEqual(self._correct_consignment.depot_no, result)
+
+    def test_should_unmarshall_customer_id(self) -> None:
+        result = self._marshaller.unmarshall_customer_id(self._raw_consignment)
+        self.assertEqual(self._correct_consignment.customer_id, result)
+
+
+    def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {
             'ConBarcode': 'W213359799C',
             'ConNo': 'gr221004388',

@@ -27,3 +27,9 @@ class UpnNetworkConsignmentMarshaller:
             self._interface.customer_reference.mapping]
 
         return result
+
+    def unmarshall_depot_no(self, candidate: dict) -> int:
+        return candidate[self._interface.depot_no.mapping]
+
+    def unmarshall_customer_id(self, candidate: dict) -> int:
+        return candidate[self._interface.customer_id.mapping]
