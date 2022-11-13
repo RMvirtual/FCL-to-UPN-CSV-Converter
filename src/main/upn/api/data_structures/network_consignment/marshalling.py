@@ -75,6 +75,14 @@ class UpnNetworkConsignmentMarshaller:
 
     def unmarshall_services(self, candidate) -> Services:
         result = Services()
+        result.main_service = self._unmarshall(candidate, "main_service")
+        result.premium_service = self._unmarshall(candidate, "premium_service")
+
+        result.tail_lift_required = self._unmarshall(
+            candidate, "tail_lift_required")
+
+        result.additional_service = self._unmarshall(
+            candidate, "additional_service")
 
         return result
 
