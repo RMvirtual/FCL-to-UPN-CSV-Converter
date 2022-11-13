@@ -60,6 +60,11 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
 
         self.assertEqual(self._correct_consignment.dates, result)
 
+    def test_should_unmarshall_services(self) -> None:
+        result = self._marshaller.unmarshall_services(self._raw_consignment)
+
+        self.assertEqual(self._correct_consignment.services, result)
+
     def _set_up_raw_network_consignment(self) -> None:
         self._raw_consignment = {
             'ConBarcode': 'W213359799C',
@@ -117,13 +122,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._correct_consignment.special_instructions = (
             "Don't smash up this consignment.")
 
-        """
-        self._correct_consignment.main_service = "P"
-        self._correct_consignment.premium_service = None
-        self._correct_consignment.tail_lift_required = None
-        self._correct_consignment.additional_service = None
-
-        """
+        self._set_up_correct_services()
 
     def _set_up_correct_references(self) -> None:
         self._correct_consignment.references.consignment_no = "gr221004388"
@@ -141,6 +140,12 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         address.country = "UNITED KINGDOM"
         address.contact_name = "Katherine   01695 729101"
         address.telephone_no = "0"
+
+    def _set_up_correct_services(self) -> None:
+        self._correct_consignment.services.main_service = "P"
+        self._correct_consignment.services.premium_service = None
+        self._correct_consignment.services.tail_lift_required = None
+        self._correct_consignment.services.additional_service = None
 
     def _set_up_correct_cargo(self):
         self._correct_consignment.cargo.total_weight = 11000

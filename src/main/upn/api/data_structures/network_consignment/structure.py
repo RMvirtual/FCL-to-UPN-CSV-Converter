@@ -18,10 +18,10 @@ class NetworkConsignment:
         self._customer_paperwork_pages = 0
         self._customer = Customer()
         self._delivery_address = Address()
-        self._services = Services()
+        self._dates = Dates()
         self._cargo = Cargo()
         self._special_instructions = ""
-        self._dates = Dates()
+        self._services = Services()
 
     @property
     def delivery_address(self) -> Address:
@@ -48,6 +48,13 @@ class NetworkConsignment:
     @property
     def services(self) -> Services:
         return self._services
+
+    @services.setter
+    def services(self, new_services: Services) -> None:
+        if type(new_services) is not Services:
+            raise TypeError("Incorrect type for services.")
+
+        self._services = new_services
 
     @property
     def customer(self) -> int:

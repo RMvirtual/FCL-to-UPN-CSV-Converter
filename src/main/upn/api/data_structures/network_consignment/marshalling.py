@@ -8,6 +8,7 @@ from src.main.upn.consignments.address import Address
 from src.main.upn.consignments.cargo import Cargo
 from src.main.upn.consignments.customer import Customer
 from src.main.upn.consignments.dates import Dates
+from src.main.upn.consignments.services import Services
 
 class UpnNetworkConsignmentMarshaller:
     def __init__(self):
@@ -69,6 +70,11 @@ class UpnNetworkConsignmentMarshaller:
         result = Dates()
         result.despatch = self._unmarshall(candidate, "despatch_date")
         result.delivery = self._unmarshall(candidate, "delivery_datetime")
+
+        return result
+
+    def unmarshall_services(self, candidate) -> Services:
+        result = Services()
 
         return result
 
