@@ -11,6 +11,5 @@ py_library(
         "//src/main/upn/api/client",
         "//src/main/upn/api/data_structures",
         "//src/main/upn/api/data_types",
-        "//src/main/upn/api/parser",
     ],
 )
