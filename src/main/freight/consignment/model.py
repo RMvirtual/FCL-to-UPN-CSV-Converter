@@ -1,15 +1,13 @@
 from src.main.freight.address.model import Address
-from src.main.freight.reference.model import Reference
+from src.main.freight.references.model import References, ConsignmentReference
 from src.main.freight.cargo.model import Cargo
 from src.main.freight.service.model import Service
 from src.main.freight.shipment_dates.model import ShipmentDates
 
 
 class Consignment:
-    def __init__(self):
-        self._reference: Reference or None = None
-        self._shipper_reference: str = ""
-        self._consignee_reference: str = ""
+    def __init__(self, consignment_reference: str):
+        self._references = References(consignment_reference)
         self._client_name: str = ""
         self._address: Address = Address()
         self._cargo = Cargo()
@@ -18,19 +16,12 @@ class Consignment:
         self._delivery_instructions: list[str] = []
 
     @property
-    def reference(self) -> str:
-        return None if self._reference is None else str(self._reference)
+    def references(self) -> References:
+        return self._references
 
-    @reference.setter
-    def reference(self, new_reference: str or Reference) -> None:
-        if type(new_reference) is Reference:
-            self._reference = new_reference
-
-        elif type(new_reference) is str:
-            self._reference = Reference(new_reference)
-
-        else:
-            raise TypeError("Incorrect input type for a reference.")
+    @references.setter
+    def references(self, new_references: References) -> None:
+        self._references = new_references
 
     @property
     def address(self) -> Address:

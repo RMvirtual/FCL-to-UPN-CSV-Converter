@@ -25,8 +25,8 @@ class FclImportController:
             request = self._requests.consignment_request(consignment)
             new_consignment = self._parser.parse(request)
 
-            self._imported_consignments[str(new_consignment.reference)] = (
-                new_consignment)
+            self._imported_consignments[
+                str(new_consignment.references.consignment)] = new_consignment
 
         report.consignments = self._imported_consignments
 

@@ -15,10 +15,9 @@ class ConsignmentParser:
         pass
 
     def parse(self, request: ConsignmentParseRequest) -> Consignment:
-        consignment = Consignment()
+        consignment = Consignment(request.reference)
 
         consignment.client_name = request.principal_client
-        consignment.reference = request.reference
         consignment.cargo = CargoParser().parse(request.cargo)
         consignment.delivery_instructions = request.delivery_instructions
 

@@ -13,7 +13,7 @@ class TestConsignmentValidation(unittest.TestCase):
         self._load_basic_consignment()
 
     def _load_basic_consignment(self):
-        self._consignment = Consignment()
+        self._consignment = Consignment("GR221000100")
         self._consignment.address.name = "Ryan Matfen"
         self._consignment.address.line_1 = "Gillibrands Road"
         self._consignment.address.town = "Skelmersdale"
@@ -21,7 +21,6 @@ class TestConsignmentValidation(unittest.TestCase):
 
         self._consignment.service.priority()
 
-        self._consignment.reference = "GR221000100"
         self._consignment.client_name = "UPN"
         self._consignment.shipment_dates.collection_date = "03/10/2022"
         self._consignment.shipment_dates.delivery_date = "04/10/2022"

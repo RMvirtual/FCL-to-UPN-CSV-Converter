@@ -6,8 +6,7 @@ from src.main.freight.cargo.package_types import load as load_package_type
 
 
 def dummy_consignment() -> Consignment:
-    result = Consignment()
-    result.reference = "GR221004388"
+    result = Consignment("GR221004388")
     result.client_name = "GRAYLAW FREIGHT GROUP"
     result.address = _address()
     result.cargo = _cargo()

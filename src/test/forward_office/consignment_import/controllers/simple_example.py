@@ -59,7 +59,8 @@ class TestCanImportOneLinerConsignment(unittest.TestCase):
         self.assertFalse(report.advisories)
 
     def _check_reference(self, consignment):
-        self.assertEqual("GR221003000", consignment.reference)
+        self.assertEqual(
+            "GR221003000", str(consignment.references.consignment))
 
     def _check_service(self, consignment):
         self.assertTrue(consignment.service.is_priority())

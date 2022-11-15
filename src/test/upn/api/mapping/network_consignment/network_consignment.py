@@ -1,9 +1,6 @@
 import unittest
-
-from src.main.upn.api.mapping.network_consignment \
-    import NetworkConsignmentConversion
-
-from src.test.upn.api.mapping.setup import upn_setup, freight_setup
+from src.test.upn.api.mapping.network_consignment.setup import freight_setup, \
+    upn_setup
 
 
 class TestNetworkConsignmentMapping(unittest.TestCase):
@@ -11,7 +8,8 @@ class TestNetworkConsignmentMapping(unittest.TestCase):
         self._network_consignment = upn_setup.dummy_network_consignment()
         self._correct_freight_consignment = freight_setup.dummy_consignment()
 
-    def test_should_map_network_consignment_to_house_consignment(self):
+    def test_should_convert_network_consignment_into_house_consignment(
+            self) -> None:
         self.fail("DUMMY FAIL")
 
 

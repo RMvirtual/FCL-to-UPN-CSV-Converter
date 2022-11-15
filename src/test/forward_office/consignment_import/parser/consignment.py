@@ -82,13 +82,12 @@ class TestConsignmentParser(unittest.TestCase):
 
     def test_should_parse_reference(self):
         request = ParseRequestFactory(self._field_indexes).consignment_request(
-            self._simple_example
-        )
+            self._simple_example)
 
         parser = ConsignmentParser()
         consignment = parser.parse(request)
 
-        reference = consignment.reference
+        reference = consignment.references.consignment
         self.assertEqual("GR220806951", str(reference))
 
     def test_should_parse_cargo(self):

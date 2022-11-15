@@ -1,11 +1,10 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "reference",
+    name = "consignment_reference",
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/freight/reference",
+        "//src/main/freight/references",
     ],
 )
-
