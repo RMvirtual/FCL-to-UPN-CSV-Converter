@@ -13,7 +13,7 @@ from src.main.upn.api.data_structures.network_pallet.structure import \
     NetworkPallet
 
 
-def _dummy_network_consignment() -> NetworkConsignment:
+def dummy_network_consignment() -> NetworkConsignment:
     result = NetworkConsignment()
     result.references = _references()
     result.depot_no = 75
@@ -31,7 +31,7 @@ def _dummy_network_consignment() -> NetworkConsignment:
 def _references() -> References:
     result = References()
 
-    result.consignment_no = "gr221004388"
+    result.consignment_no = "GR221004388"
     result.customer_reference = "49632"
     result.barcode = "W213359799C"
 
@@ -65,7 +65,7 @@ def _services() -> Services:
 
 def _cargo() -> Cargo:
     result = Cargo()
-    result.total_weight = 11000
+    result.total_weight = 1100
     result.pallets = _pallets()
 
     return result
