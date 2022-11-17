@@ -15,3 +15,6 @@ class OversizeOption(interface.OversizeOption):
     def multiplier(self) -> float:
         return self._multiplier
 
+    def __eq__(self, other: OversizeOption) -> bool:
+        return (
+            self._name == other.name and self._multiplier == other.multiplier)

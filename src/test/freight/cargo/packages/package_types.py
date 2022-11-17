@@ -14,8 +14,8 @@ class TestPackageTypesJsonReader(unittest.TestCase):
         package_type = factory.load("half")
         package_type.oversize_option = "double"
 
-        self.assertEqual("double", package_type.oversize_option)
-        self.assertEqual(2, package_type.oversize_multiplier)
+        self.assertEqual("double", package_type.oversize_option.name)
+        self.assertEqual(2, package_type.oversize_option.multiplier)
 
     def test_should_error_when_setting_invalid_oversize_option(self):
         package_type = factory.load("quarter")

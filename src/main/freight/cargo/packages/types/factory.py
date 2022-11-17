@@ -1,7 +1,8 @@
 from src.main.file_system.freight import cargo_types
 from src.main.freight.cargo.metrics.dimensions import DimensionsInMetres
 from src.main.freight.cargo.packages.oversize import factory
-from src.main.freight.cargo.packages.types.package_types import PackageType
+from src.main.freight.cargo.packages.types.package_types import (
+    PackageType, PackageTypeFields)
 
 
 def load(package_type_name: str) -> PackageType:
@@ -22,23 +23,27 @@ def _package_types() -> list[PackageType]:
     return list(map(_deserialise, cargo_types.base_packages_file()))
 
 
-def _deserialise(package_type_definitions: dict[str, str]) -> PackageType:
-    result = PackageType()
-    result.name = package_type_definitions["name"]
-    result.base_type = package_type_definitions["type"]
+def _deserialise(package_definitions: dict[str, str]) -> PackageType:
+    return PackageType(_deserialise_fields(package_definitions))
 
-    result.all_oversize_options = factory.options_by_base_type(
-        result.base_type)
 
-    result.maximum_dimensions = DimensionsInMetres()
-    result.maximum_dimensions.length = package_type_definitions[
-        "maximum_length"]
+def _deserialise_fields(definitions: dict[str, str]) -> PackageTypeFields:
+    result = PackageTypeFields()
+    result.name = definitions["name"]
+    result.base_type = definitions["type"]
+    result.oversize_options = factory.options_by_base_type(result.base_type)
+    result.default_oversize = "normal"
+    result.max_dimensions = _deserialise_dimensions(definitions)
+    result.maximum_weight = definitions["maximum_weight"]
+    result.override_options = definitions["override_options"]
 
-    result.maximum_dimensions.width = package_type_definitions["maximum_width"]
-    result.maximum_dimensions.height = package_type_definitions[
-        "maximum_height"]
+    return result
 
-    result.maximum_weight = package_type_definitions["maximum_weight"]
-    result.override_options = package_type_definitions["override_options"]
+
+def _deserialise_dimensions(definitions: dict[str, str]) -> DimensionsInMetres:
+    result = DimensionsInMetres()
+    result.length = definitions["maximum_length"]
+    result.width = definitions["maximum_width"]
+    result.height = definitions["maximum_height"]
 
     return result
