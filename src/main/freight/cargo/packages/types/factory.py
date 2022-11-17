@@ -2,7 +2,7 @@ from src.main.file_system.freight import cargo_types
 from src.main.freight.cargo.metrics.dimensions import DimensionsInMetres
 from src.main.freight.cargo.packages.oversize import factory
 from src.main.freight.cargo.packages.types.package_types import (
-    PackageType, PackageTypeFields)
+    PackageType, PackageDefinitions)
 
 
 def load(package_type_name: str) -> PackageType:
@@ -27,8 +27,8 @@ def _deserialise(package_definitions: dict[str, str]) -> PackageType:
     return PackageType(_deserialise_fields(package_definitions))
 
 
-def _deserialise_fields(definitions: dict[str, str]) -> PackageTypeFields:
-    result = PackageTypeFields()
+def _deserialise_fields(definitions: dict[str, str]) -> PackageDefinitions:
+    result = PackageDefinitions()
     result.name = definitions["name"]
     result.base_type = definitions["type"]
     result.oversize_options = factory.options_by_base_type(result.base_type)
