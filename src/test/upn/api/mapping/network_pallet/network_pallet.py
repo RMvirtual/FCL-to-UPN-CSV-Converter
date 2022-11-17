@@ -1,12 +1,31 @@
 import unittest
+from src.main.freight.cargo import packages
+
+from src.main.upn.api.data_structures.network_pallet.structure \
+    import NetworkPallet
+
+from src.main.upn.api.mapping.network_pallet import NetworkPalletAdapter
 
 
 class TestNetworkPalletMapping(unittest.TestCase):
     def setUp(self):
-        pass
+        self._network_pallet = self._set_up_network_pallet()
+        self._correct_pallet = packages.load("full")
+
+    @staticmethod
+    def _set_up_network_pallet() -> NetworkPallet:
+        result = NetworkPallet()
+        result.consignment_barcode = "W213359799C"
+        result.pallet_size = "N"
+        result.pallet_type = "FULL"
+        result.barcode = "W213359800P"
+
+        return result
 
     def test_should_convert_network_pallet_into_house_pallet(self) -> None:
-        self.fail("DUMMY FAIL")
+        result = NetworkPalletAdapter().pallet(self._network_pallet)
+
+
 
 
 if __name__ == '__main__':
