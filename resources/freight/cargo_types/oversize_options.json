@@ -1,6 +1,7 @@
 [
   {
     "base_type": "pallet",
+    "default": "normal",
     "options": [
       {
         "name": "normal",

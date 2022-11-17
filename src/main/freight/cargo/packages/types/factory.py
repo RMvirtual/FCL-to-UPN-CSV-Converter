@@ -32,7 +32,6 @@ def _deserialise_fields(definitions: dict[str, str]) -> PackageDefinitions:
     result.name = definitions["name"]
     result.base_type = definitions["type"]
     result.oversize_options = factory.options_by_base_type(result.base_type)
-    result.default_oversize = "normal"
     result.max_dimensions = _deserialise_dimensions(definitions)
     result.maximum_weight = definitions["maximum_weight"]
     result.override_options = definitions["override_options"]

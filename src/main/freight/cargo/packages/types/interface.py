@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from src.main.freight.cargo.metrics.interface import Dimensions
-from src.main.freight.cargo.packages.oversize.interface import OversizeOption
+from src.main.freight.cargo.packages.oversize.interface import OversizeOptions
 
 
 class PackageType(ABC):
@@ -16,22 +16,7 @@ class PackageType(ABC):
 
     @property
     @abstractmethod
-    def oversize_option(self) -> OversizeOption:
-        ...
-
-    @oversize_option.setter
-    @abstractmethod
-    def oversize_option(self, option_name: str) -> None:
-        ...
-
-    @property
-    @abstractmethod
-    def oversize_multiplier(self) -> float:
-        ...
-
-    @property
-    @abstractmethod
-    def all_oversize_options(self) -> list[OversizeOption]:
+    def oversize(self) -> OversizeOptions:
         ...
 
     @property

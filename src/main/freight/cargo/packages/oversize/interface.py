@@ -11,3 +11,25 @@ class OversizeOption(ABC):
     @abstractmethod
     def multiplier(self) -> float:
         ...
+
+
+class OversizeOptions(ABC):
+    @property
+    @abstractmethod
+    def default(self) -> OversizeOption:
+        ...
+
+    @property
+    @abstractmethod
+    def values(self) -> list[OversizeOption]:
+        ...
+
+    @property
+    @abstractmethod
+    def selected(self) -> OversizeOption:
+        ...
+
+    @selected.setter
+    @abstractmethod
+    def selected(self, option: OversizeOption) -> None:
+        ...

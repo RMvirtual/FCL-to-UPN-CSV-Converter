@@ -1,5 +1,6 @@
 import unittest
 from src.main.freight.cargo.packages.types import factory
+from src.main.freight.cargo.packages.oversize.options import OversizeOption
 
 
 class TestPackageTypesJsonReader(unittest.TestCase):
@@ -14,14 +15,15 @@ class TestPackageTypesJsonReader(unittest.TestCase):
         package_type = factory.load("half")
         package_type.oversize_option = "double"
 
-        self.assertEqual("double", package_type.oversize_option.name)
-        self.assertEqual(2, package_type.oversize_option.multiplier)
+        self.assertEqual("double", package_type.oversize.selected.name)
+        self.assertEqual(2, package_type.oversize.selected.multiplier)
 
     def test_should_error_when_setting_invalid_oversize_option(self):
         package_type = factory.load("quarter")
+        incorrect_option = OversizeOption("quadruple", 4)
 
         with self.assertRaises(ValueError):
-            package_type.oversize_option = "quadruple"
+            package_type.oversize.selected = incorrect_option
 
     def test_should_show_identical_normal_package_types_as_equal(self):
         package_1 = factory.load("full")
