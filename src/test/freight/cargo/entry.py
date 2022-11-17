@@ -1,6 +1,6 @@
 import unittest
 from src.main.freight.cargo.entry import CargoEntry
-from src.main.freight.cargo.package_types import load, PackageType
+from src.main.freight.cargo.packages.package_types import load, PackageType
 
 
 class TestCargoEntry(unittest.TestCase):

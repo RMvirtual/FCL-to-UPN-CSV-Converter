@@ -2,7 +2,7 @@ from src.main.freight.consignment.model import Consignment
 from src.main.freight.address.model import Address
 from src.main.freight.shipment_dates.model import ShipmentDates
 from src.main.freight.cargo.model import Cargo, CargoEntry
-from src.main.freight.cargo.package_types import load as load_package_type
+from src.main.freight.cargo.packages.package_types import load as load_package_type
 
 
 def dummy_consignment() -> Consignment:

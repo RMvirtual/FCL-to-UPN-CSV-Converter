@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.cargo.oversize_options import *
+from src.main.freight.cargo.packages.oversize_options import *
 
 
 class TestOversizeOptions(unittest.TestCase):

@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.cargo.package_types import load
+from src.main.freight.cargo.packages.package_types import load
 
 
 class TestPackageTypesJsonReader(unittest.TestCase):

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from src.main.file_system.freight import cargo_types
-from src.main.freight.cargo import oversize_options
+from src.main.freight.cargo.packages import oversize_options
+from src.main.freight.cargo.packages import interface
 
 
 def load(package_type_name: str) -> PackageType:
@@ -41,7 +42,7 @@ def _deserialise(package_type_definitions: dict[str, str]) -> PackageType:
     return result
 
 
-class PackageType:
+class PackageType(interface.PackageType):
     def __init__(self):
         self._name = ""
         self._base_type = None
