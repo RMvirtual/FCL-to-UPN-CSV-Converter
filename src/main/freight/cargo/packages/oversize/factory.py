@@ -24,13 +24,9 @@ def options_by_base_type(base_type_name: str) -> list[OversizeOption]:
     return result
 
 
-def _deserialise_oversize_options(values: dict):
-    result = []
-
-    for option in values["options"]:
-        result.append(OversizeOption(
-            name=option["name"], multiplier=option["multiplier"]))
-
-    return result
-
-
+def _deserialise_oversize_options(
+        values: dict[str, any]) -> list[OversizeOption]:
+    return [
+        OversizeOption(name=option["name"], multiplier=option["multiplier"])
+        for option in values["options"]
+    ]
