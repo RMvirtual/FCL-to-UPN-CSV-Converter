@@ -1,0 +1,12 @@
+load("@rules_python//python:defs.bzl", "py_test")
+
+py_test(
+    name = "network_pallet",
+    srcs = glob([
+        "*.py",
+    ]),
+    data = [],
+    deps = [
+        "//src/main/upn/api/mapping",
+    ],
+)
