@@ -1,5 +1,5 @@
 from __future__ import annotations
-from src.main.freight.cargo.packages.package_types import PackageType
+from src.main.freight.cargo.packages.types.package_types import PackageType
 import copy
 
 

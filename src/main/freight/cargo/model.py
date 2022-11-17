@@ -1,5 +1,5 @@
 from src.main.freight.cargo.entries.entry import CargoEntry
-from src.main.freight.cargo.packages.package_types import PackageType
+from src.main.freight.cargo.packages.types.package_types import PackageType
 
 
 class Cargo:

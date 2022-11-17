@@ -1,7 +1,7 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "packages",
+    name = "types",
     srcs = glob(["*.py"]),
     data = [],
     visibility = ["//visibility:public"],
@@ -9,6 +9,5 @@ py_library(
         "//src/main/file_system",
         "//src/main/freight/cargo/metrics",
         "//src/main/freight/cargo/packages/oversize",
-        "//src/main/freight/cargo/packages/types",
     ],
 )
