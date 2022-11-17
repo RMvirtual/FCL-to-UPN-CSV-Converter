@@ -13,7 +13,7 @@ class TestPackageTypesJsonReader(unittest.TestCase):
 
     def test_should_get_oversize_options_after_amendment(self):
         package_type = factory.load("half")
-        package_type.oversize_option = "double"
+        package_type.oversize.selected = package_type.oversize["double"]
 
         self.assertEqual("double", package_type.oversize.selected.name)
         self.assertEqual(2, package_type.oversize.selected.multiplier)
@@ -53,8 +53,8 @@ class TestPackageTypesJsonReader(unittest.TestCase):
         package_1 = factory.load("full")
         package_2 = factory.load("full")
 
-        package_1.oversize_option = "double"
-        package_2.oversize_option = "triple"
+        package_1.oversize.selected = package_1.oversize["double"]
+        package_2.oversize.selected = package_2.oversize["triple"]
 
         self.assertTrue(package_1 != package_2)
         self.assertFalse(package_1 == package_2)

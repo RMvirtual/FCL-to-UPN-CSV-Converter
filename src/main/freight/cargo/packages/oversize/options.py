@@ -52,3 +52,12 @@ class OversizeOptions(interface.OversizeOptions):
             raise TypeError("Incorrect oversize option type.")
 
         return option in self._values
+
+    def __getitem__(self, name: str) -> OversizeOption:
+        matches = list(filter(
+            lambda option: option.name == name, self._values))
+
+        if not matches:
+            raise ValueError("Oversize option not found.")
+
+        return matches.pop()
