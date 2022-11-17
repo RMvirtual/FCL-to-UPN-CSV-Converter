@@ -40,15 +40,14 @@ class PackageType(interface.PackageType):
         return self._oversize_option
 
     @oversize_option.setter
-    def oversize_option(self, new_option: str) -> None:
+    def oversize_option(self, option_name: str) -> None:
         matching_options = list(filter(
-            lambda option: new_option == option.name, self._oversize_options))
+            lambda option: option_name == option.name, self._oversize_options))
 
-        if matching_options:
-            self._oversize_option = matching_options[0]
-
-        else:
+        if not matching_options:
             raise ValueError("Oversize option not found.")
+
+        self._oversize_option = matching_options[0]
 
     @property
     def oversize_multiplier(self) -> float:
