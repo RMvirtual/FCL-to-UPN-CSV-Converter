@@ -1,5 +1,5 @@
 from src.main.freight.address.model import Address
-from src.main.freight.references.model import References, ConsignmentReference
+from src.main.freight.references.model import References
 from src.main.freight.cargo.model import Cargo
 from src.main.freight.service.model import Service
 from src.main.freight.shipment_dates.model import ShipmentDates

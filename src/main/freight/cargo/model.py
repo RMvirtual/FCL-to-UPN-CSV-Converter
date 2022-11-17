@@ -1,4 +1,4 @@
-from src.main.freight.cargo.entry import CargoEntry
+from src.main.freight.cargo.entries.entry import CargoEntry
 from src.main.freight.cargo.packages.package_types import PackageType
 
 

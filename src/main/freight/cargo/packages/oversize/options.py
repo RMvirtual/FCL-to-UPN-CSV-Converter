@@ -1,8 +1,23 @@
 from __future__ import annotations
 from src.main.file_system.freight import oversize_options
+from src.main.freight.cargo.packages.oversize import interface
 
 
-def all_options() -> dict[str, dict[str, float]]:
+class OversizeOption(interface.OversizeOption):
+    def __init__(self, name: str, multiplier: float):
+        self._name = name
+        self._multiplier = multiplier
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def multiplier(self) -> float:
+        return self._multiplier
+
+
+def all_options() -> dict[str, list[OversizeOption]]:
     result = {}
 
     for entry in oversize_options.contents():
@@ -14,10 +29,12 @@ def all_options() -> dict[str, dict[str, float]]:
 
 
 def _package_type_from_json(json_entry):
-    result = {}
+    result = []
 
     for option in json_entry["options"]:
-        result[option["name"]] = option["multiplier"]
+        result.append(
+            OversizeOption(
+                name=option["name"], multiplier=option["multiplier"]))
 
     return result
 

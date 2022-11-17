@@ -1,9 +1,9 @@
 import copy
 from src.main.freight.cargo.model import Cargo
-from src.main.freight.cargo.entry import CargoEntry
+from src.main.freight.cargo.entries.entry import CargoEntry
 from src.main.forward_office.mapping.cargo import FclCargoTypeMap
-from src.main.freight.cargo import validation
-from src.main.freight.cargo.validation import CargoErrors
+from src.main.freight.cargo.entries import validation
+from src.main.freight.cargo.entries.validation import CargoErrors
 
 from src.main.forward_office.consignment_import.parser.requests.types \
     import CargoParseRequest, CargoEntryParseRequest

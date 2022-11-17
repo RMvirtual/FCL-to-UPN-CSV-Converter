@@ -1,7 +1,9 @@
 from __future__ import annotations
 from src.main.file_system.freight import cargo_types
-from src.main.freight.cargo.packages import oversize_options
+from src.main.freight.cargo.packages.oversize import options as oversize
+from src.main.freight.cargo.packages.oversize.interface import OversizeOption
 from src.main.freight.cargo.packages import interface
+from src.main.freight.cargo.metrics.dimensions import DimensionsInMetres
 
 
 def load(package_type_name: str) -> PackageType:
@@ -27,14 +29,16 @@ def _deserialise(package_type_definitions: dict[str, str]) -> PackageType:
     result.name = package_type_definitions["name"]
     result.base_type = package_type_definitions["type"]
 
-    result.all_oversize_options = oversize_options.options_by_base_type(
+    result.all_oversize_options = oversize.options_by_base_type(
         result.base_type)
 
-    result.maximum_dimensions = {
-        "length": package_type_definitions["maximum_length"],
-        "width": package_type_definitions["maximum_width"],
-        "height": package_type_definitions["maximum_height"]
-    }
+    result.maximum_dimensions = DimensionsInMetres()
+    result.maximum_dimensions.length = package_type_definitions[
+        "maximum_length"]
+
+    result.maximum_dimensions.width = package_type_definitions["maximum_width"]
+    result.maximum_dimensions.height = package_type_definitions[
+        "maximum_height"]
 
     result.maximum_weight = package_type_definitions["maximum_weight"]
     result.override_options = package_type_definitions["override_options"]
@@ -48,8 +52,8 @@ class PackageType(interface.PackageType):
         self._base_type = None
         self._oversize_option: str = "normal"
         self._oversize_options: {str, dict[str, float]} or None = None
-        self._maximum_dimensions: dict[str, float] or None = None
-        self._maximum_weight = None
+        self._max_dimensions = DimensionsInMetres()
+        self._max_weight = None
         self._override_options: list[str] = []
 
     @property
@@ -65,7 +69,7 @@ class PackageType(interface.PackageType):
         return self._base_type
 
     @base_type.setter
-    def base_type(self, new_type):
+    def base_type(self, new_type: str):
         self._base_type = new_type
 
     @property
@@ -85,28 +89,28 @@ class PackageType(interface.PackageType):
         return self._oversize_options[self._oversize_option]
 
     @property
-    def all_oversize_options(self):
+    def all_oversize_options(self) -> list[OversizeOption]:
         return self._oversize_options
 
     @all_oversize_options.setter
-    def all_oversize_options(self, new_oversize_options) -> None:
-        self._oversize_options = new_oversize_options
+    def all_oversize_options(self, new_options: list[OversizeOption]) -> None:
+        self._oversize_options = new_options
 
     @property
-    def maximum_dimensions(self) -> dict[str, float]:
-        return self._maximum_dimensions
+    def maximum_dimensions(self) -> DimensionsInMetres:
+        return self._max_dimensions
 
     @maximum_dimensions.setter
-    def maximum_dimensions(self, new_dimensions: dict[str, float]):
-        self._maximum_dimensions = new_dimensions
+    def maximum_dimensions(self, new_dimensions: DimensionsInMetres):
+        self._max_dimensions = new_dimensions
 
     @property
-    def maximum_weight(self):
-        return self._maximum_weight
+    def maximum_weight(self) -> float:
+        return self._max_weight
 
     @maximum_weight.setter
-    def maximum_weight(self, new_weight):
-        self._maximum_weight = new_weight
+    def maximum_weight(self, new_weight: float):
+        self._max_weight = new_weight
 
     @property
     def override_options(self):

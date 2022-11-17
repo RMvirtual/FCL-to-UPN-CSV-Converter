@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from src.main.freight.cargo.metrics.interface import Dimensions
+from src.main.freight.cargo.packages.oversize.interface import OversizeOption
 
 
 class PackageType(ABC):
@@ -24,12 +26,12 @@ class PackageType(ABC):
 
     @property
     @abstractmethod
-    def oversize_option(self) -> str:
+    def oversize_option(self) -> OversizeOption:
         ...
 
     @oversize_option.setter
     @abstractmethod
-    def oversize_option(self, new_oversize_option: str) -> None:
+    def oversize_option(self, option_name: str) -> None:
         ...
 
     @property
@@ -39,22 +41,22 @@ class PackageType(ABC):
 
     @property
     @abstractmethod
-    def all_oversize_options(self) -> list:
+    def all_oversize_options(self) -> list[OversizeOption]:
         ...
 
     @all_oversize_options.setter
     @abstractmethod
-    def all_oversize_options(self, new_oversize_options: list) -> None:
+    def all_oversize_options(self, new_options: list[OversizeOption]) -> None:
         ...
 
     @property
     @abstractmethod
-    def maximum_dimensions(self) -> dict[str, float]:
+    def maximum_dimensions(self) -> Dimensions:
         ...
 
     @maximum_dimensions.setter
     @abstractmethod
-    def maximum_dimensions(self, new_dimensions: dict[str, float]) -> None:
+    def maximum_dimensions(self, new_dimensions: Dimensions) -> None:
         ...
 
     @property
