@@ -56,17 +56,15 @@ class OversizeOptions(interface.OversizeOptions):
 
         return option in self._values
 
-    def _contains_option_name(self, name: str) -> bool:
-        matches = list(filter(
-            lambda option: option.name == name, self._values))
-
-        return bool(matches)
-
-    def _options_by_name(self, name: str) -> list[interface.OversizeOption]:
-        return list(filter(lambda option: option.name == name, self._values))
-
     def __getitem__(self, name: str) -> interface.OversizeOption:
         if not self._contains_option_name(name):
             raise ValueError("Oversize option not found.")
 
         return self._options_by_name(name).pop()
+
+    def _contains_option_name(self, name: str) -> bool:
+        return bool(self._options_by_name(name))
+
+    def _options_by_name(self, name: str) -> list[interface.OversizeOption]:
+        return list(filter(lambda option: option.name == name, self._values))
+

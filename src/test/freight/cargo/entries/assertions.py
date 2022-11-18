@@ -9,7 +9,7 @@ def compare_cargo_entry(
         oversize_option: dict[str, float] = None
 ) -> None:
     tester.assertEqual(quantity_and_weight[0], cargo_entry.quantity)
-    tester.assertEqual(quantity_and_weight[1], cargo_entry.weight_kgs)
+    tester.assertEqual(quantity_and_weight[1], cargo_entry.weight)
     compare_cargo_entry_to_package_type(tester, cargo_entry, pkg_type)
 
     if oversize_option:
@@ -32,9 +32,3 @@ def compare_cargo_entry_to_package_type(
     tester.assertListEqual(
         package_type.override_options, package_2.override_options)
 
-
-def compare_oversize(
-        tester: TestCase, package_1: PackageType, package_2: PackageType
-) -> None:
-    tester.assertEqual(
-        package_1.oversize.selected, package_2.oversize.selected)

@@ -1,8 +1,8 @@
 from src.main.file_system.freight import cargo_types
 from src.main.freight.cargo.metrics.dimensions import DimensionsInMetres
 from src.main.freight.cargo.packages.oversize import factory
-from src.main.freight.cargo.packages.types.package_types import (
-    PackageType, PackageDefinitions)
+from src.main.freight.cargo.packages.types.interface import PackageType
+from src.main.freight.cargo.packages.types.builder import PackageTypeBuilder
 
 
 def load(package_type_name: str) -> PackageType:
@@ -23,20 +23,20 @@ def _package_types() -> list[PackageType]:
     return list(map(_deserialise, cargo_types.base_packages_file()))
 
 
-def _deserialise(package_definitions: dict[str, str]) -> PackageType:
-    return PackageType(_deserialise_fields(package_definitions))
+def _deserialise(definitions: dict[str, str]) -> PackageType:
+    builder = PackageTypeBuilder()
 
+    builder.set_name(definitions["name"])
+    builder.set_base_type(definitions["type"])
 
-def _deserialise_fields(definitions: dict[str, str]) -> PackageDefinitions:
-    result = PackageDefinitions()
-    result.name = definitions["name"]
-    result.base_type = definitions["type"]
-    result.oversize_options = factory.options_by_base_type(result.base_type)
-    result.max_dimensions = _deserialise_dimensions(definitions)
-    result.maximum_weight = definitions["maximum_weight"]
-    result.override_options = definitions["override_options"]
+    options = factory.options_by_base_type(definitions["type"])
+    builder.set_oversize_options(options)
 
-    return result
+    builder.set_max_dimensions(_deserialise_dimensions(definitions))
+    builder.set_max_weight(definitions["maximum_weight"])
+    builder.set_overrides(definitions["override_options"])
+
+    return builder.build()
 
 
 def _deserialise_dimensions(definitions: dict[str, str]) -> DimensionsInMetres:

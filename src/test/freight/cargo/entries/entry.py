@@ -25,6 +25,7 @@ class TestCargoEntry(unittest.TestCase):
         with self.assertRaises(ValueError):
             entry_1 = cargo_entries.half_pallet_entry(1, 400)
             entry_2 = cargo_entries.full_pallet_entry(1, 1000)
+
             entry_1 += entry_2
 
     def test_should_combine_entries_of_special_oversize(self):
@@ -39,7 +40,7 @@ class TestCargoEntry(unittest.TestCase):
         )
 
     def test_should_reject_combining_different_oversize_entries(self):
-        entry_1 = cargo_entries.half_pallet_entry(1, 400, "double")
+        entry_1 = cargo_entries.half_pallet_entry(1, 400, "triple")
         entry_2 = cargo_entries.half_pallet_entry(1, 400, "double")
 
         with self.assertRaises(ValueError):
@@ -48,7 +49,7 @@ class TestCargoEntry(unittest.TestCase):
     def test_should_not_exceed_max_weight_when_modifying_weight(self):
         with self.assertRaises(ValueError):
             entry = cargo_entries.full_pallet_entry(3, 3000)
-            entry.weight_kgs = 4000
+            entry.weight = 4000
 
     def test_should_not_exceed_max_weight_when_modifying_quantity(self):
         with self.assertRaises(ValueError):
@@ -57,7 +58,7 @@ class TestCargoEntry(unittest.TestCase):
 
     def test_should_modify_qty_and_weight(self):
         entry = cargo_entries.full_pallet_entry(1, 1000)
-        entry.quantity_and_weight = (3, 3000)
+        entry.set_totals(quantity=3, weight=3000)
 
         assertions.compare_cargo_entry(
             tester=self,
@@ -69,9 +70,7 @@ class TestCargoEntry(unittest.TestCase):
     def test_should_not_exceed_max_weight_when_modifying_qty_and_weight(self):
         with self.assertRaises(ValueError):
             entry = cargo_entries.full_pallet_entry(3, 3000)
-            entry.quantity_and_weight = (4, 8000)
-
-
+            entry.set_totals(quantity=4, weight=8000)
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@ def entry(
         pkg_type: PackageType, qty_and_weight: tuple[int, float],
         oversize_option: str = None
 ) -> CargoEntry:
-    result = CargoEntry(pkg_type)
+    result = CargoEntry(pkg_type, qty_and_weight[0], qty_and_weight[1])
     result.quantity_and_weight = qty_and_weight
 
     if oversize_option:
@@ -19,7 +19,7 @@ def entry(
 def full_pallet_entry(
         quantity: int, weight: float, oversize: str = None) -> CargoEntry:
     return entry(
-        pkg_type=packages.DummyPallets.full,
+        pkg_type=packages.DummyPallets().full,
         qty_and_weight=(quantity, weight),
         oversize_option=oversize
     )
@@ -28,7 +28,7 @@ def full_pallet_entry(
 def half_pallet_entry(
         quantity: int, weight: float, oversize: str = None) -> CargoEntry:
     return entry(
-        pkg_type=packages.DummyPallets.half,
+        pkg_type=packages.DummyPallets().half,
         qty_and_weight=(quantity, weight),
         oversize_option=oversize
     )

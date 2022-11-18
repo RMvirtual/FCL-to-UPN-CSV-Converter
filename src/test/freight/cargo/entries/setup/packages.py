@@ -1,6 +1,7 @@
 import dataclasses
 from src.main.freight.cargo.packages.types.builder import PackageTypeBuilder
 from src.main.freight.cargo.packages.types.interface import PackageType
+
 from src.main.freight.cargo.metrics.dimensions import (
     DimensionsInMetres, Dimensions)
 

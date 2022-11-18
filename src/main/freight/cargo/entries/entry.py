@@ -1,37 +1,22 @@
 from __future__ import annotations
-from src.main.freight.cargo.packages.types.package_types import PackageType
 import copy
+from src.main.freight.cargo.packages.types.interface import PackageType
+from src.main.freight.cargo.entries import interface
+
+from src.main.freight.cargo.entries.validation \
+    import CargoEntryValidationStrategy
 
 
-class CargoEntry:
-    def __init__(self, package_type: PackageType):
-        self.package_type = copy.copy(package_type)
-        self._quantity: int = 0
-        self._weight: float = 0
-
-    def __iadd__(self, other: CargoEntry) -> CargoEntry:
-        if self == other:
-            self._add_cargo_details(other)
-
-        else:
-            raise ValueError("Incorrect pallet dimensions to combine.")
-
-        return self
-
-    def __eq__(self, other_entry: CargoEntry) -> bool:
-        return self._package_type == other_entry.package_type
-
-    def _add_cargo_details(self, other_entry: CargoEntry) -> None:
-        self._quantity += other_entry.quantity
-        self._weight += other_entry.weight_kgs
+class CargoEntry(interface.CargoEntry):
+    def __init__(self, package: PackageType, quantity: int, weight: float):
+        self._package_type = copy.deepcopy(package)
+        self._quantity = quantity
+        self._weight = weight
+        self._validation = CargoEntryValidationStrategy(entry_to_validate=self)
 
     @property
     def package_type(self) -> PackageType:
         return self._package_type
-
-    @package_type.setter
-    def package_type(self, package_type: PackageType):
-        self._package_type = copy.deepcopy(package_type)
 
     @property
     def quantity(self) -> int:
@@ -39,59 +24,49 @@ class CargoEntry:
 
     @quantity.setter
     def quantity(self, new_quantity: int) -> None:
-        if self._can_amend_quantity(new_quantity):
-            self._quantity = new_quantity
-
-        else:
+        if not self._validation.is_quantity_valid(new_quantity):
             raise ValueError(
-                "Desired number of packages will cause average weight to "
-                "exceed maximum."
+                "Desired number of packages will exceed maximum average "
+                "weight."
             )
 
+        self._quantity = new_quantity
+
     @property
-    def weight_kgs(self) -> float:
+    def weight(self) -> float:
         return self._weight
 
-    @weight_kgs.setter
-    def weight_kgs(self, new_weight: float) -> None:
-        if self._can_amend_weight(new_weight):
-            self._weight = new_weight
-
-        else:
+    @weight.setter
+    def weight(self, weight: float) -> None:
+        if not self._validation.is_total_weight_valid(weight):
             raise ValueError(
-                "Desired weight of", new_weight, " will exceed average "
+                "Desired weight of", weight, " will exceed average "
                 "maximum of", self.package_type.maximum_weight, " spread "
                 "across", self._quantity, " packages."
             )
 
-    @property
-    def quantity_and_weight(self) -> tuple[int, float]:
-        return self._quantity, self._weight
+        self._weight = weight
 
-    @quantity_and_weight.setter
-    def quantity_and_weight(self, qty_and_weight: tuple[int, float]) -> None:
-        quantity, weight = qty_and_weight
-        average_weight = self._average_weight(quantity, weight)
-
-        if self._max_weight_exceeded(average_weight):
-            raise ValueError("New average weight will exceed maximum.")
+    def set_totals(self, quantity: int, weight: float) -> None:
+        if not self._validation.are_metrics_valid(quantity, weight):
+            raise ValueError("Totals exceed average maximum weight.")
 
         self._quantity = quantity
         self._weight = weight
 
-    def _can_amend_quantity(self, new_quantity: int) -> bool:
-        average_weight = self._average_weight(new_quantity, self._weight)
+    def __eq__(self, other_entry: CargoEntry) -> bool:
+        return self._package_type == other_entry.package_type
 
-        return not self._max_weight_exceeded(average_weight)
+    def __iadd__(self, other: CargoEntry) -> CargoEntry:
+        if not self == other:
+            raise ValueError("Incorrect pallet types to combine.")
 
-    def _can_amend_weight(self, new_weight: float) -> bool:
-        average_weight = self._average_weight(self._quantity, new_weight)
+        self._append_cargo(other)
 
-        return not self._max_weight_exceeded(average_weight)
+        return self
 
-    @staticmethod
-    def _average_weight(total_packages: int, total_weight: float) -> float:
-        return total_weight / total_packages if total_packages else 0
-
-    def _max_weight_exceeded(self, weight: float) -> bool:
-        return weight > self._package_type.maximum_weight
+    def _append_cargo(self, other: interface.CargoEntry) -> None:
+        self.set_totals(
+            quantity=self.quantity + other.quantity,
+            weight=self.weight + other.weight
+        )

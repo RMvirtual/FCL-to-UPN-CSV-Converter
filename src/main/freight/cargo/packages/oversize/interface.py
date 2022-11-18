@@ -1,3 +1,4 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
@@ -10,6 +11,10 @@ class OversizeOption(ABC):
     @property
     @abstractmethod
     def multiplier(self) -> float:
+        ...
+
+    @abstractmethod
+    def __eq__(self, other: OversizeOption):
         ...
 
 

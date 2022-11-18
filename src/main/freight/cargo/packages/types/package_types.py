@@ -1,3 +1,4 @@
+import copy
 import dataclasses
 from src.main.freight.cargo.metrics.dimensions import Dimensions
 from src.main.freight.cargo.packages.oversize.interface import OversizeOptions
@@ -48,10 +49,8 @@ class PackageType(interface.PackageType):
         return self._override_options
 
     def __eq__(self, other: interface.PackageType) -> bool:
-        return self._name_matches(other) and self._oversize_matches(other)
-
-    def _name_matches(self, other: interface.PackageType) -> bool:
-        return self._name == other.name
-
-    def _oversize_matches(self, other: interface.PackageType) -> bool:
-        return self.oversize.selected == other.oversize.selected
+        return (
+            self._name == other.name
+            and self.oversize.selected == other.oversize.selected
+            and self._base_type == other.base_type
+        )
