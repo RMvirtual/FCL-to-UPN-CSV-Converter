@@ -35,9 +35,14 @@ class OversizeOptions(ABC):
         ...
 
     @abstractmethod
+    def select(self, option_name: str) -> None:
+        ...
+
+    @abstractmethod
     def __getitem__(self, option_name: str) -> OversizeOption:
         ...
 
     @abstractmethod
     def __contains__(self, item: OversizeOption):
         ...
+
