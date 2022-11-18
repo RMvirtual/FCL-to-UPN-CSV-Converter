@@ -24,9 +24,8 @@ class TestLoadingOversizeOptionsFromFile(unittest.TestCase):
         self.assertListEqual(correct.values, pallet_options.values)
 
     def test_should_error_when_selecting_invalid_option(self):
-        options = self._options()
-
         with self.assertRaises(ValueError):
+            options = self._options()
             options.selected = OversizeOption("quadruple", 4)
 
     def test_should_get_amend_selected_option(self):

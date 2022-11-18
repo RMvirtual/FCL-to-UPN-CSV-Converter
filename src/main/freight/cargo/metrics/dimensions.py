@@ -34,8 +34,13 @@ class DimensionsInMetres(Dimensions):
         self._raise_exception_if_invalid_dimension(new_height)
         self._height = new_height
 
+    def __eq__(self, other: Dimensions) -> bool:
+        return (
+            self.length == other.length and self.width == other.width
+            and self.height == other.height
+        )
+
     @staticmethod
     def _raise_exception_if_invalid_dimension(dimension: float) -> None:
         if dimension < 0:
             raise ValueError("Cannot have negative dimensions.")
-
