@@ -29,7 +29,7 @@ class AddressValidationStrategy:
     def validate_name(self, name: str) -> bool:
         return bool(name)
 
-    def validate_line_1(self, line: str) -> bool:
+    def validate_line(self, line: str) -> bool:
         return bool(line)
 
     def validate_town(self, town: str) -> bool:
@@ -40,4 +40,3 @@ class AddressValidationStrategy:
 
     def _post_code_pattern_matches(self, post_code: str) -> bool:
         return bool(self._uk_post_code_pattern.fullmatch(post_code))
-

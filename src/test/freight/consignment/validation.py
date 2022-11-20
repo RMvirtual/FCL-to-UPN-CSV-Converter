@@ -15,7 +15,7 @@ class TestConsignmentValidation(unittest.TestCase):
     def _load_basic_consignment(self):
         self._consignment = Consignment("GR221000100")
         self._consignment.address.name = "Ryan Matfen"
-        self._consignment.address.line_1 = "Gillibrands Road"
+        self._consignment.address.lines.append("Gillibrands Road")
         self._consignment.address.town = "Skelmersdale"
         self._consignment.address.post_code = "WN8 9TA"
 
