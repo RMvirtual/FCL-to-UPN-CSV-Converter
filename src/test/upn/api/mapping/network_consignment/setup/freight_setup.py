@@ -2,7 +2,7 @@ from src.main.freight.consignment.model import Consignment
 from src.main.freight.address.model import Address
 from src.main.freight.shipment_dates.model import ShipmentDates
 from src.main.freight.cargo.model import Cargo, CargoEntry
-from src.main.freight.cargo.packages.types.package_types import load as load_package_type
+from src.main.freight.cargo.packages.types import factory
 
 
 def dummy_consignment() -> Consignment:
@@ -39,10 +39,7 @@ def _cargo() -> Cargo:
 
 
 def _cargo_entry() -> CargoEntry:
-    result = CargoEntry(load_package_type("full"))
-    result.quantity_and_weight = (2, 650)
-
-    return result
+    return CargoEntry(factory.load("full"), 2, 650)
 
 
 def _dates() -> ShipmentDates:
