@@ -1,12 +1,18 @@
 import unittest
+from src.main.forward_office.consignment_import.parser.requests.types \
+    import CargoEntryParseRequest
 
 
 class TestCargoEntryParseRequest(unittest.TestCase):
     def setUp(self):
-        pass
+        self._request = CargoEntryParseRequest()
+        self._request.quantity = 0
+        self._request.package_type = None
+        self._request.goods_description = ""
+        self._request.weight = 0
 
     def test_should_show_as_empty_line(self):
-        self.fail("DUMMY FAIL.")
+        self.assertTrue(self._request.is_empty())
 
 
 if __name__ == '__main__':
