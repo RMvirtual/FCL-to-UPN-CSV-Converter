@@ -35,7 +35,7 @@ class CargoEntryParseRequest:
 
     def is_empty(self) -> bool:
         for field in dataclasses.fields(self):
-            if field not in (0, ""):
+            if getattr(self, field.name) not in (0, "", None):
                 return False
 
         return True

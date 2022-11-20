@@ -85,7 +85,9 @@ class TestCanImportOneLinerConsignment(unittest.TestCase):
             "normal", consignment.cargo[0].package_type.oversize.selected.name)
 
         self.assertTupleEqual(
-            (1, 500), consignment.cargo[0].quantity_and_weight)
+            (1, 500),
+            (consignment.cargo[0].quantity, consignment.cargo[0].weight)
+        )
 
     def _check_shipment_dates(self, consignment):
         self.assertEqual(6, consignment.shipment_dates.delivery_date.day)

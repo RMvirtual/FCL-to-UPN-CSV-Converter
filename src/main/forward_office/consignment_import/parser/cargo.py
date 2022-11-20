@@ -30,7 +30,6 @@ class CargoParser:
         return copy.copy(self._cargo)
 
     def _process_request(self, request: CargoEntryParseRequest) -> None:
-        print("Request:", request.package_type)
         package_type = getattr(self._mappings, request.package_type)
 
         self._cargo.add(CargoEntry(

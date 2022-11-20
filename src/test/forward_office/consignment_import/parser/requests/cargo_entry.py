@@ -11,7 +11,7 @@ class TestCargoEntryParseRequest(unittest.TestCase):
         self._request.goods_description = ""
         self._request.weight = 0
 
-    def test_should_show_as_empty_line(self):
+    def test_should_show_as_empty_request(self):
         self.assertTrue(self._request.is_empty())
 
 
