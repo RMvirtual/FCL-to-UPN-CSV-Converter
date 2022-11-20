@@ -82,7 +82,7 @@ class TestCanImportOneLinerConsignment(unittest.TestCase):
         self.assertEqual("pallet", consignment.cargo[0].package_type.base_type)
 
         self.assertEqual(
-            "normal", consignment.cargo[0].package_type.oversize_option)
+            "normal", consignment.cargo[0].package_type.oversize.selected.name)
 
         self.assertTupleEqual(
             (1, 500), consignment.cargo[0].quantity_and_weight)

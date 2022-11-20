@@ -1,7 +1,8 @@
 import dataclasses
 import copy
 
-from src.main.freight.cargo import packages
+from src.main.freight.cargo.packages.types.interface import PackageType
+from src.main.freight.cargo.packages.types import factory
 from src.main.file_system.forward_office import freight_mappings
 
 
@@ -19,21 +20,21 @@ class CargoTypeMapBuilder:
 
     def _add(self, short_code_to_map):
         short_code = short_code_to_map["short_code"]
-        package_type = self._package_type_from_mapping_details(
-            short_code_to_map)
+        package = self._deserialise_to_house_package(short_code_to_map)
 
         self._mappings.append([
             short_code,
-            packages.PackageType,
-            dataclasses.field(default=package_type)
+            PackageType,
+            dataclasses.field(default=package)
         ])
 
     @staticmethod
-    def _package_type_from_mapping_details(short_code_to_map):
-        mapping_info = short_code_to_map["maps_to"]
+    def _deserialise_to_house_package(
+            short_code_to_map: dict[str, any]) -> PackageType:
+        mapping = short_code_to_map["maps_to"]
 
-        result = packages.load(mapping_info["name"])
-        result.oversize_option = mapping_info["oversize_option"]
+        result = factory.load(mapping["name"])
+        result.oversize.select(mapping["oversize_option"])
 
         return result
 

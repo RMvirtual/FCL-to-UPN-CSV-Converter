@@ -4,20 +4,18 @@ from src.main.forward_office.mapping.cargo import FclCargoTypeMap
 
 class TestFclCargoTypeMappings(unittest.TestCase):
     def setUp(self) -> None:
-        pass
+        self._cargo_type_map = FclCargoTypeMap()
 
     def test_should_map_fcl_cargo_type(self):
-        cargo_types = FclCargoTypeMap()
-        package_type = cargo_types.PAL2
+        package_type = self._cargo_type_map.PAL2
 
         self.assertEqual("full", package_type.name)
         self.assertEqual("pallet", package_type.base_type)
-        self.assertEqual("double", package_type.oversize_option)
+        self.assertEqual("double", package_type.oversize.selected.name)
 
     def test_should_verify_if_package_type_contained(self):
-        cargo_types = FclCargoTypeMap()
-        self.assertTrue(cargo_types.contains("PALL"))
-        self.assertFalse(cargo_types.contains("LIFT"))
+        self.assertTrue(self._cargo_type_map.contains("PALL"))
+        self.assertFalse(self._cargo_type_map.contains("LIFT"))
 
 
 if __name__ == '__main__':

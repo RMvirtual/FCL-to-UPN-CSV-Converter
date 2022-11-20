@@ -52,14 +52,13 @@ class TestCargoParser(unittest.TestCase):
         cargo = parser.parse(self._example)
 
         self.assertEqual(1, len(cargo))
-
         entry = cargo[0]
-        self.assertEqual(1, entry.quantity)
 
+        self.assertEqual(1, entry.quantity)
         self.assertEqual("pallet", entry.package_type.base_type)
         self.assertEqual("full", entry.package_type.name)
-        self.assertEqual(1000, entry.weight_kgs)
-        self.assertEqual("double", entry.package_type.oversize_option)
+        self.assertEqual(1000, entry.weight)
+        self.assertEqual("double", entry.package_type.oversize.selected.name)
 
     def test_should_parse_four_different_cargo_lines(self):
         self._load_complex_example()
@@ -73,29 +72,29 @@ class TestCargoParser(unittest.TestCase):
         self.assertEqual(2, entry_1.quantity)
         self.assertEqual("pallet", entry_1.package_type.base_type)
         self.assertEqual("full", entry_1.package_type.name)
-        self.assertEqual(2000, entry_1.weight_kgs)
-        self.assertEqual("normal", entry_1.package_type.oversize_option)
+        self.assertEqual(2000, entry_1.weight)
+        self.assertEqual("normal", entry_1.package_type.oversize.selected.name)
 
         entry_2 = cargo[1]
         self.assertEqual(2, entry_2.quantity)
         self.assertEqual("pallet", entry_2.package_type.base_type)
         self.assertEqual("quarter", entry_2.package_type.name)
-        self.assertEqual(600, entry_2.weight_kgs)
-        self.assertEqual("triple", entry_2.package_type.oversize_option)
+        self.assertEqual(600, entry_2.weight)
+        self.assertEqual("triple", entry_2.package_type.oversize.selected.name)
 
         entry_3 = cargo[2]
         self.assertEqual(8, entry_3.quantity)
         self.assertEqual("pallet", entry_3.package_type.base_type)
         self.assertEqual("micro", entry_3.package_type.name)
-        self.assertEqual(800, entry_3.weight_kgs)
-        self.assertEqual("normal", entry_3.package_type.oversize_option)
+        self.assertEqual(800, entry_3.weight)
+        self.assertEqual("normal", entry_3.package_type.oversize.selected.name)
 
         entry_4 = cargo[3]
         self.assertEqual(2, entry_4.quantity)
         self.assertEqual("pallet", entry_4.package_type.base_type)
         self.assertEqual("half", entry_4.package_type.name)
-        self.assertEqual(1000, entry_4.weight_kgs)
-        self.assertEqual("double", entry_4.package_type.oversize_option)
+        self.assertEqual(1000, entry_4.weight)
+        self.assertEqual("double", entry_4.package_type.oversize.selected.name)
 
 
 if __name__ == '__main__':

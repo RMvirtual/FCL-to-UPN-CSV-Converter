@@ -85,7 +85,7 @@ class TestCanImportMultiLineConsignment(unittest.TestCase):
     def _check_cargo_entry_1(self, consignment):
         entry = consignment.cargo[0]
 
-        self.assertTupleEqual((2, 1100), entry.quantity_and_weight)
+        self.assertTupleEqual((2, 1100), (entry.quantity, entry.weight))
         self.assertEqual("full", entry.package_type.name)
         self.assertEqual("pallet", entry.package_type.base_type)
         self.assertEqual("normal", entry.package_type.oversize_option)
@@ -93,7 +93,7 @@ class TestCanImportMultiLineConsignment(unittest.TestCase):
     def _check_cargo_entry_2(self, consignment):
         entry = consignment.cargo[1]
 
-        self.assertTupleEqual((4, 2000), entry.quantity_and_weight)
+        self.assertTupleEqual((4, 2000), (entry.quantity, entry.weight))
         self.assertEqual("half", entry.package_type.name)
         self.assertEqual("pallet", entry.package_type.base_type)
         self.assertEqual("normal", entry.package_type.oversize_option)
@@ -101,7 +101,7 @@ class TestCanImportMultiLineConsignment(unittest.TestCase):
     def _check_cargo_entry_3(self, consignment):
         entry = consignment.cargo[2]
 
-        self.assertTupleEqual((1, 1000), entry.quantity_and_weight)
+        self.assertTupleEqual((1, 1000), (entry.quantity, entry.weight))
         self.assertEqual("full", entry.package_type.name)
         self.assertEqual("pallet", entry.package_type.base_type)
         self.assertEqual("triple", entry.package_type.oversize_option)

@@ -12,9 +12,9 @@ from src.main.forward_office.consignment_import.reports.reports \
 
 class FclImportController:
     def __init__(self, import_format):
+        self._parser = ConsignmentParser()
         self._import_format = import_format
         self._requests = ParseRequestFactory(self._import_format)
-        self._parser = ConsignmentParser()
         self._imported_consignments: dict[str, Consignment] = {}
 
     def import_consignments(

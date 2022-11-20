@@ -102,12 +102,12 @@ class TestConsignmentParser(unittest.TestCase):
         self.assertEqual(1, len(cargo))
 
         entry = cargo[0]
-        self.assertTupleEqual((1, 1000), entry.quantity_and_weight)
+        self.assertTupleEqual((1, 1000), (entry.quantity, entry.weight))
 
         package_type = entry.package_type
         self.assertEqual("full", package_type.name)
         self.assertEqual("pallet", package_type.base_type)
-        self.assertEqual("normal", package_type.oversize_option)
+        self.assertEqual("normal", package_type.oversize.selected.name)
 
     def test_should_parse_delivery_instructions(self):
         request = ParseRequestFactory(self._field_indexes).consignment_request(
