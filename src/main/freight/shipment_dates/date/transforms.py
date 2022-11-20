@@ -2,7 +2,7 @@ import re
 import calendar
 import dataclasses
 
-from src.main.freight.shipment_dates.format_recognition \
+from src.main.freight.shipment_dates.date.format_recognition \
     import DateFormatRecognition
 
 
@@ -153,4 +153,3 @@ class DateTransformation:
         result.year = split_values[2]
 
         return result
-

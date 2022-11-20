@@ -22,9 +22,9 @@ class TestAddressParser(unittest.TestCase):
         result = address.parse(self._request)
 
         self.assertEqual(result.name, "10 BRAMBLING RISE")
-        self.assertEqual(result.line_1, "HEMEL HEMPSTEAD")
-        self.assertEqual(result.line_2, "")
-        self.assertEqual(result.line_3, "")
+        self.assertEqual(result.lines[0], "HEMEL HEMPSTEAD")
+        self.assertEqual(result.lines[1], "")
+        self.assertEqual(result.lines[2], "")
         self.assertEqual(result.town, "HEMEL HEMPSTEAD")
         self.assertEqual(result.post_code, "HP2 6DT")
         self.assertEqual(result.country, "GB")

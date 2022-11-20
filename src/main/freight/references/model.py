@@ -1,8 +1,10 @@
+from src.main.freight.references import interface
+
 from src.main.freight.references.consignment_reference \
     import ConsignmentReference
 
 
-class References:
+class References(interface.References):
     def __init__(self, consignment_reference: str):
         self._consignment = ConsignmentReference(consignment_reference)
         self._shipper = []

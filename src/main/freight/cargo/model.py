@@ -1,5 +1,5 @@
-from src.main.freight.cargo.entries.entry import CargoEntry
-from src.main.freight.cargo.packages.types.package_types import PackageType
+from src.main.freight.cargo.entries.interface import CargoEntry
+from src.main.freight.cargo.packages.types.interface import PackageType
 
 
 class Cargo:
@@ -9,20 +9,20 @@ class Cargo:
     def add(self, entry: CargoEntry) -> None:
         self._combine(entry) if entry in self else self._add(entry)
 
+    def _combine(self, new_entry: CargoEntry):
+        self.entry_by_package_type(new_entry.package_type).__iadd__(new_entry)
+
     def clear(self) -> None:
         self._entries.clear()
 
     def __contains__(self, entry: CargoEntry) -> bool:
-        if type(entry) is CargoEntry:
-            return self.contains(entry)
+        if type(entry) is not CargoEntry:
+            raise TypeError("Incorrect containing type to check for.")
 
-        raise TypeError("Incorrect containing type to check for.")
+        return self.contains(entry)
 
     def contains(self, entry: CargoEntry) -> bool:
         return bool(self._matching_entries(entry.package_type))
-
-    def _combine(self, new_entry: CargoEntry):
-        self.entry_by_package_type(new_entry.package_type).__iadd__(new_entry)
 
     def _add(self, entry: CargoEntry) -> None:
         self._entries.append(entry)

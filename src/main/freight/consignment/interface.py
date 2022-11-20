@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from src.main.freight.address.interface import Address
-from src.main.freight.references.model import References
+from src.main.freight.references.interface import References
 from src.main.freight.cargo.model import Cargo
 from src.main.freight.service.model import Service
 from src.main.freight.shipment_dates.model import ShipmentDates

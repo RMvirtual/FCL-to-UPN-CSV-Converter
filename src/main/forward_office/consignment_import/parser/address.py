@@ -1,4 +1,5 @@
 from src.main.freight.address.model import Address
+from src.main.freight.address.interface import Address as AddressInterface
 
 from src.main.forward_office.consignment_import.parser.requests.types \
     import AddressParseRequest
@@ -7,7 +8,7 @@ from src.main.freight.address.validation import (
     AddressValidationStrategy, AddressErrors)
 
 
-def parse(request: AddressParseRequest) -> Address:
+def parse(request: AddressParseRequest) -> AddressInterface:
     errors = validate(request)
 
     if errors:
@@ -31,13 +32,13 @@ def validate(request: AddressParseRequest) -> AddressErrors:
     return errors
 
 
-def _parse(request: AddressParseRequest):
+def _parse(request: AddressParseRequest) -> AddressInterface:
     address = Address()
 
     address.name = request.name
-    address.line_1 = request.line_1
-    address.line_2 = request.line_2
-    address.line_3 = request.line_3
+    address.lines.append(request.line_1)
+    address.lines.append(request.line_2)
+    address.lines.append(request.line_3)
     address.town = request.town
     address.post_code = request.post_code
     address.country = request.country
