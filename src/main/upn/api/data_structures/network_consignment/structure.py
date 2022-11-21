@@ -1,3 +1,4 @@
+import datetime
 from src.main.upn.api.data_structures.network_consignment import mapping
 from src.main.upn.consignments.address import Address
 from src.main.upn.consignments.references import References
@@ -5,9 +6,10 @@ from src.main.upn.consignments.services import Services
 from src.main.upn.consignments.cargo import Cargo
 from src.main.upn.consignments.customer import Customer
 from src.main.upn.consignments.dates import Dates
+from src.main.upn.api.data_structures.network_consignment import interface
 
 
-class NetworkConsignment:
+class NetworkConsignment(interface.NetworkConsignment):
     def __init__(self):
         self._mappings = mapping.network_consignment()
         self._references = References()
@@ -19,6 +21,108 @@ class NetworkConsignment:
         self._cargo = Cargo()
         self._special_instructions = ""
         self._services = Services()
+
+    @property
+    def consignment_no(self) -> str:
+        return self._references.consignment_no
+
+    @property
+    def barcode(self) -> str:
+        return self._references.barcode
+
+    @property
+    def customer_reference(self) -> str:
+        return self._references.customer_reference
+
+    @property
+    def depot_no(self) -> int:
+        return self._depot_no
+
+    @property
+    def customer_id(self) -> int:
+        return self._customer.id
+
+    @property
+    def customer_name(self) -> str:
+        return self._customer.name
+
+    @property
+    def despatch_date(self) -> datetime.datetime:
+        return self._dates.despatch
+
+    @property
+    def delivery_datetime(self) -> datetime.datetime:
+        return self._dates.delivery
+
+    @property
+    def delivery_name(self) -> str:
+        ...
+
+    @property
+    def delivery_address_1(self) -> str:
+        ...
+
+    @property
+    def delivery_address_2(self) -> str:
+        ...
+
+    @property
+    def delivery_town(self) -> str:
+        ...
+
+    @property
+    def delivery_county(self) -> str:
+        ...
+
+    @property
+    def delivery_post_code(self) -> str:
+        ...
+
+    @property
+    def delivery_telephone_no(self) -> str:
+        ...
+
+    @property
+    def delivery_contact_name(self) -> str:
+        ...
+
+    @property
+    def delivery_country(self) -> str:
+        ...
+
+    @property
+    def special_instructions(self) -> str:
+        ...
+
+    @property
+    def customer_paperwork_pages(self) -> int:
+        ...
+
+    @property
+    def main_service(self) -> str:
+        ...
+
+    @property
+    def premium_service(self) -> str:
+        ...
+
+    @property
+    def tail_lift_required(self) -> str:
+        ...
+
+    @property
+    def additional_service(self) -> str:
+        ...
+
+    @property
+    def pallets(self) -> list[NetworkPallet]:
+        ...
+
+    @property
+    def total_weight(self) -> int:
+        ...
+
+################################################################
 
     @property
     def delivery_address(self) -> Address:
