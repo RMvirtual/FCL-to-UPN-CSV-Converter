@@ -28,8 +28,8 @@ def oversize_values() -> None:
 def _network_pallet(pallet_size: str, pallet_type: str) -> NetworkPallet:
     result = NetworkPallet()
     result.consignment_barcode = "W213359799C"
-    result.pallet_size = pallet_size
-    result.pallet_type = pallet_type
+    result.size = pallet_size
+    result.type = pallet_type
     result.barcode = "W213359800P"
 
     return result
