@@ -21,8 +21,8 @@ class TestPackageTypesJsonReader(unittest.TestCase):
         package_1 = factory.load("full")
         package_2 = factory.load("full")
 
-        package_1.oversize_option = "double"
-        package_2.oversize_option = "double"
+        package_1.oversize.select("double")
+        package_2.oversize.select("double")
 
         self.assertTrue(package_1 == package_2)
         self.assertFalse(package_1 != package_2)
