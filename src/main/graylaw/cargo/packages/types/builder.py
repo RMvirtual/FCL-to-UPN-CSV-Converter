@@ -1,15 +1,16 @@
+from src.main.graylaw.cargo.metrics.interface import Dimensions
+from src.main.graylaw.cargo.packages.types import interface
+from src.main.graylaw.cargo.packages.oversize.interface import OversizeOptions
+
 from src.main.graylaw.cargo.packages.types.package_types import (
     PackageType, PackageDefinitions)
-
-from src.main.graylaw.cargo.packages.types.interface import Dimensions
-from src.main.graylaw.cargo.packages.oversize.interface import OversizeOptions
 
 
 class PackageTypeBuilder:
     def __init__(self):
         self._definitions = PackageDefinitions()
 
-    def build(self) -> PackageType:
+    def build(self) -> interface.PackageType:
         return PackageType(self._definitions)
 
     def reset(self) -> None:

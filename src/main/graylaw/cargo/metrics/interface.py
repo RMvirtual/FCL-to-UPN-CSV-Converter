@@ -1,3 +1,4 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
@@ -30,4 +31,8 @@ class Dimensions(ABC):
     @height.setter
     @abstractmethod
     def height(self, new_height: float) -> None:
+        ...
+
+    @abstractmethod
+    def __eq__(self, other: Dimensions):
         ...

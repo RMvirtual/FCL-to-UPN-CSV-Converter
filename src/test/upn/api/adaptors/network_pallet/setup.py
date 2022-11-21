@@ -6,15 +6,15 @@ from src.main.graylaw.cargo.metrics.dimensions import (
 
 
 def full_normal_pallet() -> NetworkPallet:
-    return _network_pallet("N", "FULL")
+    return _network_pallet(pallet_size="N", pallet_type="FULL")
 
 
 def full_normal_max_dims() -> Dimensions:
-    return _dimensions(1.0, 1.2, 2.0)
+    return _dimensions(1.2, 1.0, 2.0)
 
 
 def double_half_max_dims() -> Dimensions:
-    return _dimensions(1.0, 1.2, 2.0)
+    return _dimensions(1.2, 1.0, 1.0)
 
 
 def oversize_values() -> None:
@@ -22,7 +22,7 @@ def oversize_values() -> None:
 
 
 def double_half_pallet() -> NetworkPallet:
-    return _network_pallet("2", "HALF")
+    return _network_pallet(pallet_size="2", pallet_type="HALF")
 
 
 def _network_pallet(pallet_size: str, pallet_type: str) -> NetworkPallet:
