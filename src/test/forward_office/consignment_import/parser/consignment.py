@@ -72,9 +72,9 @@ class TestConsignmentParser(unittest.TestCase):
         address = consignment.address
         self.assertEqual("Mr Susan Cheshire", address.contact_name)
         self.assertEqual("10 BRAMBLING RISE", address.name)
-        self.assertEqual("HEMEL HEMPSTEAD", address.line_1)
-        self.assertEqual("", address.line_2)
-        self.assertEqual("", address.line_3)
+        self.assertEqual("HEMEL HEMPSTEAD", address.lines[0])
+        self.assertEqual("", address.lines[1])
+        self.assertEqual("", address.lines[2])
         self.assertEqual("HEMEL HEMPSTEAD", address.town)
         self.assertEqual("HP2 6DT", address.post_code)
         self.assertEqual("(078)41 332424", address.telephone_number)
