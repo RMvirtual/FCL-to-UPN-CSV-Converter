@@ -43,7 +43,7 @@ class NetworkPalletAdaptor(PackageType):
         package_name = mapping["types"][pallet.type]
         result = package_types.load(package_name)
 
-        oversize_option = mapping["oversize_options"]
+        oversize_option = mapping["oversize_options"][pallet.size]
         result.oversize.select(oversize_option)
 
         return result
