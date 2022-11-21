@@ -1,5 +1,5 @@
 import unittest
-from src.test.upn.api.mapping.network_consignment.setup import freight_setup, \
+from src.test.upn.api.adaptors.network_consignment.setup import freight_setup, \
     upn_setup
 
 
