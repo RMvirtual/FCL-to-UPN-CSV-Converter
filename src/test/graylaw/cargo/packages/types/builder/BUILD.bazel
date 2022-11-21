@@ -1,7 +1,7 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "package_type",
+    name = "builder",
     srcs = glob(["*.py"]),
     data = [],
     deps = [
