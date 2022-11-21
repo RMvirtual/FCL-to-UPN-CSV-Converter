@@ -12,7 +12,7 @@ from src.main.upn.api.data_structures.network_consignment.interface \
     import NetworkConsignment
 
 
-class NetworkConsignmentAdapter(Consignment):
+class NetworkConsignmentAdaptor(Consignment):
     """Adaptor for turning a UPN Network Consignment structure into
     a Graylaw Consignment.
     """
