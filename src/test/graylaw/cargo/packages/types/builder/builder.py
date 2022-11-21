@@ -28,6 +28,29 @@ class TestPackageTypeBuilder(unittest.TestCase):
         self.assertEqual(correct_dimensions, result.maximum_dimensions)
         self.assertEqual(oversize_options, result.oversize)
 
+    def test_should_build_double_quarter_pallet(self) -> None:
+        builder = PackageTypeBuilder()
+        builder.set_base_type("pallet")
+        builder.set_name("quarter")
+        builder.set_max_weight(600)
+        builder.set_max_dimensions(setup.dimensions(height=1.0))
+        builder.set_oversize_options(setup.oversize_options())
+
+        result = builder.build()
+        result.oversize.select("double")
+
+        self.assertEqual("pallet", result.base_type)
+        self.assertEqual("quarter", result.name)
+        self.assertEqual(600, result.maximum_weight)
+
+        correct_dimensions = setup.dimensions(height=1.0)
+        self.assertEqual(correct_dimensions, result.maximum_dimensions)
+
+        correct_oversize = setup.oversize_options()
+        correct_oversize.select("double")
+
+        self.assertEqual(correct_oversize, result.oversize)
+
 
 if __name__ == '__main__':
     unittest.main()

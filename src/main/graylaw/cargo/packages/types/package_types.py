@@ -53,4 +53,6 @@ class PackageType(interface.PackageType):
             self._name == other.name
             and self.oversize.selected == other.oversize.selected
             and self._base_type == other.base_type
+            and self._max_dimensions == other.maximum_dimensions
+            and self._max_weight == other.maximum_weight
         )

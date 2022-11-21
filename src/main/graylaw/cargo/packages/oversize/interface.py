@@ -48,6 +48,9 @@ class OversizeOptions(ABC):
         ...
 
     @abstractmethod
-    def __contains__(self, item: OversizeOption):
+    def __contains__(self, item: OversizeOption) -> bool:
         ...
 
+    @abstractmethod
+    def __eq__(self, other: OversizeOptions) -> bool:
+        ...

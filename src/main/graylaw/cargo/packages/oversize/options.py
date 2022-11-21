@@ -50,8 +50,14 @@ class OversizeOptions(interface.OversizeOptions):
     def select(self, option_name: str) -> None:
         self._selected = self[option_name]
 
+    def _contains_option_name(self, name: str) -> bool:
+        return bool(self._options_by_name(name))
+
+    def _options_by_name(self, name: str) -> list[interface.OversizeOption]:
+        return list(filter(lambda option: option.name == name, self._values))
+
     def __contains__(self, option: interface.OversizeOption) -> bool:
-        if type(option) is not OversizeOption:
+        if not isinstance(option, interface.OversizeOption):
             raise TypeError("Incorrect oversize option type.")
 
         return option in self._values
@@ -62,9 +68,8 @@ class OversizeOptions(interface.OversizeOptions):
 
         return self._options_by_name(name).pop()
 
-    def _contains_option_name(self, name: str) -> bool:
-        return bool(self._options_by_name(name))
+    def __eq__(self, other: interface.OversizeOptions) -> bool:
+        matching_selection = self.selected == other.selected
+        matching_values = self.values == other.values
 
-    def _options_by_name(self, name: str) -> list[interface.OversizeOption]:
-        return list(filter(lambda option: option.name == name, self._values))
-
+        return matching_selection and matching_values
