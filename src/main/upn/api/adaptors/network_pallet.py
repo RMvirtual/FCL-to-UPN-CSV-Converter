@@ -5,6 +5,10 @@ from src.main.freight.cargo.metrics.dimensions import Dimensions
 from src.main.upn.api.data_structures.network_pallet.interface \
     import NetworkPallet
 
+from src.main.freight.cargo.packages.types import factory as package_types
+from src.main.freight.cargo.packages.oversize import factory \
+    as oversize_options
+
 
 class NetworkPalletAdaptor(PackageType):
     def __init__(self, network_pallet: NetworkPallet):
@@ -16,7 +20,7 @@ class NetworkPalletAdaptor(PackageType):
 
     @property
     def base_type(self) -> str:
-        return ""
+        return None
 
     @property
     def oversize(self) -> OversizeOptions:
