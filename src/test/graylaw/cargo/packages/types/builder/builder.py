@@ -1,44 +1,32 @@
 import unittest
-from src.main.graylaw.cargo.packages.types import factory
 from src.test.graylaw.cargo.packages.types.builder import setup
+from src.main.graylaw.cargo.packages.types.builder import PackageTypeBuilder
 
 
 class TestPackageTypeBuilder(unittest.TestCase):
     def setUp(self) -> None:
-        self._double_half = setup._double_half_pallet()
+        pass
 
-    def test_should_get_base_type_from_full_pallet(self):
-        package_type = factory.load("full")
-        self.assertEqual(package_type.base_type, "pallet")
+    def test_should_build_normal_full_pallet(self) -> None:
+        builder = PackageTypeBuilder()
+        builder.set_base_type("pallet")
+        builder.set_name("full")
+        builder.set_max_weight(1200)
 
-    def test_should_show_identical_normal_package_types_as_equal(self):
-        package_1 = factory.load("full")
-        package_2 = factory.load("full")
+        max_dimensions = setup.dimensions()
+        builder.set_max_dimensions(max_dimensions)
 
-        self.assertTrue(package_1 == package_2)
-        self.assertFalse(package_1 != package_2)
+        oversize_options = setup.oversize_options()
+        builder.set_oversize_options(oversize_options)
 
-    def test_should_show_identical_oversize_package_types_as_equal(self):
-        package_1 = factory.load("full")
-        package_2 = factory.load("full")
+        result = builder.build()
+        correct_dimensions = setup.dimensions()
 
-        package_1.oversize.select("double")
-        package_2.oversize.select("double")
-
-        self.assertTrue(package_1 == package_2)
-        self.assertFalse(package_1 != package_2)
-
-    def test_should_show_different_normal_package_types_as_inequal(self):
-        package_1 = factory.load("full")
-        package_2 = factory.load("half")
-
-        self.assertTrue(package_1 != package_2)
-        self.assertFalse(package_1 == package_2)
-
-    def test_should_show_different_oversize_package_types_as_inequal(self):
-        package_1 = factory.load("full")
-
-        self.assertFalse(package_1 == self._double_half)
+        self.assertEqual("pallet", result.base_type)
+        self.assertEqual("full", result.name)
+        self.assertEqual(1200, result.maximum_weight)
+        self.assertEqual(correct_dimensions, result.maximum_dimensions)
+        self.assertEqual(oversize_options, result.oversize)
 
 
 if __name__ == '__main__':

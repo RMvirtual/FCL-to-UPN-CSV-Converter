@@ -19,10 +19,10 @@ class PackageType(interface.PackageType):
     def __init__(self, values: PackageDefinitions):
         self._name = values.name
         self._base_type = values.base_type
-        self._oversize_options = values.oversize_options
-        self._max_dimensions = values.max_dimensions
+        self._oversize_options = copy.deepcopy(values.oversize_options)
+        self._max_dimensions = copy.deepcopy(values.max_dimensions)
         self._max_weight = values.max_weight
-        self._override_options = values.override_options
+        self._override_options = copy.deepcopy(values.override_options)
 
     @property
     def name(self) -> str:
