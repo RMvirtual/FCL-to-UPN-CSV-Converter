@@ -3,41 +3,14 @@ import unittest
 from src.main.forward_office.consignment_import.controllers.controller \
     import FclImportController
 
+from src.test.forward_office.consignment_import.controllers. \
+    multi_line_example import setup
+
 
 class TestCanImportMultiLineConsignment(unittest.TestCase):
     def setUp(self) -> None:
-        self._import_format = {
-            'contact_name': 0, 'company_name': 1, 'address_line_1': 2,
-            'address_line_2': 3, 'address_line_3': 4, 'town': 5,
-            'post_code': 6, 'reference': 7, 'telephone_no': 8,
-            'line_1_weight': 9, 'line_1_quantity': 10,
-            'line_1_package_type': 11, 'line_1_description': 12,
-            'principal_client': 13, 'line_2_weight': 14,
-            'line_2_quantity': 15, 'line_2_package_type': 16,
-            'line_2_description': 17, 'line_3_weight': 18,
-            'line_3_quantity': 19, 'line_3_package_type': 20,
-            'line_3_description': 21, 'line_4_weight': 22,
-            'line_4_quantity': 23, 'line_4_package_type': 24,
-            'line_4_description': 25, 'delivery_instruction_1': 26,
-            'delivery_instruction_2': 27, 'booking_time': 28,
-            'delivery_date': 29, 'shipper_reference': 30,
-            'total_pallets': 31, 'priority_code': 32,
-            'tail_lift_required': 33
-        }
-
-        self._consignment_input = [[
-            "Ryan Matfen", "Graylaw Freight Group", "Gillibrands Road",
-            "", "", "Skelmersdale",
-            "WN8 9TA", "GR221003000", "01695 729101",
-            "500", "1", "PALL", "PALLETS N/D",
-            "Disneyworld",
-            "2000", "4", "HPAL", "HALF PALLETS",
-            "1000", "1", "PAL3", "TRIPLE PALLET",
-            "600", "1", "PALL", "PALLET",
-            "Tail Lift", "",
-            "1:00pm", "06-Oct-22", "OL1234",
-            "1", "02", "Yes"
-        ]]
+        self._import_format = setup.import_format()
+        self._consignment_input = setup.consignment_input()
 
     def test_should_import_consignment(self):
         importer = FclImportController(self._import_format)
@@ -59,8 +32,8 @@ class TestCanImportMultiLineConsignment(unittest.TestCase):
         self.assertFalse(report.advisories)
 
     def _check_reference(self, consignment):
-        self.assertEqual(
-            "GR221003000", str(consignment.references.consignment))
+        consignment_reference = str(consignment.references.consignment)
+        self.assertEqual("GR221003000", consignment_reference)
 
     def _check_service(self, consignment):
         self.assertTrue(consignment.service.is_priority())
