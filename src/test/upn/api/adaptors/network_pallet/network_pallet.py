@@ -10,7 +10,7 @@ class TestNetworkPalletMapping(unittest.TestCase):
         self._adaptor = NetworkPalletAdaptor(setup.network_pallet())
 
     def test_should_return_base_type(self) -> None:
-        self.fail("DUMMY FAIL")
+        self.assertEqual("pallet", self._adaptor.base_type)
 
 
 if __name__ == '__main__':
