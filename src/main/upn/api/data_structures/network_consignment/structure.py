@@ -1,4 +1,4 @@
-from src.main.upn.api.data_structures.network_consignment import interface
+from src.main.upn.api.data_structures.network_consignment import mapping
 from src.main.upn.consignments.address import Address
 from src.main.upn.consignments.references import References
 from src.main.upn.consignments.services import Services
@@ -9,7 +9,7 @@ from src.main.upn.consignments.dates import Dates
 
 class NetworkConsignment:
     def __init__(self):
-        self._interface = interface.NetworkConsignmentInterface()
+        self._mappings = mapping.network_consignment()
         self._references = References()
         self._depot_no = 75
         self._customer_paperwork_pages = 0

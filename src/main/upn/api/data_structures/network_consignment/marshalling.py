@@ -1,4 +1,4 @@
-from src.main.upn.api.data_structures.network_consignment import interface
+from src.main.upn.api.data_structures.network_consignment import mapping
 
 from src.main.upn.api.data_structures.network_consignment.structure \
     import NetworkConsignment
@@ -19,7 +19,7 @@ from src.main.upn.consignments.services import Services
 
 class UpnNetworkConsignmentMarshaller:
     def __init__(self):
-        self._interface = interface.network_consignment()
+        self._mapping = mapping.network_consignment()
         self._pallet_marshaller = UpnNetworkPalletMarshaller()
 
     def unmarshall(self, candidate: dict) -> NetworkConsignment:
@@ -112,4 +112,4 @@ class UpnNetworkConsignmentMarshaller:
         return candidate[self._interface_mapping_from(field_name)]
 
     def _interface_mapping_from(self, field_name: str):
-        return getattr(self._interface, field_name).mapping
+        return getattr(self._mapping, field_name).mapping

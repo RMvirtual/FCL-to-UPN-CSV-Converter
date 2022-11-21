@@ -1,49 +1,135 @@
-import dataclasses
-from src.main.file_system.upn.api import structures
+import datetime
+from abc import ABC, abstractmethod
 
-from src.main.upn.api.data_structures.mapping.marshalling import (
-    Mapping, MappingMarshaller)
-
-
-@dataclasses.dataclass
-class NetworkConsignmentInterface:
-    consignment_no: Mapping = None
-    barcode: Mapping = None
-    customer_reference: Mapping = None
-    depot_no: Mapping = None
-    customer_id: Mapping = None
-    customer_name: Mapping = None
-    despatch_date: Mapping = None
-    delivery_datetime: Mapping = None
-    delivery_name: Mapping = None
-    delivery_address_1: Mapping = None
-    delivery_address_2: Mapping = None
-    delivery_town: Mapping = None
-    delivery_county: Mapping = None
-    delivery_post_code: Mapping = None
-    delivery_telephone_no: Mapping = None
-    delivery_contact_name: Mapping = None
-    delivery_country: Mapping = None
-    special_instructions: Mapping = None
-    customer_paperwork_pages: Mapping = None
-    main_service: Mapping = None
-    premium_service: Mapping = None
-    tail_lift_required: Mapping = None
-    additional_service: Mapping = None
-    pallets: Mapping = None
-    total_weight: Mapping = None
+from src.main.upn.api.data_structures.network_pallet.interface \
+    import NetworkPallet
 
 
-def network_consignment() -> NetworkConsignmentInterface:
-    """Reliant on the network consignment UPN JSON file having the same
-    fields as the NetworkConsignmentInterface dataclass.
+class NetworkConsignment(ABC):
+    """Main interface for the UPN Network Consignment structure
+    returned through the UPN API.
     """
-    marshaller = MappingMarshaller()
-    structure = structures.network_consignment()
-    result = NetworkConsignmentInterface()
+    @property
+    @abstractmethod
+    def consignment_no(self) -> str:
+        ...
 
-    for field in list(dataclasses.fields(NetworkConsignmentInterface)):
-        mapping = marshaller.unmarshal_to_mapping(structure[field.name])
-        setattr(result, field.name, mapping)
+    @property
+    @abstractmethod
+    def barcode(self) -> str:
+        ...
 
-    return result
+    @property
+    @abstractmethod
+    def customer_reference(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def depot_no(self) -> int:
+        ...
+
+    @property
+    @abstractmethod
+    def customer_id(self) -> int:
+        ...
+
+    @property
+    @abstractmethod
+    def customer_name(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def despatch_date(self) -> datetime.datetime:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_datetime(self) -> datetime.datetime:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_name(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_address_1(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_address_2(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_town(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_county(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_post_code(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_telephone_no(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_contact_name(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def delivery_country(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def special_instructions(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def customer_paperwork_pages(self) -> int:
+        ...
+
+    @property
+    @abstractmethod
+    def main_service(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def premium_service(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def tail_lift_required(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def additional_service(self) -> str:
+        ...
+
+    @property
+    @abstractmethod
+    def pallets(self) -> list[NetworkPallet]:
+        ...
+
+    @property
+    @abstractmethod
+    def total_weight(self) -> int:
+        ...

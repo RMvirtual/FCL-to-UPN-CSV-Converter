@@ -1,25 +1,10 @@
-import re
+from src.main.forward_office.references.consignment import interface
+
+from src.main.forward_office.references.consignment.validation \
+    import ReferenceValidationStrategy
 
 
-class ReferenceValidationStrategy:
-    def __init__(self):
-        self._initialise_matching_patterns()
-
-    def _initialise_matching_patterns(self) -> None:
-        self._full_reference_pattern = re.compile(r"[gG][rR]\d{9}")
-        self._numbers_only_pattern = re.compile(r"\d{9}")
-
-    def is_valid_reference(self, reference: str) -> bool:
-        return self.matches_full(reference) or self.matches_numeric(reference)
-
-    def matches_full(self, reference: str) -> bool:
-        return bool(self._full_reference_pattern.fullmatch(reference))
-
-    def matches_numeric(self, reference: str) -> bool:
-        return bool(self._numbers_only_pattern.fullmatch(reference))
-
-
-class ConsignmentReference:
+class FclConsignmentReference(interface.FclConsignmentReference):
     def __init__(self, reference: str):
         self._validation = ReferenceValidationStrategy()
         self._prefix = "GR"

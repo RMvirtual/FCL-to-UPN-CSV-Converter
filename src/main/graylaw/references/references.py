@@ -1,6 +1,9 @@
 from src.main.graylaw.references import interface
 
-from src.main.graylaw.references.consignment_reference \
+from src.main.graylaw.references.consignment.interface \
+    import ConsignmentReference as ConsignmentReferenceInterface
+
+from src.main.graylaw.references.consignment.reference \
     import ConsignmentReference
 
 
@@ -11,12 +14,12 @@ class References(interface.References):
         self._consignee = []
 
     @property
-    def consignment(self) -> ConsignmentReference:
+    def consignment(self) -> ConsignmentReferenceInterface:
         return self._consignment
 
     @consignment.setter
     def consignment(self, new_reference: str) -> None:
-        self._consignment.number = new_reference
+        self._consignment = ConsignmentReference(new_reference)
 
     @property
     def shipper(self) -> list[str]:
