@@ -1,4 +1,5 @@
 from __future__ import annotations
+import copy
 from src.main.graylaw.cargo.packages.oversize import interface
 
 
@@ -24,8 +25,8 @@ class OversizeOptions(interface.OversizeOptions):
     def __init__(
             self, default: OversizeOption, options: list[OversizeOption]
     ) -> None:
-        self._default = default
-        self._values = options
+        self._default = copy.deepcopy(default)
+        self._values = copy.deepcopy(options)
         self._selected = self._default
 
     @property

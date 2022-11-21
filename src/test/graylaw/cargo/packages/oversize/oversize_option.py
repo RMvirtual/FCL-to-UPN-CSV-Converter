@@ -6,10 +6,10 @@ class TestOversizeOption(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_should_show_oversize_options_as_equal(self) -> None:
+    def test_should_show_oversize_option_as_equal(self) -> None:
         self.assertEqual(self._normal_oversize(), self._normal_oversize())
 
-    def test_should_show_oversize_options_as_inequal(self) -> None:
+    def test_should_show_oversize_option_as_inequal(self) -> None:
         self.assertNotEqual(self._normal_oversize(), self._double_oversize())
 
     @staticmethod

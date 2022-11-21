@@ -17,3 +17,12 @@ py_test(
         "//src/main/graylaw/cargo/packages/oversize",
     ],
 )
+
+py_test(
+    name = "oversize_options",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/graylaw/cargo/packages/oversize",
+    ],
+)
