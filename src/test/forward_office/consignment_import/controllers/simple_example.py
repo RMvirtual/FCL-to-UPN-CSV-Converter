@@ -70,7 +70,7 @@ class TestCanImportOneLinerConsignment(unittest.TestCase):
         self.assertEqual("Disneyworld", consignment.client_name)
         self.assertEqual("Ryan Matfen", consignment.address.contact_name)
         self.assertEqual("Graylaw Freight Group", consignment.address.name)
-        self.assertEqual("Gillibrands Road", consignment.address.line_1)
+        self.assertEqual("Gillibrands Road", consignment.address.lines[0])
         self.assertEqual("Skelmersdale", consignment.address.town)
         self.assertEqual("WN8 9TA", consignment.address.post_code)
         self.assertEqual("01695 729101", consignment.address.telephone_number)
