@@ -92,7 +92,7 @@ class ParseRequestFactory:
             self, line: int, values: list[str]) -> CargoEntryParseRequest:
         result = CargoEntryParseRequest()
 
-        result.package_type = values[self._line_string(line, "builder")]
+        result.package_type = values[self._line_string(line, "package_type")]
         result.quantity = values[self._line_string(line, "quantity")]
         result.weight = values[self._line_string(line, "weight")]
 
