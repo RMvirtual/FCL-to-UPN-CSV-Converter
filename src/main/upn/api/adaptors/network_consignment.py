@@ -11,6 +11,8 @@ from src.main.upn.api.data_structures.network_consignment.mapping \
 from src.main.upn.api.data_structures.network_consignment.interface \
     import NetworkConsignment
 
+from src.main.graylaw.references import factory as reference_factory
+
 
 class NetworkConsignmentAdaptor(Consignment):
     """Adaptor for turning a UPN Network Consignment structure into
@@ -21,7 +23,11 @@ class NetworkConsignmentAdaptor(Consignment):
 
     @property
     def references(self) -> References:
-        ...
+        return reference_factory.references(
+            consignment_reference=self._network_consignment.consignment_no,
+            shipper_references=[self._network_consignment.customer_reference],
+            consignee_references=[]
+        )
 
     @references.setter
     def references(self, new_references: References) -> None:
