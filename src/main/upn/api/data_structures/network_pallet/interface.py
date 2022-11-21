@@ -1,28 +1,57 @@
-import dataclasses
-from src.main.upn.api.data_structures.mapping.marshalling import (
-    Mapping, MappingMarshaller)
-
-from src.main.file_system.upn.api import structures
+from __future__ import annotations
+from abc import ABC, abstractmethod
 
 
-@dataclasses.dataclass
-class NetworkPalletInterface:
-    barcode: Mapping = None
-    type: Mapping = None
-    size: Mapping = None
-    consignment_barcode: Mapping = None
+class NetworkPallet(ABC):
+    @property
+    @abstractmethod
+    def barcode(self) -> str:
+        ...
 
+    @barcode.setter
+    @abstractmethod
+    def barcode(self, new_barcode) -> None:
+        ...
 
-def network_pallet() -> NetworkPalletInterface:
-    """Reliant on the network pallet UPN JSON file having the same
-    fields as the NetworkPalletInterface dataclass.
-    """
-    marshaller = MappingMarshaller()
-    structure = structures.network_pallet()
-    result = NetworkPalletInterface()
+    @property
+    @abstractmethod
+    def consignment_barcode(self) -> str:
+        ...
 
-    for field in list(dataclasses.fields(NetworkPalletInterface)):
-        mapping = marshaller.unmarshal_to_mapping(structure[field.name])
-        setattr(result, field.name, mapping)
+    @consignment_barcode.setter
+    @abstractmethod
+    def consignment_barcode(self, new_barcode):
+        ...
 
-    return result
+    @property
+    @abstractmethod
+    def size(self) -> str:
+        ...
+
+    @size.setter
+    @abstractmethod
+    def size(self, new_size: str) -> None:
+        ...
+
+    @property
+    @abstractmethod
+    def sizes(self) -> list[str]:
+        ...
+
+    @property
+    @abstractmethod
+    def type(self) -> str:
+        ...
+
+    @type.setter
+    @abstractmethod
+    def type(self, new_type: str) -> None:
+        ...
+
+    @property
+    @abstractmethod
+    def types(self) -> list[str]:
+        ...
+
+    def __eq__(self, other: NetworkPallet):
+        ...

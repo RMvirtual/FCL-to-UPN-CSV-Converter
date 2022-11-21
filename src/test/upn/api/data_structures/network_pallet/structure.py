@@ -3,7 +3,7 @@ from src.main.upn.api.data_structures.network_pallet.structure \
     import NetworkPallet
 
 
-class TestNetworkPallet(unittest.TestCase):
+class TestNetworkPalletStructure(unittest.TestCase):
     def setUp(self):
         self._pallet = NetworkPallet()
 

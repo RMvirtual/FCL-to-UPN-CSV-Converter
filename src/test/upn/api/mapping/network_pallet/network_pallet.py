@@ -23,7 +23,7 @@ class TestNetworkPalletMapping(unittest.TestCase):
         return result
 
     def test_should_convert_network_pallet_into_house_pallet(self) -> None:
-        result = NetworkPalletAdapter().pallet(self._network_pallet)
+        result = NetworkPalletAdapter(self._network_pallet)
 
 
 if __name__ == '__main__':
