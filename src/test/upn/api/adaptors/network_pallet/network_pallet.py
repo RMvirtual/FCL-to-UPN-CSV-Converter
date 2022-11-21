@@ -12,6 +12,9 @@ class TestNetworkPalletMapping(unittest.TestCase):
     def test_should_return_base_type(self) -> None:
         self.assertEqual("pallet", self._adaptor.base_type)
 
+    def test_should_return_name(self) -> None:
+        self.assertEqual("full", self._adaptor.name)
+
 
 if __name__ == '__main__':
     unittest.main()

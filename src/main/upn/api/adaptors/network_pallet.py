@@ -9,18 +9,21 @@ from src.main.graylaw.cargo.packages.types import factory as package_types
 from src.main.graylaw.cargo.packages.oversize import factory \
     as oversize_options
 
+from src.main.file_system.upn.api.structures import package_type_mappings
+
 
 class NetworkPalletAdaptor(PackageType):
     def __init__(self, network_pallet: NetworkPallet):
         self._network_pallet = network_pallet
+        self._mapping = package_type_mappings()
 
     @property
     def name(self) -> str:
-        return ""
+        return self._mapping["types"][self._network_pallet.type]
 
     @property
     def base_type(self) -> str:
-        return None
+        return "pallet"
 
     @property
     def oversize(self) -> OversizeOptions:

@@ -1,10 +1,10 @@
 {
   "types": {
-    "Full": "full",
-    "Euro": "euro",
-    "Half": "half",
-    "Quarter": "quarter",
-    "Micro": "micro"
+    "FULL": "full",
+    "EURO": "euro",
+    "HALF": "half",
+    "QUARTER": "quarter",
+    "MICRO": "micro"
   },
   "oversize_options": {
     "N": "normal",
