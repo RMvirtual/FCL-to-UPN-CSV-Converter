@@ -2,6 +2,7 @@ import copy
 from src.main.freight.cargo.model import Cargo
 from src.main.freight.cargo.entries.entry import CargoEntry
 from src.main.forward_office.mapping.cargo import FclCargoTypeMap
+from src.main.freight.cargo.packages.types.interface import PackageType
 
 from src.main.forward_office.consignment_import.parser.requests.types \
     import CargoParseRequest, CargoEntryParseRequest
@@ -30,9 +31,14 @@ class CargoParser:
         return copy.copy(self._cargo)
 
     def _process_request(self, request: CargoEntryParseRequest) -> None:
-        package_type = getattr(self._mappings, request.package_type)
-
-        self._cargo.add(CargoEntry(
-            package=package_type, quantity=int(request.quantity),
+        new_entry = CargoEntry(
+            package=self._map_package_type(request.package_type),
+            quantity=int(request.quantity),
             weight=float(request.weight)
-        ))
+        )
+
+        self._cargo.add(new_entry)
+
+    def _map_package_type(self, fcl_package_short_code: str) -> PackageType:
+        return getattr(self._mappings, fcl_package_short_code)
+

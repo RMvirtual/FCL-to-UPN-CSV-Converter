@@ -83,8 +83,7 @@ class ParseRequestFactory:
         return result
 
     def cargo_entry(
-            self, line: int, values: list[str]) -> \
-            CargoEntryParseRequest or None:
+            self, line: int, values: list[str]) -> CargoEntryParseRequest:
         cleaned_values = list(map(self._trim_whitespace, values))
 
         return self._cargo_entry(line, cleaned_values)

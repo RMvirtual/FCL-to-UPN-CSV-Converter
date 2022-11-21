@@ -7,7 +7,7 @@ from src.main.forward_office.consignment_import.parser.requests.types \
 
 class TestCargoParser(unittest.TestCase):
     def setUp(self) -> None:
-        pass
+        self._cargo_parser = CargoParser()
 
     def _load_simple_example(self):
         self._example = CargoParseRequest()
@@ -47,9 +47,7 @@ class TestCargoParser(unittest.TestCase):
 
     def test_should_parse_one_cargo_line(self):
         self._load_simple_example()
-
-        parser = CargoParser()
-        cargo = parser.parse(self._example)
+        cargo = self._cargo_parser.parse(self._example)
 
         self.assertEqual(1, len(cargo))
         entry = cargo[0]
@@ -62,9 +60,7 @@ class TestCargoParser(unittest.TestCase):
 
     def test_should_parse_four_different_cargo_lines(self):
         self._load_complex_example()
-
-        parser = CargoParser()
-        cargo = parser.parse(self._example)
+        cargo = self._cargo_parser.parse(self._example)
 
         self.assertEqual(4, len(cargo))
 
