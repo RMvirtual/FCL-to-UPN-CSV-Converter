@@ -17,7 +17,14 @@ class TestNetworkPalletMapping(unittest.TestCase):
         self.assertEqual("half", self._double_half.name)
 
     def test_should_adapt_oversize_values(self) -> None:
-        self.fail("DUMMY FAIL")
+        normal_options = setup.oversize_values()
+        self.assertEqual(normal_options, self._normal_full.oversize)
+
+        double_options = setup.oversize_values()
+        double_options.select("double")
+
+        self.assertEqual(double_options, self._double_half.oversize)
+        self.assertNotEqual(normal_options, self._double_half.oversize)
 
     def test_should_adapt_maximum_dimensions(self) -> None:
         self.assertEqual(
