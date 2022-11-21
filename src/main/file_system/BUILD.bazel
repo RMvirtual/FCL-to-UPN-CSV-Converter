@@ -8,7 +8,7 @@ py_library(
     deps = [
         "//src/main/file_system/file_readers",
         "//src/main/file_system/forward_office",
-        "//src/main/file_system/freight",
+        "//src/main/file_system/graylaw",
         "//src/main/file_system/upn",
     ],
 )

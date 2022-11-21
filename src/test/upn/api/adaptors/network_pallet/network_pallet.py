@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.cargo.packages.types import factory
+from src.main.graylaw.cargo.packages.types import factory
 from src.main.upn.api.adaptors.network_pallet import NetworkPalletAdaptor
 from src.test.upn.api.adaptors.network_pallet import setup
 

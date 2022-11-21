@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.cargo.packages.types import factory
+from src.main.graylaw.cargo.packages.types import factory
 from src.main.upn.mapping.package_types import map_to_upn_package
 
 

@@ -1,5 +1,5 @@
 import dataclasses
-from src.main.freight.cargo.packages.types.package_types import PackageType
+from src.main.graylaw.cargo.packages.types.package_types import PackageType
 
 
 @dataclasses.dataclass

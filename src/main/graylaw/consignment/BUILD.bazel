@@ -1,0 +1,14 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "consignment",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/graylaw/address",
+        "//src/main/graylaw/cargo",
+        "//src/main/graylaw/references",
+        "//src/main/graylaw/service",
+        "//src/main/graylaw/shipment_dates",
+    ],
+)

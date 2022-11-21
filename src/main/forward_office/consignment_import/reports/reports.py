@@ -1,5 +1,5 @@
 import dataclasses
-from src.main.freight.consignment.model import Consignment
+from src.main.graylaw.consignment.model import Consignment
 
 
 @dataclasses.dataclass

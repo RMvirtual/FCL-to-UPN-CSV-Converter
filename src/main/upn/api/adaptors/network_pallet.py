@@ -1,12 +1,12 @@
-from src.main.freight.cargo.packages.types.interface import PackageType
-from src.main.freight.cargo.packages.oversize.interface import OversizeOptions
-from src.main.freight.cargo.metrics.dimensions import Dimensions
+from src.main.graylaw.cargo.packages.types.interface import PackageType
+from src.main.graylaw.cargo.packages.oversize.interface import OversizeOptions
+from src.main.graylaw.cargo.metrics.dimensions import Dimensions
 
 from src.main.upn.api.data_structures.network_pallet.interface \
     import NetworkPallet
 
-from src.main.freight.cargo.packages.types import factory as package_types
-from src.main.freight.cargo.packages.oversize import factory \
+from src.main.graylaw.cargo.packages.types import factory as package_types
+from src.main.graylaw.cargo.packages.oversize import factory \
     as oversize_options
 
 

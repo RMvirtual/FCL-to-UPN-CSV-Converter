@@ -1,4 +1,4 @@
-from src.main.freight.shipment_dates.model import ShipmentDates
+from src.main.graylaw.shipment_dates.model import ShipmentDates
 
 
 def parse(date: str) -> ShipmentDates:

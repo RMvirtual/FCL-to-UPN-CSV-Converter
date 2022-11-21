@@ -1,8 +1,8 @@
 import dataclasses
 import copy
 
-from src.main.freight.cargo.packages.types.interface import PackageType
-from src.main.freight.cargo.packages.types import factory
+from src.main.graylaw.cargo.packages.types.interface import PackageType
+from src.main.graylaw.cargo.packages.types import factory
 from src.main.file_system.forward_office import freight_mappings
 
 
