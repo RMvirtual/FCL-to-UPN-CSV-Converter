@@ -23,7 +23,7 @@ class UPNDateAdaptor(GraylawDate):
         return self._date.year
 
     def __sub__(self, other: GraylawDate) -> int:
-        ...
+        return self._comparison.difference_in_days(other)
 
     def __eq__(self, other: GraylawDate) -> bool:
         return self._comparison.is_equal_to(other)
