@@ -4,7 +4,7 @@ import unittest
 from src.main.upn.api.data_structures.network_consignment.marshalling \
     import UpnNetworkConsignmentMarshaller
 
-from src.main.upn.api.data_structures.network_consignment.structure \
+from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
 
 from src.main.upn.api.data_structures.network_pallet.structure \
