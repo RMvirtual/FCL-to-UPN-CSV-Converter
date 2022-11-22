@@ -28,6 +28,6 @@ class DateComparisonStrategy:
     def is_greater_than(self, other: Date) -> bool:
         return not self.is_less_than_equal_to(other)
 
-    def difference_in_days(self, other: Date) -> bool:
+    def difference_in_days(self, other: Date) -> int:
         ...
 

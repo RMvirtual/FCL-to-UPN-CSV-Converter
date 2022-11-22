@@ -1,11 +1,14 @@
 import copy
 import datetime
 from src.main.graylaw.shipment_dates.date.interface import Date as GraylawDate
+from src.main.graylaw.shipment_dates.date.comparison \
+    import DateComparisonStrategy
 
 
 class UPNDateAdaptor(GraylawDate):
     def __init__(self, upn_date: datetime.datetime):
         self._date = copy.deepcopy(upn_date)
+        self._comparison= DateComparisonStrategy(self)
 
     @property
     def day(self) -> int:
@@ -23,16 +26,16 @@ class UPNDateAdaptor(GraylawDate):
         ...
 
     def __eq__(self, other: GraylawDate) -> bool:
-        return False
+        return self._comparison.is_equal_to(other)
 
     def __lt__(self, other: GraylawDate) -> bool:
-        return False
+        return self._comparison.is_less_than(other)
 
     def __le__(self, other: GraylawDate) -> bool:
-        return False
+        return self._comparison.is_less_than_equal_to(other)
 
     def __ge__(self, other: GraylawDate) -> bool:
-        return False
+        return self._comparison.is_greater_than_equal_to(other)
 
     def __gt__(self, other: GraylawDate) -> bool:
-        return False
+        return self._comparison.is_greater_than(other)
