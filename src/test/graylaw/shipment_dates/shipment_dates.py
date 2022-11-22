@@ -1,5 +1,5 @@
 import unittest
-from src.main.graylaw.shipment_dates.model import ShipmentDates, Date
+from src.main.graylaw.shipment_dates.implementation import ShipmentDates, Date
 
 
 class TestShipmentDates(unittest.TestCase):

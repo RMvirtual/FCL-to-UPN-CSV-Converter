@@ -1,10 +1,10 @@
 from src.main.graylaw.consignment import interface
-from src.main.graylaw.address.model import Address
+from src.main.graylaw.address.implementation import Address
 from src.main.graylaw.address.interface import Address as AddressInterface
-from src.main.graylaw.references.references import References
+from src.main.graylaw.references.implementation import References
 from src.main.graylaw.cargo.model import Cargo
 from src.main.graylaw.service.model import Service
-from src.main.graylaw.shipment_dates.model import ShipmentDates
+from src.main.graylaw.shipment_dates.implementation import ShipmentDates
 
 
 class Consignment(interface.Consignment):

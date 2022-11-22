@@ -10,6 +10,7 @@ from src.main.upn.api.data_structures.network_consignment.implementation \
 
 from src.main.upn.consignment.adaptors.address import UPNAddressAdaptor
 from src.main.upn.consignment.adaptors.references import UPNReferencesAdaptor
+from src.main.upn.consignment.adaptors.dates import UPNDatesAdaptor
 
 
 class NetworkConsignmentAdaptor(Consignment):
@@ -45,4 +46,4 @@ class NetworkConsignmentAdaptor(Consignment):
 
     @property
     def shipment_dates(self) -> ShipmentDates:
-        ...
+        return UPNDatesAdaptor(self._network_consignment.dates)

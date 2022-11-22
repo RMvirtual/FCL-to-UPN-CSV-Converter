@@ -1,5 +1,5 @@
 from src.main.graylaw.references import interface
-from src.main.graylaw.references.references import References
+from src.main.graylaw.references.implementation import References
 
 
 def references(

@@ -1,4 +1,4 @@
-from src.main.graylaw.address.model import Address
+from src.main.graylaw.address.implementation import Address
 from src.main.graylaw.address.interface import Address as AddressInterface
 
 from src.main.forward_office.consignment_import.parser.requests.types \
