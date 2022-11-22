@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from src.main.graylaw.cargo.entries.interface import CargoEntry
+from src.main.graylaw.cargo.packages.types.interface import PackageType
 
 
 class Cargo(ABC):
@@ -25,4 +26,8 @@ class Cargo(ABC):
 
     @abstractmethod
     def clear(self) -> None:
+        ...
+
+    @abstractmethod
+    def index_by_package_type(self, package_type: PackageType) -> CargoEntry:
         ...

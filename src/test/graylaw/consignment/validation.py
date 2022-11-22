@@ -25,7 +25,7 @@ class TestConsignmentValidation(unittest.TestCase):
         self._consignment.shipment_dates.collection_date = "03/10/2022"
         self._consignment.shipment_dates.delivery_date = "04/10/2022"
 
-        self._consignment.cargo.entry_by_package_type(
+        self._consignment.cargo.index_by_package_type(
             factory.load("full"))
 
     def test_should_highlight_tail_lift_errors(self):

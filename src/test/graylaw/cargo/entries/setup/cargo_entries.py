@@ -1,5 +1,5 @@
 from src.main.graylaw.cargo.packages.types.interface import PackageType
-from src.main.graylaw.cargo.entries.entry import CargoEntry
+from src.main.graylaw.cargo.entries.implementation import CargoEntry
 from src.test.graylaw.cargo.entries.setup import packages
 
 

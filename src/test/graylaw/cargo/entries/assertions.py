@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src.main.graylaw.cargo.entries.entry import CargoEntry
+from src.main.graylaw.cargo.entries.implementation import CargoEntry
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 
 
