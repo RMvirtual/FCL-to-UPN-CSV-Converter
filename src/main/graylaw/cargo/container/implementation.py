@@ -1,8 +1,9 @@
 from src.main.graylaw.cargo.entries.interface import CargoEntry
 from src.main.graylaw.cargo.packages.types.interface import PackageType
+from src.main.graylaw.cargo.container import interface
 
 
-class Cargo:
+class Cargo(interface.Cargo):
     def __init__(self):
         self._entries: list[CargoEntry] = []
 
