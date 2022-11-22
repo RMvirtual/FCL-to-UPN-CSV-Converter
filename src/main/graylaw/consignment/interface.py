@@ -12,19 +12,9 @@ class Consignment(ABC):
     def references(self) -> References:
         ...
 
-    @references.setter
-    @abstractmethod
-    def references(self, new_references: References) -> None:
-        ...
-
     @property
     @abstractmethod
     def address(self) -> Address:
-        ...
-
-    @address.setter
-    @abstractmethod
-    def address(self, new_address: Address) -> None:
         ...
 
     @property
@@ -32,19 +22,9 @@ class Consignment(ABC):
     def cargo(self) -> Cargo:
         ...
 
-    @cargo.setter
-    @abstractmethod
-    def cargo(self, new_cargo: Cargo) -> None:
-        ...
-
     @property
     @abstractmethod
     def service(self) -> Service:
-        ...
-
-    @service.setter
-    @abstractmethod
-    def service(self, new_service: Service) -> None:
         ...
 
     @property
@@ -52,27 +32,12 @@ class Consignment(ABC):
     def delivery_instructions(self) -> list[str]:
         ...
 
-    @delivery_instructions.setter
-    @abstractmethod
-    def delivery_instructions(self, new_instructions: list[str]) -> None:
-        ...
-
     @property
     @abstractmethod
     def client_name(self) -> str:
         ...
 
-    @client_name.setter
-    @abstractmethod
-    def client_name(self, new_name: str) -> None:
-        ...
-
     @property
     @abstractmethod
     def shipment_dates(self) -> ShipmentDates:
-        ...
-
-    @shipment_dates.setter
-    @abstractmethod
-    def shipment_dates(self, new_dates: ShipmentDates) -> None:
         ...
