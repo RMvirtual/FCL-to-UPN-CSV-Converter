@@ -1,7 +1,7 @@
 from src.main.graylaw.consignment.model import Consignment
 from src.main.graylaw.address.implementation import Address
 from src.main.graylaw.shipment_dates.implementation import ShipmentDates
-from src.main.graylaw.cargo.model import Cargo
+from src.main.graylaw.cargo.container.implementation import Cargo
 from src.main.graylaw.cargo.entries.entry import CargoEntry
 from src.main.graylaw.cargo.packages.types import factory
 

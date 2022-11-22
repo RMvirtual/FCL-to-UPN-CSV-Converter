@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from src.main.graylaw.address.interface import Address
 from src.main.graylaw.references.interface import References
 from src.main.graylaw.shipment_dates.interface import ShipmentDates
-from src.main.graylaw.cargo.model import Cargo
+from src.main.graylaw.cargo.container.implementation import Cargo
 from src.main.graylaw.service.model import Service
 
 

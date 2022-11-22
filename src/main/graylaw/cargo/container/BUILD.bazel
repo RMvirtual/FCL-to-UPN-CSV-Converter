@@ -1,12 +1,12 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "cargo",
+    name = "container",
     srcs = glob(["*.py"]),
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/graylaw/cargo/container",
+        "//src/main/file_system",
         "//src/main/graylaw/cargo/entries",
         "//src/main/graylaw/cargo/packages",
     ],
