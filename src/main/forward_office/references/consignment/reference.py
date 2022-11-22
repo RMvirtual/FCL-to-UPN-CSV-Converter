@@ -1,12 +1,12 @@
 from src.main.forward_office.references.consignment import interface
 
 from src.main.forward_office.references.consignment.validation \
-    import ReferenceValidationStrategy
+    import FCLReferenceValidationStrategy
 
 
-class FclConsignmentReference(interface.FclConsignmentReference):
+class FCLConsignmentReference(interface.FCLConsignmentReference):
     def __init__(self, reference: str):
-        self._validation = ReferenceValidationStrategy()
+        self._validation = FCLReferenceValidationStrategy()
         self._prefix = "GR"
         self.number = reference
 

@@ -1,11 +1,11 @@
 import unittest
-from src.main.upn.consignments.address import Address
+from src.main.upn.consignments.address import UPNAddress
 from src.main.upn.api.adaptors.address import UPNAddressAdaptor
 
 
 class TestUPNAddressAdaptor(unittest.TestCase):
     def setUp(self):
-        self._address = Address()
+        self._address = UPNAddress()
         self._address.name = "Graylaw International"
         self._address.line_1 = "Gillibrands Road"
         self._address.line_2 = "West Pimbo"

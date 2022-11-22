@@ -2,6 +2,6 @@ import dataclasses
 
 
 @dataclasses.dataclass
-class Customer:
+class UPNCustomer:
     id: int = 0
     name: str = ""

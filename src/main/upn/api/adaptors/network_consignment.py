@@ -8,10 +8,11 @@ from src.main.graylaw.shipment_dates.interface import ShipmentDates
 from src.main.upn.api.data_structures.network_consignment.mapping \
     import NetworkConsignmentMapping
 
-from src.main.upn.api.data_structures.network_consignment.interface \
+from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
 
 from src.main.graylaw.references import factory as reference_factory
+from src.main.upn.api.adaptors.address import UPNAddressAdaptor
 
 
 class NetworkConsignmentAdaptor(Consignment):
@@ -35,7 +36,7 @@ class NetworkConsignmentAdaptor(Consignment):
 
     @property
     def address(self) -> Address:
-        ...
+        return UPNAddressAdaptor(self._network_consignment.delivery_address)
 
     @address.setter
     def address(self, new_address: Address) -> None:

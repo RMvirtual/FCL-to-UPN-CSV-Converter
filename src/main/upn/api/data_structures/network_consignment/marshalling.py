@@ -9,12 +9,12 @@ from src.main.upn.api.data_structures.network_pallet.marshalling \
 from src.main.upn.api.data_structures.network_pallet.implementation \
     import NetworkPallet
 
-from src.main.upn.consignments.references import References
-from src.main.upn.consignments.address import Address
-from src.main.upn.consignments.cargo import Cargo
-from src.main.upn.consignments.customer import Customer
-from src.main.upn.consignments.dates import Dates
-from src.main.upn.consignments.services import Services
+from src.main.upn.consignments.references import UPNReferences
+from src.main.upn.consignments.address import UPNAddress
+from src.main.upn.consignments.cargo import UPNCargo
+from src.main.upn.consignments.customer import UPNCustomer
+from src.main.upn.consignments.dates import UPNDates
+from src.main.upn.consignments.services import UPNServices
 
 
 class UpnNetworkConsignmentMarshaller:
@@ -28,8 +28,8 @@ class UpnNetworkConsignmentMarshaller:
 
         return result
 
-    def unmarshall_references(self, candidate: dict) -> References:
-        result = References()
+    def unmarshall_references(self, candidate: dict) -> UPNReferences:
+        result = UPNReferences()
         result.barcode = self._unmarshall(candidate, "barcode")
         result.consignment_no = self._unmarshall(candidate, "consignment_no")
 
@@ -41,19 +41,19 @@ class UpnNetworkConsignmentMarshaller:
     def unmarshall_depot_no(self, candidate: dict[str, any]) -> int:
         return self._unmarshall(candidate, "depot_no")
 
-    def unmarshall_customer(self, candidate: dict[str, any]) -> Customer:
-        result = Customer()
+    def unmarshall_customer(self, candidate: dict[str, any]) -> UPNCustomer:
+        result = UPNCustomer()
         result.name = self._unmarshall(candidate, "customer_name")
         result.id = self._unmarshall(candidate, "customer_id")
 
         return result
 
     def unmarshall_delivery_address(
-            self, candidate: dict[str, any]) -> Address:
+            self, candidate: dict[str, any]) -> UPNAddress:
         def _unmarshall_candidate(field_name) -> any:
             return self._unmarshall(candidate, field_name)
 
-        result = Address()
+        result = UPNAddress()
         result.name = _unmarshall_candidate("delivery_name")
         result.line_1 = _unmarshall_candidate("delivery_address_1")
         result.line_2 = _unmarshall_candidate("delivery_address_2")
@@ -77,15 +77,15 @@ class UpnNetworkConsignmentMarshaller:
             self, candidate: dict[str, any]) -> int:
         return self._unmarshall(candidate, "customer_paperwork_pages")
 
-    def unmarshall_dates(self, candidate: dict[str, any]) -> Dates:
-        result = Dates()
+    def unmarshall_dates(self, candidate: dict[str, any]) -> UPNDates:
+        result = UPNDates()
         result.despatch = self._unmarshall(candidate, "despatch_date")
         result.delivery = self._unmarshall(candidate, "delivery_datetime")
 
         return result
 
-    def unmarshall_services(self, candidate: dict[str, any]) -> Services:
-        result = Services()
+    def unmarshall_services(self, candidate: dict[str, any]) -> UPNServices:
+        result = UPNServices()
         result.main_service = self._unmarshall(candidate, "main_service")
         result.premium_service = self._unmarshall(candidate, "premium_service")
 

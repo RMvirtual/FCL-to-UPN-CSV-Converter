@@ -1,7 +1,7 @@
 import re
 
 
-class ReferenceValidationStrategy:
+class FCLReferenceValidationStrategy:
     def __init__(self):
         self._initialise_matching_patterns()
 

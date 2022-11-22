@@ -2,7 +2,7 @@ import dataclasses
 
 
 @dataclasses.dataclass
-class Address:
+class UPNAddress:
     name: str = ""
     line_1: str = ""
     line_2: str = ""

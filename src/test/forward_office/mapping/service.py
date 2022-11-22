@@ -2,7 +2,7 @@ import unittest
 from src.main.forward_office.mapping.service import FclServiceCodeMap
 
 
-class TestFclServiceCodeMappings(unittest.TestCase):
+class TestFCLServiceCodeMappings(unittest.TestCase):
     def setUp(self) -> None:
         pass
 

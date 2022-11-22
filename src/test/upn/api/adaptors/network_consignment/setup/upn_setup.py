@@ -1,10 +1,10 @@
 import datetime
-from src.main.upn.consignments.references import References
-from src.main.upn.consignments.customer import Customer
-from src.main.upn.consignments.cargo import Cargo
-from src.main.upn.consignments.services import Services
-from src.main.upn.consignments.dates import Dates
-from src.main.upn.consignments.address import Address
+from src.main.upn.consignments.references import UPNReferences
+from src.main.upn.consignments.customer import UPNCustomer
+from src.main.upn.consignments.cargo import UPNCargo
+from src.main.upn.consignments.services import UPNServices
+from src.main.upn.consignments.dates import UPNDates
+from src.main.upn.consignments.address import UPNAddress
 
 from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
@@ -28,8 +28,8 @@ def dummy_network_consignment() -> NetworkConsignment:
     return result
 
 
-def _references() -> References:
-    result = References()
+def _references() -> UPNReferences:
+    result = UPNReferences()
 
     result.consignment_no = "GR221004388"
     result.customer_reference = "49632"
@@ -38,8 +38,8 @@ def _references() -> References:
     return result
 
 
-def _delivery_address() -> Address:
-    result = Address()
+def _delivery_address() -> UPNAddress:
+    result = UPNAddress()
     result.name = "GRAYLAW FREIGHT GROUP"
     result.line_1 = "GRAYLAW FREIGHT TERMINAL"
     result.line_2 = "GILLBRANDS ROAD"
@@ -53,8 +53,8 @@ def _delivery_address() -> Address:
     return result
 
 
-def _services() -> Services:
-    result = Services()
+def _services() -> UPNServices:
+    result = UPNServices()
     result.main_service = "P"
     result.premium_service = None
     result.tail_lift_required = None
@@ -63,24 +63,24 @@ def _services() -> Services:
     return result
 
 
-def _cargo() -> Cargo:
-    result = Cargo()
+def _cargo() -> UPNCargo:
+    result = UPNCargo()
     result.total_weight = 1100
     result.pallets = _pallets()
 
     return result
 
 
-def _customer() -> Customer:
-    result = Customer()
+def _customer() -> UPNCustomer:
+    result = UPNCustomer()
     result.name = "GRAYLAW"
     result.id = 4236
 
     return result
 
 
-def _dates() -> Dates:
-    result = Dates()
+def _dates() -> UPNDates:
+    result = UPNDates()
     result.despatch = datetime.datetime(2022, 10, 18, 0, 0)
     result.delivery = datetime.datetime(2022, 10, 18, 16, 30)
 

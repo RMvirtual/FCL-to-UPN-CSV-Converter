@@ -4,7 +4,7 @@ from src.main.graylaw.references.consignment.interface \
     import ConsignmentReference
 
 
-class FclConsignmentReference(ConsignmentReference):
+class FCLConsignmentReference(ConsignmentReference):
     @property
     @abstractmethod
     def prefix(self) -> str:

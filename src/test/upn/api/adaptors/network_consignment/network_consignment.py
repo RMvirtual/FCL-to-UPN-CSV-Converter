@@ -7,7 +7,7 @@ from src.test.upn.api.adaptors.network_consignment.setup import (
     graylaw_setup, upn_setup)
 
 
-class TestNetworkConsignmentAdaptor(unittest.TestCase):
+class TestUPNNetworkConsignmentAdaptor(unittest.TestCase):
     def setUp(self):
         self._network_consignment = upn_setup.dummy_network_consignment()
         self._correct_graylaw_consignment = graylaw_setup.dummy_consignment()

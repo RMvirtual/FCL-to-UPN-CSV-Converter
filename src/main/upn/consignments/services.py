@@ -2,7 +2,7 @@ import dataclasses
 
 
 @dataclasses.dataclass
-class Services:
+class UPNServices:
     main_service: str = ""
     premium_service: str = ""
     tail_lift_required: str = ""

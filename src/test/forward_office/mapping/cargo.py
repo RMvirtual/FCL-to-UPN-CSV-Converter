@@ -2,7 +2,7 @@ import unittest
 from src.main.forward_office.mapping.cargo import FclCargoTypeMap
 
 
-class TestFclCargoTypeMappings(unittest.TestCase):
+class TestFCLCargoTypeMappings(unittest.TestCase):
     def setUp(self) -> None:
         self._cargo_type_map = FclCargoTypeMap()
 

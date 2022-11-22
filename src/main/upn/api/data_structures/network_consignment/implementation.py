@@ -1,11 +1,11 @@
 import datetime
 from src.main.upn.api.data_structures.network_consignment import mapping
-from src.main.upn.consignments.address import Address
-from src.main.upn.consignments.references import References
-from src.main.upn.consignments.services import Services
-from src.main.upn.consignments.cargo import Cargo
-from src.main.upn.consignments.customer import Customer
-from src.main.upn.consignments.dates import Dates
+from src.main.upn.consignments.address import UPNAddress
+from src.main.upn.consignments.references import UPNReferences
+from src.main.upn.consignments.services import UPNServices
+from src.main.upn.consignments.cargo import UPNCargo
+from src.main.upn.consignments.customer import UPNCustomer
+from src.main.upn.consignments.dates import UPNDates
 from src.main.upn.api.data_structures.network_consignment import interface
 
 from src.main.upn.api.data_structures.network_consignment.interface \
@@ -15,23 +15,23 @@ from src.main.upn.api.data_structures.network_consignment.interface \
 class NetworkConsignment(interface.NetworkConsignment):
     def __init__(self):
         self._mappings = mapping.network_consignment()
-        self._references = References()
+        self._references = UPNReferences()
         self._depot_no = 75
         self._customer_paperwork_pages = 0
-        self._customer = Customer()
-        self._delivery_address = Address()
-        self._dates = Dates()
-        self._cargo = Cargo()
+        self._customer = UPNCustomer()
+        self._delivery_address = UPNAddress()
+        self._dates = UPNDates()
+        self._cargo = UPNCargo()
         self._special_instructions = ""
-        self._services = Services()
+        self._services = UPNServices()
 
     @property
-    def references(self) -> References:
+    def references(self) -> UPNReferences:
         return self._references
 
     @references.setter
-    def references(self, new_references: References) -> None:
-        if type(new_references) is not References:
+    def references(self, new_references: UPNReferences) -> None:
+        if type(new_references) is not UPNReferences:
             raise TypeError("Incorrect type for references.")
 
         self._references = new_references
@@ -57,12 +57,12 @@ class NetworkConsignment(interface.NetworkConsignment):
         self._depot_no = new_depot_no
 
     @property
-    def customer(self) -> Customer:
+    def customer(self) -> UPNCustomer:
         return self._customer
 
     @customer.setter
-    def customer(self, new_customer: Customer) -> None:
-        if type(new_customer) is not Customer:
+    def customer(self, new_customer: UPNCustomer) -> None:
+        if type(new_customer) is not UPNCustomer:
             raise TypeError("Incorrect type for customer.")
 
         self._customer = new_customer
@@ -76,12 +76,12 @@ class NetworkConsignment(interface.NetworkConsignment):
         return self._customer.name
 
     @property
-    def dates(self) -> Dates:
+    def dates(self) -> UPNDates:
         return self._dates
 
     @dates.setter
-    def dates(self, new_dates: Dates) -> None:
-        if type(new_dates) is not Dates:
+    def dates(self, new_dates: UPNDates) -> None:
+        if type(new_dates) is not UPNDates:
             raise TypeError("Incorrect dates type.")
 
         self._dates = new_dates
@@ -95,12 +95,12 @@ class NetworkConsignment(interface.NetworkConsignment):
         return self._dates.delivery
 
     @property
-    def delivery_address(self) -> Address:
+    def delivery_address(self) -> UPNAddress:
         return self._delivery_address
 
     @delivery_address.setter
-    def delivery_address(self, new_address: Address) -> None:
-        if type(new_address) is not Address:
+    def delivery_address(self, new_address: UPNAddress) -> None:
+        if type(new_address) is not UPNAddress:
             raise TypeError("Incorrect type for address.")
 
         self._delivery_address = new_address
@@ -158,12 +158,12 @@ class NetworkConsignment(interface.NetworkConsignment):
         self._customer_paperwork_pages = new_quantity
 
     @property
-    def services(self) -> Services:
+    def services(self) -> UPNServices:
         return self._services
 
     @services.setter
-    def services(self, new_services: Services) -> None:
-        if type(new_services) is not Services:
+    def services(self, new_services: UPNServices) -> None:
+        if type(new_services) is not UPNServices:
             raise TypeError("Incorrect type for services.")
 
         self._services = new_services

@@ -1,6 +1,6 @@
 import copy
 from src.main.graylaw.address.interface import Address
-from src.main.upn.consignments.address import Address as UPNAddress
+from src.main.upn.consignments.address import UPNAddress as UPNAddress
 
 
 class UPNAddressAdaptor(Address):
