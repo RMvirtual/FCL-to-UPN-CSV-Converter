@@ -1,6 +1,9 @@
 import copy
+import datetime
 from src.main.upn.consignment.structures.dates import UPNDates
 from src.main.graylaw.shipment_dates.interface import ShipmentDates
+from src.main.graylaw.shipment_dates.date.interface import Date as GraylawDate
+from src.main.upn.consignment.adaptors.date import UPNDateAdaptor
 
 
 class UPNDatesAdaptor(ShipmentDates):
@@ -11,25 +14,14 @@ class UPNDatesAdaptor(ShipmentDates):
         self._dates = upn_dates
 
     @property
-    def delivery_date(self) -> Date:
-        ...
-
-    @delivery_date.setter
-    def delivery_date(self, new_date: str) -> None:
-        ...
+    def delivery_date(self) -> GraylawDate:
+        return UPNDateAdaptor(self._dates.delivery.date())
 
     @property
-    def collection_date(self) -> Date:
-        ...
-
-    @collection_date.setter
-    def collection_date(self, new_date: str) -> None:
-        ...
+    def collection_date(self) -> GraylawDate:
+        return UPNDateAdaptor(self._dates.despatch)
 
     @property
     def delivery_time(self) -> datetime.time:
-        ...
+        return self._dates.delivery.time()
 
-    @delivery_time.setter
-    def delivery_time(self, new_time: str) -> None:
-        ...
