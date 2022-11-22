@@ -8,7 +8,7 @@ class UPNAPIClient:
         self._client = zeep.Client(self._environment["url"])
 
     def network_input(self, date: str) -> list[dict]:
-        """Returns a list of inbound consignments, collections
+        """Returns a list of inbound adaptors, collections
         requested and non-network input for a particular day.
         :param date: A string in yyyy-mm-dd format.
         """

@@ -1,10 +1,10 @@
 import datetime
-from src.main.upn.consignments.references import UPNReferences
-from src.main.upn.consignments.customer import UPNCustomer
-from src.main.upn.consignments.cargo import UPNCargo
-from src.main.upn.consignments.services import UPNServices
-from src.main.upn.consignments.dates import UPNDates
-from src.main.upn.consignments.address import UPNAddress
+from src.main.upn.consignment.structures.references import UPNReferences
+from src.main.upn.consignment.structures.customer import UPNCustomer
+from src.main.upn.consignment.structures.cargo import UPNCargo
+from src.main.upn.consignment.structures.services import UPNServices
+from src.main.upn.consignment.structures.dates import UPNDates
+from src.main.upn.consignment.structures.address import UPNAddress
 
 from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
@@ -22,7 +22,7 @@ def dummy_network_consignment() -> NetworkConsignment:
     result.delivery_address = _delivery_address()
     result.cargo = _cargo()
     result.dates = _dates()
-    result.special_instructions = "Don't smash up this consignment."
+    result.special_instructions = "Don't smash up this adaptors."
     result.services = _services()
 
     return result

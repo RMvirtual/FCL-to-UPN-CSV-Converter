@@ -35,7 +35,7 @@ class NetworkConsignmentMapping:
 
 
 def network_consignment() -> NetworkConsignmentMapping:
-    """Reliant on the network consignment UPN JSON file having the same
+    """Reliant on the network adaptors UPN JSON file having the same
     fields as the NetworkConsignmentInterface dataclass.
     """
     marshaller = MappingMarshaller()

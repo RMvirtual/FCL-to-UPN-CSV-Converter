@@ -8,5 +8,6 @@ py_library(
     deps = [
         "//src/main/graylaw",
         "//src/main/upn/api/data_structures",
+        "//src/main/upn/consignment",
     ],
 )

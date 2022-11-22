@@ -97,7 +97,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
             'PremiumService': None,
             'TailLift': None,
             'ExtraService': None,
-            'SpecialInstructions': 'Don\'t smash up this consignment.',
+            'SpecialInstructions': 'Don\'t smash up this adaptors.',
             'Pallets': {
                 'NetworkPallet': [
                     {
@@ -128,7 +128,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self._set_up_correct_dates()
 
         self._correct_consignment.special_instructions = (
-            "Don't smash up this consignment.")
+            "Don't smash up this adaptors.")
 
         self._set_up_correct_services()
 

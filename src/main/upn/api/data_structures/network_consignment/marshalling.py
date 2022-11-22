@@ -9,12 +9,12 @@ from src.main.upn.api.data_structures.network_pallet.marshalling \
 from src.main.upn.api.data_structures.network_pallet.implementation \
     import NetworkPallet
 
-from src.main.upn.consignments.references import UPNReferences
-from src.main.upn.consignments.address import UPNAddress
-from src.main.upn.consignments.cargo import UPNCargo
-from src.main.upn.consignments.customer import UPNCustomer
-from src.main.upn.consignments.dates import UPNDates
-from src.main.upn.consignments.services import UPNServices
+from src.main.upn.consignment.structures.references import UPNReferences
+from src.main.upn.consignment.structures.address import UPNAddress
+from src.main.upn.consignment.structures.cargo import UPNCargo
+from src.main.upn.consignment.structures.customer import UPNCustomer
+from src.main.upn.consignment.structures.dates import UPNDates
+from src.main.upn.consignment.structures.services import UPNServices
 
 
 class UpnNetworkConsignmentMarshaller:

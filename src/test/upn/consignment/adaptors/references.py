@@ -1,6 +1,6 @@
 import unittest
-from src.main.upn.consignments.references import UPNReferences
-from src.main.upn.api.adaptors.references import UPNReferencesAdaptor
+from src.main.upn.consignment.structures.references import UPNReferences
+from src.main.upn.consignment.adaptors.references import UPNReferencesAdaptor
 
 
 class TestUPNReferencesAdaptor(unittest.TestCase):

@@ -1,6 +1,4 @@
 import unittest
-from src.main.upn.consignments.dates import UPNDates
-from src.main.upn.api.adaptors.dates import UPNDatesAdaptor
 
 
 class TestUPNDatesAdaptor(unittest.TestCase):

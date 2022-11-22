@@ -10,5 +10,6 @@ py_library(
         "//src/main/graylaw/consignment",
         "//src/main/graylaw/references",
         "//src/main/graylaw/service",
+        "//src/main/graylaw/shipment_dates",
     ],
 )
