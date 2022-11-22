@@ -1,6 +1,7 @@
 from src.main.upn.consignment.structures.cargo import UPNCargo
 from src.main.graylaw.cargo.container.interface import Cargo
 from src.main.graylaw.cargo.entries.interface import CargoEntry
+from src.main.graylaw.cargo.packages.types.interface import PackageType
 
 
 class UPNCargoAdaptor(Cargo):
