@@ -37,11 +37,11 @@ class NetworkConsignmentAdaptor(Consignment):
 
     @property
     def delivery_instructions(self) -> list[str]:
-        ...
+        return [self._network_consignment.special_instructions]
 
     @property
     def client_name(self) -> str:
-        ...
+        return self._network_consignment.customer_name
 
     @property
     def shipment_dates(self) -> ShipmentDates:
