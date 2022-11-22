@@ -1,7 +1,7 @@
 from src.main.file_system.upn.api.structures import package_type_mappings
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 from src.main.graylaw.cargo.packages.oversize.interface import OversizeOptions
-from src.main.graylaw.cargo.metrics.dimensions import Dimensions
+from src.main.metrics.dimensions import Dimensions
 from src.main.graylaw.cargo.packages.types import factory as package_types
 
 from src.main.upn.api.data_structures.network_pallet.interface \

@@ -1,4 +1,4 @@
-from src.main.graylaw.cargo.metrics.dimensions import (
+from src.main.metrics.dimensions import (
     Dimensions, DimensionsInMetres)
 
 from src.main.graylaw.cargo.packages.oversize.factory import (

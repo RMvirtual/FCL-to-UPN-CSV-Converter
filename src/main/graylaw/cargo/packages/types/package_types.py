@@ -1,6 +1,6 @@
 import copy
 import dataclasses
-from src.main.graylaw.cargo.metrics.dimensions import Dimensions
+from src.main.metrics.dimensions import Dimensions
 from src.main.graylaw.cargo.packages.oversize.interface import OversizeOptions
 from src.main.graylaw.cargo.packages.types import interface
 

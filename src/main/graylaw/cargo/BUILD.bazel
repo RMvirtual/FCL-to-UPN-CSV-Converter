@@ -8,7 +8,6 @@ py_library(
     deps = [
         "//src/main/file_system",
         "//src/main/graylaw/cargo/entries",
-        "//src/main/graylaw/cargo/metrics",
         "//src/main/graylaw/cargo/packages",
     ],
 )

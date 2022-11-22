@@ -2,7 +2,7 @@ import dataclasses
 from src.main.graylaw.cargo.packages.types.builder import PackageTypeBuilder
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 
-from src.main.graylaw.cargo.metrics.dimensions import (
+from src.main.metrics.dimensions import (
     DimensionsInMetres, Dimensions)
 
 from src.main.graylaw.cargo.packages.oversize.options import (

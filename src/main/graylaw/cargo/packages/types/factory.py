@@ -1,5 +1,5 @@
 from src.main.file_system.graylaw import cargo_types
-from src.main.graylaw.cargo.metrics.dimensions import DimensionsInMetres
+from src.main.metrics.dimensions import DimensionsInMetres
 from src.main.graylaw.cargo.packages.oversize import factory
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 from src.main.graylaw.cargo.packages.types.builder import PackageTypeBuilder

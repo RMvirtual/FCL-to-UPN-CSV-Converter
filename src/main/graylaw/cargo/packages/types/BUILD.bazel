@@ -7,7 +7,7 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/file_system",
-        "//src/main/graylaw/cargo/metrics",
         "//src/main/graylaw/cargo/packages/oversize",
+        "//src/main/metrics",
     ],
 )
