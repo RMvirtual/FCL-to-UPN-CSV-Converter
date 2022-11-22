@@ -1,4 +1,4 @@
-from src.main.upn.api.data_structures.network_pallet.structure \
+from src.main.upn.api.data_structures.network_pallet.implementation \
     import NetworkPallet
 
 from src.main.graylaw.cargo.metrics.dimensions import (

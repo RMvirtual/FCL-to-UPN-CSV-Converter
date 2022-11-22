@@ -9,7 +9,7 @@ from src.main.upn.consignments.address import Address
 from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.upn.api.data_structures.network_pallet.structure import \
+from src.main.upn.api.data_structures.network_pallet.implementation import \
     NetworkPallet
 
 
