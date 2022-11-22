@@ -1,6 +1,8 @@
 import datetime
 from src.main.graylaw.shipment_dates.date import interface
 from src.main.graylaw.shipment_dates.date import transforms
+from src.main.graylaw.shipment_dates.date.comparison \
+    import DateComparisonStrategy
 
 
 class Date(interface.Date):
@@ -12,6 +14,8 @@ class Date(interface.Date):
             month=parsed_date.month,
             year=parsed_date.year
         )
+
+        self._comparison = DateComparisonStrategy(self)
 
     @property
     def day(self) -> int:
@@ -32,23 +36,16 @@ class Date(interface.Date):
         return abs((self._date - other_date).days)
 
     def __eq__(self, other: interface.Date) -> bool:
-        return (
-            self.day == other.day and self.month == other.month
-            and self.year == other.year
-        )
+        return self._comparison.is_equal_to(other)
 
     def __lt__(self, other: interface.Date) -> bool:
-        return (
-            True if self.year < other.year else
-            True if self.month < other.month
-            else self.day < other.day
-        )
+        return self._comparison.is_less_than(other)
 
     def __le__(self, other: interface.Date) -> bool:
-        return self < other or self == other
+        return self._comparison.is_less_than_equal_to(other)
 
     def __ge__(self, other: interface.Date) -> bool:
-        return self > other or self == other
+        return self._comparison.is_greater_than_equal_to(other)
 
     def __gt__(self, other: interface.Date) -> bool:
-        return not self <= other
+        return self._comparison.is_greater_than(other)
