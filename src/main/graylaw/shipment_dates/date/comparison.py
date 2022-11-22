@@ -1,3 +1,4 @@
+import datetime
 from src.main.graylaw.shipment_dates.date.interface import Date
 
 
@@ -29,5 +30,14 @@ class DateComparisonStrategy:
         return not self.is_less_than_equal_to(other)
 
     def difference_in_days(self, other: Date) -> int:
-        ...
+        """Absolute difference in days between the dates."""
+        other_datetime = self._datetime_format(other)
+        difference = self._datetime_format() - other_datetime
 
+        return abs(difference.days)
+
+    def _datetime_format(self, date: Date = None) -> datetime.date:
+        if not date:
+            date = self._date_to_compare
+
+        return datetime.date(day=date.day, month=date.month, year=date.year)

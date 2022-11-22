@@ -45,6 +45,12 @@ class TestDateAdaptor(unittest.TestCase):
         self.assertFalse(self._adaptor <= graylaw_date)
         self.assertFalse(self._adaptor < graylaw_date)
 
+    def test_adaptor_should_subtract_to_show_difference_in_days(self) -> None:
+        graylaw_date = GraylawDate("08/06/1991")
+        difference = self._adaptor - graylaw_date
+
+        self.assertEqual(5, difference)
+
 
 if __name__ == '__main__':
     unittest.main()

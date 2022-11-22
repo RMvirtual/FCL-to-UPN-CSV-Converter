@@ -30,10 +30,7 @@ class Date(interface.Date):
         return self._date.year
 
     def __sub__(self, other: interface.Date) -> int:
-        other_date = datetime.date(
-            day=other.day, month=other.month, year=other.year)
-
-        return abs((self._date - other_date).days)
+        return self._comparison.difference_in_days(other)
 
     def __eq__(self, other: interface.Date) -> bool:
         return self._comparison.is_equal_to(other)
