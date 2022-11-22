@@ -2,7 +2,7 @@ import dataclasses
 
 
 @dataclasses.dataclass
-class UpnApiContainers:
+class UPNAPIContainers:
     dictionary: type = dict
     array: type = list
 

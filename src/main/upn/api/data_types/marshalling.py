@@ -1,11 +1,11 @@
-from src.main.upn.api.data_types.primitives import UpnApiPrimitives
-from src.main.upn.api.data_types.containers import UpnApiContainers
+from src.main.upn.api.data_types.primitives import UPNAPIPrimitives
+from src.main.upn.api.data_types.containers import UPNAPIContainers
 
 
-class DataTypeMarshaller:
+class UPNDataTypeMarshaller:
     def __init__(self):
-        self._primitives = UpnApiPrimitives()
-        self._containers = UpnApiContainers()
+        self._primitives = UPNAPIPrimitives()
+        self._containers = UPNAPIContainers()
 
     def unmarshall_to_type(self, type_name: str) -> type:
         self._validate_data_type_exists(type_name)

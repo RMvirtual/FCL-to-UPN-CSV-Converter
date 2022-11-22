@@ -1,10 +1,10 @@
 from src.main.upn.api.data_structures.mapping.structure import Mapping
-from src.main.upn.api.data_types.marshalling import DataTypeMarshaller
+from src.main.upn.api.data_types.marshalling import UPNDataTypeMarshaller
 
 
 class MappingMarshaller:
     def __init__(self):
-        self._data_types = DataTypeMarshaller()
+        self._data_types = UPNDataTypeMarshaller()
 
     def unmarshal_to_mapping(self, candidate: dict) -> Mapping:
         result = Mapping()

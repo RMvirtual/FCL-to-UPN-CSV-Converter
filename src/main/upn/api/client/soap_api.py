@@ -2,7 +2,7 @@ import zeep
 from src.main.file_system.upn.api import configuration
 
 
-class UpnApiClient:
+class UPNAPIClient:
     def __init__(self):
         self._environment = configuration.upn_api()
         self._client = zeep.Client(self._environment["url"])

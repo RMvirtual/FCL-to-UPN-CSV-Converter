@@ -1,12 +1,12 @@
 import dataclasses
 import unittest
-from src.main.upn.api.data_types.marshalling import DataTypeMarshaller
+from src.main.upn.api.data_types.marshalling import UPNDataTypeMarshaller
 from datetime import datetime
 
 
 class TestUpnApiTypeMarshalling(unittest.TestCase):
     def setUp(self):
-        self._marshaller = DataTypeMarshaller()
+        self._marshaller = UPNDataTypeMarshaller()
 
     @dataclasses.dataclass
     class InstanceToUnmarshall:

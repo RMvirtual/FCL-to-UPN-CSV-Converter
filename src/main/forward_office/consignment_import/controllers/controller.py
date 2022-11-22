@@ -10,7 +10,7 @@ from src.main.forward_office.consignment_import.reports.reports \
     import ConsignmentImportReport
 
 
-class FclImportController:
+class FCLImportController:
     def __init__(self, import_format):
         self._parser = ConsignmentParser()
         self._import_format = import_format

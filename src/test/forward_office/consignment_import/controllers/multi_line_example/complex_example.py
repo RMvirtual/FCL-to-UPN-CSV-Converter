@@ -1,7 +1,7 @@
 import unittest
 
 from src.main.forward_office.consignment_import.controllers.controller \
-    import FclImportController
+    import FCLImportController
 
 from src.test.forward_office.consignment_import.controllers. \
     multi_line_example import setup
@@ -13,7 +13,7 @@ class TestCanImportMultiLineConsignment(unittest.TestCase):
         self._consignment_input = setup.consignment_input()
 
     def test_should_import_consignment(self):
-        importer = FclImportController(self._import_format)
+        importer = FCLImportController(self._import_format)
         report = importer.import_consignments(self._consignment_input)
 
         self._check_errors(report)

@@ -1,10 +1,10 @@
 import unittest
-from src.main.upn.api.data_types.primitives import UpnApiPrimitives
+from src.main.upn.api.data_types.primitives import UPNAPIPrimitives
 
 
 class TestUpnApiPrimitives(unittest.TestCase):
     def test_should_get_field_type_of_primitive(self):
-        self.assertEqual(str, UpnApiPrimitives().get("string"))
+        self.assertEqual(str, UPNAPIPrimitives().get("string"))
 
 
 if __name__ == '__main__':

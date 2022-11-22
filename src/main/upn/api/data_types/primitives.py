@@ -3,7 +3,7 @@ import datetime
 
 
 @dataclasses.dataclass
-class UpnApiPrimitives:
+class UPNAPIPrimitives:
     string: type = str
     int: type = int
     datetime: type = datetime.datetime
