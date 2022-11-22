@@ -23,16 +23,16 @@ class UPNDateAdaptor(GraylawDate):
         ...
 
     def __eq__(self, other: GraylawDate) -> bool:
-        ...
+        return False
 
     def __lt__(self, other: GraylawDate) -> bool:
-        ...
+        return False
 
     def __le__(self, other: GraylawDate) -> bool:
-        ...
+        return False
 
     def __ge__(self, other: GraylawDate) -> bool:
-        ...
+        return False
 
     def __gt__(self, other: GraylawDate) -> bool:
-        ...
+        return False

@@ -18,23 +18,32 @@ class TestDateAdaptor(unittest.TestCase):
     def test_should_get_year(self) -> None:
         self.assertEqual(1991, self._adaptor.year)
 
-    def test_should_show_date_as_equal(self) -> None:
+    def test_adaptor_should_compare_as_same_date(self) -> None:
         graylaw_date = GraylawDate("03/06/1991")
-        self.assertEqual(graylaw_date, self._adaptor)
-        self.assertFalse(graylaw_date < self._adaptor)
-        self.assertFalse(graylaw_date > self._adaptor)
+        self.assertTrue(self._adaptor <= graylaw_date)
+        self.assertTrue(self._adaptor == graylaw_date)
+        self.assertTrue(self._adaptor >= graylaw_date)
 
-    def test_should_show_date_as_earlier_than(self) -> None:
+        self.assertFalse(self._adaptor < graylaw_date)
+        self.assertFalse(self._adaptor > graylaw_date)
+
+    def test_adaptor_should_compare_as_earlier_date(self) -> None:
         graylaw_date = GraylawDate("04/06/1991")
-        self.assertLess(graylaw_date, self._adaptor)
-        self.assertFalse(graylaw_date == self._adaptor)
-        self.assertFalse(graylaw_date > self._adaptor)
+        self.assertTrue(self._adaptor < graylaw_date)
+        self.assertTrue(self._adaptor <= graylaw_date)
 
-    def test_should_show_date_as_later_than(self) -> None:
+        self.assertFalse(self._adaptor == graylaw_date)
+        self.assertFalse(self._adaptor >= graylaw_date)
+        self.assertFalse(self._adaptor > graylaw_date)
+
+    def test_adaptor_should_compare_as_later_date(self) -> None:
         graylaw_date = GraylawDate("02/06/1991")
-        self.assertGreater(graylaw_date, self._adaptor)
-        self.assertFalse(graylaw_date == self._adaptor)
-        self.assertFalse(graylaw_date < self._adaptor)
+        self.assertTrue(self._adaptor > graylaw_date)
+        self.assertTrue(self._adaptor >= graylaw_date)
+
+        self.assertFalse(self._adaptor == graylaw_date)
+        self.assertFalse(self._adaptor <= graylaw_date)
+        self.assertFalse(self._adaptor < graylaw_date)
 
 
 if __name__ == '__main__':
