@@ -4,7 +4,7 @@ import datetime
 from src.main.graylaw.shipment_dates.date.interface \
     import Date as DateInterface
 
-from src.main.graylaw.shipment_dates.date.model import Date
+from src.main.graylaw.shipment_dates.date.implementation import Date
 
 
 class ShipmentDates:
