@@ -1,3 +1,4 @@
+import functools
 from src.main.graylaw.cargo.entries.interface import CargoEntry
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 from src.main.graylaw.cargo.container import assertions
@@ -22,6 +23,12 @@ class CargoModel:
 
     def clear(self) -> None:
         self._entries.clear()
+
+    def total_weight(self) -> float:
+        return functools.reduce(
+            lambda entry_1, entry_2: entry_1.weight + entry_2.weight,
+            self._entries
+        )
 
     def _add(self, entry: CargoEntry) -> None:
         self._entries.append(entry)

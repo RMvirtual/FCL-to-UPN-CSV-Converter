@@ -24,6 +24,11 @@ class CargoReading(ABC):
     def index_by_package_type(self, package_type: PackageType) -> CargoEntry:
         ...
 
+    @property
+    @abstractmethod
+    def total_weight(self) -> float:
+        ...
+
 
 class Cargo(CargoReading):
     @abstractmethod

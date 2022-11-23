@@ -34,17 +34,6 @@ py_test(
 )
 
 py_test(
-    name = "cargo",
-    srcs = glob([
-        "*.py",
-    ]),
-    data = [],
-    deps = [
-        "//src/main/upn/consignment/adaptors",
-    ],
-)
-
-py_test(
     name = "references",
     srcs = glob([
         "*.py",
