@@ -3,7 +3,7 @@ from src.main.upn.api.data_structures.network_consignment import mapping
 from src.main.upn.consignment.structures.address import UPNAddress
 from src.main.upn.consignment.structures.references import UPNReferences
 from src.main.upn.consignment.structures.services import UPNServices
-from src.main.upn.consignment.structures.cargo import UPNCargo
+from src.main.upn.consignment.structures.cargo.container.container import UPNCargo
 from src.main.upn.consignment.structures.customer import UPNCustomer
 from src.main.upn.consignment.structures.dates import UPNDates
 from src.main.upn.api.data_structures.network_consignment import interface

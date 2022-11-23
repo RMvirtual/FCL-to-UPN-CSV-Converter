@@ -1,8 +1,5 @@
-from src.main.graylaw.cargo.container.implementation import Cargo
-from src.main.graylaw.cargo.entries.implementation import CargoEntry
-from src.main.graylaw.cargo.packages.types import factory
-from src.main.graylaw.cargo.container.interface import CargoReading
-from src.main.upn.consignment.structures.cargo import UPNCargo
+from src.main.upn.consignment.structures.cargo.container.container \
+    import UPNCargo
 
 from src.main.upn.api.data_structures.network_pallet.implementation \
     import NetworkPallet
@@ -22,12 +19,4 @@ def single_entry_upn_cargo() -> UPNCargo:
 
     return result
 
-
-def single_entry_cargo() -> CargoReading:
-    result = Cargo()
-    package_type = factory.load("full")
-    entry = CargoEntry(package=package_type, quantity=3, weight=3000)
-    result.add(entry)
-
-    return result
 

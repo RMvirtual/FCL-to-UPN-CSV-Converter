@@ -1,4 +1,4 @@
-from src.main.upn.consignment.structures.cargo import UPNCargo
+from src.main.upn.consignment.structures.cargo.container.container import UPNCargo
 from src.main.graylaw.cargo.container.interface import CargoReading
 from src.main.graylaw.cargo.entries.interface import CargoEntry
 from src.main.graylaw.cargo.packages.types.interface import PackageType
@@ -25,3 +25,7 @@ class UPNCargoAdaptor(CargoReading):
 
     def index_by_package_type(self, package_type: PackageType) -> CargoEntry:
         ...
+
+    @property
+    def total_weight(self) -> float:
+        return 0

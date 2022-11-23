@@ -1,10 +1,11 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "structures",
+    name = "cargo",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/upn/consignment/structures/cargo",
+        "//src/main/upn/consignment/structures/cargo/container",
+        "//src/main/upn/consignment/structures/cargo/package",
     ],
 )
