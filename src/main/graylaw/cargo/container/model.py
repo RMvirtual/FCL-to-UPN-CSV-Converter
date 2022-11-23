@@ -24,6 +24,7 @@ class CargoModel:
     def clear(self) -> None:
         self._entries.clear()
 
+    @property
     def total_weight(self) -> float:
         return functools.reduce(
             lambda entry_1, entry_2: entry_1.weight + entry_2.weight,

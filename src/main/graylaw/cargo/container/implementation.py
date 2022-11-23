@@ -29,5 +29,6 @@ class Cargo(interface.Cargo):
     def __len__(self) -> int:
         return len(self._model)
 
+    @property
     def total_weight(self) -> float:
         return self._model.total_weight
