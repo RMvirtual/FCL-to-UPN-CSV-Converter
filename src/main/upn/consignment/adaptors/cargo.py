@@ -1,10 +1,10 @@
 from src.main.upn.consignment.structures.cargo import UPNCargo
-from src.main.graylaw.cargo.container.interface import Cargo
+from src.main.graylaw.cargo.container.interface import CargoReading
 from src.main.graylaw.cargo.entries.interface import CargoEntry
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 
 
-class UPNCargoAdaptor(Cargo):
+class UPNCargoAdaptor(CargoReading):
     """Class for adapting a UPN Cargo structure into a Graylaw Cargo
     structure.
     """
@@ -22,12 +22,6 @@ class UPNCargoAdaptor(Cargo):
 
     def __len__(self) -> int:
         return len(self._cargo.pallets)
-
-    def add(self, entry: CargoEntry) -> None:
-        ...
-
-    def clear(self) -> None:
-        ...
 
     def index_by_package_type(self, package_type: PackageType) -> CargoEntry:
         ...

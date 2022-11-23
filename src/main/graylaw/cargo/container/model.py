@@ -1,5 +1,6 @@
 from src.main.graylaw.cargo.entries.interface import CargoEntry
 from src.main.graylaw.cargo.packages.types.interface import PackageType
+from src.main.graylaw.cargo.container import assertions
 
 
 class CargoModel:
@@ -7,11 +8,10 @@ class CargoModel:
         self._entries: list[CargoEntry] = []
 
     def add(self, entry: CargoEntry) -> None:
-        self._combine(entry) if entry in self else self._add(entry)
-        ...
+        self._combine(entry) if self.contains(entry) else self._add(entry)
 
     def contains(self, entry: CargoEntry) -> bool:
-        self._assert_type_is_cargo_entry(entry)
+        assertions.assert_type_is_cargo_entry(entry)
 
         return bool(self._matching_entries(entry.package_type))
 
@@ -45,7 +45,3 @@ class CargoModel:
     def __len__(self) -> int:
         return len(self._entries)
 
-    @staticmethod
-    def _assert_type_is_cargo_entry(entry: any) -> None:
-        if not isinstance(entry, CargoEntry):
-            raise TypeError("Type", type(entry), "is not a cargo entry.")

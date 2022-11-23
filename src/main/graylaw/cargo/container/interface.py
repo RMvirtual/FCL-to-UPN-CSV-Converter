@@ -3,7 +3,7 @@ from src.main.graylaw.cargo.entries.interface import CargoEntry
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 
 
-class Cargo(ABC):
+class CargoReading(ABC):
     @abstractmethod
     def __contains__(self, entry: CargoEntry) -> bool:
         ...
@@ -21,6 +21,12 @@ class Cargo(ABC):
         ...
 
     @abstractmethod
+    def index_by_package_type(self, package_type: PackageType) -> CargoEntry:
+        ...
+
+
+class Cargo(CargoReading):
+    @abstractmethod
     def add(self, entry: CargoEntry) -> None:
         ...
 
@@ -28,6 +34,3 @@ class Cargo(ABC):
     def clear(self) -> None:
         ...
 
-    @abstractmethod
-    def index_by_package_type(self, package_type: PackageType) -> CargoEntry:
-        ...
