@@ -1,4 +1,4 @@
-from src.main.metrics.interface import Dimensions
+from src.main.metrics.dimensions.interface import Dimensions
 
 
 class DimensionsInMetres(Dimensions):

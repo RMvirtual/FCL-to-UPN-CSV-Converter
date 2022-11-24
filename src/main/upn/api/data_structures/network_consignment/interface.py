@@ -1,7 +1,7 @@
 import datetime
 from abc import ABC, abstractmethod
 
-from src.main.upn.api.data_structures.network_pallet.interface \
+from src.main.upn.api.data_structures.network_pallet.implementation \
     import NetworkPallet
 
 

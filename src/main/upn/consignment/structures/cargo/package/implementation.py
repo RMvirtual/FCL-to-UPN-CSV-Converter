@@ -1,28 +1,27 @@
 import copy
 import dataclasses
-from src.main.upn.consignment.structures.cargo.package import interface
+from src.main.upn.consignment.structures.cargo.package.interface \
+    import UPNPallet as UPNPalletInterface
 
 
-class UPNPallet(interface.UPNPallet):
+@dataclasses.dataclass
+class UPNPalletFields:
+    barcode = ""
+    consignment_barcode = ""
+    type = ""
+    size = ""
+    types: list = dataclasses.field(default=list)
+    sizes: list = dataclasses.field(default=list)
+
+
+class UPNPallet(UPNPalletInterface):
     def __init__(self, pallet_fields: UPNPalletFields):
-        self._barcode = pallet_fields.
-        self._consignment_barcode = ""
-        self._type = None
-        self._types = []
-        self._size = None
-        self._sizes = []
-
-        upn_interface = mapping.network_pallet()
-        self._initialise_types(upn_interface)
-        self._initialise_sizes(upn_interface)
-
-    def _initialise_types(self, type_map: NetworkPalletMapping) -> None:
-        self._types = type_map.type.values
-        self._type = self._types[0]
-
-    def _initialise_sizes(self, size_map: NetworkPalletMapping) -> None:
-        self._sizes = size_map.size.values
-        self._size = self._sizes[0]
+        self._barcode = pallet_fields.barcode
+        self._consignment_barcode = pallet_fields.consignment_barcode
+        self._types = pallet_fields.types
+        self._type = pallet_fields.type
+        self._sizes = pallet_fields.sizes
+        self._size = pallet_fields.size
 
     @property
     def barcode(self) -> str:
@@ -66,7 +65,7 @@ class UPNPallet(interface.UPNPallet):
     def types(self) -> list[str]:
         return copy.deepcopy(self._types)
 
-    def __eq__(self, other: NetworkPallet):
+    def __eq__(self, other: UPNPalletInterface):
         return (
             self.barcode == other.barcode
             and self.consignment_barcode == other.consignment_barcode
@@ -76,18 +75,14 @@ class UPNPallet(interface.UPNPallet):
 
     def _raise_exception_if_invalid_type(self, type_name: str) -> None:
         if type_name not in self._types:
-            raise ValueError("Type", type_name, "is invalid.")
+            raise ValueError(
+                f"Type {type_name} is invalid. "
+                f"Valid types are [{self._types}]."
+            )
 
     def _raise_exception_if_invalid_size(self, size_name: str) -> None:
         if size_name not in self._sizes:
-            raise ValueError("Size", size_name, "is invalid.")
-
-
-@dataclasses.dataclass
-class UPNPalletFields:
-    barcode = ""
-    consignment_barcode = ""
-    type = ""
-    size = ""
-    types: list = dataclasses.field(default=list)
-    sizes: list = dataclasses.field(default=list)
+            raise ValueError(
+                f"Size {size_name} is invalid. "
+                f"Valid sizes are [{self._sizes}]"
+            )
