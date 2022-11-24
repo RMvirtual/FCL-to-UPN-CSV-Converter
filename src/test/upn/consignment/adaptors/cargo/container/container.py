@@ -1,6 +1,6 @@
 import unittest
-from src.test.upn.consignment.adaptors.cargo import setup
-from src.main.upn.consignment.adaptors.cargo import UPNCargoAdaptor
+from src.test.upn.consignment.adaptors.cargo.container import setup
+from src.main.upn.consignment.adaptors.cargo.containers import UPNCargoAdaptor
 
 
 class TestUPNCargoAdaptor(unittest.TestCase):
