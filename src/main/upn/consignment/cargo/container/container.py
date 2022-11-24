@@ -1,5 +1,5 @@
 import dataclasses
-from src.main.upn.consignment.structures.cargo.package.pallet.interface \
+from src.main.upn.consignment.cargo.package.pallet.interface \
     import UPNPallet
 
 

@@ -1,10 +1,10 @@
 import copy
 
-from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .interface import NetworkPallet as NetworkPalletInterface
+from src.main.upn.consignment.cargo.package.network_pallet.interface \
+    import NetworkPallet as NetworkPalletInterface
 
-from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .implementation import NetworkPallet, NetworkPalletFields
+from src.main.upn.consignment.cargo.package.network_pallet.implementation \
+    import NetworkPallet, NetworkPalletFields
 
 
 class NetworkPalletBuilder:

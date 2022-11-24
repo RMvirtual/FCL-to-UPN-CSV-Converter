@@ -1,5 +1,4 @@
 load("@rules_python//python:defs.bzl", "py_library")
-load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
     name = "consignment",
@@ -7,6 +6,11 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/upn/consignment/adaptors",
-        "//src/main/upn/consignment/structures",
+        "//src/main/upn/consignment/address",
+        "//src/main/upn/consignment/cargo",
+        "//src/main/upn/consignment/customer",
+        "//src/main/upn/consignment/dates",
+        "//src/main/upn/consignment/references",
+        "//src/main/upn/consignment/services",
     ],
 )

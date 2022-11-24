@@ -1,7 +1,6 @@
 from src.main.upn.api.data_structures.network_pallet import mapping
 
-from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .factory import NetworkPallet1
+from src.main.upn.consignment.cargo.package.network_pallet.factory import NetworkPallet1
 
 
 class UpnNetworkPalletMarshaller:

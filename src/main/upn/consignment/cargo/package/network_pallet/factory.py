@@ -1,8 +1,6 @@
-from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .implementation import NetworkPalletFields, NetworkPallet
+from src.main.upn.consignment.cargo.package.network_pallet.implementation import NetworkPalletFields, NetworkPallet
 
-from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .interface import NetworkPallet as NetworkPalletInterface
+from src.main.upn.consignment.cargo.package.network_pallet.interface import NetworkPallet as NetworkPalletInterface
 
 from src.main.upn.api.data_structures.network_pallet import mapping
 

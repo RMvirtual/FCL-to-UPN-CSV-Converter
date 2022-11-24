@@ -2,7 +2,7 @@ from src.main.graylaw.cargo.container.interface import CargoReading
 from src.main.graylaw.cargo.entries.interface import CargoEntry
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 
-from src.main.upn.consignment.structures.cargo.container.container \
+from src.main.upn.consignment.cargo.container.container \
     import UPNCargo
 
 

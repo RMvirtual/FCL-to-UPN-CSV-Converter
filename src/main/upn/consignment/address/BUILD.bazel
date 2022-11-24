@@ -1,8 +1,9 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "network_pallet",
+    name = "address",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+    ],
 )

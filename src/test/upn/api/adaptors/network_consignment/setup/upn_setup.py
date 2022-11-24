@@ -1,16 +1,15 @@
 import datetime
-from src.main.upn.consignment.structures.references import UPNReferences
-from src.main.upn.consignment.structures.customer import UPNCustomer
-from src.main.upn.consignment.structures.cargo.container.container import UPNCargo
-from src.main.upn.consignment.structures.services import UPNServices
-from src.main.upn.consignment.structures.dates import UPNDates
-from src.main.upn.consignment.structures.address import UPNAddress
+from src.main.upn.consignment.references.references import UPNReferences
+from src.main.upn.consignment.customer.customer import UPNCustomer
+from src.main.upn.consignment.cargo.container.container import UPNCargo
+from src.main.upn.consignment.services.services import UPNServices
+from src.main.upn.consignment.dates.dates import UPNDates
+from src.main.upn.consignment.address.address import UPNAddress
 
 from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .factory import \
+from src.main.upn.consignment.cargo.package.network_pallet.factory import \
     NetworkPallet
 
 

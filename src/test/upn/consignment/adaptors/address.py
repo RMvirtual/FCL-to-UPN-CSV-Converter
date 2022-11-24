@@ -1,5 +1,5 @@
 import unittest
-from src.main.upn.consignment.structures.address import UPNAddress
+from src.main.upn.consignment.address.address import UPNAddress
 from src.main.upn.consignment.adaptors.address import UPNAddressAdaptor
 
 

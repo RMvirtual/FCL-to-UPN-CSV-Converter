@@ -6,15 +6,14 @@ from src.main.upn.api.data_structures.network_consignment.implementation \
 from src.main.upn.api.data_structures.network_pallet.marshalling \
     import UpnNetworkPalletMarshaller
 
-from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .factory \
+from src.main.upn.consignment.cargo.package.network_pallet.factory \
     import NetworkPallet
 
-from src.main.upn.consignment.structures.references import UPNReferences
-from src.main.upn.consignment.structures.address import UPNAddress
-from src.main.upn.consignment.structures.customer import UPNCustomer
-from src.main.upn.consignment.structures.dates import UPNDates
-from src.main.upn.consignment.structures.services import UPNServices
+from src.main.upn.consignment.references.references import UPNReferences
+from src.main.upn.consignment.address.address import UPNAddress
+from src.main.upn.consignment.customer.customer import UPNCustomer
+from src.main.upn.consignment.dates.dates import UPNDates
+from src.main.upn.consignment.services.services import UPNServices
 
 
 class UpnNetworkConsignmentMarshaller:

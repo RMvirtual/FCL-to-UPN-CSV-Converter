@@ -1,5 +1,4 @@
-from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .factory \
+from src.main.upn.consignment.cargo.package.network_pallet.factory \
     import NetworkPallet
 
 from src.main.metrics.dimensions.interface import Dimensions
