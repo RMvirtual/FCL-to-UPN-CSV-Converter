@@ -1,13 +1,13 @@
 import copy
 
-from src.main.upn.consignment.structures.cargo.package.pallet.interface \
-    import UPNPallet as UPNPalletInterface
+from src.main.upn.consignment.structures.cargo.package.network_pallet\
+    .interface import NetworkPallet as NetworkPalletInterface
 
 from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .implementation import UPNPallet, NetworkPalletFields
+    .implementation import NetworkPallet, NetworkPalletFields
 
 
-class UPNPalletBuilder:
+class NetworkPalletBuilder:
     def __init__(self):
         self._fields = NetworkPalletFields()
 
@@ -29,5 +29,5 @@ class UPNPalletBuilder:
     def set_size_constraints(self, sizes: list) -> None:
         self._fields.sizes = copy.deepcopy(sizes)
 
-    def build(self) -> UPNPalletInterface:
-        return UPNPallet(self._fields)
+    def build(self) -> NetworkPalletInterface:
+        return NetworkPallet(self._fields)

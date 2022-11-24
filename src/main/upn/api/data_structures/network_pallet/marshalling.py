@@ -1,15 +1,15 @@
 from src.main.upn.api.data_structures.network_pallet import mapping
 
 from src.main.upn.consignment.structures.cargo.package.network_pallet\
-    .factory import NetworkPallet
+    .factory import NetworkPallet1
 
 
 class UpnNetworkPalletMarshaller:
     def __init__(self):
         self._mappings = mapping.network_pallet()
 
-    def unmarshall(self, candidate: dict) -> NetworkPallet:
-        result = NetworkPallet()
+    def unmarshall(self, candidate: dict) -> NetworkPallet1:
+        result = NetworkPallet1()
         result.barcode = candidate[self._mappings.barcode.mapping]
 
         result.consignment_barcode = candidate[

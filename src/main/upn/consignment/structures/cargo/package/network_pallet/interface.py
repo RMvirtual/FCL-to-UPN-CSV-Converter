@@ -26,5 +26,6 @@ class NetworkPallet(UPNPallet):
     def consignment_barcode(self, new_barcode) -> None:
         ...
 
+    @abstractmethod
     def __eq__(self, other: NetworkPallet or UPNPalletReading) -> bool:
         ...
