@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import abstractmethod
 import copy
 import dataclasses
-from src.main.upn.consignment.cargo.package.pallet.interface \
-    import UPNPallet as UPNPalletInterface, UPNPalletReading
+from src.main.upn.consignment.cargo.package.pallet.interface import (
+    UPNPallet, UPNPalletReading)
 
 
 @dataclasses.dataclass
@@ -14,7 +14,9 @@ class UPNPalletFields:
     size_constraints: list[str] = dataclasses.field(default=list[str])
 
 
-class AbstractUPNPallet(UPNPalletInterface):
+class AbstractUPNPallet(UPNPallet):
+    """Abstraction of a UPN base pallet class."""
+
     @abstractmethod
     def __init__(self, pallet_fields: UPNPalletFields):
         self._type_constraints = pallet_fields.type_constraints
@@ -22,29 +24,29 @@ class AbstractUPNPallet(UPNPalletInterface):
         self._type = pallet_fields.type
         self._size = pallet_fields.size
 
-    @UPNPalletInterface.size.getter
+    @UPNPallet.size.getter
     def size(self) -> str:
         return self._size
 
-    @UPNPalletInterface.size.setter
+    @UPNPallet.size.setter
     def size(self, new_size: str) -> None:
         self._raise_exception_if_invalid_size(new_size)
         self._size = new_size
 
-    @UPNPalletInterface.type.getter
+    @UPNPallet.type.getter
     def type(self) -> str:
         return self._type
 
-    @UPNPalletInterface.type.setter
+    @UPNPallet.type.setter
     def type(self, new_type: str) -> None:
         self._raise_exception_if_invalid_type(new_type)
         self._type = new_type
 
-    @UPNPalletInterface.size_constraints.getter
+    @UPNPallet.size_constraints.getter
     def size_constraints(self) -> list[str]:
         return copy.deepcopy(self._size_constraints)
 
-    @UPNPalletInterface.type_constraints.getter
+    @UPNPallet.type_constraints.getter
     def type_constraints(self) -> list[str]:
         return copy.deepcopy(self._type_constraints)
 

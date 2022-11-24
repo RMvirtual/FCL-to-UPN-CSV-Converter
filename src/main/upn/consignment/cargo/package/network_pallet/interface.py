@@ -1,11 +1,12 @@
 from __future__ import annotations
 from abc import abstractmethod
 
-from src.main.upn.consignment.cargo.package.pallet.interface \
-    import UPNPallet, UPNPalletReading
+from src.main.upn.consignment.cargo.package.pallet.interface import (
+    UPNPallet, UPNPalletReading)
 
 
 class NetworkPallet(UPNPallet):
+    """Interface for a Network Pallet."""
     @property
     @abstractmethod
     def barcode(self) -> str:

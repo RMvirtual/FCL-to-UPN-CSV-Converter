@@ -1,4 +1,5 @@
-from src.main.upn.consignment.cargo.package.network_pallet.interface import NetworkPallet as NetworkPalletInterface
+from src.main.upn.consignment.cargo.package.network_pallet.interface \
+    import NetworkPallet as NetworkPalletInterface
 
 from src.main.upn.consignment.cargo.package.pallet.abstract \
     import UPNPalletFields, AbstractUPNPallet
@@ -11,7 +12,7 @@ class NetworkPalletFields(UPNPalletFields):
 
 class NetworkPallet(AbstractUPNPallet, NetworkPalletInterface):
     def __init__(self, pallet_fields: NetworkPalletFields):
-        super(AbstractUPNPallet).__init__(pallet_fields)
+        super().__init__(pallet_fields)
         self._barcode = pallet_fields.barcode
         self._consignment_barcode = pallet_fields.consignment_barcode
 
@@ -37,4 +38,3 @@ class NetworkPallet(AbstractUPNPallet, NetworkPalletInterface):
             and self.barcode == other.barcode
             and self.consignment_barcode == other.consignment_barcode
         )
-
