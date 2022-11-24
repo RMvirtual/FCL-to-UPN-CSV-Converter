@@ -1,11 +1,11 @@
 from __future__ import annotations
 from abc import abstractmethod
-from src.main.upn.consignment.cargo.package.pallet.interface \
-    import UPNPallet
+from src.main.upn.consignment.cargo.package.pallet.interface import UPNPallet
 
 
 class CustPallet(UPNPallet):
-    def __eq__(self, other: CustPallet):
+    @abstractmethod
+    def __eq__(self, other: CustPallet or UPNPallet):
         ...
 
     @property
@@ -14,5 +14,6 @@ class CustPallet(UPNPallet):
         ...
 
     @weight.setter
+    @abstractmethod
     def weight(self, new_weight) -> None:
         ...

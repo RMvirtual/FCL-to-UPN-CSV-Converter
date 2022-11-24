@@ -4,5 +4,7 @@ py_library(
     name = "cust_pallet",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+        "//src/main/upn/consignment/cargo/package/pallet",
+    ],
 )
