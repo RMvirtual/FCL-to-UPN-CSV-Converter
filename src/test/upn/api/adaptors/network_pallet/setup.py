@@ -1,4 +1,7 @@
-from src.main.upn.consignment.cargo.package.network_pallet.factory \
+from src.main.upn.consignment.cargo.package.network_pallet \
+    import factory as pallet_factory
+
+from src.main.upn.consignment.cargo.package.network_pallet.interface \
     import NetworkPallet
 
 from src.main.metrics.dimensions.interface import Dimensions
@@ -9,11 +12,19 @@ from src.main.graylaw.cargo.packages.oversize.options import (
 
 
 def normal_full_pallet() -> NetworkPallet:
-    return _network_pallet(pallet_size="N", pallet_type="FULL")
+    result = pallet_factory.network_pallet(size_name="N", type_name="FULL")
+    result.barcode = "W213359800P"
+    result.consignment_barcode = "W213359799C"
+
+    return result
 
 
 def double_half_pallet() -> NetworkPallet:
-    return _network_pallet(pallet_size="2", pallet_type="HALF")
+    result = pallet_factory.network_pallet(size_name="2", type_name="HALF")
+    result.barcode = "W213359800P"
+    result.consignment_barcode = "W213359799C"
+
+    return result
 
 
 def normal_full_max_dims() -> Dimensions:
@@ -31,13 +42,3 @@ def oversize_values() -> OversizeOptions:
     ]
 
     return OversizeOptions(default=options[0], options=options)
-
-
-def _network_pallet(pallet_size: str, pallet_type: str) -> NetworkPallet:
-    result = NetworkPallet()
-    result.consignment_barcode = "W213359799C"
-    result.size = pallet_size
-    result.type = pallet_type
-    result.barcode = "W213359800P"
-
-    return result

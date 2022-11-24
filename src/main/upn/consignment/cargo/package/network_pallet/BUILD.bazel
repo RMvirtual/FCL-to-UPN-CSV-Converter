@@ -4,5 +4,7 @@ py_library(
     name = "network_pallet",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = ["//src/main/upn/consignment/cargo/package/pallet"],
+    deps = [
+        "//src/main/upn/consignment/cargo/package/pallet",
+    ],
 )

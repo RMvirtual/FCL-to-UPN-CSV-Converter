@@ -2,11 +2,11 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "cargo",
+    name = "adaptors",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/graylaw/cargo",
-        "//src/main/upn/consignment/structures",
+        "//src/main/graylaw",
+        "//src/main/upn/consignment",
     ],
 )

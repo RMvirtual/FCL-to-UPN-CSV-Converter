@@ -9,6 +9,6 @@ py_library(
         "//src/main/file_system",
         "//src/main/upn/api/data_structures/mapping",
         "//src/main/upn/api/data_types",
-        "//src/main/upn/consignment/structures",
+        "//src/main/upn/consignment",
     ],
 )

@@ -19,6 +19,5 @@ class TestUPNNetworkConsignmentAdaptor(unittest.TestCase):
         self.assertEqual("GR221004388", str(references.consignment))
 
 
-
 if __name__ == '__main__':
     unittest.main()

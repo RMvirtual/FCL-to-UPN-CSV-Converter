@@ -1,7 +1,7 @@
 import datetime
 import unittest
 from src.main.upn.consignment.dates.dates import UPNDates
-from src.main.upn.consignment.adaptors.dates import UPNDatesAdaptor
+from src.main.upn.adaptors.dates import UPNDatesAdaptor
 
 
 class TestUPNDatesAdaptor(unittest.TestCase):

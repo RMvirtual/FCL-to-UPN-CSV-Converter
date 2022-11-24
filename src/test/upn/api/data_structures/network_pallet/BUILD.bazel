@@ -8,12 +8,3 @@ py_test(
         "//src/main/upn/api/data_structures/network_pallet",
     ],
 )
-
-py_test(
-    name = "structure",
-    srcs = glob(["*.py"]),
-    data = [],
-    deps = [
-        "//src/main/upn/api/data_structures/network_pallet",
-    ],
-)

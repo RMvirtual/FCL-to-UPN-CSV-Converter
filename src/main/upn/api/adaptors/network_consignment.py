@@ -8,9 +8,9 @@ from src.main.graylaw.shipment_dates.interface import ShipmentDates
 from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.upn.consignment.adaptors.address import UPNAddressAdaptor
-from src.main.upn.consignment.adaptors.references import UPNReferencesAdaptor
-from src.main.upn.consignment.adaptors.dates import UPNDatesAdaptor
+from src.main.upn.adaptors.address import UPNAddressAdaptor
+from src.main.upn.adaptors.references import UPNReferencesAdaptor
+from src.main.upn.adaptors.dates import UPNDatesAdaptor
 
 
 class NetworkConsignmentAdaptor(Consignment):

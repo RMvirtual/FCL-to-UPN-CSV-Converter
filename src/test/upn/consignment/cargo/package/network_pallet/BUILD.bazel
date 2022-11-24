@@ -10,3 +10,12 @@ py_test(
         "//src/main/upn/consignment/cargo/package/network_pallet",
     ],
 )
+
+py_test(
+    name = "factory",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/upn/consignment/cargo/package/network_pallet",
+    ],
+)

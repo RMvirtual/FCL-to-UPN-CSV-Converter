@@ -1,20 +1,22 @@
-from src.main.upn.consignment.cargo.package.network_pallet.implementation \
-    import NetworkPalletFields, NetworkPallet
+from src.main.upn.consignment.cargo.package.network_pallet.builder \
+    import NetworkPalletBuilder
 
 from src.main.upn.consignment.cargo.package.network_pallet.interface \
     import NetworkPallet as NetworkPalletInterface
 
-from src.main.upn.api.data_structures.network_pallet import mapping
 
+def network_pallet(
+        type_name: str, size_name: str,
+        type_constraints: list[str] = None, size_constraints: list[str] = None
+) -> NetworkPalletInterface:
+    builder = NetworkPalletBuilder()
+    builder.set_type(type_name)
+    builder.set_size(size_name)
 
-def network_pallet(type_name: str, size_name: str) -> NetworkPalletInterface:
-    fields = NetworkPalletFields()
-    fields.type = type_name
-    fields.size = size_name
+    if type_constraints:
+        builder.set_type_constraints(type_constraints)
 
-    constraints = mapping.network_pallet()
+    if size_constraints:
+        builder.set_size_constraints(size_constraints)
 
-    fields.type_constraints = constraints.type.values
-    fields.size_constraints = constraints.size.values
-
-    return NetworkPallet(fields)
+    return builder.build()

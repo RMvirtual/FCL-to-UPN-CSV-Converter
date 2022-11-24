@@ -1,6 +1,5 @@
 import unittest
-from src.main.upn.consignment.cargo.package.network_pallet.factory \
-    import NetworkPallet
+from src.main.upn.consignment.cargo.package.network_pallet import factory
 
 from src.main.upn.api.data_structures.network_pallet.marshalling \
     import UpnNetworkPalletMarshaller
@@ -21,10 +20,8 @@ class TestNetworkPalletMarshaller(unittest.TestCase):
         }
 
     def _set_up_correct_unmarshalled_pallet(self) -> None:
-        result = NetworkPallet()
+        result = factory.network_pallet(type_name="FULL", size_name="N")
         result.consignment_barcode = "W213359799C"
-        result.pallet_size = "N"
-        result.pallet_type = "FULL"
         result.barcode = "W213359800P"
 
         self._correct = result

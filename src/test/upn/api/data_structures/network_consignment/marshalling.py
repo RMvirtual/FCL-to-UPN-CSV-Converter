@@ -7,8 +7,8 @@ from src.main.upn.api.data_structures.network_consignment.marshalling \
 from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.upn.consignment.cargo.package.network_pallet.factory \
-    import NetworkPallet
+from src.main.upn.consignment.cargo.package.network_pallet \
+    import factory as pallet_factory
 
 
 class TestNetworkConsignmentMarshaller(unittest.TestCase):
@@ -171,16 +171,16 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
             2022, 10, 18, 16, 30)
 
     def _set_up_correct_pallets(self) -> None:
-        pallet_1 = NetworkPallet()
+        pallet_1 = pallet_factory.network_pallet(
+            size_name="N", type_name="FULL")
+
         pallet_1.consignment_barcode = "W213359799C"
-        pallet_1.size = "N"
-        pallet_1.type = "FULL"
         pallet_1.barcode = "W213359800P"
 
-        pallet_2 = NetworkPallet()
+        pallet_2 = pallet_factory.network_pallet(
+            size_name="N", type_name="FULL")
+
         pallet_2.consignment_barcode = "W213359799C"
-        pallet_2.size = "N"
-        pallet_2.type = "FULL"
         pallet_2.barcode = "W213359801P"
 
         self._correct_consignment.cargo.pallets = [pallet_1, pallet_2]

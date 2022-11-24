@@ -2,10 +2,8 @@ from src.main.file_system.upn.api.structures import package_type_mappings
 from src.main.graylaw.cargo.packages.types.interface import PackageType
 from src.main.graylaw.cargo.packages.oversize.interface import OversizeOptions
 from src.main.metrics.dimensions.implementation import Dimensions
-from src.main.graylaw.cargo.packages.types import factory as package_types
-
-from src.main.upn.consignment.cargo.package.network_pallet.factory \
-    import UPNPallet
+from src.main.graylaw.cargo.packages.types import factory as graylaw_packages
+from src.main.upn.consignment.cargo.package.pallet.interface import UPNPallet
 
 
 class NetworkPalletAdaptor(PackageType):
@@ -41,7 +39,7 @@ class NetworkPalletAdaptor(PackageType):
         mapping = package_type_mappings()
 
         package_name = mapping["types"][pallet.type]
-        result = package_types.load(package_name)
+        result = graylaw_packages.load(package_name)
 
         oversize_option = mapping["oversize_options"][pallet.size]
         result.oversize.select(oversize_option)

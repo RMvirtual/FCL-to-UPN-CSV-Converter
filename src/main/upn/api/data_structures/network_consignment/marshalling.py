@@ -6,7 +6,7 @@ from src.main.upn.api.data_structures.network_consignment.implementation \
 from src.main.upn.api.data_structures.network_pallet.marshalling \
     import UpnNetworkPalletMarshaller
 
-from src.main.upn.consignment.cargo.package.network_pallet.factory \
+from src.main.upn.consignment.cargo.package.network_pallet.interface \
     import NetworkPallet
 
 from src.main.upn.consignment.references.references import UPNReferences

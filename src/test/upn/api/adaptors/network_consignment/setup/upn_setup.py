@@ -9,8 +9,11 @@ from src.main.upn.consignment.address.address import UPNAddress
 from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.upn.consignment.cargo.package.network_pallet.factory import \
-    NetworkPallet
+from src.main.upn.consignment.cargo.package.network_pallet \
+    import factory as pallet_factory
+
+from src.main.upn.consignment.cargo.package.network_pallet.interface \
+    import NetworkPallet
 
 
 def dummy_network_consignment() -> NetworkConsignment:
@@ -92,10 +95,8 @@ def _pallets() -> list[NetworkPallet]:
 
 
 def _network_pallet(barcode_no: str) -> NetworkPallet:
-    result = NetworkPallet()
+    result = pallet_factory.network_pallet(size_name="N", type_name="FULL")
     result.consignment_barcode = "W213359799C"
-    result.size = "N"
-    result.type = "FULL"
     result.barcode = barcode_no
 
     return result
