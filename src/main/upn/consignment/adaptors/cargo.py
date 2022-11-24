@@ -28,4 +28,4 @@ class UPNCargoAdaptor(CargoReading):
 
     @property
     def total_weight(self) -> float:
-        return 0
+        return self._cargo.total_weight
