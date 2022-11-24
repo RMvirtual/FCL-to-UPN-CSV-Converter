@@ -24,29 +24,30 @@ class AbstractUPNPallet(UPNPallet):
         self._type = pallet_fields.type
         self._size = pallet_fields.size
 
-    @UPNPallet.size.getter
-    def size(self) -> str:
+    @property
+    def size(self, **kwargs) -> str:
+        # Has **kwargs due to IDE ERROR.
         return self._size
 
-    @UPNPallet.size.setter
+    @size.setter
     def size(self, new_size: str) -> None:
         self._raise_exception_if_invalid_size(new_size)
         self._size = new_size
 
-    @UPNPallet.type.getter
-    def type(self) -> str:
+    @property
+    def type(self, **kwargs) -> str:
         return self._type
 
-    @UPNPallet.type.setter
+    @type.setter
     def type(self, new_type: str) -> None:
         self._raise_exception_if_invalid_type(new_type)
         self._type = new_type
 
-    @UPNPallet.size_constraints.getter
+    @property
     def size_constraints(self) -> list[str]:
         return copy.deepcopy(self._size_constraints)
 
-    @UPNPallet.type_constraints.getter
+    @property
     def type_constraints(self) -> list[str]:
         return copy.deepcopy(self._type_constraints)
 
