@@ -1,6 +1,7 @@
+from src.main.graylaw.cargo.entries.interface import CargoEntry
 
 
 class UPNCargoEntriesAdaptor:
-    def __init__(self):
+    def __init__(self, pallets: list):
         ...
 

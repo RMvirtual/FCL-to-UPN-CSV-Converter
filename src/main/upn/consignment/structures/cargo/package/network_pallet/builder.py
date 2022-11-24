@@ -1,15 +1,15 @@
 import copy
 
-from src.main.upn.consignment.structures.cargo.package.interface \
+from src.main.upn.consignment.structures.cargo.package.pallet.interface \
     import UPNPallet as UPNPalletInterface
 
-from src.main.upn.consignment.structures.cargo.package.implementation \
-    import UPNPallet, UPNPalletFields
+from src.main.upn.consignment.structures.cargo.package.network_pallet\
+    .implementation import UPNPallet, NetworkPalletFields
 
 
 class UPNPalletBuilder:
     def __init__(self):
-        self._fields = UPNPalletFields()
+        self._fields = NetworkPalletFields()
 
     def set_barcode(self, barcode: str) -> None:
         self._fields.barcode = barcode

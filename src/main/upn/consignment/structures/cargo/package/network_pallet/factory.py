@@ -1,16 +1,17 @@
-from src.main.upn.consignment.structures.cargo.package.implementation \
-    import UPNPallet, UPNPalletFields
+from src.main.upn.consignment.structures.cargo.package.network_pallet\
+    .implementation \
+    import UPNPallet, NetworkPalletFields
 
 from src.main.upn.api.data_structures.network_pallet import mapping
 
 
-class NetworkPallet(UPNPallet):
+class NetworkPallet1(UPNPallet):
     def __init__(self):
         super().__init__(self._network_pallet_fields())
 
     @staticmethod
-    def _network_pallet_fields() -> UPNPalletFields:
-        result = UPNPalletFields()
+    def _network_pallet_fields() -> NetworkPalletFields:
+        result = NetworkPalletFields()
         result.barcode = ""
         result.consignment_barcode = ""
 

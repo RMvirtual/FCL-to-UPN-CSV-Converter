@@ -4,7 +4,8 @@ from src.main.graylaw.cargo.packages.oversize.interface import OversizeOptions
 from src.main.metrics.dimensions.implementation import Dimensions
 from src.main.graylaw.cargo.packages.types import factory as package_types
 
-from src.main.upn.api.data_structures.network_pallet.implementation \
+from src.main.upn.consignment.structures.cargo.package.network_pallet\
+    .factory \
     import UPNPallet
 
 

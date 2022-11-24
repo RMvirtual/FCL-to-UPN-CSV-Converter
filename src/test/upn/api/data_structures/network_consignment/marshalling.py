@@ -7,7 +7,8 @@ from src.main.upn.api.data_structures.network_consignment.marshalling \
 from src.main.upn.api.data_structures.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.upn.api.data_structures.network_pallet.implementation \
+from src.main.upn.consignment.structures.cargo.package.network_pallet\
+    .factory \
     import NetworkPallet
 
 

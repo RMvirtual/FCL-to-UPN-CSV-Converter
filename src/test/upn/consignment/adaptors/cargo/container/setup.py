@@ -1,7 +1,7 @@
 from src.main.upn.consignment.structures.cargo.container.container \
     import UPNCargo
 
-from src.main.upn.consignment.structures.cargo.package.builder \
+from src.main.upn.consignment.structures.cargo.package.network_pallet.builder \
     import UPNPalletBuilder
 
 
