@@ -1,4 +1,4 @@
-from src.main.upn.api.interfaces.cust_pallet import CustPalletInterface
+from src.main.upn.api.interfaces.pallets.cust_pallet import CustPalletInterface
 from src.main.upn.freight.cargo.pallet.abstract import (
     AbstractUPNPallet, UPNPalletFields)
 
