@@ -1,8 +1,8 @@
 from src.main.file_system.freight import cargo_types
-from src.main.metrics.dimensions.implementation import DimensionsInMetres
-from src.main.graylaw.packages.oversize import database
-from src.main.freight.cargo.packages.types.interface import PackageType
 from src.main.freight.cargo.packages.types.builder import PackageTypeBuilder
+from src.main.freight.cargo.packages.types.interface import PackageType
+from src.main.graylaw.packages.oversize import database as oversize_db
+from src.main.metrics.dimensions.implementation import DimensionsInMetres
 
 
 def load(package_type_name: str) -> PackageType:
@@ -29,7 +29,7 @@ def _deserialise(definitions: dict[str, str]) -> PackageType:
     builder.set_name(definitions["name"])
     builder.set_base_type(definitions["type"])
 
-    options = factory.options_by_base_type(definitions["type"])
+    options = oversize_db.options_by_base_type(definitions["type"])
     builder.set_oversize_options(options)
 
     builder.set_max_dimensions(_deserialise_dimensions(definitions))

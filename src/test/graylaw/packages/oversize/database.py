@@ -1,20 +1,20 @@
 import unittest
-from src.main.freight.cargo.packages.oversize import factory
-
 from src.main.freight.cargo.packages.oversize.options import (
     OversizeOption, OversizeOptions)
+
+from src.main.graylaw.packages.oversize import database
 
 
 class TestLoadingOversizeOptionsFromFile(unittest.TestCase):
     def test_should_get_options_by_base_type(self):
-        options = factory.options_by_base_type("pallet")
+        options = database.options_by_base_type("pallet")
         correct = self._options()
         self.assertEqual(correct.selected, options.selected)
         self.assertEqual(correct.default, options.default)
         self.assertListEqual(correct.values, options.values)
 
     def test_should_get_all_options(self):
-        all_options = factory.all_options()
+        all_options = database.all_options()
         pallet_options = all_options["pallet"]
         correct = self._options()
 

@@ -1,0 +1,11 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "packages",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/graylaw/packages/oversize",
+        "//src/main/graylaw/packages/types",
+    ],
+)

@@ -1,10 +1,10 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "factory",
+    name = "database",
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/freight/cargo/packages/types",
+        "//src/main/graylaw/packages/types",
     ],
 )
