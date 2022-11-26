@@ -1,5 +1,5 @@
-from src.main.upn.api.data_types.primitives import UPNAPIPrimitives
-from src.main.upn.api.data_types.containers import UPNAPIContainers
+from src.main.upn.api.interfaces.primitives import UPNAPIPrimitives
+from src.main.upn.api.interfaces.containers import UPNAPIContainers
 
 
 class UPNDataTypeMarshaller:

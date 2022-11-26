@@ -1,5 +1,5 @@
 import unittest
-from src.main.upn.api.data_structures.marshalling.network_pallet \
+from src.main.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
 
 

@@ -1,7 +1,6 @@
 import dataclasses
 from src.main.file_system.upn.api import data_structure_files
-from src.main.upn.api.data_structures.mapping.marshalling import (
-    Mapping, MappingMarshaller)
+from src.main.upn.api.marshalling.mapping import Mapping, MappingMarshaller
 
 
 @dataclasses.dataclass

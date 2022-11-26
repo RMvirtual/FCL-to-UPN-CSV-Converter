@@ -1,5 +1,5 @@
-from src.main.upn.api.data_structures.mapping import network_consignment
-from src.main.upn.api.data_structures.marshalling.network_pallet \
+from src.main.upn.api.mapping import network_consignment
+from src.main.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
 
 from src.main.upn.consignments.network_consignment.implementation \
@@ -10,7 +10,7 @@ from src.main.upn.freight.address.address import UPNAddress
 from src.main.upn.freight.customer.customer import UPNCustomer
 from src.main.upn.freight.dates.dates import UPNDates
 from src.main.upn.freight.services.services import UPNServices
-from src.main.upn.api.data_structures.interfaces.network_pallet \
+from src.main.upn.api.interfaces.network_pallet \
     import NetworkPalletInterface
 
 UPNDict = dict[str, any]

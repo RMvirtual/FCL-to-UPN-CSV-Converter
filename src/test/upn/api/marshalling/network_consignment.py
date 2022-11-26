@@ -1,7 +1,7 @@
 import datetime
 import unittest
 
-from src.main.upn.api.data_structures.marshalling.network_consignment \
+from src.main.upn.api.marshalling.network_consignment \
     import UpnNetworkConsignmentMarshaller
 
 from src.main.upn.consignments.network_consignment.implementation \

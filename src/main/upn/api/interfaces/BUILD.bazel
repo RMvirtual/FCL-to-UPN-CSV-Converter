@@ -1,9 +1,10 @@
 load("@rules_python//python:defs.bzl", "py_library")
-load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "data_types",
+    name = "interfaces",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+        "//src/main/upn/freight",
+    ],
 )

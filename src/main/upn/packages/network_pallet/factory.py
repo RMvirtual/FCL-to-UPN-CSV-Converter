@@ -1,5 +1,5 @@
 from src.main.upn.packages.network_pallet.builder import NetworkPalletBuilder
-from src.main.upn.api.data_structures.interfaces.network_pallet \
+from src.main.upn.api.interfaces.network_pallet \
     import NetworkPalletInterface
 
 

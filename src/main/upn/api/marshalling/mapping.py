@@ -1,5 +1,8 @@
-from src.main.upn.api.data_structures.mapping.structure import Mapping
-from src.main.upn.api.data_types.marshalling import UPNDataTypeMarshaller
+from src.main.upn.api.interfaces.mapping import Mapping
+from src.main.upn.api.marshalling.data_types \
+    import UPNDataTypeMarshaller
+
+# Mapping and Marshalling appear entwined in regards to primitives.
 
 
 class MappingMarshaller:

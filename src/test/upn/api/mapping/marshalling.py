@@ -1,8 +1,6 @@
 import unittest
-from src.main.upn.api.data_structures.mapping.structure import Mapping
-
-from src.main.upn.api.data_structures.mapping.marshalling \
-    import MappingMarshaller
+from src.main.upn.api.interfaces.mapping import Mapping
+from src.main.upn.api.marshalling.mapping import MappingMarshaller
 
 
 class TestMappingMarshaller(unittest.TestCase):

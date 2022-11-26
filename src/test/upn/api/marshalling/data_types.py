@@ -1,10 +1,10 @@
 import dataclasses
+import datetime
 import unittest
-from src.main.upn.api.data_types.marshalling import UPNDataTypeMarshaller
-from datetime import datetime
+from src.main.upn.api.marshalling.data_types import UPNDataTypeMarshaller
 
 
-class TestUpnApiTypeMarshalling(unittest.TestCase):
+class TestUPNAPIDataTypeMarshalling(unittest.TestCase):
     def setUp(self):
         self._marshaller = UPNDataTypeMarshaller()
 
@@ -18,7 +18,7 @@ class TestUpnApiTypeMarshalling(unittest.TestCase):
         unmarshall_candidates_to_correct_types = list({
             "string": str,
             "int": int,
-            "datetime": datetime
+            "datetime": datetime.datetime
         }.items())
 
         for candidate, correct_type in unmarshall_candidates_to_correct_types:
