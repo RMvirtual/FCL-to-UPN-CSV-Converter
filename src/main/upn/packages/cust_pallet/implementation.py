@@ -1,8 +1,6 @@
-from src.main.upn.consignment.cargo.package.cust_pallet.interface \
-    import CustPallet as CustPalletInterface
-
-from src.main.upn.consignment.cargo.package.pallet.abstract \
-    import AbstractUPNPallet, UPNPalletFields
+from src.main.upn.packages.cust_pallet.interface import CustPalletInterface
+from src.main.upn.freight.cargo.pallet.abstract import (
+    AbstractUPNPallet, UPNPalletFields)
 
 
 class CustPalletFields(UPNPalletFields):

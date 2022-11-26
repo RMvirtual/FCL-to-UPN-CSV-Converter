@@ -4,11 +4,10 @@ import unittest
 from src.main.upn.api.data_structures.network_consignment.marshalling \
     import UpnNetworkConsignmentMarshaller
 
-from src.main.upn.consignment.network_consignment.implementation \
+from src.main.upn.consignments.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.upn.consignment.cargo.package.network_pallet \
-    import factory as pallet_factory
+from src.main.upn.packages.network_pallet import factory as pallet_factory
 
 
 class TestNetworkConsignmentMarshaller(unittest.TestCase):

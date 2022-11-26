@@ -1,9 +1,7 @@
 import copy
-from src.main.upn.consignment.cargo.package.cust_pallet.interface \
-    import CustPallet as CustPalletInterface
-
-from src.main.upn.consignment.cargo.package.cust_pallet.implementation \
-    import CustPallet, CustPalletFields
+from src.main.upn.packages.cust_pallet.interface import CustPalletInterface
+from src.main.upn.packages.cust_pallet.implementation import (
+    CustPallet, CustPalletFields)
 
 
 class CustPalletBuilder:

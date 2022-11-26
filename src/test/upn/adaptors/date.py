@@ -1,7 +1,8 @@
 import datetime
 import unittest
 from src.main.upn.adaptors.date import UPNDateAdaptor
-from src.main.graylaw.shipment_dates.date.implementation import Date as GraylawDate
+from src.main.graylaw.shipment_dates.date.implementation \
+    import Date as GraylawDate
 
 
 class TestDateAdaptor(unittest.TestCase):

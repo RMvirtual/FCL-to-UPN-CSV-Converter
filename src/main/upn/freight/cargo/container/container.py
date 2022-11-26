@@ -1,10 +1,8 @@
 import dataclasses
-from src.main.upn.consignment.cargo.package.pallet.interface \
-    import UPNPallet
+from src.main.upn.freight.cargo.pallet.interface import UPNPalletInterface
 
 
 @dataclasses.dataclass
 class UPNCargo:
     total_weight: int = 0
-    pallets: list[UPNPallet] = dataclasses.field(
-        default_factory=list[UPNPallet])
+    pallets: list[UPNPalletInterface] = dataclasses.field(default_factory=list)

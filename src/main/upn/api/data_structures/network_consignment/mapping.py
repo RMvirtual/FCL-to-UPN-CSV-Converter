@@ -1,6 +1,5 @@
 import dataclasses
-from src.main.file_system.upn.api import structures
-
+from src.main.file_system.upn.api import data_structure_files
 from src.main.upn.api.data_structures.mapping.marshalling import (
     Mapping, MappingMarshaller)
 
@@ -39,7 +38,7 @@ def network_consignment() -> NetworkConsignmentMapping:
     fields as the NetworkConsignmentInterface dataclass.
     """
     marshaller = MappingMarshaller()
-    structure = structures.network_consignment()
+    structure = data_structure_files.network_consignment()
     result = NetworkConsignmentMapping()
 
     for field in list(dataclasses.fields(NetworkConsignmentMapping)):

@@ -1,11 +1,11 @@
 from __future__ import annotations
 from abc import abstractmethod
-from src.main.upn.consignment.cargo.package.pallet.interface import UPNPallet
+from src.main.upn.freight.cargo.pallet.interface import UPNPalletInterface
 
 
-class CustPallet(UPNPallet):
+class CustPalletInterface(UPNPalletInterface):
     @abstractmethod
-    def __eq__(self, other: CustPallet or UPNPallet):
+    def __eq__(self, other: CustPalletInterface or UPNPalletInterface):
         ...
 
     @property

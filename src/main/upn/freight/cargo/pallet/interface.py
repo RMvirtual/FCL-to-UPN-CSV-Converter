@@ -19,7 +19,7 @@ class UPNPalletReading(ABC):
         ...
 
 
-class UPNPallet(UPNPalletReading):
+class UPNPalletInterface(UPNPalletReading):
     @UPNPalletReading.size.setter
     @abstractmethod
     def size(self, new_size: str) -> None:

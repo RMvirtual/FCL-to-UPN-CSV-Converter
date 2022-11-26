@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import abstractmethod
 import copy
 import dataclasses
-from src.main.upn.consignment.cargo.package.pallet.interface import (
-    UPNPallet, UPNPalletReading)
+from src.main.upn.freight.cargo.pallet.interface import (
+    UPNPalletInterface, UPNPalletReading)
 
 
 @dataclasses.dataclass
@@ -14,7 +14,7 @@ class UPNPalletFields:
     size_constraints: list[str] = dataclasses.field(default=list[str])
 
 
-class AbstractUPNPallet(UPNPallet):
+class AbstractUPNPallet(UPNPalletInterface):
     """Abstraction of a UPN base pallet class."""
 
     @abstractmethod

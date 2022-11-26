@@ -1,11 +1,11 @@
 from __future__ import annotations
 from abc import abstractmethod
 
-from src.main.upn.consignment.cargo.package.pallet.interface import (
-    UPNPallet, UPNPalletReading)
+from src.main.upn.freight.cargo.pallet.interface import (
+    UPNPalletInterface, UPNPalletReading)
 
 
-class NetworkPallet(UPNPallet):
+class NetworkPalletInterface(UPNPalletInterface):
     """Interface for a Network Pallet."""
     @property
     @abstractmethod
@@ -28,5 +28,5 @@ class NetworkPallet(UPNPallet):
         ...
 
     @abstractmethod
-    def __eq__(self, other: NetworkPallet or UPNPalletReading) -> bool:
+    def __eq__(self, other: NetworkPalletInterface or UPNPalletReading) -> bool:
         ...

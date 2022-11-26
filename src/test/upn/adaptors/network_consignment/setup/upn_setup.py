@@ -1,19 +1,16 @@
 import datetime
-from src.main.upn.consignment.references.references import UPNReferences
-from src.main.upn.consignment.customer.customer import UPNCustomer
-from src.main.upn.consignment.cargo.container.container import UPNCargo
-from src.main.upn.consignment.services.services import UPNServices
-from src.main.upn.consignment.dates.dates import UPNDates
-from src.main.upn.consignment.address.address import UPNAddress
-
-from src.main.upn.consignment.network_consignment.implementation \
+from src.main.upn.consignments.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.upn.consignment.cargo.package.network_pallet \
-    import factory as pallet_factory
-
-from src.main.upn.consignment.cargo.package.network_pallet.interface \
-    import NetworkPallet
+from src.main.upn.freight.references.references import UPNReferences
+from src.main.upn.freight.customer.customer import UPNCustomer
+from src.main.upn.freight.cargo.container.container import UPNCargo
+from src.main.upn.freight.services.services import UPNServices
+from src.main.upn.freight.dates.dates import UPNDates
+from src.main.upn.freight.address.address import UPNAddress
+from src.main.upn.packages.network_pallet import factory as pallet_factory
+from src.main.upn.packages.network_pallet.interface \
+    import NetworkPalletInterface
 
 
 def dummy_network_consignment() -> NetworkConsignment:
@@ -90,11 +87,11 @@ def _dates() -> UPNDates:
     return result
 
 
-def _pallets() -> list[NetworkPallet]:
+def _pallets() -> list[NetworkPalletInterface]:
     return [_network_pallet("W213359800P"), _network_pallet("W213359801P")]
 
 
-def _network_pallet(barcode_no: str) -> NetworkPallet:
+def _network_pallet(barcode_no: str) -> NetworkPalletInterface:
     result = pallet_factory.network_pallet(size_name="N", type_name="FULL")
     result.consignment_barcode = "W213359799C"
     result.barcode = barcode_no

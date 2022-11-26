@@ -1,6 +1,4 @@
 import unittest
-from src.main.upn.consignment.cargo.package.network_pallet import factory
-
 from src.main.upn.api.data_structures.network_pallet.marshalling \
     import UpnNetworkPalletMarshaller
 
@@ -9,7 +7,6 @@ class TestNetworkPalletMarshaller(unittest.TestCase):
     def setUp(self) -> None:
         self._marshaller = UpnNetworkPalletMarshaller()
         self._set_up_marshalled_pallet()
-        self._set_up_correct_unmarshalled_pallet()
 
     def _set_up_marshalled_pallet(self) -> None:
         self._unmarshall_candidate = {
@@ -19,25 +16,13 @@ class TestNetworkPalletMarshaller(unittest.TestCase):
             'PltBarcode': 'W213359800P'
         }
 
-    def _set_up_correct_unmarshalled_pallet(self) -> None:
-        result = factory.network_pallet(type_name="FULL", size_name="N")
-        result.consignment_barcode = "W213359799C"
-        result.barcode = "W213359800P"
-
-        self._correct = result
-
     def test_should_unmarshall_network_pallet(self):
         pallet = self._marshaller.unmarshall(self._unmarshall_candidate)
 
-        received_to_correct_results = list({
-            pallet.consignment_barcode: self._correct.consignment_barcode,
-            pallet.size: self._correct.size,
-            pallet.type: self._correct.type,
-            pallet.barcode: self._correct.barcode
-        }.items())
-
-        for result, correct_result in received_to_correct_results:
-            self.assertEqual(correct_result, result)
+        self.assertEqual("FULL", pallet.type)
+        self.assertEqual("N", pallet.size)
+        self.assertEqual("W213359800P", pallet.barcode)
+        self.assertEqual("W213359799C", pallet.consignment_barcode)
 
 
 if __name__ == '__main__':

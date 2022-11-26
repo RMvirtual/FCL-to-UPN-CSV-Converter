@@ -1,6 +1,5 @@
 import unittest
-from src.main.upn.consignment.cargo.package.cust_pallet.builder \
-    import CustPalletBuilder
+from src.main.upn.packages.cust_pallet.builder import CustPalletBuilder
 
 
 class TestUPNCustPalletBuilder(unittest.TestCase):

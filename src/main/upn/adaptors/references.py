@@ -1,9 +1,9 @@
 import copy
-from src.main.graylaw.references.interface import References
 from src.main.graylaw.references.consignment.interface \
     import ConsignmentReference as GraylawConsignmentReference
 
-from src.main.upn.consignment.references.references import UPNReferences
+from src.main.graylaw.references.interface import References
+from src.main.upn.freight.references.references import UPNReferences
 
 
 class UPNReferencesAdaptor(References):

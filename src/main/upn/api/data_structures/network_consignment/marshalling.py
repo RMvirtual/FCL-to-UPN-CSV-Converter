@@ -1,19 +1,18 @@
 from src.main.upn.api.data_structures.network_consignment import mapping
-
-from src.main.upn.consignment.network_consignment.implementation \
+from src.main.upn.consignments.network_consignment.implementation \
     import NetworkConsignment
 
 from src.main.upn.api.data_structures.network_pallet.marshalling \
     import UpnNetworkPalletMarshaller
 
-from src.main.upn.consignment.cargo.package.network_pallet.interface \
-    import NetworkPallet
+from src.main.upn.packages.network_pallet.interface \
+    import NetworkPalletInterface
 
-from src.main.upn.consignment.references.references import UPNReferences
-from src.main.upn.consignment.address.address import UPNAddress
-from src.main.upn.consignment.customer.customer import UPNCustomer
-from src.main.upn.consignment.dates.dates import UPNDates
-from src.main.upn.consignment.services.services import UPNServices
+from src.main.upn.freight.references.references import UPNReferences
+from src.main.upn.freight.address.address import UPNAddress
+from src.main.upn.freight.customer.customer import UPNCustomer
+from src.main.upn.freight.dates.dates import UPNDates
+from src.main.upn.freight.services.services import UPNServices
 
 
 class UpnNetworkConsignmentMarshaller:
@@ -96,7 +95,8 @@ class UpnNetworkConsignmentMarshaller:
 
         return result
 
-    def unmarshall_pallets(self, candidate: dict[str, any]) -> NetworkPallet:
+    def unmarshall_pallets(
+            self, candidate: dict[str, any]) -> NetworkPalletInterface:
         dictionary = self._unmarshall(candidate, "pallets")
         outer_wrapper = dictionary["NetworkPallet"]
 

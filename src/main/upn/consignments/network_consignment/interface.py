@@ -1,11 +1,9 @@
 import datetime
 from abc import ABC, abstractmethod
-
-from src.main.upn.consignment.cargo.package.network_pallet.interface \
-    import NetworkPallet
+from src.main.upn.packages.network_pallet.interface import NetworkPalletInterface
 
 
-class NetworkConsignment(ABC):
+class NetworkConsignmentInterface(ABC):
     """Main interface for the UPN Network Consignment structure
     returned through the UPN API.
     """
@@ -126,7 +124,7 @@ class NetworkConsignment(ABC):
 
     @property
     @abstractmethod
-    def pallets(self) -> list[NetworkPallet]:
+    def pallets(self) -> list[NetworkPalletInterface]:
         ...
 
     @property

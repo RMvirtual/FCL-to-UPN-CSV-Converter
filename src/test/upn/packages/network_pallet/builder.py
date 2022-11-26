@@ -1,6 +1,5 @@
 import unittest
-from src.main.upn.consignment.cargo.package.network_pallet.builder \
-    import NetworkPalletBuilder
+from src.main.upn.packages.network_pallet.builder import NetworkPalletBuilder
 
 
 class TestUPNNetworkPallet(unittest.TestCase):

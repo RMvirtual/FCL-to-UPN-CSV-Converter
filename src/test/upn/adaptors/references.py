@@ -1,5 +1,5 @@
 import unittest
-from src.main.upn.consignment.references.references import UPNReferences
+from src.main.upn.freight.references.references import UPNReferences
 from src.main.upn.adaptors.references import UPNReferencesAdaptor
 
 

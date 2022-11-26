@@ -1,10 +1,10 @@
 import zeep
-from src.main.file_system.upn.api import configuration
+from src.main.file_system.upn.api import configuration_files
 
 
 class UPNAPIClient:
     def __init__(self):
-        self._environment = configuration.upn_api()
+        self._environment = configuration_files.upn_api()
         self._client = zeep.Client(self._environment["url"])
 
     def network_input(self, date: str) -> list[dict]:

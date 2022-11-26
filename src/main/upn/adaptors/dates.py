@@ -1,5 +1,5 @@
 import datetime
-from src.main.upn.consignment.dates.dates import UPNDates
+from src.main.upn.freight.dates.dates import UPNDates
 from src.main.graylaw.shipment_dates.interface import ShipmentDates
 from src.main.graylaw.shipment_dates.date.interface import Date as GraylawDate
 from src.main.upn.adaptors.date import UPNDateAdaptor

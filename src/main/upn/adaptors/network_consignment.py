@@ -5,7 +5,7 @@ from src.main.graylaw.cargo.container.implementation import Cargo
 from src.main.graylaw.service.model import Service
 from src.main.graylaw.shipment_dates.interface import ShipmentDates
 
-from src.main.upn.consignment.network_consignment.implementation \
+from src.main.upn.consignments.network_consignment.implementation \
     import NetworkConsignment
 
 from src.main.upn.adaptors.address import UPNAddressAdaptor

@@ -8,5 +8,6 @@ py_test(
     data = [],
     deps = [
         "//src/main/upn/adaptors/cargo",
+        "//src/main/upn/packages",
     ],
 )

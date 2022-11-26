@@ -1,8 +1,7 @@
 import dataclasses
+from src.main.file_system.upn.api import data_structure_files
 from src.main.upn.api.data_structures.mapping.marshalling import (
     Mapping, MappingMarshaller)
-
-from src.main.file_system.upn.api import structures
 
 
 @dataclasses.dataclass
@@ -18,7 +17,7 @@ def network_pallet() -> NetworkPalletMapping:
     fields as the NetworkPalletMapping dataclass.
     """
     marshaller = MappingMarshaller()
-    structure = structures.network_pallet()
+    structure = data_structure_files.network_pallet()
     result = NetworkPalletMapping()
 
     for field in list(dataclasses.fields(NetworkPalletMapping)):

@@ -1,5 +1,5 @@
 import unittest
-from src.main.upn.consignment.cargo.package.network_pallet import factory
+from src.main.upn.packages.network_pallet import factory
 
 
 class TestNetworkPalletFactory(unittest.TestCase):

@@ -5,11 +5,14 @@ from src.main.upn.freight.services.services import UPNServices
 from src.main.upn.freight.cargo.container.container import UPNCargo
 from src.main.upn.freight.customer.customer import UPNCustomer
 from src.main.upn.freight.dates.dates import UPNDates
-from src.main.upn.consignments.network_consignment import interface
-from src.main.upn.packages.network_pallet.interface import NetworkPallet
+from src.main.upn.consignments.network_consignment.interface \
+    import NetworkConsignmentInterface
+
+from src.main.upn.packages.network_pallet.interface \
+    import NetworkPalletInterface
 
 
-class NetworkConsignment(interface.NetworkConsignment):
+class NetworkConsignment(NetworkConsignmentInterface):
     def __init__(self):
         self._references = UPNReferences()
         self._depot_no = 75
@@ -189,7 +192,7 @@ class NetworkConsignment(interface.NetworkConsignment):
         self._cargo = new_cargo
 
     @property
-    def pallets(self) -> list[NetworkPallet]:
+    def pallets(self) -> list[NetworkPalletInterface]:
         return self._cargo.pallets
 
     @property
