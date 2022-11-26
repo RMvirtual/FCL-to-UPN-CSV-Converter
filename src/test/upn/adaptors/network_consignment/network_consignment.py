@@ -1,10 +1,8 @@
 import unittest
+from src.main.upn.adaptors.network_consignment import NetworkConsignmentAdaptor
 
-from src.main.upn.api.adaptors.network_consignment \
-    import NetworkConsignmentAdaptor
-
-from src.test.upn.api.adaptors.network_consignment.setup import (
-    graylaw_setup, upn_setup)
+from src.test.upn.adaptors.network_consignment.setup import (
+    upn_setup, graylaw_setup)
 
 
 class TestUPNNetworkConsignmentAdaptor(unittest.TestCase):

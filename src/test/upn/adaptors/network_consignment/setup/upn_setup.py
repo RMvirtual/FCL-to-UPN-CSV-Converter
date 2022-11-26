@@ -6,7 +6,7 @@ from src.main.upn.consignment.services.services import UPNServices
 from src.main.upn.consignment.dates.dates import UPNDates
 from src.main.upn.consignment.address.address import UPNAddress
 
-from src.main.upn.api.data_structures.network_consignment.implementation \
+from src.main.upn.consignment.network_consignment.implementation \
     import NetworkConsignment
 
 from src.main.upn.consignment.cargo.package.network_pallet \

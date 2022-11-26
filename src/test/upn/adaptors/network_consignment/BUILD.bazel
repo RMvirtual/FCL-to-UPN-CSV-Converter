@@ -8,6 +8,6 @@ py_test(
     ]),
     data = [],
     deps = [
-        "//src/main/upn/api/adaptors",
+        "//src/main/upn/adaptors",
     ],
 )

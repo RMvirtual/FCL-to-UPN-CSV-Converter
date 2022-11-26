@@ -1,20 +1,16 @@
 import datetime
-from src.main.upn.api.data_structures.network_consignment import mapping
-from src.main.upn.consignment.address.address import UPNAddress
-from src.main.upn.consignment.references.references import UPNReferences
-from src.main.upn.consignment.services.services import UPNServices
-from src.main.upn.consignment.cargo.container.container import UPNCargo
-from src.main.upn.consignment.customer.customer import UPNCustomer
-from src.main.upn.consignment.dates.dates import UPNDates
-from src.main.upn.api.data_structures.network_consignment import interface
-
-from src.main.upn.api.data_structures.network_consignment.interface \
-    import NetworkPallet
+from src.main.upn.freight.address.address import UPNAddress
+from src.main.upn.freight.references.references import UPNReferences
+from src.main.upn.freight.services.services import UPNServices
+from src.main.upn.freight.cargo.container.container import UPNCargo
+from src.main.upn.freight.customer.customer import UPNCustomer
+from src.main.upn.freight.dates.dates import UPNDates
+from src.main.upn.consignments.network_consignment import interface
+from src.main.upn.packages.network_pallet.interface import NetworkPallet
 
 
 class NetworkConsignment(interface.NetworkConsignment):
     def __init__(self):
-        self._mappings = mapping.network_consignment()
         self._references = UPNReferences()
         self._depot_no = 75
         self._customer_paperwork_pages = 0

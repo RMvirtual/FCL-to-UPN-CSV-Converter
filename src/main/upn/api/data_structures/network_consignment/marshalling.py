@@ -1,6 +1,6 @@
 from src.main.upn.api.data_structures.network_consignment import mapping
 
-from src.main.upn.api.data_structures.network_consignment.implementation \
+from src.main.upn.consignment.network_consignment.implementation \
     import NetworkConsignment
 
 from src.main.upn.api.data_structures.network_pallet.marshalling \
