@@ -28,5 +28,6 @@ class NetworkPalletInterface(UPNPalletInterface):
         ...
 
     @abstractmethod
-    def __eq__(self, other: NetworkPalletInterface or UPNPalletReading) -> bool:
+    def __eq__(
+            self, other: NetworkPalletInterface or UPNPalletReading) -> bool:
         ...

@@ -5,10 +5,10 @@ from src.main.upn.freight.services.services import UPNServices
 from src.main.upn.freight.cargo.container.container import UPNCargo
 from src.main.upn.freight.customer.customer import UPNCustomer
 from src.main.upn.freight.dates.dates import UPNDates
-from src.main.upn.consignments.network_consignment.interface \
+from src.main.upn.api.data_structures.interfaces.network_consignment \
     import NetworkConsignmentInterface
 
-from src.main.upn.packages.network_pallet.interface \
+from src.main.upn.api.data_structures.interfaces.network_pallet \
     import NetworkPalletInterface
 
 

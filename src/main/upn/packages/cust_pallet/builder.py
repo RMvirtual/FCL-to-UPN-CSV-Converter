@@ -1,5 +1,5 @@
 import copy
-from src.main.upn.packages.cust_pallet.interface import CustPalletInterface
+from src.main.upn.api.data_structures.interfaces.cust_pallet import CustPalletInterface
 from src.main.upn.packages.cust_pallet.implementation import (
     CustPallet, CustPalletFields)
 

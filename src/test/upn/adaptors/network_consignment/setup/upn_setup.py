@@ -9,7 +9,7 @@ from src.main.upn.freight.services.services import UPNServices
 from src.main.upn.freight.dates.dates import UPNDates
 from src.main.upn.freight.address.address import UPNAddress
 from src.main.upn.packages.network_pallet import factory as pallet_factory
-from src.main.upn.packages.network_pallet.interface \
+from src.main.upn.api.data_structures.interfaces.network_pallet \
     import NetworkPalletInterface
 
 

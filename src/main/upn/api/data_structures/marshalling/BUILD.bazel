@@ -2,13 +2,15 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "network_pallet",
+    name = "marshalling",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/file_system",
+        "//src/main/upn/api/data_structures/interfaces",
         "//src/main/upn/api/data_structures/mapping",
         "//src/main/upn/api/data_types",
+        "//src/main/upn/consignments",
         "//src/main/upn/freight",
         "//src/main/upn/packages",
     ],

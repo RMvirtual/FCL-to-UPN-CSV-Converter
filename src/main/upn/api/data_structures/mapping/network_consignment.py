@@ -33,7 +33,7 @@ class NetworkConsignmentMapping:
     total_weight: Mapping = None
 
 
-def network_consignment() -> NetworkConsignmentMapping:
+def mapping() -> NetworkConsignmentMapping:
     """Reliant on the network adaptors UPN JSON file having the same
     fields as the NetworkConsignmentInterface dataclass.
     """
@@ -42,7 +42,7 @@ def network_consignment() -> NetworkConsignmentMapping:
     result = NetworkConsignmentMapping()
 
     for field in list(dataclasses.fields(NetworkConsignmentMapping)):
-        mapping = marshaller.unmarshal_to_mapping(structure[field.name])
-        setattr(result, field.name, mapping)
+        field_mapping = marshaller.unmarshal_to_mapping(structure[field.name])
+        setattr(result, field.name, field_mapping)
 
     return result

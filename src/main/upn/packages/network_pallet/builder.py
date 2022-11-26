@@ -1,5 +1,5 @@
 import copy
-from src.main.upn.packages.network_pallet.interface \
+from src.main.upn.api.data_structures.interfaces.network_pallet \
     import NetworkPalletInterface
 
 from src.main.upn.packages.network_pallet.implementation import (

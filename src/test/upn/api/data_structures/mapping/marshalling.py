@@ -5,7 +5,7 @@ from src.main.upn.api.data_structures.mapping.marshalling \
     import MappingMarshaller
 
 
-class TestNetworkPalletMarshaller(unittest.TestCase):
+class TestMappingMarshaller(unittest.TestCase):
     def setUp(self) -> None:
         self._marshaller = MappingMarshaller()
 
