@@ -1,4 +1,4 @@
-from src.main.graylaw.consignment.model import Consignment
+from src.main.freight.consignment.model import Consignment
 
 from src.main.forward_office.consignment_import.parser.requests.types \
     import ConsignmentParseRequest

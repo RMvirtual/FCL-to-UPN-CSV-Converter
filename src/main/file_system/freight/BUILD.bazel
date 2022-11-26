@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "freight",
+    srcs = glob(["*.py"]),
+    data = [
+        "//resources/graylaw/cargo_types",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/file_system/file_readers",
+    ],
+)

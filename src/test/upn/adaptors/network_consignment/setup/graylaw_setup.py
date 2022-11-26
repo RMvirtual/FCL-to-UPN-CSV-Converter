@@ -1,9 +1,9 @@
-from src.main.graylaw.consignment.model import Consignment
-from src.main.graylaw.address.implementation import Address
-from src.main.graylaw.shipment_dates.implementation import ShipmentDates
-from src.main.graylaw.cargo.container.implementation import Cargo
-from src.main.graylaw.cargo.entries.implementation import CargoEntry
-from src.main.graylaw.cargo.packages.types import factory
+from src.main.freight.consignment.model import Consignment
+from src.main.freight.address.implementation import Address
+from src.main.freight.shipment_dates.implementation import ShipmentDates
+from src.main.freight.cargo.container.implementation import Cargo
+from src.main.freight.cargo.entries.implementation import CargoEntry
+from src.main.freight.cargo.packages.types import factory
 
 
 def dummy_consignment() -> Consignment:

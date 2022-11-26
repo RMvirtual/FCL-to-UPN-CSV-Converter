@@ -1,4 +1,4 @@
-from src.main.graylaw.cargo.entries.interface import CargoEntry
+from src.main.freight.cargo.entries.interface import CargoEntry
 
 
 class UPNCargoEntriesAdaptor:

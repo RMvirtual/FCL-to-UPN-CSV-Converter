@@ -7,6 +7,6 @@ py_library(
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/graylaw/references/consignment",
+        "//src/main/freight/references/consignment",
     ],
 )

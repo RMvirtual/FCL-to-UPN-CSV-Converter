@@ -1,8 +1,8 @@
 import copy
-from src.main.graylaw.cargo.container.implementation import Cargo
-from src.main.graylaw.cargo.entries.implementation import CargoEntry
+from src.main.freight.cargo.container.implementation import Cargo
+from src.main.freight.cargo.entries.implementation import CargoEntry
 from src.main.forward_office.mapping.cargo import FclCargoTypeMap
-from src.main.graylaw.cargo.packages.types.interface import PackageType
+from src.main.freight.cargo.packages.types.interface import PackageType
 
 from src.main.forward_office.consignment_import.parser.requests.types \
     import CargoParseRequest, CargoEntryParseRequest

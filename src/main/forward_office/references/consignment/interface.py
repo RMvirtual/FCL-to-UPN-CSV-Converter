@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from src.main.graylaw.references.consignment.interface \
+from src.main.freight.references.consignment.interface \
     import ConsignmentReference
 
 

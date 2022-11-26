@@ -5,7 +5,7 @@ from src.main.upn.api.interfaces.pallets.network_pallet \
 from src.main.metrics.dimensions.interface import Dimensions
 from src.main.metrics.dimensions import factory as dims_factory
 
-from src.main.graylaw.cargo.packages.oversize.options import (
+from src.main.freight.cargo.packages.oversize.options import (
     OversizeOption, OversizeOptions)
 
 

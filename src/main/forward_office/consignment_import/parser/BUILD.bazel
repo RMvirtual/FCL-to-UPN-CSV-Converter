@@ -7,6 +7,6 @@ py_library(
     deps = [
         "//src/main/forward_office/consignment_import/parser/requests",
         "//src/main/forward_office/mapping",
-        "//src/main/graylaw",
+        "//src/main/freight",
     ],
 )

@@ -1,5 +1,5 @@
 import copy
-from src.main.graylaw.address.interface import Address
+from src.main.freight.address.interface import Address
 from src.main.upn.freight.address.address import UPNAddress
 
 

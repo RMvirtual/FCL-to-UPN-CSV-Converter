@@ -1,10 +1,10 @@
-from src.main.graylaw.address.implementation import Address
-from src.main.graylaw.address.interface import Address as AddressInterface
+from src.main.freight.address.implementation import Address
+from src.main.freight.address.interface import Address as AddressInterface
 
 from src.main.forward_office.consignment_import.parser.requests.types \
     import AddressParseRequest
 
-from src.main.graylaw.address.validation import (
+from src.main.freight.address.validation import (
     AddressValidationStrategy, AddressErrors)
 
 

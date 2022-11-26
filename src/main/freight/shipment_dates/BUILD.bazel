@@ -1,0 +1,9 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "shipment_dates",
+    srcs = glob(["*.py"]),
+    data = [],
+    visibility = ["//visibility:public"],
+    deps = ["//src/main/freight/shipment_dates/date"],
+)
