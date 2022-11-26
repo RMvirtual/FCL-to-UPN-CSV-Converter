@@ -20,13 +20,14 @@ class UpnNetworkConsignmentMarshaller:
         self._mapping = mapping.network_consignment()
         self._pallet_marshaller = UpnNetworkPalletMarshaller()
 
-    def unmarshall(self, candidate: dict) -> NetworkConsignment:
+    def unmarshall(self, candidate: dict[str, any]) -> NetworkConsignment:
         result = NetworkConsignment()
         result.references = self.unmarshall_references(candidate)
 
         return result
 
-    def unmarshall_references(self, candidate: dict) -> UPNReferences:
+    def unmarshall_references(
+            self, candidate: dict[str, any]) -> UPNReferences:
         result = UPNReferences()
         result.barcode = self._unmarshall(candidate, "barcode")
         result.consignment_no = self._unmarshall(candidate, "consignment_no")
@@ -97,18 +98,13 @@ class UpnNetworkConsignmentMarshaller:
 
     def unmarshall_pallets(
             self, candidate: dict[str, any]) -> NetworkPalletInterface:
-        dictionary = self._unmarshall(candidate, "pallets")
-        outer_wrapper = dictionary["NetworkPallet"]
+        pallets = self._unmarshall(candidate, "pallets")["NetworkPallet"]
 
-        result = []
-
-        for pallet in outer_wrapper:
-            result.append(self._pallet_marshaller.unmarshall(pallet))
-
-        return result
+        return [
+            self._pallet_marshaller.unmarshall(pallet) for pallet in pallets]
 
     def _unmarshall(self, candidate: dict[str, any], field_name: str) -> any:
-        return candidate[self._interface_mapping_from(field_name)]
+        return candidate[self._map_interface_to(field_name)]
 
-    def _interface_mapping_from(self, field_name: str):
+    def _map_interface_to(self, field_name: str):
         return getattr(self._mapping, field_name).mapping
