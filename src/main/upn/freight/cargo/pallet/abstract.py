@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import abstractmethod
 import copy
 import dataclasses
-from src.main.upn.freight.cargo.pallet.interface import (
+from src.main.upn.api.interfaces.upn_pallet import (
     UPNPalletInterface, UPNPalletReading)
 
 

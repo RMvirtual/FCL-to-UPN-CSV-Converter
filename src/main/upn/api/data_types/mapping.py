@@ -1,8 +1,12 @@
-from src.main.upn.api.interfaces.mapping import Mapping
-from src.main.upn.api.marshalling.data_types \
-    import UPNDataTypeMarshaller
+import dataclasses
+from src.main.upn.api.data_types.marshalling import UPNDataTypeMarshaller
 
-# Mapping and Marshalling appear entwined in regards to primitives.
+
+@dataclasses.dataclass
+class Mapping:
+    type: str = ""
+    mapping: str = ""
+    values: list[any] = None
 
 
 class MappingMarshaller:

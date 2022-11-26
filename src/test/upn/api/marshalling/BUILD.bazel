@@ -17,12 +17,3 @@ py_test(
         "//src/main/upn/api/marshalling",
     ],
 )
-
-py_test(
-    name = "data_types",
-    srcs = glob(["*.py"]),
-    data = [],
-    deps = [
-        "//src/main/upn/api/marshalling",
-    ],
-)
