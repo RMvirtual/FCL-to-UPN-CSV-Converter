@@ -1,7 +1,7 @@
 from src.main.metrics.dimensions.implementation import (
     Dimensions, DimensionsInMetres)
 
-from src.main.graylaw.packages.oversize.database import (
+from src.main.freight.cargo.packages.oversize.options import (
     OversizeOptions, OversizeOption)
 
 

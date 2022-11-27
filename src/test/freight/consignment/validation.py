@@ -4,8 +4,6 @@ from src.main.freight.consignment.validation import (
     ConsignmentValidationStrategy, ConsignmentErrors)
 
 from src.main.freight.consignment.model import Consignment
-from src.main.freight.cargo.packages.types import factory
-
 
 class TestConsignmentValidation(unittest.TestCase):
     def setUp(self):
@@ -18,15 +16,14 @@ class TestConsignmentValidation(unittest.TestCase):
         self._consignment.address.lines.append("Gillibrands Road")
         self._consignment.address.town = "Skelmersdale"
         self._consignment.address.post_code = "WN8 9TA"
-
         self._consignment.service.priority()
-
         self._consignment.client_name = "UPN"
-        self._consignment.shipment_dates.collection_date = "03/10/2022"
-        self._consignment.shipment_dates.delivery_date = "04/10/2022"
+        self._consignment.shipment_dates.collection = "03/10/2022"
+        self._consignment.shipment_dates.delivery = "04/10/2022"
+        self._consignment.cargo.index_by_package_type(factory.load("full"))
 
-        self._consignment.cargo.index_by_package_type(
-            factory.load("full"))
+    def _full_pallet(self):
+
 
     def test_should_highlight_tail_lift_errors(self):
         tail_lift_instructions = [
@@ -63,7 +60,7 @@ class TestConsignmentValidation(unittest.TestCase):
         self.assertFalse(errors.incongruent_delivery_date)
 
     def test_should_highlight_priority_dates_error(self):
-        self._consignment.shipment_dates.delivery_date = "05/10/2022"
+        self._consignment.shipment_dates.delivery = "05/10/2022"
 
         errors = self._validation.validate_dates_against_service(
             self._consignment)
@@ -80,7 +77,7 @@ class TestConsignmentValidation(unittest.TestCase):
 
     def test_should_approve_economy_date(self):
         self._consignment.service.economy()
-        self._consignment.shipment_dates.delivery_date = "05/10/2022"
+        self._consignment.shipment_dates.delivery = "05/10/2022"
 
         errors = self._validation.validate_dates_against_service(
             self._consignment)
@@ -90,7 +87,7 @@ class TestConsignmentValidation(unittest.TestCase):
     def test_should_approve_economy_booked_date(self):
         self._consignment.service.economy()
         self._consignment.service.booked()
-        self._consignment.shipment_dates.delivery_date = "06/10/2022"
+        self._consignment.shipment_dates.delivery = "06/10/2022"
 
         errors = self._validation.validate_dates_against_service(
             self._consignment)
@@ -100,7 +97,7 @@ class TestConsignmentValidation(unittest.TestCase):
     def test_should_highlight_economy_booked_date_error(self):
         self._consignment.service.economy()
         self._consignment.service.clear_booked_service()
-        self._consignment.shipment_dates.delivery_date = "06/10/2022"
+        self._consignment.shipment_dates.delivery = "06/10/2022"
 
         errors = self._validation.validate_dates_against_service(
             self._consignment)

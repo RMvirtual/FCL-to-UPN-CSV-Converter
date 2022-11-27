@@ -54,10 +54,10 @@ class TestCanImportOneLinerConsignment(unittest.TestCase):
         self.assertEqual(1, len(consignment.cargo))
         cargo_entry = consignment.cargo[0]
         self.assertEqual(1, cargo_entry.quantity)
-        self.assertEqual("full", cargo_entry.package_type.name)
-        self.assertEqual("pallet", cargo_entry.package_type.base_type)
+        self.assertEqual("full", cargo_entry.full_pallet.name)
+        self.assertEqual("pallet", cargo_entry.full_pallet.base_type)
 
-        oversize_option = cargo_entry.package_type.oversize.selected.name
+        oversize_option = cargo_entry.full_pallet.oversize.selected.name
         self.assertEqual("normal", oversize_option)
         self.assertEqual(1, cargo_entry.quantity)
         self.assertEqual(500, cargo_entry.weight)

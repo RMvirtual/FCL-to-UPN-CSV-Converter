@@ -59,25 +59,25 @@ class TestCanImportMultiLineConsignment(unittest.TestCase):
         entry = consignment.cargo[0]
 
         self.assertTupleEqual((2, 1100), (entry.quantity, entry.weight))
-        self.assertEqual("full", entry.package_type.name)
-        self.assertEqual("pallet", entry.package_type.base_type)
-        self.assertEqual("normal", entry.package_type.oversize.selected.name)
+        self.assertEqual("full", entry.full_pallet.name)
+        self.assertEqual("pallet", entry.full_pallet.base_type)
+        self.assertEqual("normal", entry.full_pallet.oversize.selected.name)
 
     def _check_cargo_entry_2(self, consignment):
         entry = consignment.cargo[1]
 
         self.assertTupleEqual((4, 2000), (entry.quantity, entry.weight))
-        self.assertEqual("half", entry.package_type.name)
-        self.assertEqual("pallet", entry.package_type.base_type)
-        self.assertEqual("normal", entry.package_type.oversize.selected.name)
+        self.assertEqual("half", entry.full_pallet.name)
+        self.assertEqual("pallet", entry.full_pallet.base_type)
+        self.assertEqual("normal", entry.full_pallet.oversize.selected.name)
 
     def _check_cargo_entry_3(self, consignment):
         entry = consignment.cargo[2]
 
         self.assertTupleEqual((1, 1000), (entry.quantity, entry.weight))
-        self.assertEqual("full", entry.package_type.name)
-        self.assertEqual("pallet", entry.package_type.base_type)
-        self.assertEqual("triple", entry.package_type.oversize.selected.name)
+        self.assertEqual("full", entry.full_pallet.name)
+        self.assertEqual("pallet", entry.full_pallet.base_type)
+        self.assertEqual("triple", entry.full_pallet.oversize.selected.name)
 
     def _check_shipment_dates(self, consignment):
         self.assertEqual(6, consignment.shipment_dates.delivery_date.day)
