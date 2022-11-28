@@ -1,7 +1,7 @@
 from src.main.metrics.dimensions.implementation import (
     Dimensions, DimensionsInMetres)
 
-from src.main.freight.cargo.packages.oversize.options import (
+from src.main.freight.cargo.packages.oversize.implementation import (
     OversizeOptions, OversizeOption)
 
 

@@ -1,4 +1,4 @@
-from src.main.freight.cargo.packages.oversize import options, interface
+from src.main.freight.cargo.packages.oversize import implementation, interface
 
 
 class OversizeOptionsBuilder:
@@ -8,7 +8,7 @@ class OversizeOptionsBuilder:
         self._options = []
 
     def add_option(self, name: str, multiplier: float) -> None:
-        self._current_option = options.OversizeOption(name, multiplier)
+        self._current_option = implementation.OversizeOption(name, multiplier)
         self._options.append(self._current_option)
 
     def default_to_most_recent(self) -> None:
@@ -21,5 +21,5 @@ class OversizeOptionsBuilder:
         if not self._default_option:
             self._default_option = self._options[0]
 
-        return options.OversizeOptions(
+        return implementation.OversizeOptions(
             default=self._default_option, options=self._options)

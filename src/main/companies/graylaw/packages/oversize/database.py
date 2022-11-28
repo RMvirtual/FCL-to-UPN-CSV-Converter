@@ -1,6 +1,6 @@
 from src.main.file_system.companies.graylaw import oversize_options
 
-from src.main.freight.cargo.packages.oversize.options import (
+from src.main.freight.cargo.packages.oversize.implementation import (
     OversizeOptions, OversizeOption)
 
 
