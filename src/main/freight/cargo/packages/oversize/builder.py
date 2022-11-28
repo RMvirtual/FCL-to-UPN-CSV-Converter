@@ -11,7 +11,7 @@ class OversizeOptionsBuilder:
         self._current_option = options.OversizeOption(name, multiplier)
         self._options.append(self._current_option)
 
-    def assign_as_default(self) -> None:
+    def default_to_most_recent(self) -> None:
         self._default_option = self._current_option
 
     def build(self) -> interface.OversizeOptions:
@@ -19,7 +19,7 @@ class OversizeOptionsBuilder:
             raise ValueError("Must have added at least one option.")
 
         if not self._default_option:
-            self._default_option = self._current_option
+            self._default_option = self._options[0]
 
         return options.OversizeOptions(
             default=self._default_option, options=self._options)
