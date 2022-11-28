@@ -54,3 +54,7 @@ class OversizeOptions(ABC):
     @abstractmethod
     def __eq__(self, other: OversizeOptions) -> bool:
         ...
+
+    @abstractmethod
+    def __len__(self) -> int:
+        ...

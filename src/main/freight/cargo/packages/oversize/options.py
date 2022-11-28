@@ -74,3 +74,6 @@ class OversizeOptions(interface.OversizeOptions):
         matching_values = self.values == other.values
 
         return matching_selection and matching_values
+
+    def __len__(self) -> int:
+        return len(self._values)
