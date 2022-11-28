@@ -4,7 +4,7 @@ from src.main.file_system.file_readers import runfiles
 
 
 def _forward_office_resource(relative_path: str) -> str:
-    return "resources/forward_office/" + relative_path
+    return "resources/companies/forward_office/" + relative_path
 
 
 def _format_files():

@@ -1,5 +1,5 @@
 import zeep
-from src.main.file_system.upn.api import configuration_files
+from src.main.file_system.companies.upn.api import configuration_files
 
 
 class UPNAPIClient:

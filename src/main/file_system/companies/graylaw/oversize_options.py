@@ -2,7 +2,7 @@ from src.main.file_system.file_readers import runfiles
 
 
 def _freight_resource(relative_path: str) -> str:
-    return "resources/graylaw/" + relative_path
+    return "resources/companies/graylaw/" + relative_path
 
 
 def contents() -> list[dict[str, str]]:

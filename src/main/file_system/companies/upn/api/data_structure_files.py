@@ -26,4 +26,4 @@ def _load_json_runfile_from_structures(file_name: str):
 
 
 def _append_to_structures_path(file_name: str) -> str:
-    return "resources/upn/api_structures/" + file_name
+    return "resources/companies/upn/api_structures/" + file_name

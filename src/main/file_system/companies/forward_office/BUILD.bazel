@@ -4,9 +4,9 @@ py_library(
     name = "forward_office",
     srcs = glob(["*.py"]),
     data = [
-        "//resources/forward_office/dashboard_formats",
-        "//resources/forward_office/package_types",
-        "//resources/forward_office/priority_codes",
+        "//resources/companies/forward_office/dashboard_formats",
+        "//resources/companies/forward_office/package_types",
+        "//resources/companies/forward_office/priority_codes",
     ],
     visibility = ["//visibility:public"],
     deps = [

@@ -3,8 +3,8 @@ load("@rules_python//python:defs.bzl", "py_test")
 py_test(
     name = "dashboards",
     srcs = glob(["*.py"]),
-    data = ["//resources/test_inputs"],
+    data = ["//resources/test_environment/test_inputs"],
     deps = [
-        "//src/main/file_system/forward_office",
+        "//src/main/file_system/companies/forward_office",
     ],
 )

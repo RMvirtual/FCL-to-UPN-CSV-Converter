@@ -1,5 +1,5 @@
 import copy
-from src.main.file_system.forward_office import freight_mappings
+from src.main.file_system.companies.forward_office import freight_mappings
 from src.main.freight.service.model import Service
 
 

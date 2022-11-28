@@ -3,7 +3,7 @@ import copy
 
 from src.main.freight.cargo.packages.types.interface import PackageType
 from src.main.companies.graylaw.packages.types import database
-from src.main.file_system.forward_office import freight_mappings
+from src.main.file_system.companies.forward_office import freight_mappings
 
 
 class CargoTypeMapBuilder:

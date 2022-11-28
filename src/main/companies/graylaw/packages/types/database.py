@@ -1,4 +1,4 @@
-from src.main.file_system.freight import cargo_types
+from src.main.file_system.companies.graylaw import cargo_types
 from src.main.freight.cargo.packages.types.builder import PackageTypeBuilder
 from src.main.freight.cargo.packages.types.interface import PackageType
 from src.main.companies.graylaw.packages.oversize import \

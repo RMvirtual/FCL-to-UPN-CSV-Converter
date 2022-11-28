@@ -1,4 +1,4 @@
-from src.main.file_system.freight import oversize_options
+from src.main.file_system.companies.graylaw import oversize_options
 
 from src.main.freight.cargo.packages.oversize.options import (
     OversizeOptions, OversizeOption)

@@ -23,7 +23,8 @@ class TestCsvReader(unittest.TestCase):
         self.assertListEqual(self._correct_first_row, second_row)
 
     def _load_csv_file(self) -> None:
-        path = absolute_path("resources/test_inputs/simple_scenario.csv")
+        path = absolute_path(
+            "resources/test_environment/test_inputs/simple_scenario.csv")
 
         self._csv_file = csv_file.read(path)
 
