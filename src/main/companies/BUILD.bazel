@@ -1,0 +1,14 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "companies",
+    srcs = glob(["*.py"]),
+    data = [],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/bridges",
+        "//src/main/companies/forward_office",
+        "//src/main/companies/graylaw",
+        "//src/main/companies/upn",
+    ],
+)

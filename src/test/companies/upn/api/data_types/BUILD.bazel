@@ -1,0 +1,28 @@
+load("@rules_python//python:defs.bzl", "py_test")
+
+py_test(
+    name = "marshalling",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/companies/upn/api/data_types",
+    ],
+)
+
+py_test(
+    name = "primitives",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/companies/upn/api/data_types",
+    ],
+)
+
+py_test(
+    name = "mapping",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/companies/upn/api/data_types",
+    ],
+)

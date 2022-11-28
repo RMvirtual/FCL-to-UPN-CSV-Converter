@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "upn",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/upn/api",
+        "//src/main/companies/upn/consignments",
+        "//src/main/companies/upn/freight",
+        "//src/main/companies/upn/packages",
+    ],
+)

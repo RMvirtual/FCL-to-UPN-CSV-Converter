@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "types",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/graylaw/packages/oversize",
+        "//src/main/file_system",
+        "//src/main/freight/cargo",
+        "//src/main/metrics",
+    ],
+)

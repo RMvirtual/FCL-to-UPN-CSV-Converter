@@ -1,0 +1,10 @@
+load("@rules_python//python:defs.bzl", "py_test")
+
+py_test(
+    name = "cargo_entry",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/companies/bridges/graylaw_forward_office/consignment_import/parser/requests",
+    ],
+)

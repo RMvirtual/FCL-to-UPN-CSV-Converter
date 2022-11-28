@@ -1,0 +1,16 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("@python_third_party//:requirements.bzl", "requirement")
+
+py_library(
+    name = "marshalling",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/upn/api/interfaces",
+        "//src/main/companies/upn/api/mapping",
+        "//src/main/companies/upn/consignments",
+        "//src/main/companies/upn/freight",
+        "//src/main/companies/upn/packages",
+        "//src/main/file_system",
+    ],
+)
