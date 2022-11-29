@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.shipment_dates.date.factory.strings \
+from src.main.time.dates.factory.strings \
     import DatesAsStringsFactory
 
 

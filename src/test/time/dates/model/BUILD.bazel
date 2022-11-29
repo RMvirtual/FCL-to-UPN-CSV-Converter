@@ -5,7 +5,7 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/freight/shipment_dates/date/model",
+        "//src/main/time/dates/model",
     ],
 )
 
@@ -14,6 +14,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/freight/shipment_dates/date/model",
+        "//src/main/time/dates/model",
     ],
 )

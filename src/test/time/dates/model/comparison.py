@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.shipment_dates.date.implementation.implementation \
+from src.main.time.dates.implementation.implementation \
     import Date
 
 

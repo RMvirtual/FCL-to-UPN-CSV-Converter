@@ -1,14 +1,12 @@
-from src.main.freight.shipment_dates.date.factory.integers \
+from src.main.time.dates.factory.integers \
     import DatesAsIntegersFactory
 
-from src.main.freight.shipment_dates.date.factory.strings \
+from src.main.time.dates.factory.strings \
     import DatesAsStringsFactory
 
-from src.main.freight.shipment_dates.date.implementation import types
-from src.main.freight.shipment_dates.date.model.format_recognition \
+from src.main.time.dates.implementation import types
+from src.main.time.dates.model.format_recognition \
     import DateFormatRecognition
-
-from src.main.freight.shipment_dates.date.interfaces.interface import Date
 
 
 class DateFactory:

@@ -1,5 +1,5 @@
 import datetime
-from src.main.freight.shipment_dates.date.interfaces.interface import Date
+from src.main.time.dates.interface.interface import Date
 
 
 class ComparisonStrategy:

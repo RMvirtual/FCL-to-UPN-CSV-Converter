@@ -1,6 +1,6 @@
 import datetime
-from src.main.freight.shipment_dates.date.interfaces import interface
-from src.main.freight.shipment_dates.date.model.comparison \
+from src.main.time.dates.interface import interface
+from src.main.time.dates.model.comparison \
     import ComparisonStrategy
 
 

@@ -1,10 +1,7 @@
 from __future__ import annotations
 import datetime
-
-from src.main.freight.shipment_dates.date.interfaces.interface \
-    import Date as DateInterface
-
-from src.main.freight.shipment_dates.date.implementation.implementation import Date
+from src.main.time.dates.implementation.implementation import Date
+from src.main.time.dates.interface.interface import Date as DateInterface
 
 
 class ShipmentDates:

@@ -1,7 +1,7 @@
 import copy
 import datetime
-from src.main.freight.shipment_dates.date.interfaces.interface import Date as GraylawDate
-from src.main.freight.shipment_dates.date.model.comparison \
+from src.main.time.dates.interface.interface import Date as GraylawDate
+from src.main.time.dates.model.comparison \
     import ComparisonStrategy
 
 

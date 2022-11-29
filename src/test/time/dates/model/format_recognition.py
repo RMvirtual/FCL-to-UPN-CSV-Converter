@@ -1,6 +1,6 @@
 import unittest
 
-from src.main.freight.shipment_dates.date.model.format_recognition \
+from src.main.time.dates.model.format_recognition \
     import DateFormatRecognition
 
 

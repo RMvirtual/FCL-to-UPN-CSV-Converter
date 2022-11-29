@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.shipment_dates.date.factory.integers \
+from src.main.time.dates.factory.integers \
     import DatesAsIntegersFactory
 
 

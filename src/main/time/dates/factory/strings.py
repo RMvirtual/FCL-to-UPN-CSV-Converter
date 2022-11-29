@@ -1,5 +1,5 @@
 import re
-from src.main.freight.shipment_dates.date.implementation.types \
+from src.main.time.dates.implementation.types \
     import DatesAsStrings
 
 

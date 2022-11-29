@@ -6,7 +6,7 @@ py_library(
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/freight/shipment_dates/date/interface",
-        "//src/main/freight/shipment_dates/date/model",
+        "//src/main/time/dates/interface",
+        "//src/main/time/dates/model",
     ],
 )
