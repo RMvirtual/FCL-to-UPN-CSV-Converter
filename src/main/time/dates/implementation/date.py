@@ -1,6 +1,6 @@
 import datetime
 from src.main.time.dates.interface.date import DateInterface
-from src.main.time.dates.model.comparison.comparison import ComparisonStrategy
+from src.main.time.dates.comparison.comparison import ComparisonStrategy
 
 
 class Date(DateInterface):

@@ -1,7 +1,7 @@
 import re
 
 
-class FormatRecognition:
+class DateFormatter:
     def __init__(self, date: str):
         self._date = date
 

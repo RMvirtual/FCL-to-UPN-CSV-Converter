@@ -1,7 +1,7 @@
 import copy
 import datetime
 from src.main.time.dates.interface.date import DateInterface as GraylawDate
-from src.main.time.dates.model.comparison.comparison \
+from src.main.time.dates.comparison.comparison \
     import ComparisonStrategy
 
 

@@ -1,10 +1,9 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "string",
+    name = "interface",
     srcs = glob(["*.py"]),
     data = [],
     visibility = ["//visibility:public"],
-    deps = [
-    ],
+    deps = [],
 )
