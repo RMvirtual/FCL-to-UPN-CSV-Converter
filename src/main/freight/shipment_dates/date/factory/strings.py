@@ -3,28 +3,28 @@ from src.main.freight.shipment_dates.date.implementation.types \
     import DatesAsStrings
 
 
-class DateAsStringsFactory:
-    def __init__(self, date: str):
-        self._date = date
+class DatesAsStringsFactory:
+    def __init__(self):
+        ...
 
-    def dd_mm_yy(self) -> DatesAsStrings:
+    def dd_mm_yy(self, date: str) -> DatesAsStrings:
         result = DatesAsStrings()
-        result.day = self._date[0:2]
-        result.month = self._date[2:4]
-        result.year = self._date[4:6]
+        result.day = date[0:2]
+        result.month = date[2:4]
+        result.year = date[4:6]
 
         return result
 
-    def dd_mm_yyyy(self) -> DatesAsStrings:
+    def dd_mm_yyyy(self, date: str) -> DatesAsStrings:
         result = DatesAsStrings()
-        result.day = self._date[0:2]
-        result.month = self._date[2:4]
-        result.year = self._date[4:8]
+        result.day = date[0:2]
+        result.month = date[2:4]
+        result.year = date[4:8]
 
         return result
 
-    def by_separator_characters(self) -> DatesAsStrings:
-        split_values = re.split(r"\s|[./\\-]", self._date)
+    def by_separator_characters(self, date: str) -> DatesAsStrings:
+        split_values = re.split(r"\s|[./\\-]", date)
 
         result = DatesAsStrings()
         result.day = split_values[0]

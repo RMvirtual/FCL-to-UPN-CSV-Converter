@@ -8,3 +8,21 @@ py_test(
         "//src/main/freight/shipment_dates/date/factory",
     ],
 )
+
+py_test(
+    name = "integers",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/freight/shipment_dates/date/factory",
+    ],
+)
+
+py_test(
+    name = "strings",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/freight/shipment_dates/date/factory",
+    ],
+)
