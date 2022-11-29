@@ -2,7 +2,7 @@ import datetime
 from src.main.freight.shipment_dates.date.interface.interface import Date
 
 
-class DateComparisonStrategy:
+class ComparisonStrategy:
     def __init__(self, date_to_compare: Date):
         self._date_to_compare = date_to_compare
 

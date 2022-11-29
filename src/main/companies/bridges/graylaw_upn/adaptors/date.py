@@ -2,13 +2,13 @@ import copy
 import datetime
 from src.main.freight.shipment_dates.date.interface.interface import Date as GraylawDate
 from src.main.freight.shipment_dates.date.model.comparison \
-    import DateComparisonStrategy
+    import ComparisonStrategy
 
 
 class UPNDateAdaptor(GraylawDate):
     def __init__(self, upn_date: datetime.datetime):
         self._date = copy.deepcopy(upn_date)
-        self._comparison= DateComparisonStrategy(self)
+        self._comparison= ComparisonStrategy(self)
 
     @property
     def day(self) -> int:

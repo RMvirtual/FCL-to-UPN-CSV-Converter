@@ -1,20 +1,13 @@
 import datetime
-from src.main.freight.shipment_dates.date import interface
-from src.main.freight.shipment_dates.date.factory import transforms
+from src.main.freight.shipment_dates.date.interface import interface
 from src.main.freight.shipment_dates.date.model.comparison \
-    import DateComparisonStrategy
+    import ComparisonStrategy
 
 
 class Date(interface.Date):
-    def __init__(self, date: str):
-        parsed_date = transforms.parse(date)
-
-        self._date = datetime.date(
-            day=parsed_date.day, month=parsed_date.month,
-            year=parsed_date.year
-        )
-
-        self._comparison = DateComparisonStrategy(self)
+    def __init__(self, day: int, month: int, year: int):
+        self._date = datetime.date(day=day, month=month, year=year)
+        self._comparison = ComparisonStrategy(self)
 
     @property
     def day(self) -> int:
