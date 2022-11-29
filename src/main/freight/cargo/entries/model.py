@@ -1,8 +1,6 @@
 import copy
 from src.main.freight.cargo.entries.interface import CargoEntry
-from src.main.freight.cargo.entries.validation \
-    import CargoEntryValidationStrategy
-
+from src.main.freight.cargo.entries.validation import EntryValidationStrategy
 from src.main.freight.cargo.packages.types.interface import PackageType
 
 
@@ -11,7 +9,7 @@ class CargoEntryModel(CargoEntry):
         self._package_type = copy.deepcopy(package)
         self._quantity = quantity
         self._weight = weight
-        self._validation = CargoEntryValidationStrategy(entry_to_validate=self)
+        self._validation = EntryValidationStrategy(entry_to_validate=self)
 
     @property
     def package_type(self) -> PackageType:

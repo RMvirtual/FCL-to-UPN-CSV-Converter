@@ -2,7 +2,7 @@ import dataclasses
 from src.main.freight.cargo.entries.interface import CargoEntry
 
 
-class CargoEntryValidationStrategy:
+class EntryValidationStrategy:
     def __init__(self, entry_to_validate: CargoEntry):
         self._entry = entry_to_validate
 
