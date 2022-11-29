@@ -4,7 +4,7 @@ from src.main.freight.address.interface import Address as AddressInterface
 from src.main.freight.references.implementation import References
 from src.main.freight.cargo.container.implementation import Cargo
 from src.main.freight.service.model import Service
-from src.main.freight.shipment_dates.implementation import ShipmentDates
+from src.main.freight.shipment_dates.container.implementation import ShipmentDates
 
 
 class Consignment(interface.Consignment):

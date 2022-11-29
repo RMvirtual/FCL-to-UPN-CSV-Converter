@@ -1,6 +1,6 @@
 import dataclasses
 import re
-from src.main.freight.consignment.model import Consignment
+from src.main.freight.consignment.interface import Consignment
 
 
 @dataclasses.dataclass
@@ -18,7 +18,8 @@ class ConsignmentErrors:
 
 
 class ConsignmentValidationStrategy:
-    def __init__(self):
+    def __init__(self, consignment: Consignment):
+        self._consignment = consignment
         self._initialise_tail_lift_patterns()
 
     def _initialise_tail_lift_patterns(self):
@@ -30,10 +31,9 @@ class ConsignmentValidationStrategy:
 
         self._tail_lift_patterns = re.compile(patterns, flags=re.I)
 
-    def validate_tail_lift_error(
-            self, consignment: Consignment) -> ConsignmentErrors:
+    def validate_tail_lift_error(self) -> ConsignmentErrors:
         has_tail_lift_mentioned = False
-        instructions = consignment.delivery_instructions
+        instructions = self._consignment.delivery_instructions
 
         for instruction in instructions:
             if re.search(self._tail_lift_patterns, instruction):
@@ -42,22 +42,21 @@ class ConsignmentValidationStrategy:
         errors = ConsignmentErrors()
 
         errors.tail_lift_advisory = (
-                has_tail_lift_mentioned
-                and not consignment.service.is_tail_lift_required()
+            has_tail_lift_mentioned
+            and not self._consignment.service.is_tail_lift_required()
         )
 
         return errors
 
-    def validate_dates_against_service(
-            self, consignment: Consignment) -> ConsignmentErrors:
-        dates = consignment.shipment_dates
+    def validate_dates_against_service(self) -> ConsignmentErrors:
+        dates = self._consignment.shipment_dates
         difference = dates.delivery_date - dates.collection_date
         errors = ConsignmentErrors()
 
-        if consignment.service.is_priority():
+        if self._consignment.service.is_priority():
             errors.incongruent_delivery_date = difference != 1
 
-        elif consignment.service.is_booked():
+        elif self._consignment.service.is_booked():
             errors.incongruent_delivery_date = difference < 2
 
         else:
