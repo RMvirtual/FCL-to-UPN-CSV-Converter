@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
-class Date(ABC):
+class DateInterface(ABC):
     @property
     @abstractmethod
     def day(self) -> int:
@@ -19,25 +19,25 @@ class Date(ABC):
         ...
 
     @abstractmethod
-    def __sub__(self, other: Date) -> int:
+    def __sub__(self, other: DateInterface) -> int:
         ...
 
     @abstractmethod
-    def __eq__(self, other: Date) -> bool:
+    def __eq__(self, other: DateInterface) -> bool:
         ...
 
     @abstractmethod
-    def __lt__(self, other: Date) -> bool:
+    def __lt__(self, other: DateInterface) -> bool:
         ...
 
     @abstractmethod
-    def __le__(self, other: Date) -> bool:
+    def __le__(self, other: DateInterface) -> bool:
         ...
 
     @abstractmethod
-    def __ge__(self, other: Date) -> bool:
+    def __ge__(self, other: DateInterface) -> bool:
         ...
 
     @abstractmethod
-    def __gt__(self, other: Date) -> bool:
+    def __gt__(self, other: DateInterface) -> bool:
         ...

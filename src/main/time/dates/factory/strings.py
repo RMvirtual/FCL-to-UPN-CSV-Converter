@@ -1,34 +1,19 @@
 import re
-from src.main.time.dates.implementation.types \
-    import DatesAsStrings
+from src.main.time.dates.implementation.string import StringDate
 
 
 class DatesAsStringsFactory:
     def __init__(self):
         ...
 
-    def dd_mm_yy(self, date: str) -> DatesAsStrings:
-        result = DatesAsStrings()
-        result.day = date[0:2]
-        result.month = date[2:4]
-        result.year = date[4:6]
+    def dd_mm_yy(self, date: str) -> StringDate:
+        return StringDate(day=date[0:2], month=date[2:4], year=date[4:6])
 
-        return result
+    def dd_mm_yyyy(self, date: str) -> StringDate:
+        return StringDate(day=date[0:2], month=date[2:4], year=date[4:8])
 
-    def dd_mm_yyyy(self, date: str) -> DatesAsStrings:
-        result = DatesAsStrings()
-        result.day = date[0:2]
-        result.month = date[2:4]
-        result.year = date[4:8]
-
-        return result
-
-    def by_separator_characters(self, date: str) -> DatesAsStrings:
+    def by_separator_characters(self, date: str) -> StringDate:
         split_values = re.split(r"\s|[./\\-]", date)
 
-        result = DatesAsStrings()
-        result.day = split_values[0]
-        result.month = split_values[1]
-        result.year = split_values[2]
-
-        return result
+        return StringDate(
+            day=split_values[0], month=split_values[1], year=split_values[2])

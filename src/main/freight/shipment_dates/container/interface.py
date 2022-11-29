@@ -1,12 +1,12 @@
 import datetime
 from abc import ABC, abstractmethod
-from src.main.time.dates.interface.interface import Date
+from src.main.time.dates.interface.date import DateInterface
 
 
 class ShipmentDates(ABC):
     @property
     @abstractmethod
-    def delivery_date(self) -> Date:
+    def delivery_date(self) -> DateInterface:
         ...
 
     @delivery_date.setter
@@ -16,7 +16,7 @@ class ShipmentDates(ABC):
 
     @property
     @abstractmethod
-    def collection_date(self) -> Date:
+    def collection_date(self) -> DateInterface:
         ...
 
     @collection_date.setter

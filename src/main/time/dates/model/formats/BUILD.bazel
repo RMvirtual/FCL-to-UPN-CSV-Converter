@@ -1,12 +1,12 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "model",
+    name = "formats",
     srcs = glob(["*.py"]),
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/time/dates/model/comparison",
-        "//src/main/time/dates/model/formats",
+        "//src/main/time/dates/model/formats/integer",
+        "//src/main/time/dates/model/formats/string",
     ],
 )

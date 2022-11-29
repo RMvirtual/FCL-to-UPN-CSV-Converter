@@ -1,12 +1,7 @@
-from src.main.time.dates.factory.integers \
-    import DatesAsIntegersFactory
-
-from src.main.time.dates.factory.strings \
-    import DatesAsStringsFactory
-
-from src.main.time.dates.implementation import types
-from src.main.time.dates.model.format_recognition \
-    import DateFormatRecognition
+from src.main.time.dates.factory.integers import DatesAsIntegersFactory
+from src.main.time.dates.factory.strings import DatesAsStringsFactory
+from src.main.time.dates.interface.date import DateInterface
+from src.main.time.dates.model.formats.string.recognition import FormatRecognition
 
 
 class DateFactory:
@@ -14,8 +9,8 @@ class DateFactory:
         self._dates_as_strings = DatesAsStringsFactory()
         self._transformation = DatesAsIntegersFactory()
 
-    def parse(self, date: str) -> types.DatesAsIntegers:
-        date_format = DateFormatRecognition(date)
+    def parse(self, date: str) -> DateInterface:
+        date_format = FormatRecognition(date)
 
         if date_format.is_ddmmyy():
             return self._transformation.from_dd_mm_yy(date)
