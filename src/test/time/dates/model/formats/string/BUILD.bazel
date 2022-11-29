@@ -5,6 +5,7 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
+        "//src/main/time/dates/implementation",
         "//src/main/time/dates/model/formats/string",
     ],
 )
