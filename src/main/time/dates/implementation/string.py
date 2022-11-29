@@ -18,4 +18,3 @@ class StringDate(StringDateInterface):
     @property
     def year(self) -> str:
         return self._year
-

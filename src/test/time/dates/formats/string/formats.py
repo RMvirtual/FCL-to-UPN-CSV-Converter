@@ -13,6 +13,13 @@ class TestDateFormatRecognition(unittest.TestCase):
         self.assertEqual(6, result.month)
         self.assertEqual(91, result.year)
 
+    def test_should_create_dd_mm_yyyy_format(self) -> None:
+        result = formats.DDMMYYYY("03061991")
+
+        self.assertEqual(3, result.day)
+        self.assertEqual(6, result.month)
+        self.assertEqual(1991, result.year)
+
 
 if __name__ == '__main__':
     unittest.main()
