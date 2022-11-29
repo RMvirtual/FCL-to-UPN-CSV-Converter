@@ -2,7 +2,7 @@ from src.main.metrics.dimensions.interface import Dimensions
 from src.main.freight.cargo.packages.types import interface
 from src.main.freight.cargo.packages.oversize.interface import OversizeOptions
 
-from src.main.freight.cargo.packages.types.package_types import (
+from src.main.freight.cargo.packages.types.implementation import (
     PackageType, PackageDefinitions)
 
 

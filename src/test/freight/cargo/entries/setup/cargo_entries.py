@@ -1,6 +1,6 @@
 from src.main.freight.cargo.packages.types.interface import PackageType
 from src.main.freight.cargo.entries.implementation import CargoEntry
-from src.test.freight.cargo.entries.setup import packages
+from src.main.freight.cargo.packages.types import factory
 
 
 def entry(
@@ -19,7 +19,7 @@ def entry(
 def full_pallet_entry(
         quantity: int, weight: float, oversize: str = None) -> CargoEntry:
     return entry(
-        pkg_type=packages.DummyPallets().full,
+        pkg_type=factory.full_pallet(),
         qty_and_weight=(quantity, weight),
         oversize_option=oversize
     )
@@ -28,7 +28,7 @@ def full_pallet_entry(
 def half_pallet_entry(
         quantity: int, weight: float, oversize: str = None) -> CargoEntry:
     return entry(
-        pkg_type=packages.DummyPallets().half,
+        pkg_type=factory.half_pallet(),
         qty_and_weight=(quantity, weight),
         oversize_option=oversize
     )
