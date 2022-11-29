@@ -1,13 +1,16 @@
 import unittest
-from src.main.freight.shipment_dates.container.implementation import Date
+from src.main.freight.shipment_dates.container.implementation \
+    import ShipmentDates
 
 
 class TestShipmentDates(unittest.TestCase):
     def setUp(self) -> None:
-        pass
+        self._dates = ShipmentDates()
 
-    def test_collection_cannot_be_earlier_than_delivery(self) -> None:
-        self.fail("MOCK FAIL")
+    def test_collection_cannot_be_later_than_delivery(self) -> None:
+        with self.assertRaises(ValueError):
+            self._dates.delivery_date = "03/06/1991"
+            self._dates.collection_date = "04/06/1991"
 
 
 if __name__ == '__main__':
