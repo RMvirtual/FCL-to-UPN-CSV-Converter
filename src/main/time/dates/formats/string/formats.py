@@ -28,11 +28,11 @@ class DDMMYYYY(DDMMYY):
         return int(self._date[4:8])
 
 
-class NumericWithSeparators(DateFormat):
+class NumericDelimited(DateFormat):
     def __init__(self, date: str):
         self._date = date
-        date_parts = re.split(r"\W+", self._date)
-        self._parts = list(map(int, filter(lambda d: bool(d), date_parts)))
+        split_parts = re.split(r"\W+", self._date)
+        self._parts = list(map(int, filter(lambda d: bool(d), split_parts)))
 
     @property
     def day(self) -> int:
@@ -46,3 +46,21 @@ class NumericWithSeparators(DateFormat):
     def year(self) -> int:
         return self._parts[2]
 
+
+class AlphanumericFormat(DateFormat):
+    def __init__(self, date: str):
+        self._date = date
+        split_parts = re.split(r"\W+", self._date)
+        self._parts = list(map(int, filter(lambda d: bool(d), split_parts)))
+
+    @property
+    def day(self) -> int:
+        return self._parts[0]
+
+    @property
+    def month(self) -> int:
+        return self._parts[1]
+
+    @property
+    def year(self) -> int:
+        return self._parts[2]
