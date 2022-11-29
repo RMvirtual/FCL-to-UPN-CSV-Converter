@@ -1,7 +1,7 @@
 import datetime
 from src.main.freight.shipment_dates.date import interface
-from src.main.freight.shipment_dates.date import transforms
-from src.main.freight.shipment_dates.date.comparison \
+from src.main.freight.shipment_dates.date.factory import transforms
+from src.main.freight.shipment_dates.date.model.comparison \
     import DateComparisonStrategy
 
 
@@ -10,8 +10,7 @@ class Date(interface.Date):
         parsed_date = transforms.parse(date)
 
         self._date = datetime.date(
-            day=parsed_date.day,
-            month=parsed_date.month,
+            day=parsed_date.day, month=parsed_date.month,
             year=parsed_date.year
         )
 

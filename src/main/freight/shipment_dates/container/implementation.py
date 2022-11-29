@@ -1,10 +1,10 @@
 from __future__ import annotations
 import datetime
 
-from src.main.freight.shipment_dates.date.interface \
+from src.main.freight.shipment_dates.date.interface.interface \
     import Date as DateInterface
 
-from src.main.freight.shipment_dates.date.implementation import Date
+from src.main.freight.shipment_dates.date.implementation.implementation import Date
 
 
 class ShipmentDates:
@@ -27,6 +27,10 @@ class ShipmentDates:
 
     @collection_date.setter
     def collection_date(self, new_date: str) -> None:
+        if self._delivery_date is not None and self._delivery_date < new_date:
+            raise ValueError(
+                "Collection date cannot be later than delivery date.")
+
         self._collection_date = Date(new_date)
 
     @property

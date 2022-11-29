@@ -1,20 +1,11 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "transforms",
-    srcs = glob(["*.py"]),
-    data = [],
-    deps = [
-        "//src/main/freight/shipment_dates/date",
-    ],
-)
-
-py_test(
     name = "format_recognition",
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/freight/shipment_dates/date",
+        "//src/main/freight/shipment_dates/date/model",
     ],
 )
 
@@ -23,6 +14,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/freight/shipment_dates/date",
+        "//src/main/freight/shipment_dates/date/model",
     ],
 )

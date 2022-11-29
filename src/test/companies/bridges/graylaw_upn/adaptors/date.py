@@ -1,7 +1,7 @@
 import datetime
 import unittest
 from src.main.companies.bridges.graylaw_upn.adaptors.date import UPNDateAdaptor
-from src.main.freight.shipment_dates.date.implementation \
+from src.main.freight.shipment_dates.date.implementation.implementation \
     import Date as GraylawDate
 
 
