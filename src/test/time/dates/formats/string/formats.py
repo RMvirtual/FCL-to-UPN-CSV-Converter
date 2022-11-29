@@ -18,11 +18,18 @@ class TestDateFormatRecognition(unittest.TestCase):
         self.assertEqual(1991, result.year)
 
     def test_should_create_dd_mm_yy_with_separators_format(self) -> None:
-        result = formats.NumericWithSeparators("03/06/91")
+        for date in ["03/06/91", "03.06.91"]:
+            result = formats.NumericWithSeparators(date)
+            self.assertEqual(3, result.day)
+            self.assertEqual(6, result.month)
+            self.assertEqual(91, result.year)
 
-        self.assertEqual(3, result.day)
-        # self.assertEqual(6, result.month)
-        # self.assertEqual(91, result.year)
+    def test_should_create_dd_mm_yyyy_with_separators_format(self) -> None:
+        for date in ["03/06/1991", "03.06.1991"]:
+            result = formats.NumericWithSeparators(date)
+            self.assertEqual(3, result.day)
+            self.assertEqual(6, result.month)
+            self.assertEqual(1991, result.year)
 
 
 if __name__ == '__main__':
