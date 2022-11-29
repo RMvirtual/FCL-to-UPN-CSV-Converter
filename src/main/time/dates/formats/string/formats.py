@@ -1,3 +1,4 @@
+import calendar
 import re
 from src.main.time.dates.formats.interface.format import DateFormat
 
@@ -54,8 +55,14 @@ class AlphanumericFormat(DateFormat):
         cleaned_parts = list(filter(lambda d: bool(d), split_parts))
         self._parts = []
         self._parts.append(int(cleaned_parts[0]))
-        self._parts.append(cleaned_parts[1])
-        self._parts.append(cleaned_parts[2])
+
+        months = dict(
+            (month, index)
+            for index, month in enumerate(calendar.month_name) if month
+        )
+
+        self._parts.append(months[cleaned_parts[1]])
+        self._parts.append(int(cleaned_parts[2]))
 
     @property
     def day(self) -> int:
