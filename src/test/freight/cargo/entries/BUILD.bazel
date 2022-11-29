@@ -4,7 +4,6 @@ py_test(
     name = "entry",
     srcs = glob([
         "*.py",
-        "setup/*.py",
     ]),
     data = [],
     deps = [
