@@ -31,7 +31,8 @@ class DDMMYYYY(DDMMYY):
 class NumericWithSeparators(DateFormat):
     def __init__(self, date: str):
         self._date = date
-        self._parts = list(map(int, re.split(r"\W+", self._date)))
+        date_parts = re.split(r"\W+", self._date)
+        self._parts = list(map(int, filter(lambda d: bool(d), date_parts)))
 
     @property
     def day(self) -> int:
