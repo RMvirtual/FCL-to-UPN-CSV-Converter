@@ -1,4 +1,3 @@
-import dataclasses
 from src.main.freight.cargo.entries.interface import CargoEntry
 
 
@@ -25,30 +24,34 @@ class EntryValidationStrategy:
         return weight / quantity if quantity else 0
 
 
-@dataclasses.dataclass
-class CargoErrors:
-    blank_line: bool = False
-    blank_package_type: bool = False
-    weight_incorrect: bool = False
-    invalid_quantity: bool = False
-    invalid_package_type: bool = False
+class CargoEntryException(Exception):
+    def __init__(self, message):
+        super().__init__(message)
 
-    def __bool__(self):
-        return any(self._error_values())
 
-    def __len__(self):
-        return sum(self._error_values())
+class InvalidQuantity(CargoEntryException):
+    def __init__(self):
+        msg = "Desired number of packages will exceed maximum average weight."
+        super(InvalidQuantity, self).__init__(msg)
 
-    def reset(self):
-        for error in self._error_types():
-            setattr(self, error.name, False)
 
-    def _error_types(self):
-        return dataclasses.fields(self)
+class InvalidPackageTypes(CargoEntryException):
+    def __init__(self):
+        msg = "Incorrect pallet types to combine."
+        super(InvalidPackageTypes, self).__init__(msg)
 
-    def _error_values(self) -> tuple[bool]:
-        return (getattr(self, error.name) for error in self._error_types())
 
-    def are_critical(self) -> bool:
-        return bool(self) and not self.blank_line
+class TotalsInvalid(CargoEntryException):
+    def __init__(self):
+        msg = "Totals exceed average maximum weight."
+        super(TotalsInvalid, self).__init__(msg)
 
+
+class TotalWeightInvalid(CargoEntryException):
+    def __init__(self, weight, max_weight_per_package, quantity):
+        msg = (
+            f"Desired weight of {weight} will exceed average maximum weight "
+            f"of {max_weight_per_package} spread across {quantity} packages."
+        )
+
+        super(TotalWeightInvalid, self).__init__(msg)

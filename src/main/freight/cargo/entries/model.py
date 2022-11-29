@@ -1,5 +1,6 @@
 import copy
 from src.main.freight.cargo.entries.interface import CargoEntry
+from src.main.freight.cargo.entries import validation
 from src.main.freight.cargo.entries.validation import EntryValidationStrategy
 from src.main.freight.cargo.packages.types.interface import PackageType
 
@@ -53,29 +54,22 @@ class CargoEntryModel(CargoEntry):
             weight=self.weight + other.weight
         )
 
-    def _assert_quantity_is_valid(self, new_quantity: int) -> None:
-        if not self._validation.is_quantity_valid(new_quantity):
-            self._raise_invalid_quantity_error()
-
-    def _raise_invalid_quantity_error(self) -> None:
-        raise ValueError(
-            "Desired number of packages will exceed maximum average weight.")
-
     def _assert_metrics_are_valid(self, quantity: int, weight: float) -> None:
         if not self._validation.are_metrics_valid(quantity, weight):
-            raise ValueError("Totals exceed average maximum weight.")
+            raise validation.TotalsInvalid()
+
+    def _assert_quantity_is_valid(self, new_quantity: int) -> None:
+        if not self._validation.is_quantity_valid(new_quantity):
+            raise validation.InvalidQuantity()
 
     def _assert_total_weight_is_valid(self, new_weight: float) -> None:
         if not self._validation.is_total_weight_valid(new_weight):
-            self._raise_total_weight_error(new_weight)
-
-    def _raise_total_weight_error(self, weight: float) -> None:
-        raise ValueError(
-            f"Desired weight of {weight} will exceed average maximum weight "
-            f"of {self.package_type.maximum_weight} spread across "
-            f"{self._quantity} packages."
-        )
+            raise validation.TotalWeightInvalid(
+                weight=new_weight,
+                max_weight_per_package=self.package_type.maximum_weight,
+                quantity=self.quantity
+            )
 
     def _assert_cargo_entry_matches(self, other: CargoEntry) -> None:
         if not self == other:
-            raise ValueError("Incorrect pallet types to combine.")
+            raise validation.InvalidPackageTypes()
