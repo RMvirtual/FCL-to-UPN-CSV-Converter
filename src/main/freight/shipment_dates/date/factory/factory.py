@@ -1,5 +1,5 @@
 from src.main.freight.shipment_dates.date.factory.integers \
-    import DateAsIntegersFactory
+    import DatesAsIntegersFactory
 
 from src.main.freight.shipment_dates.date.factory.strings \
     import DatesAsStringsFactory
@@ -8,13 +8,13 @@ from src.main.freight.shipment_dates.date.implementation import types
 from src.main.freight.shipment_dates.date.model.format_recognition \
     import DateFormatRecognition
 
-from src.main.freight.shipment_dates.date.interface.interface import Date
+from src.main.freight.shipment_dates.date.interfaces.interface import Date
 
 
 class DateFactory:
     def __init__(self):
         self._dates_as_strings = DatesAsStringsFactory()
-        self._transformation = DateAsIntegersFactory()
+        self._transformation = DatesAsIntegersFactory()
 
     def parse(self, date: str) -> types.DatesAsIntegers:
         date_format = DateFormatRecognition(date)

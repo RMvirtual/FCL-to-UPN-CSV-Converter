@@ -1,7 +1,7 @@
 from __future__ import annotations
 import datetime
 
-from src.main.freight.shipment_dates.date.interface.interface \
+from src.main.freight.shipment_dates.date.interfaces.interface \
     import Date as DateInterface
 
 from src.main.freight.shipment_dates.date.implementation.implementation import Date

@@ -1,5 +1,5 @@
 import datetime
-from src.main.freight.shipment_dates.date.interface import interface
+from src.main.freight.shipment_dates.date.interfaces import interface
 from src.main.freight.shipment_dates.date.model.comparison \
     import ComparisonStrategy
 

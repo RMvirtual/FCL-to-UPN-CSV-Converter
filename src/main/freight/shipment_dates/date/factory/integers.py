@@ -6,7 +6,7 @@ from src.main.freight.shipment_dates.date.factory.strings \
     import DatesAsStringsFactory
 
 
-class DateAsIntegersFactory:
+class DatesAsIntegersFactory:
     def __init__(self):
         self._month_abbreviations = list(calendar.month_abbr)
         self._month_names = list(calendar.month_name)
