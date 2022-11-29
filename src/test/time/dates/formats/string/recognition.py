@@ -1,7 +1,5 @@
 import unittest
-
-from src.main.time.dates.formats.string.recognition \
-    import DateFormatter
+from src.main.time.dates.formats.string.recognition import DateFormatter
 
 
 class TestDateFormatRecognition(unittest.TestCase):

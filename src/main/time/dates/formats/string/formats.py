@@ -25,3 +25,20 @@ class DDMMYYYY(DDMMYY):
     @property
     def year(self) -> int:
         return int(self._date[4:8])
+
+
+class DDMMYYWithSeparators(DateFormat):
+    def __init__(self, date: str):
+        self._date = date
+
+    @property
+    def day(self) -> int:
+        return int(self._date[0:2])
+
+    @property
+    def month(self) -> int:
+        return int(self._date[2:4])
+
+    @property
+    def year(self) -> int:
+        return int(self._date[4:6])
