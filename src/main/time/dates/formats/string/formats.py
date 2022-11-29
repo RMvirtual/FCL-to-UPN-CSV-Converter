@@ -51,7 +51,11 @@ class AlphanumericFormat(DateFormat):
     def __init__(self, date: str):
         self._date = date
         split_parts = re.split(r"\W+", self._date)
-        self._parts = list(map(int, filter(lambda d: bool(d), split_parts)))
+        cleaned_parts = list(filter(lambda d: bool(d), split_parts))
+        self._parts = []
+        self._parts.append(int(cleaned_parts[0]))
+        self._parts.append(cleaned_parts[1])
+        self._parts.append(cleaned_parts[2])
 
     @property
     def day(self) -> int:
