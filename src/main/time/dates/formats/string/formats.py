@@ -56,12 +56,24 @@ class AlphanumericFormat(DateFormat):
         self._parts = []
         self._parts.append(int(cleaned_parts[0]))
 
-        months = dict(
+        full_months = dict(
             (month, index)
             for index, month in enumerate(calendar.month_name) if month
         )
 
-        self._parts.append(months[cleaned_parts[1]])
+        abbreviated_months = dict(
+            (month, index)
+            for index, month in enumerate(calendar.month_abbr) if month
+        )
+
+        month_part = cleaned_parts[1]
+
+        month_no = (
+            full_months[month_part] if month_part in full_months else
+            abbreviated_months[month_part]
+        )
+
+        self._parts.append(month_no)
         self._parts.append(int(cleaned_parts[2]))
 
     @property

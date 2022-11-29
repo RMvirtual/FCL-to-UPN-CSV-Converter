@@ -59,8 +59,15 @@ class TestDateFormatRecognition(unittest.TestCase):
         self.assertEqual(6, result.month)
         self.assertEqual(1991, result.year)
 
-    def test_should_format_alphanumeric_date(self) -> None:
+    def test_should_format_full_alphanumeric_date(self) -> None:
         result = formats.AlphanumericFormat("03-June-1991")
+
+        self.assertEqual(3, result.day)
+        self.assertEqual(6, result.month)
+        self.assertEqual(1991, result.year)
+
+    def test_should_format_abbreviated_alphanumeric_date(self) -> None:
+        result = formats.AlphanumericFormat("03-Jun-1991")
 
         self.assertEqual(3, result.day)
         self.assertEqual(6, result.month)
