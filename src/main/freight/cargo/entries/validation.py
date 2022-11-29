@@ -22,36 +22,3 @@ class EntryValidationStrategy:
     @staticmethod
     def _average_weight(quantity: int, weight: float) -> float:
         return weight / quantity if quantity else 0
-
-
-class CargoEntryException(Exception):
-    def __init__(self, message):
-        super().__init__(message)
-
-
-class InvalidQuantity(CargoEntryException):
-    def __init__(self):
-        msg = "Desired number of packages will exceed maximum average weight."
-        super(InvalidQuantity, self).__init__(msg)
-
-
-class InvalidPackageTypes(CargoEntryException):
-    def __init__(self):
-        msg = "Incorrect pallet types to combine."
-        super(InvalidPackageTypes, self).__init__(msg)
-
-
-class TotalsInvalid(CargoEntryException):
-    def __init__(self):
-        msg = "Totals exceed average maximum weight."
-        super(TotalsInvalid, self).__init__(msg)
-
-
-class TotalWeightInvalid(CargoEntryException):
-    def __init__(self, weight, max_weight_per_package, quantity):
-        msg = (
-            f"Desired weight of {weight} will exceed average maximum weight "
-            f"of {max_weight_per_package} spread across {quantity} packages."
-        )
-
-        super(TotalWeightInvalid, self).__init__(msg)

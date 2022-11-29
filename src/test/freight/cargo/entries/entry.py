@@ -1,6 +1,6 @@
 import unittest
 from src.main.freight.cargo.entries import factory
-from src.main.freight.cargo.entries.validation import CargoEntryException
+from src.main.freight.cargo.entries.exceptions import CargoEntryException
 
 
 class TestCargoEntry(unittest.TestCase):
