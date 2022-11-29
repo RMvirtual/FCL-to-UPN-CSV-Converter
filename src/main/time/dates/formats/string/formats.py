@@ -29,6 +29,27 @@ class DDMMYYYY(DDMMYY):
         return int(self._date[4:8])
 
 
+class Numeric(DateFormat):
+    def __init__(self, date: str):
+        self._date = date
+        self._parts = []
+
+        # Work required here to determine the date formats between
+        # 4, 5, 6, 7 and 8 digit dates.
+
+    @property
+    def day(self) -> int:
+        return self._parts[0]
+
+    @property
+    def month(self) -> int:
+        return self._parts[1]
+
+    @property
+    def year(self) -> int:
+        return self._parts[2]
+
+
 class NumericDelimited(DateFormat):
     def __init__(self, date: str):
         self._date = date
