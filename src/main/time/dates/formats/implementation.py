@@ -3,6 +3,7 @@ import re
 from src.main.time.dates.formats.interface import DateFormatter
 from src.main.time.years import factory as years_factory
 from src.main.time.dates.formats import validation
+from src.main.time.months import months
 
 
 class NumericFormatter(DateFormatter):
@@ -50,24 +51,9 @@ class AlphanumericFormatter(DateFormatter):
         self._parts = []
         self._parts.append(int(cleaned_parts[0]))
 
-        full_months = dict(
-            (month, index)
-            for index, month in enumerate(calendar.month_name) if month
-        )
-
-        abbreviated_months = dict(
-            (month, index)
-            for index, month in enumerate(calendar.month_abbr) if month
-        )
-
-        month_part = cleaned_parts[1]
-
-        month_no = (
-            full_months[month_part] if month_part in full_months else
-            abbreviated_months[month_part]
-        )
-
+        month_no = months.month_no(cleaned_parts[1])
         self._parts.append(month_no)
+
         self._parts.append(cleaned_parts[2])
 
     @property

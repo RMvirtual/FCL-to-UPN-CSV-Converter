@@ -6,6 +6,7 @@ py_library(
     data = [],
     visibility = ["//visibility:public"],
     deps = [
+        "//src/main/time/months",
         "//src/main/time/years",
     ],
 )
