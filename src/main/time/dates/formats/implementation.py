@@ -4,26 +4,36 @@ from src.main.time.dates.formats.interface import DateFormatter
 
 
 def _pad_year(year: str or int) -> int:
-    if isinstance(year, str):
-        if not bool(re.fullmatch(r"\d{2, 4}", year)):
-            raise ValueError(
-                "Invalid date format (should be 2 or 4 numeric digits.")
+    is_integer = isinstance(year, int)
+    is_string = isinstance(year, str)
+    is_invalid_type = not (is_integer or is_string)
 
-        if re.fullmatch(r"\d{2}", year):
-            return int("20" + year)
+    if is_invalid_type:
+        raise TypeError("Invalid type for year", year)
 
-        elif re.fullmatch(r"\d{4}", year):
-            return int(year)
+    if is_string:
+        return int(_pad_string(year))
 
-    elif isinstance(year, int):
-        if 0 <= year <= 99:
-            return 2000 + year
+    return _pad_integer(year)
 
-        elif year > 1822:
-            return year
 
-        else:
-            raise ValueError("Invalid year", year)
+def _pad_string(year: str) -> str:
+    if not bool(re.fullmatch(r"\d{2}|\d{4}", year)):
+        raise ValueError(
+            f"Invalid date format {year} (should be 2 or 4 digits).")
+
+    return "20" + year if bool(re.fullmatch(r"\d{2}", year)) else year
+
+
+def _pad_integer(year: int) -> int:
+    is_valid_short_year = 0 <= year <= 99
+    is_valid_full_year = year >= 1822
+    is_invalid_year = not (is_valid_short_year or is_valid_full_year)
+
+    if is_invalid_year:
+        raise ValueError("Invalid year", year)
+
+    return 2000 + year if is_valid_short_year else year
 
 
 class NumericFormatter(DateFormatter):
