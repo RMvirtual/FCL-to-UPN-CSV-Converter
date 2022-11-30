@@ -6,8 +6,5 @@ py_library(
     data = [],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/time/dates/formats/integer",
-        "//src/main/time/dates/formats/interface",
-        "//src/main/time/dates/formats/string",
     ],
 )

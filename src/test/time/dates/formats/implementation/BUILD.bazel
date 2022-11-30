@@ -1,0 +1,28 @@
+load("@rules_python//python:defs.bzl", "py_test")
+
+py_test(
+    name = "numeric",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/time/dates/formats",
+    ],
+)
+
+py_test(
+    name = "numeric_delimited",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/time/dates/formats",
+    ],
+)
+
+py_test(
+    name = "alphanumeric",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/time/dates/formats",
+    ],
+)

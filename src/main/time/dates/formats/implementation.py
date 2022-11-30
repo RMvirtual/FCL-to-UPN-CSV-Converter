@@ -1,56 +1,34 @@
 import calendar
 import re
-from src.main.time.dates.formats.interface.format import DateFormat
+from src.main.time.dates.formats.interface import DateFormatter
 
 
-class DDMMYY(DateFormat):
-    def __init__(self, date: str):
-        self._date = date
-
-    @property
-    def day(self) -> int:
-        return int(self._date[0:2])
-
-    @property
-    def month(self) -> int:
-        return int(self._date[2:4])
-
-    @property
-    def year(self) -> int:
-        return int(self._date[4:6])
-
-
-class DDMMYYYY(DDMMYY):
-    def __init__(self, date: str):
-        super(DDMMYYYY, self).__init__(date)
-
-    @property
-    def year(self) -> int:
-        return int(self._date[4:8])
-
-
-class Numeric(DateFormat):
+class NumericFormatter(DateFormatter):
     def __init__(self, date: str):
         self._date = date
         self._parts = []
 
-        # Work required here to determine the date formats between
-        # 4, 5, 6, 7 and 8 digit dates.
+        if not bool(re.fullmatch(r"\d{6,8}", self._date)):
+            raise ValueError("Incorrect number of digits (must be 6 or 8).")
+
+        self._parts.append(self._date[0:2])
+        self._parts.append(self._date[2:4])
+        self._parts.append(self._date[4:])
 
     @property
     def day(self) -> int:
-        return self._parts[0]
+        return int(self._parts[0])
 
     @property
     def month(self) -> int:
-        return self._parts[1]
+        return int(self._parts[1])
 
     @property
     def year(self) -> int:
-        return self._parts[2]
+        return int(self._parts[2])
 
 
-class NumericDelimited(DateFormat):
+class NumericDelimitedFormatter(DateFormatter):
     def __init__(self, date: str):
         self._date = date
         split_parts = re.split(r"\W+", self._date)
@@ -69,7 +47,7 @@ class NumericDelimited(DateFormat):
         return self._parts[2]
 
 
-class AlphanumericFormat(DateFormat):
+class AlphanumericFormatter(DateFormatter):
     def __init__(self, date: str):
         self._date = date
         split_parts = re.split(r"\W+", self._date)

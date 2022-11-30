@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class DateFormat(ABC):
+class DateFormatter(ABC):
     @property
     @abstractmethod
     def day(self) -> int:

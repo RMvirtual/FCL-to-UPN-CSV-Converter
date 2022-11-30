@@ -1,6 +1,6 @@
-from src.main.time.dates.formats.string.recognition import DateFormat
-from src.main.time.dates.formats.string.formats import (
-    AlphanumericFormat, NumericDelimited, DDMMYY, DDMMYYYY)
+from src.main.time.dates.formats.recognition import DateFormat
+from src.main.time.dates.formats.implementation import (
+    AlphanumericFormatter, NumericDelimitedFormatter, DDMMYY)
 
 from src.main.time.dates.implementation.date import Date
 from src.main.time.dates.interface.date import DateInterface
@@ -18,10 +18,10 @@ def from_string(date: str) -> DateInterface:
         formatter = DDMMYY(date)
 
     elif date_format.is_numeric_with_delimiters():
-        formatter = NumericDelimited(date)
+        formatter = NumericDelimitedFormatter(date)
 
     elif date_format.is_alphanumeric():
-        formatter = AlphanumericFormat(date)
+        formatter = AlphanumericFormatter(date)
 
     return Date(formatter.day, formatter.month, formatter.year)
 
