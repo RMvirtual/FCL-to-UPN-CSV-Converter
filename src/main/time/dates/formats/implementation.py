@@ -6,15 +6,11 @@ from src.main.time.dates.formats.interface import DateFormatter
 def _pad_year(year: str or int) -> int:
     is_integer = isinstance(year, int)
     is_string = isinstance(year, str)
-    is_invalid_type = not (is_integer or is_string)
 
-    if is_invalid_type:
+    if not (is_integer or is_string):
         raise TypeError("Invalid type for year", year)
 
-    if is_string:
-        return int(_pad_string(year))
-
-    return _pad_integer(year)
+    return int(_pad_string(year)) if is_string else _pad_integer(year)
 
 
 def _pad_string(year: str) -> str:
@@ -28,9 +24,8 @@ def _pad_string(year: str) -> str:
 def _pad_integer(year: int) -> int:
     is_valid_short_year = 0 <= year <= 99
     is_valid_full_year = year >= 1822
-    is_invalid_year = not (is_valid_short_year or is_valid_full_year)
 
-    if is_invalid_year:
+    if not (is_valid_short_year or is_valid_full_year):
         raise ValueError("Invalid year", year)
 
     return 2000 + year if is_valid_short_year else year
