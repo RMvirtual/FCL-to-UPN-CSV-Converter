@@ -25,8 +25,7 @@ class NumericFormatter(DateFormatter):
 
 class NumericDelimitedFormatter(DateFormatter):
     def __init__(self, date: str):
-        self._date = date
-        split_parts = re.split(r"\W+", self._date)
+        split_parts = re.split(r"\W+", date)
         self._parts = list(map(int, filter(lambda d: bool(d), split_parts)))
 
     @property
