@@ -21,7 +21,10 @@ class DateFormat:
         ))
 
     def is_unrecognised(self) -> bool:
-        return not any((
+        return not self.is_recognised()
+
+    def is_recognised(self) -> bool:
+        return any((
             self.is_numeric(), self.is_numeric_delimited(),
             self.is_alphanumeric()
         ))
