@@ -44,8 +44,7 @@ class NumericDelimitedFormatter(DateFormatter):
 
 class AlphanumericFormatter(DateFormatter):
     def __init__(self, date: str):
-        self._date = date
-        split_parts = re.split(r"\W+", self._date)
+        split_parts = re.split(r"\W+", date)
         cleaned_parts = list(filter(lambda d: bool(d), split_parts))
 
         self._parts = [
