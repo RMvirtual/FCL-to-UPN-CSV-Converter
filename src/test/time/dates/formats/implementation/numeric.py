@@ -8,7 +8,7 @@ class TestNumericDateFormatter(unittest.TestCase):
 
         self.assertEqual(3, result.day)
         self.assertEqual(6, result.month)
-        self.assertEqual(91, result.year)
+        self.assertEqual(2091, result.year)
 
     def test_should_format_dd_mm_yyyy(self) -> None:
         result = NumericFormatter("03061991")

@@ -1,39 +1,13 @@
 import calendar
 import re
 from src.main.time.dates.formats.interface import DateFormatter
-
-
-def _pad_year(year: str or int) -> int:
-    is_integer = isinstance(year, int)
-    is_string = isinstance(year, str)
-
-    if not (is_integer or is_string):
-        raise TypeError("Invalid type for year", year)
-
-    return int(_pad_string(year)) if is_string else _pad_integer(year)
-
-
-def _pad_string(year: str) -> str:
-    if not bool(re.fullmatch(r"\d{2}|\d{4}", year)):
-        raise ValueError(
-            f"Invalid date format {year} (should be 2 or 4 digits).")
-
-    return "20" + year if bool(re.fullmatch(r"\d{2}", year)) else year
-
-
-def _pad_integer(year: int) -> int:
-    is_valid_short_year = 0 <= year <= 99
-    is_valid_full_year = year >= 1822
-
-    if not (is_valid_short_year or is_valid_full_year):
-        raise ValueError("Invalid year", year)
-
-    return 2000 + year if is_valid_short_year else year
+from src.main.time.years import factory as years_factory
+from src.main.time.dates.formats import validation
 
 
 class NumericFormatter(DateFormatter):
     def __init__(self, date: str):
-        self._assert_format_is_valid(date)
+        validation.assert_numeric_format_is_valid(date)
         self._date = date
 
     @property
@@ -46,12 +20,7 @@ class NumericFormatter(DateFormatter):
 
     @property
     def year(self) -> int:
-        return _pad_year(self._date[4:])
-
-    @staticmethod
-    def _assert_format_is_valid(date: str) -> None:
-        if not bool(re.fullmatch(r"\d{6}|\d{8}", date)):
-            raise ValueError("Incorrect number of digits (must be 6 or 8).")
+        return years_factory.full_year(self._date[4:])
 
 
 class NumericDelimitedFormatter(DateFormatter):
@@ -70,7 +39,7 @@ class NumericDelimitedFormatter(DateFormatter):
 
     @property
     def year(self) -> int:
-        return _pad_year(self._parts[2])
+        return years_factory.full_year(self._parts[2])
 
 
 class AlphanumericFormatter(DateFormatter):
@@ -99,7 +68,7 @@ class AlphanumericFormatter(DateFormatter):
         )
 
         self._parts.append(month_no)
-        self._parts.append(int(cleaned_parts[2]))
+        self._parts.append(cleaned_parts[2])
 
     @property
     def day(self) -> int:
@@ -111,4 +80,4 @@ class AlphanumericFormatter(DateFormatter):
 
     @property
     def year(self) -> int:
-        return _pad_year(self._parts[2])
+        return years_factory.full_year(self._parts[2])
