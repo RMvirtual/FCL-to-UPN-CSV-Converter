@@ -23,10 +23,10 @@ class TestDateFormatRecognition(unittest.TestCase):
 
     def test_should_recognise_numeric_delimited_formats(self) -> None:
         for date in self._numeric_delimited_dates:
-            self.assertTrue(DateFormat(date).is_numeric_with_delimiters())
+            self.assertTrue(DateFormat(date).is_numeric_delimited())
 
         for date in self._numeric_dates + self._alphanumeric_dates:
-            self.assertFalse(DateFormat(date).is_numeric_with_delimiters())
+            self.assertFalse(DateFormat(date).is_numeric_delimited())
 
     def test_should_recognise_alphabetic_format(self) -> None:
         for date in self._alphanumeric_dates:

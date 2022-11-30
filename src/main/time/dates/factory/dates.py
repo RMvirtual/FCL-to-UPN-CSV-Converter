@@ -17,7 +17,7 @@ def from_string(date: str) -> DateInterface:
     if date_format.is_numeric():
         formatter = DDMMYY(date)
 
-    elif date_format.is_numeric_with_delimiters():
+    elif date_format.is_numeric_delimited():
         formatter = NumericDelimitedFormatter(date)
 
     elif date_format.is_alphanumeric():

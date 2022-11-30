@@ -8,7 +8,7 @@ class DateFormat:
     def is_numeric(self) -> bool:
         return bool(re.fullmatch(r"\d{6,8}", self._date))
 
-    def is_numeric_with_delimiters(self) -> bool:
+    def is_numeric_delimited(self) -> bool:
         return bool(re.fullmatch(
             r"\d{1,2}([./\\-]|\s+)\d{1,2}([./\\-]|\s+)(\d{2}|\d{4})",
             self._date
@@ -21,8 +21,7 @@ class DateFormat:
         ))
 
     def is_unrecognised(self) -> bool:
-        return not (
-            self.is_numeric(),
-            self.is_numeric_with_delimiters(),
+        return not any((
+            self.is_numeric(), self.is_numeric_delimited(),
             self.is_alphanumeric()
-        )
+        ))
