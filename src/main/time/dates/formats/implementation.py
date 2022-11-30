@@ -47,13 +47,12 @@ class AlphanumericFormatter(DateFormatter):
         self._date = date
         split_parts = re.split(r"\W+", self._date)
         cleaned_parts = list(filter(lambda d: bool(d), split_parts))
-        self._parts = []
-        self._parts.append(int(cleaned_parts[0]))
 
-        month_no = months.month_no(cleaned_parts[1])
-        self._parts.append(month_no)
-
-        self._parts.append(cleaned_parts[2])
+        self._parts = [
+            int(cleaned_parts[0]),
+            months.month_no(cleaned_parts[1]),
+            years_factory.full_year(cleaned_parts[2])
+        ]
 
     @property
     def day(self) -> int:
@@ -65,4 +64,4 @@ class AlphanumericFormatter(DateFormatter):
 
     @property
     def year(self) -> int:
-        return years_factory.full_year(self._parts[2])
+        return self._parts[2]
