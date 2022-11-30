@@ -8,6 +8,5 @@ py_library(
     deps = [
         "//src/main/time/dates/implementation",
         "//src/main/time/dates/interface",
-        "//src/main/time/dates/model",
     ],
 )
