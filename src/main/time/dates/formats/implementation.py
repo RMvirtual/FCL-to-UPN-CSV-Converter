@@ -35,26 +35,22 @@ class NumericFormatter(DateFormatter):
     def __init__(self, date: str):
         self._assert_format_is_valid(date)
         self._date = date
-        self._parts = []
-        self._parts.append(self._date[0:2])
-        self._parts.append(self._date[2:4])
-        self._parts.append(self._date[4:])
 
     @property
     def day(self) -> int:
-        return int(self._parts[0])
+        return int(self._date[0:2])
 
     @property
     def month(self) -> int:
-        return int(self._parts[1])
+        return int(self._date[2:4])
 
     @property
     def year(self) -> int:
-        return _pad_year(self._parts[2])
+        return _pad_year(self._date[4:])
 
     @staticmethod
     def _assert_format_is_valid(date: str) -> None:
-        if not bool(re.fullmatch(r"\d{6,8}", date)):
+        if not bool(re.fullmatch(r"\d{6}|\d{8}", date)):
             raise ValueError("Incorrect number of digits (must be 6 or 8).")
 
 
