@@ -17,3 +17,12 @@ py_test(
         "//src/main/freight/service/main",
     ],
 )
+
+py_test(
+    name = "premium_service",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/freight/service/premium",
+    ],
+)
