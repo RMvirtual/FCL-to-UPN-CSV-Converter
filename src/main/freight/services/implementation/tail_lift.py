@@ -22,4 +22,4 @@ class TailLiftService(TailLiftServiceInterface):
         return self.is_required()
 
     def __eq__(self, other: TailLiftServiceInterface) -> bool:
-        return self.is_required() and other.is_required()
+        return self._is_required == other.is_required()
