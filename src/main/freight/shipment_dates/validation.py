@@ -1,5 +1,4 @@
 from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
-from src.main.time.dates.interface.date import DateInterface
 from src.main.time.dates.factory import dates as factory
 
 
