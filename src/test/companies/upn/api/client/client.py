@@ -3,34 +3,33 @@ from src.main.companies.upn.api.client.soap_api import UPNAPIClient
 
 
 class TestUpnApiClient(unittest.TestCase):
+    def setUp(self):
+        self._client = UPNAPIClient()
+
     def test_should_get_post_code_restrictions(self):
-        client = UPNAPIClient()
         post_code = "AB10"
 
-        matching_retrictions = list(filter(
+        matching_restrictions = list(filter(
             lambda restriction: restriction["Postcode"] == post_code,
-            client.post_code_restrictions(post_code)
+            self._client.post_code_restrictions(post_code)
         ))
 
-        self.assertTrue(matching_retrictions)
+        self.assertTrue(matching_restrictions)
 
     def test_should_get_network_input(self):
-        client = UPNAPIClient()
-        network_input = client.network_input("2022-10-18")
+        network_input = self._client.network_input("2022-10-18")
         correct_no_of_consignments = 174
 
         self.assertEqual(correct_no_of_consignments, len(network_input))
 
     def test_should_get_network_deliveries(self):
-        client = UPNAPIClient()
-        network_input = client.network_deliveries("2022-10-18")
+        network_input = self._client.network_deliveries("2022-10-18")
         correct_no_of_consignments = 152
 
         self.assertEqual(correct_no_of_consignments, len(network_input))
 
     def test_should_get_network_delivery_by_con_no(self):
-        client = UPNAPIClient()
-        consignments = client.network_delivery_by_con_no("22302")
+        consignments = self._client.network_delivery_by_con_no("22302")
         correct_barcode = "D001446027C"
 
         matching_consignments = list(filter(
