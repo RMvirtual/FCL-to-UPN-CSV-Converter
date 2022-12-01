@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.services.implementation.main_service import MainService
+from src.main.freight.services.implementation.main import MainService
 
 
 class TestMainService(unittest.TestCase):

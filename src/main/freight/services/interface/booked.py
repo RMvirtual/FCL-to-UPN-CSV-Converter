@@ -1,8 +1,9 @@
 from __future__ import annotations
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+from src.main.freight.services.interface.optional import OptionalService
 
 
-class BookedServiceInterface(ABC):
+class BookedServiceInterface(OptionalService):
     @abstractmethod
     def book_in(self) -> None:
         ...
@@ -17,14 +18,6 @@ class BookedServiceInterface(ABC):
 
     @abstractmethod
     def is_booked(self) -> bool:
-        ...
-
-    @abstractmethod
-    def is_not_required(self) -> bool:
-        ...
-
-    @abstractmethod
-    def __bool__(self):
         ...
 
     @abstractmethod

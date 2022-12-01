@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from src.main.freight.services.interface.booked_service import BookedServiceInterface
+from src.main.freight.services.interface.booked import BookedServiceInterface
 
 
 class BookedService(BookedServiceInterface):
@@ -25,6 +25,9 @@ class BookedService(BookedServiceInterface):
 
     def is_booked(self) -> bool:
         return self._option == self.Options.BOOKED
+
+    def is_required(self) -> bool:
+        return not self.is_not_required()
 
     def is_not_required(self) -> bool:
         return self._option == self.Options.NONE

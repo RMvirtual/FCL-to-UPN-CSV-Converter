@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from src.main.freight.services.interface.premium_service import PremiumServiceInterface
+from src.main.freight.services.interface.premium import PremiumServiceInterface
 
 
 class PremiumService(PremiumServiceInterface):
@@ -32,6 +32,9 @@ class PremiumService(PremiumServiceInterface):
 
     def is_timed(self) -> bool:
         return self._selected == self.Options.TIMED
+
+    def is_required(self) -> bool:
+        return not self.is_not_required()
 
     def is_not_required(self) -> bool:
         return self._selected == self.Options.NONE

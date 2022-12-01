@@ -1,8 +1,9 @@
 from __future__ import annotations
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+from src.main.freight.services.interface.optional import OptionalService
 
 
-class PremiumServiceInterface(ABC):
+class PremiumServiceInterface(OptionalService):
     @abstractmethod
     def am(self) -> None:
         ...
@@ -29,14 +30,6 @@ class PremiumServiceInterface(ABC):
 
     @abstractmethod
     def is_timed(self) -> bool:
-        ...
-
-    @abstractmethod
-    def is_not_required(self) -> bool:
-        ...
-
-    @abstractmethod
-    def __bool__(self):
         ...
 
     @abstractmethod
