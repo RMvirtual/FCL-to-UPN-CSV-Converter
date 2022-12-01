@@ -13,7 +13,7 @@ class TestBookedService(unittest.TestCase):
 
     def test_should_show_service_as_true_when_not_none(self) -> None:
         self.assertFalse(self._service)
-        self._service.is_booked()
+        self._service.booked()
         self.assertTrue(self._service)
 
     def test_should_show_two_services_as_equal(self) -> None:
