@@ -3,7 +3,8 @@ from src.main.freight.address.implementation import Address
 from src.main.freight.address.interface import Address as AddressInterface
 from src.main.freight.references.implementation import References
 from src.main.freight.cargo.container.implementation import Cargo
-from src.main.freight.services.model import Service
+from src.main.freight.service.container.implementation import ServiceOptions
+from src.main.freight.service.container.interface import Services
 from src.main.freight.shipment_dates.implementation import ShipmentDates
 
 
@@ -13,7 +14,7 @@ class Consignment(interface.Consignment):
         self._client_name = ""
         self._address = Address()
         self._cargo = Cargo()
-        self._service = Service()
+        self._service = ServiceOptions()
         self._shipment_dates = ShipmentDates()
         self._delivery_instructions: list[str] = []
 
@@ -42,11 +43,11 @@ class Consignment(interface.Consignment):
         self._cargo = new_cargo
 
     @property
-    def service(self) -> Service:
+    def service(self) -> Services:
         return self._service
 
     @service.setter
-    def service(self, new_service: Service) -> None:
+    def service(self, new_service: Services) -> None:
         self._service = new_service
 
     @property

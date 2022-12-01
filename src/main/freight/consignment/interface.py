@@ -3,7 +3,7 @@ from src.main.freight.address.interface import Address
 from src.main.freight.references.interface import References
 from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
 from src.main.freight.cargo.container.implementation import Cargo
-from src.main.freight.services.model import Service
+from src.main.freight.service.container.interface import Services
 
 
 class Consignment(ABC):
@@ -24,7 +24,7 @@ class Consignment(ABC):
 
     @property
     @abstractmethod
-    def service(self) -> Service:
+    def service(self) -> Services:
         ...
 
     @property

@@ -27,7 +27,7 @@ class ServiceOptions(Services):
     def tail_lift(self) -> TailLiftService:
         return self._tail_lift
 
-    def __eq__(self, other: Services):
+    def __eq__(self, other: Services) -> bool:
         return (
             self._main == other.main()
             and self._premium == other.premium()
