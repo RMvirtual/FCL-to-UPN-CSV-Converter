@@ -1,12 +1,11 @@
 import copy
+from src.main.companies.bridges.graylaw_forward_office.consignment_import\
+    .parser.requests.types import ServiceParseRequest
 
-from src.main.companies.bridges.graylaw_forward_office.mapping\
-    .service import FclServiceCodeMap
+from src.main.companies.bridges.graylaw_forward_office.mapping.service \
+    import FclServiceCodeMap
+
 from src.main.freight.service.container.interface import Services
-
-from src.main.companies.bridges.graylaw_forward_office\
-    .consignment_import.parser.requests.types \
-    import ServiceParseRequest
 
 
 class ServiceParser:
