@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.services.types.implementation.booked import BookedOption
+from src.main.freight.service.options.implementation.booked import BookedOption
 
 
 class TestBookedService(unittest.TestCase):

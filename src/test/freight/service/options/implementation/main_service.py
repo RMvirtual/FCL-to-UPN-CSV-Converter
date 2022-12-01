@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.services.types.implementation.main import MainOption
+from src.main.freight.service.options.implementation.main import MainOption
 
 
 class TestMainService(unittest.TestCase):

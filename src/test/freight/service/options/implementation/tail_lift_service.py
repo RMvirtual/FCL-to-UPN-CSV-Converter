@@ -1,5 +1,6 @@
 import unittest
-from src.main.freight.services.types.implementation.tail_lift import TailLiftOption
+from src.main.freight.service.options.implementation.tail_lift \
+    import TailLiftOption
 
 
 class TestTailLiftService(unittest.TestCase):

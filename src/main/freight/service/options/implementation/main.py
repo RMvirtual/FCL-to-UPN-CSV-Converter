@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from src.main.freight.services.types.interface.main import MainService
+from src.main.freight.service.options.interface.main import MainService
 
 
 class MainOption(MainService):

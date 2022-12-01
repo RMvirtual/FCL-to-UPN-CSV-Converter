@@ -1,4 +1,5 @@
-from src.main.freight.services.types.interface.tail_lift import TailLiftService
+from src.main.freight.service.options.interface.tail_lift \
+    import TailLiftService
 
 
 class TailLiftOption(TailLiftService):

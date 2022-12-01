@@ -1,9 +1,10 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from src.main.freight.services.types.interface.main import MainService
-from src.main.freight.services.types.interface.premium import PremiumService
-from src.main.freight.services.types.interface.booked import BookedService
-from src.main.freight.services.types.interface.tail_lift import TailLiftService
+from src.main.freight.service.options.interface.main import MainService
+from src.main.freight.service.options.interface.premium import PremiumService
+from src.main.freight.service.options.interface.booked import BookedService
+from src.main.freight.service.options.interface.tail_lift \
+    import TailLiftService
 
 
 class Services(ABC):

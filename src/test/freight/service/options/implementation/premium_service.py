@@ -1,5 +1,6 @@
 import unittest
-from src.main.freight.services.types.implementation.premium import PremiumOption
+from src.main.freight.service.options.implementation.premium \
+    import PremiumOption
 
 
 class TestPremiumService(unittest.TestCase):

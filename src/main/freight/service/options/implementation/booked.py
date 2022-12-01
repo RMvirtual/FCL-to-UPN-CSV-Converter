@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from src.main.freight.services.types.interface.booked import BookedService
+from src.main.freight.service.options.interface.booked import BookedService
 
 
 class BookedOption(BookedService):

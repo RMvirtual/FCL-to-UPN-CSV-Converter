@@ -1,10 +1,11 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "container",
+    name = "types",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/freight/services/types",
+        "//src/main/freight/service/options/implementation",
+        "//src/main/freight/service/options/interface",
     ],
 )

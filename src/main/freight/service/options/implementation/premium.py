@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from src.main.freight.services.types.interface.premium import PremiumService
+from src.main.freight.service.options.interface.premium import PremiumService
 
 
 class PremiumOption(PremiumService):
