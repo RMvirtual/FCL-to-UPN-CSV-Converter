@@ -27,5 +27,5 @@ def booked_service() -> BookedService:
     return BookedOption()
 
 
-def tail_lift_service() -> TailLiftService():
+def tail_lift_service() -> TailLiftService:
     return TailLiftOption()

@@ -2,7 +2,7 @@ import copy
 
 from src.main.companies.bridges.graylaw_forward_office.mapping\
     .service import FclServiceCodeMap
-from src.main.freight.services.model import Service
+from src.main.freight.service.container.interface import Services
 
 from src.main.companies.bridges.graylaw_forward_office\
     .consignment_import.parser.requests.types \
@@ -13,7 +13,7 @@ class ServiceParser:
     def __init__(self):
         self._mappings = FclServiceCodeMap()
 
-    def parse(self, request: ServiceParseRequest) -> Service:
+    def parse(self, request: ServiceParseRequest) -> Services:
         service = self._mappings[request.priority_code]
         tail_lift_req = request.tail_lift_requested
 
