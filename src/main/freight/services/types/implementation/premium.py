@@ -1,8 +1,8 @@
 from enum import Enum, auto
-from src.main.freight.services.interface.premium import PremiumServiceInterface
+from src.main.freight.services.types.interface.premium import PremiumService
 
 
-class PremiumService(PremiumServiceInterface):
+class PremiumOption(PremiumService):
     class Options(Enum):
         NONE = auto()
         AM = auto()
@@ -42,7 +42,7 @@ class PremiumService(PremiumServiceInterface):
     def __bool__(self) -> bool:
         return self.is_required()
 
-    def __eq__(self, other: PremiumServiceInterface):
+    def __eq__(self, other: PremiumService):
         callback_options = {
             self.Options.NONE: other.is_not_required,
             self.Options.AM: other.is_am,

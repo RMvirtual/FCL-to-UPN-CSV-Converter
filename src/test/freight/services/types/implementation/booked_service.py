@@ -1,26 +1,26 @@
 import unittest
-from src.main.freight.services.implementation.premium import PremiumService
+from src.main.freight.services.types.implementation.booked import BookedOption
 
 
-class TestPremiumService(unittest.TestCase):
+class TestBookedService(unittest.TestCase):
     def setUp(self):
-        self._service = PremiumService()
+        self._service = BookedOption()
 
     def test_should_change_service(self) -> None:
-        self._service.am()
-        self.assertTrue(self._service.is_am())
-        self.assertFalse(self._service.is_timed())
+        self._service.booked()
+        self.assertTrue(self._service.is_booked())
+        self.assertFalse(self._service.is_book_in())
 
     def test_should_show_service_as_true_when_not_none(self) -> None:
         self.assertFalse(self._service)
-        self._service.pre_10am()
+        self._service.booked()
         self.assertTrue(self._service)
 
     def test_should_show_two_services_as_equal(self) -> None:
-        other_service = PremiumService()
+        other_service = BookedOption()
         self.assertEqual(self._service, other_service)
 
-        other_service.am()
+        other_service.book_in()
         self.assertNotEqual(self._service, other_service)
 
 

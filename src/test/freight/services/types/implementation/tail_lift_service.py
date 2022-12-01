@@ -1,10 +1,10 @@
 import unittest
-from src.main.freight.services.implementation.tail_lift import TailLiftService
+from src.main.freight.services.types.implementation.tail_lift import TailLiftOption
 
 
 class TestTailLiftService(unittest.TestCase):
     def setUp(self):
-        self._service = TailLiftService()
+        self._service = TailLiftOption()
 
     def test_should_change_service(self) -> None:
         self._service.required()
@@ -17,7 +17,7 @@ class TestTailLiftService(unittest.TestCase):
         self.assertTrue(self._service)
 
     def test_should_show_two_services_as_equal(self) -> None:
-        other_service = TailLiftService()
+        other_service = TailLiftOption()
         self.assertEqual(self._service, other_service)
 
         other_service.required()

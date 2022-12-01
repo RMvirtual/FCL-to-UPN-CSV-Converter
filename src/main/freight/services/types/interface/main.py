@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class MainServiceInterface(ABC):
+class MainService(ABC):
     @abstractmethod
     def economy(self) -> None:
         ...

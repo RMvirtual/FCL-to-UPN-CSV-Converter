@@ -1,8 +1,8 @@
 from enum import Enum, auto
-from src.main.freight.services.interface.main import MainServiceInterface
+from src.main.freight.services.types.interface.main import MainService
 
 
-class MainService(MainServiceInterface):
+class MainOption(MainService):
     class Options(Enum):
         ECONOMY = auto()
         NEXT_DAY = auto()

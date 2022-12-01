@@ -1,8 +1,7 @@
-from src.main.freight.services.interface.tail_lift \
-    import TailLiftServiceInterface
+from src.main.freight.services.types.interface.tail_lift import TailLiftService
 
 
-class TailLiftService(TailLiftServiceInterface):
+class TailLiftOption(TailLiftService):
     def __init__(self):
         self._is_required = False
 
@@ -21,5 +20,5 @@ class TailLiftService(TailLiftServiceInterface):
     def __bool__(self):
         return self.is_required()
 
-    def __eq__(self, other: TailLiftServiceInterface) -> bool:
+    def __eq__(self, other: TailLiftService) -> bool:
         return self._is_required == other.is_required()

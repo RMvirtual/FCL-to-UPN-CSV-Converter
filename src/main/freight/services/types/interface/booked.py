@@ -1,9 +1,9 @@
 from __future__ import annotations
 from abc import abstractmethod
-from src.main.freight.services.interface.optional import OptionalService
+from src.main.freight.services.types.interface.optional import OptionalService
 
 
-class BookedServiceInterface(OptionalService):
+class BookedService(OptionalService):
     @abstractmethod
     def book_in(self) -> None:
         ...
@@ -21,5 +21,5 @@ class BookedServiceInterface(OptionalService):
         ...
 
     @abstractmethod
-    def __eq__(self, other: BookedServiceInterface) -> bool:
+    def __eq__(self, other: BookedService) -> bool:
         ...

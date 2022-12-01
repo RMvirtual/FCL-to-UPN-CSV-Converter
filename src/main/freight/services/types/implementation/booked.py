@@ -1,8 +1,8 @@
 from enum import Enum, auto
-from src.main.freight.services.interface.booked import BookedServiceInterface
+from src.main.freight.services.types.interface.booked import BookedService
 
 
-class BookedService(BookedServiceInterface):
+class BookedOption(BookedService):
     class Options(Enum):
         NONE = auto()
         BOOK_IN = auto()
@@ -35,7 +35,7 @@ class BookedService(BookedServiceInterface):
     def __bool__(self):
         return self.is_required()
 
-    def __eq__(self, other: BookedServiceInterface) -> bool:
+    def __eq__(self, other: BookedService) -> bool:
         check_callbacks = {
             self.Options.NONE: other.is_not_required,
             self.Options.BOOK_IN: other.is_book_in,

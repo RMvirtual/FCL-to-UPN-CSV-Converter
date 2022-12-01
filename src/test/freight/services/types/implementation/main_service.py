@@ -1,10 +1,10 @@
 import unittest
-from src.main.freight.services.implementation.main import MainService
+from src.main.freight.services.types.implementation.main import MainOption
 
 
 class TestMainService(unittest.TestCase):
     def setUp(self):
-        self._service = MainService()
+        self._service = MainOption()
 
     def test_should_set_service_as_next_day(self) -> None:
         self._service.next_day()

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from abc import abstractmethod
-from src.main.freight.services.interface.optional import OptionalService
+from src.main.freight.services.types.interface.optional import OptionalService
 
 
-class PremiumServiceInterface(OptionalService):
+class PremiumService(OptionalService):
     @abstractmethod
     def am(self) -> None:
         ...
@@ -33,5 +33,5 @@ class PremiumServiceInterface(OptionalService):
         ...
 
     @abstractmethod
-    def __eq__(self, other: PremiumServiceInterface) -> bool:
+    def __eq__(self, other: PremiumService) -> bool:
         ...
