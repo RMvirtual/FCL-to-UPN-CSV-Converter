@@ -11,6 +11,7 @@ class TestDateFormatterFactory(unittest.TestCase):
             "3/6/22", "3/06/22", "03/06/22", "03/06/2022",
             "3.6.22", "3.06.22", "03.06.22", "03.06.2022",
             "3 6 22", "3 06 22", "03 06 22", "03 06 2022",
+            "  3  6 22  "
         ]
 
         self._alphanumeric_dates = [

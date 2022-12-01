@@ -3,7 +3,7 @@ import re
 
 class DateFormat:
     def __init__(self, date: str):
-        self._date = date
+        self._date = date.strip()
 
     def is_numeric(self) -> bool:
         return bool(re.fullmatch(r"\d{6,8}", self._date))
