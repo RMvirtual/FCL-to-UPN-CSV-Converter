@@ -4,20 +4,20 @@ from src.main.freight.service.main.interface import MainServiceInterface
 
 class MainService(MainServiceInterface):
     class Options(Enum):
-        economy = auto()
-        next_day = auto()
+        ECONOMY = auto()
+        NEXT_DAY = auto()
 
     def __init__(self):
-        self._option = self.Options.economy
+        self._option = self.Options.ECONOMY
 
     def economy(self) -> None:
-        self._option = self.Options.economy
+        self._option = self.Options.ECONOMY
 
     def next_day(self) -> None:
-        self._option = self.Options.next_day
+        self._option = self.Options.NEXT_DAY
 
     def is_economy(self) -> bool:
-        return self._option == self.Options.economy
+        return self._option == self.Options.ECONOMY
 
     def is_next_day(self) -> bool:
-        return self._option == self.Options.next_day
+        return self._option == self.Options.NEXT_DAY
