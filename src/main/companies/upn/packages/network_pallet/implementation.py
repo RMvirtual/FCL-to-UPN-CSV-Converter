@@ -1,4 +1,5 @@
-from src.main.companies.upn.api.interfaces.pallets.network_pallet import NetworkPalletInterface
+from src.main.companies.upn.api.interfaces.pallets.network_pallet \
+    import NetworkPalletInterface
 
 from src.main.companies.upn.freight.cargo.pallet.abstract import (
     UPNPalletFields, AbstractUPNPallet)

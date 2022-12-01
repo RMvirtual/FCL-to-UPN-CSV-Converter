@@ -1,6 +1,7 @@
 import datetime
 from abc import ABC, abstractmethod
-from src.main.companies.upn.api.interfaces.pallets.network_pallet import NetworkPalletInterface
+from src.main.companies.upn.api.interfaces.pallets.network_pallet \
+    import NetworkPalletInterface
 
 
 class NetworkConsignmentInterface(ABC):

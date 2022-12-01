@@ -1,6 +1,7 @@
 import copy
 from src.main.file_system.companies.forward_office import freight_mappings
-from src.main.freight.services.model import Service
+from src.main.freight.service.container.interface import Services
+from src.main.freight.service.container.implementation import ServiceOptions
 
 
 class ServiceCodeMapBuilder:
@@ -9,7 +10,7 @@ class ServiceCodeMapBuilder:
 
     def _build_map(self):
         self._mappings = {}
-        self._service = Service()
+        self._service = ServiceOptions()
         self._parse_mappings()
 
     def _parse_mappings(self):
@@ -22,19 +23,19 @@ class ServiceCodeMapBuilder:
 
         self._mappings[priority_code] = self._deserialise(mapping_info)
 
-    def _deserialise(self, mapping_info) -> Service:
-        self._service = Service()
+    def _deserialise(self, mapping_info) -> Services:
+        self._service = Services()
         self._process_main_service(mapping_info["main_service"])
         self._process_premium_service(mapping_info["premium_service"])
         self._process_booked_service(mapping_info["booked_service"])
-        self._process_saturday_service(mapping_info["saturday_service"])
+        # self._process_saturday_service(mapping_info["saturday_service"])
 
         return copy.copy(self._service)
 
     def _process_main_service(self, service_key: str):
         callbacks = {
-            "PRIORITY": self._service.priority,
-            "ECONOMY": self._service.economy
+            "PRIORITY": self._service.main().next_day,
+            "ECONOMY": self._service.main().economy()
         }
 
         callbacks[service_key]()
@@ -44,9 +45,9 @@ class ServiceCodeMapBuilder:
 
     def _set_premium_service(self, service_key: str):
         callbacks = {
-            "AM": self._service.am,
-            "PRE-10AM": self._service.pre_10am,
-            "TIMED": self._service.timed
+            "AM": self._service.premium().am,
+            "PRE-10AM": self._service.premium().pre_10am,
+            "TIMED": self._service.premium().timed
         }
 
         callbacks[service_key]()
@@ -56,14 +57,16 @@ class ServiceCodeMapBuilder:
 
     def _set_booked_service(self, service_key: str):
         callbacks = {
-            "BOOK-IN": self._service.book_in,
-            "BOOKED": self._service.booked
+            "BOOK-IN": self._service.booked().book_in,
+            "BOOKED": self._service.booked().booked
         }
 
         callbacks[service_key]()
 
+    """
     def _process_saturday_service(self, service_key: str):
         self._service.saturday() if service_key else ...
+    """
 
     def mappings(self):
         return copy.copy(self._mappings)
@@ -73,7 +76,7 @@ class FclServiceCodeMap:
     def __init__(self):
         self._map = ServiceCodeMapBuilder().mappings()
 
-    def __getitem__(self, priority_code: int or str) -> Service:
+    def __getitem__(self, priority_code: int or str) -> Services:
         return copy.copy(self._map[self._normalise(priority_code)])
 
     def contains(self, priority_code: int or str):

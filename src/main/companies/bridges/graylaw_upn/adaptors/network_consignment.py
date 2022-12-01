@@ -2,15 +2,20 @@ from src.main.freight.consignment.interface import Consignment
 from src.main.freight.references.interface import References
 from src.main.freight.address.interface import Address
 from src.main.freight.cargo.container.implementation import Cargo
-from src.main.freight.services.model import Service
+from src.main.freight.service.container.interface import Services
 from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
 
 from src.main.companies.upn.consignments.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.companies.bridges.graylaw_upn.adaptors.address import UPNAddressAdaptor
-from src.main.companies.bridges.graylaw_upn.adaptors.references import UPNReferencesAdaptor
-from src.main.companies.bridges.graylaw_upn.adaptors.dates import UPNDatesInterfaceAdaptor
+from src.main.companies.bridges.graylaw_upn.adaptors.address \
+    import UPNAddressAdaptor
+
+from src.main.companies.bridges.graylaw_upn.adaptors.references \
+    import UPNReferencesAdaptor
+
+from src.main.companies.bridges.graylaw_upn.adaptors.dates \
+    import UPNDatesInterfaceAdaptor
 
 
 class NetworkConsignmentAdaptor(Consignment):
@@ -33,7 +38,7 @@ class NetworkConsignmentAdaptor(Consignment):
         ...
 
     @property
-    def service(self) -> Service:
+    def service(self) -> Services:
         ...
 
     @property

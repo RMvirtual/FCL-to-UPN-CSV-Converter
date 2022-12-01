@@ -1,6 +1,7 @@
 from __future__ import annotations
 from abc import abstractmethod
-from src.main.companies.upn.api.interfaces.pallets.upn_pallet import UPNPalletInterface
+from src.main.companies.upn.api.interfaces.pallets.upn_pallet \
+    import UPNPalletInterface
 
 
 class CustPalletInterface(UPNPalletInterface):

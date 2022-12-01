@@ -1,6 +1,6 @@
 import copy
 from src.main.freight.references.consignment.interface \
-    import ConsignmentReference as GraylawConsignmentReference
+    import ConsignmentReference
 
 from src.main.freight.references.interface import References
 from src.main.companies.upn.freight.references.references import UPNReferences
@@ -14,7 +14,7 @@ class UPNReferencesAdaptor(References):
         self._references = copy.deepcopy(upn_references)
 
     @property
-    def consignment(self) -> GraylawConsignmentReference:
+    def consignment(self) -> ConsignmentReference:
         return self._references.consignment_no
 
     @consignment.setter

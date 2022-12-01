@@ -1,10 +1,12 @@
 from src.main.file_system.companies.upn.api import data_structure_files
 from src.main.freight.cargo.packages.oversize.interface import OversizeOptions
 from src.main.freight.cargo.packages.types.interface import PackageType
-from src.main.companies.graylaw.packages.types import \
-    database as graylaw_packages
+from src.main.companies.graylaw.packages.types \
+    import database as graylaw_packages
+
 from src.main.metrics.dimensions.implementation import Dimensions
-from src.main.companies.upn.api.interfaces.pallets.upn_pallet import UPNPalletInterface
+from src.main.companies.upn.api.interfaces.pallets.upn_pallet \
+    import UPNPalletInterface
 
 
 class NetworkPalletAdaptor(PackageType):

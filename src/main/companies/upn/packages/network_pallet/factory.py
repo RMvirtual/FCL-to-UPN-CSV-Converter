@@ -1,5 +1,8 @@
-from src.main.companies.upn.packages.network_pallet.builder import NetworkPalletBuilder
-from src.main.companies.upn.api.interfaces.pallets.network_pallet import NetworkPalletInterface
+from src.main.companies.upn.packages.network_pallet.builder \
+    import NetworkPalletBuilder
+
+from src.main.companies.upn.api.interfaces.pallets.network_pallet \
+    import NetworkPalletInterface
 
 
 def network_pallet(

@@ -1,5 +1,6 @@
 import dataclasses
-from src.main.companies.upn.api.interfaces.pallets.upn_pallet import UPNPalletInterface
+from src.main.companies.upn.api.interfaces.pallets.upn_pallet \
+    import UPNPalletInterface
 
 
 @dataclasses.dataclass

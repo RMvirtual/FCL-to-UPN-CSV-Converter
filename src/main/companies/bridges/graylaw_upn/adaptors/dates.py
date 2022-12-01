@@ -1,7 +1,7 @@
 import datetime
 from src.main.companies.upn.freight.dates.dates import UPNDates
 from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
-from src.main.time.dates.interface.date import DateInterface as GraylawDate
+from src.main.time.dates.interface.date import DateInterface
 from src.main.companies.bridges.graylaw_upn.adaptors.date import UPNDateAdaptor
 
 
@@ -13,11 +13,11 @@ class UPNDatesInterfaceAdaptor(ShipmentDatesInterface):
         self._dates = upn_dates
 
     @property
-    def delivery_date(self) -> GraylawDate:
+    def delivery_date(self) -> DateInterface:
         return UPNDateAdaptor(self._dates.delivery.date())
 
     @property
-    def collection_date(self) -> GraylawDate:
+    def collection_date(self) -> DateInterface:
         return UPNDateAdaptor(self._dates.despatch)
 
     @property
