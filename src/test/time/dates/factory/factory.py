@@ -15,7 +15,7 @@ class TestDateFactory(unittest.TestCase):
     def test_should_create_from_numeric_delimited_date(self) -> None:
         dates = [
             "03\\06\\2022", "03-06-2022", "03/06/2022", "03.06.2022",
-            "03\\06\\22", "03-06-22", "03/06/22", "03.06.22"
+            "03\\06\\22", "03-06-22", "03/06/22", "03.06.22",
             "3.6.22", "03.6.22", "3.06.22"
         ]
 
