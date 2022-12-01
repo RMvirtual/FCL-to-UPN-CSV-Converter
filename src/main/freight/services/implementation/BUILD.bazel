@@ -4,5 +4,7 @@ py_library(
     name = "implementation",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+        "//src/main/freight/services/interface",
+    ],
 )

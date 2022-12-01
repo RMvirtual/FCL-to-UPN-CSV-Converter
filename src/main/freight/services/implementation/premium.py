@@ -40,7 +40,7 @@ class PremiumService(PremiumServiceInterface):
         return self._selected == self.Options.NONE
 
     def __bool__(self) -> bool:
-        return self._selected != self.Options.NONE
+        return self.is_required()
 
     def __eq__(self, other: PremiumServiceInterface):
         callback_options = {

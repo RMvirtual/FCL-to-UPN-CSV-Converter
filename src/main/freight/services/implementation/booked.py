@@ -33,7 +33,7 @@ class BookedService(BookedServiceInterface):
         return self._option == self.Options.NONE
 
     def __bool__(self):
-        return not self.is_not_required()
+        return self.is_required()
 
     def __eq__(self, other: BookedServiceInterface) -> bool:
         check_callbacks = {

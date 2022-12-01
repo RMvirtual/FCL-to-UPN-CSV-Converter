@@ -26,3 +26,12 @@ py_test(
         "//src/main/freight/services/implementation",
     ],
 )
+
+py_test(
+    name = "tail_lift_service",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/freight/services/implementation",
+    ],
+)
