@@ -14,8 +14,8 @@ class TestDateFormatterFactory(unittest.TestCase):
         ]
 
         self._alphanumeric_dates = [
-            "03 June 2022", "03 Jun 22", "03/June/2022", "3/June/22"
-            "3.June.22", "3.Jun.22"
+            "03 June 2022", "03 Jun 22", "03/June/2022", "3/June/22",
+            "3.June.22", "3.Jun.22", " 03 June 2022", "  03  June 2022  "
         ]
 
         self._unrecognisable_dates = [
@@ -30,7 +30,7 @@ class TestDateFormatterFactory(unittest.TestCase):
             self._assert_matches_03_06_2022(factory.formatter(date))
 
     def test_should_format_alphanumeric_dates(self) -> None:
-        for date in self._numeric_delimited_dates:
+        for date in self._alphanumeric_dates:
             self._assert_matches_03_06_2022(factory.formatter(date))
 
     def test_should_raise_exception_when_formatting_invalid_date(self) -> None:

@@ -24,7 +24,7 @@ class TestDateFactory(unittest.TestCase):
     def test_should_create_from_alphanumeric_date(self) -> None:
         dates = [
             "03-Jun-2022", "03-Jun-22", "03-June-2022", "03-June-22",
-            "03/June/22", " 03 June 2022", "3 June 22"
+            "03/June/22", "03 June 2022", "3 June 22", " 03 June 2022"
         ]
 
         self._assert_list_produces_03_06_2022(dates)
@@ -37,6 +37,7 @@ class TestDateFactory(unittest.TestCase):
         self.assertEqual(3, date.day)
         self.assertEqual(6, date.month)
         self.assertEqual(2022, date.year)
+
 
 if __name__ == '__main__':
     unittest.main()
