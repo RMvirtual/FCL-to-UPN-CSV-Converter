@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from src.main.time.dates.interface.date import DateInterface
 
 
-class ShipmentDates(ABC):
+class ShipmentDatesInterface(ABC):
     @property
     @abstractmethod
     def delivery_date(self) -> DateInterface:
@@ -11,7 +11,7 @@ class ShipmentDates(ABC):
 
     @delivery_date.setter
     @abstractmethod
-    def delivery_date(self, dd_mm_yyyy: str) -> None:
+    def delivery_date(self, new_date: str) -> None:
         ...
 
     @property
@@ -21,7 +21,7 @@ class ShipmentDates(ABC):
 
     @collection_date.setter
     @abstractmethod
-    def collection_date(self, dd_mm_yyyy: str) -> None:
+    def collection_date(self, new_date: str) -> None:
         ...
 
     @property

@@ -1,11 +1,11 @@
 import datetime
 from src.main.companies.upn.freight.dates.dates import UPNDates
-from src.main.freight.shipment_dates.container.interface import ShipmentDates
+from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
 from src.main.time.dates.interface.date import DateInterface as GraylawDate
 from src.main.companies.bridges.graylaw_upn.adaptors.date import UPNDateAdaptor
 
 
-class UPNDatesAdaptor(ShipmentDates):
+class UPNDatesInterfaceAdaptor(ShipmentDatesInterface):
     """Adaptor for turning a UPN Dates structure into a Graylaw
     Shipment Dates structure.
     """

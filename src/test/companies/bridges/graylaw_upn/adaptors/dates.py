@@ -1,7 +1,7 @@
 import datetime
 import unittest
 from src.main.companies.upn.freight.dates.dates import UPNDates
-from src.main.companies.bridges.graylaw_upn.adaptors.dates import UPNDatesAdaptor
+from src.main.companies.bridges.graylaw_upn.adaptors.dates import UPNDatesInterfaceAdaptor
 
 
 class TestUPNDatesAdaptor(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestUPNDatesAdaptor(unittest.TestCase):
             day=3, month=6, year=1991, hour=13, minute=30)
 
         dates_to_adapt.despatch = datetime.datetime(day=2, month=6, year=1991)
-        self._adaptor = UPNDatesAdaptor(dates_to_adapt)
+        self._adaptor = UPNDatesInterfaceAdaptor(dates_to_adapt)
 
     def test_should_get_delivery_date(self) -> None:
         date = self._adaptor.delivery_date

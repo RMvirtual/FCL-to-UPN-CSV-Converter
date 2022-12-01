@@ -1,14 +1,17 @@
 from __future__ import annotations
 import datetime
-from src.main.time.dates.implementation.date import Date
-from src.main.time.dates.interface.date import DateInterface as DateInterface
+from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
+from src.main.freight.shipment_dates.validation import ValidationStrategy
+from src.main.time.dates.factory import dates as dates_factory
+from src.main.time.dates.interface.date import DateInterface
 
 
-class ShipmentDates:
+class ShipmentDates(ShipmentDatesInterface):
     def __init__(self):
-        self._collection_date: DateInterface or None = None
-        self._delivery_date: DateInterface or None = None
+        self._collection_date = None
+        self._delivery_date = None
         self._delivery_time: datetime.time or None = None
+        self._validator = ValidationStrategy(self)
 
     @property
     def delivery_date(self) -> DateInterface:
@@ -16,7 +19,8 @@ class ShipmentDates:
 
     @delivery_date.setter
     def delivery_date(self, new_date: str) -> None:
-        self._delivery_date = Date(new_date)
+        self._validator.assert_can_set_delivery_date(new_date)
+        self._delivery_date = dates_factory.from_string(new_date)
 
     @property
     def collection_date(self) -> DateInterface:
@@ -24,11 +28,8 @@ class ShipmentDates:
 
     @collection_date.setter
     def collection_date(self, new_date: str) -> None:
-        if self._delivery_date is not None and self._delivery_date < new_date:
-            raise ValueError(
-                "Collection date cannot be later than delivery date.")
-
-        self._collection_date = Date(new_date)
+        self._validator.assert_can_set_collection_date(new_date)
+        self._collection_date = dates_factory.from_string(new_date)
 
     @property
     def delivery_time(self) -> datetime.time:

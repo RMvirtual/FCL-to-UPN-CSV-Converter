@@ -1,6 +1,5 @@
 import unittest
-from src.main.freight.shipment_dates.container.implementation \
-    import ShipmentDates
+from src.main.freight.shipment_dates.implementation import ShipmentDates
 
 
 class TestShipmentDates(unittest.TestCase):
