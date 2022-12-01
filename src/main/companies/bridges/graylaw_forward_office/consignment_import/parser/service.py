@@ -2,7 +2,7 @@ import copy
 
 from src.main.companies.bridges.graylaw_forward_office.mapping\
     .service import FclServiceCodeMap
-from src.main.freight.service.model import Service
+from src.main.freight.services.model import Service
 
 from src.main.companies.bridges.graylaw_forward_office\
     .consignment_import.parser.requests.types \

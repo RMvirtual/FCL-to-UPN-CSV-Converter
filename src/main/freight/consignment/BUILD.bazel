@@ -8,7 +8,7 @@ py_library(
         "//src/main/freight/address",
         "//src/main/freight/cargo",
         "//src/main/freight/references",
-        "//src/main/freight/service",
+        "//src/main/freight/services",
         "//src/main/freight/shipment_dates",
     ],
 )

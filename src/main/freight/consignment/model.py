@@ -3,7 +3,7 @@ from src.main.freight.address.implementation import Address
 from src.main.freight.address.interface import Address as AddressInterface
 from src.main.freight.references.implementation import References
 from src.main.freight.cargo.container.implementation import Cargo
-from src.main.freight.service.model import Service
+from src.main.freight.services.model import Service
 from src.main.freight.shipment_dates.implementation import ShipmentDates
 
 

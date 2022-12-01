@@ -1,6 +1,6 @@
 import unittest
-from src.main.freight.service.validation import ServiceValidationStrategy
-from src.main.freight.service.types import ServiceOptions, MainService
+from src.main.freight.services.validation import ServiceValidationStrategy
+from src.main.freight.services.types import ServiceOptions, MainService
 
 
 class TestServiceValidation(unittest.TestCase):

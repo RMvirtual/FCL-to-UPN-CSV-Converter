@@ -1,7 +1,7 @@
-from src.main.freight.service.types import (
+from src.main.freight.services.types import (
     MainService, PremiumService, BookedService, ServiceOptions)
 
-from src.main.freight.service.validation import ServiceValidationStrategy
+from src.main.freight.services.validation import ServiceValidationStrategy
 
 
 class Service:

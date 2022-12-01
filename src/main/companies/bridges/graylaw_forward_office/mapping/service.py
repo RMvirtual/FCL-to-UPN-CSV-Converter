@@ -1,6 +1,6 @@
 import copy
 from src.main.file_system.companies.forward_office import freight_mappings
-from src.main.freight.service.model import Service
+from src.main.freight.services.model import Service
 
 
 class ServiceCodeMapBuilder:

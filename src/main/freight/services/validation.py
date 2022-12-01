@@ -1,4 +1,4 @@
-from src.main.freight.service.types import (
+from src.main.freight.services.types import (
     MainService, PremiumService, BookedService, ServiceOptions)
 
 

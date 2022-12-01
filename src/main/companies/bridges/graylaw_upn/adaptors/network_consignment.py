@@ -2,7 +2,7 @@ from src.main.freight.consignment.interface import Consignment
 from src.main.freight.references.interface import References
 from src.main.freight.address.interface import Address
 from src.main.freight.cargo.container.implementation import Cargo
-from src.main.freight.service.model import Service
+from src.main.freight.services.model import Service
 from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
 
 from src.main.companies.upn.consignments.network_consignment.implementation \
