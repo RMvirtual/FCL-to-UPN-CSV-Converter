@@ -1,4 +1,4 @@
-from src.main.freight.consignment.model import Consignment
+from src.main.freight.consignment.implementation import Consignment
 
 from src.main.companies.bridges.graylaw_forward_office\
     .consignment_import.parser.consignment import ConsignmentParser

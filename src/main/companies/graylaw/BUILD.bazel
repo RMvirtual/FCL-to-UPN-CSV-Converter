@@ -6,5 +6,6 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/companies/graylaw/packages",
+        "//src/main/companies/graylaw/services",
     ],
 )
