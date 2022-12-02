@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("@python_third_party//:requirements.bzl", "requirement")
+
+py_library(
+    name = "freight",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/freight/cargo",
+        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/freight/references",
+        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/freight/services",
+    ],
+)

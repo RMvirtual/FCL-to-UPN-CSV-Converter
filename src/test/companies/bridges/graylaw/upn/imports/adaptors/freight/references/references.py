@@ -1,6 +1,6 @@
 import unittest
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.references\
-    .adaptor \
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.freight\
+    .references.adaptor \
     import UPNReferencesAdaptor
 
 from src.main.companies.upn.freight.references.references import UPNReferences

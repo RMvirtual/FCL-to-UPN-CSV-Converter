@@ -7,9 +7,7 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/companies/bridges/graylaw/upn/imports/adaptors/address",
-        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/cargo",
-        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/references",
-        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/services",
+        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/freight",
         "//src/main/companies/bridges/graylaw/upn/imports/adaptors/time",
     ],
 )

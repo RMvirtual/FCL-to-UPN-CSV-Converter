@@ -1,8 +1,10 @@
 import unittest
-from src.test.companies.bridges.graylaw.upn.imports.adaptors.cargo.container \
-    import setup
+from src.test.companies.bridges.graylaw.upn.imports.adaptors.freight.cargo\
+    .container import \
+    setup
 
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.cargo.containers \
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.freight.cargo\
+    .containers \
     import UPNCargoAdaptor
 
 
