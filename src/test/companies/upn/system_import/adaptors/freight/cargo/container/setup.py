@@ -1,5 +1,8 @@
-from src.main.companies.upn.implementations.cargo.container.container import UPNCargo
-from src.main.companies.upn.implementations.packages.network_pallet.builder import NetworkPalletBuilder
+from src.main.companies.upn.implementations.cargo.container.container \
+    import UPNCargo
+
+from src.main.companies.upn.implementations.packages.network_pallet.builder \
+    import NetworkPalletBuilder
 
 
 def single_entry_upn_cargo() -> UPNCargo:

@@ -1,8 +1,7 @@
-from src.main.companies.upn.implementations.packages.network_pallet import \
-    factory as pallet_factory
-from src.main.companies.upn.interfaces.network_pallet \
-    import NetworkPalletInterface
+from src.main.companies.upn.implementations.packages.network_pallet \
+    import factory as pallet_factory
 
+from src.main.companies.upn.interfaces.pallets import NetworkPallet
 from src.main.metrics.dimensions.interface import Dimensions
 from src.main.metrics.dimensions import factory as dims_factory
 
@@ -10,7 +9,7 @@ from src.main.freight.cargo.packages.oversize.implementation import (
     OversizeOption, OversizeOptions)
 
 
-def normal_full_pallet() -> NetworkPalletInterface:
+def normal_full_pallet() -> NetworkPallet:
     result = pallet_factory.network_pallet(size_name="N", type_name="FULL")
     result.barcode = "W213359800P"
     result.consignment_barcode = "W213359799C"
@@ -18,7 +17,7 @@ def normal_full_pallet() -> NetworkPalletInterface:
     return result
 
 
-def double_half_pallet() -> NetworkPalletInterface:
+def double_half_pallet() -> NetworkPallet:
     result = pallet_factory.network_pallet(size_name="2", type_name="HALF")
     result.barcode = "W213359800P"
     result.consignment_barcode = "W213359799C"

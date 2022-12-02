@@ -1,19 +1,18 @@
-from src.main.companies.upn.interfaces.network_pallet \
-    import NetworkPalletInterface
-
 from src.main.companies.upn.api.mapping import network_consignment
 from src.main.companies.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
-
-from src.main.companies.upn.implementations.network_consignment\
-    .implementation \
-    import NetworkConsignment
-
-from src.main.companies.upn.implementations.references.references import UPNReferences
-from src.main.companies.upn.interfaces.address import UPNAddress
-from src.main.companies.upn.implementations.customer.customer import UPNCustomer
+from src.main.companies.upn.implementations.address.address import UPNAddress
+from src.main.companies.upn.implementations.customer.customer \
+    import UPNCustomer
+from src.main.companies.upn.implementations.network_consignment \
+    .implementation import NetworkConsignment
+from src.main.companies.upn.implementations.references.references \
+    import UPNReferences
+from src.main.companies.upn.implementations.services.services \
+    import UPNServices
 from src.main.companies.upn.implementations.time.dates import UPNDates
-from src.main.companies.upn.implementations.services.services import UPNServices
+from src.main.companies.upn.interfaces.address import UPNAddressable
+from src.main.companies.upn.interfaces.pallets import NetworkPallet
 
 UPNDict = dict[str, any]
 
@@ -49,7 +48,8 @@ class UpnNetworkConsignmentMarshaller:
 
         return result
 
-    def unmarshall_delivery_address(self, candidate: UPNDict) -> UPNAddress:
+    def unmarshall_delivery_address(
+            self, candidate: UPNDict) -> UPNAddressable:
         def _unmarshall_candidate(field_name: str) -> any:
             return self._unmarshall(candidate, field_name)
 
@@ -95,8 +95,7 @@ class UpnNetworkConsignmentMarshaller:
 
         return result
 
-    def unmarshall_pallets(
-            self, candidate: UPNDict) -> list[NetworkPalletInterface]:
+    def unmarshall_pallets(self, candidate: UPNDict) -> list[NetworkPallet]:
         pallets = self._unmarshall(candidate, "pallets")["NetworkPallet"]
 
         return list(map(self._pallet_marshaller.unmarshall, pallets))

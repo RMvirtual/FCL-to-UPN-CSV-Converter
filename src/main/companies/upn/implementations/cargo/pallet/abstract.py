@@ -1,8 +1,7 @@
 import copy
 import dataclasses
 from abc import abstractmethod
-from src.main.companies.upn.interfaces.pallets \
-    import UPNPallet as UPNPalletInterface
+from src.main.companies.upn.interfaces.pallets import UPNPallet
 
 
 @dataclasses.dataclass
@@ -13,7 +12,7 @@ class UPNPalletFields:
     size_constraints: list[str] = dataclasses.field(default=list[str])
 
 
-class AbstractUPNPallet(UPNPalletInterface):
+class AbstractUPNPallet(UPNPallet):
     """Abstraction of a UPN base pallet class."""
 
     @abstractmethod
@@ -49,7 +48,7 @@ class AbstractUPNPallet(UPNPalletInterface):
     def type_constraints(self) -> list[str]:
         return copy.deepcopy(self._type_constraints)
 
-    def __eq__(self, other: UPNPalletInterface) -> bool:
+    def __eq__(self, other: UPNPallet) -> bool:
         return self.size == other.size and self.type == other.type
 
     def _raise_exception_if_invalid_type(self, type_name: str) -> None:

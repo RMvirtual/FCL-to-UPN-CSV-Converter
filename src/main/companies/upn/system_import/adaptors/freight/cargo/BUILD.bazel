@@ -6,7 +6,7 @@ py_library(
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/companies/upn/interfaces",
+        "//src/main/companies/upn/implementations",
         "//src/main/freight/cargo",
     ],
 )

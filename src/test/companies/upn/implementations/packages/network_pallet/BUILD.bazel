@@ -7,7 +7,7 @@ py_test(
     ]),
     data = [],
     deps = [
-        "//src/main/companies/upn/packages/network_pallet",
+        "//src/main/companies/upn/implementations/packages/network_pallet",
     ],
 )
 
@@ -16,6 +16,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/companies/upn/packages/network_pallet",
+        "//src/main/companies/upn/implementations/packages/network_pallet",
     ],
 )

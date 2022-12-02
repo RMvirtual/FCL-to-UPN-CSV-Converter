@@ -1,8 +1,9 @@
 import unittest
-from src.main.companies.upn.system_import.network_pallet.adaptor import NetworkPalletAdaptor
+from src.main.companies.upn.system_import.network_pallet.adaptor \
+    import NetworkPalletAdaptor
 
 
-from src.test.companies.upn.imports.network_pallet import setup
+from src.test.companies.upn.system_import.network_pallet import setup
 
 
 class TestNetworkPalletMapping(unittest.TestCase):

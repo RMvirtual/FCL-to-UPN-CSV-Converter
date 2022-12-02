@@ -1,21 +1,26 @@
 import datetime
-from src.main.companies.upn.interfaces.network_pallet \
-    import NetworkPalletInterface
+from src.main.companies.upn.interfaces.pallets import NetworkPallet
 
 from src.main.companies.upn.implementations.network_consignment\
-    .implementation \
-    import NetworkConsignment
+    .implementation import NetworkConsignment
 
-from src.main.companies.upn.interfaces.address import UPNAddress
-from src.main.companies.upn.implementations.customer.customer import UPNCustomer
+from src.main.companies.upn.interfaces.address import UPNAddressable
+from src.main.companies.upn.implementations.address.address import UPNAddress
+
+from src.main.companies.upn.implementations.customer.customer \
+    import UPNCustomer
 from src.main.companies.upn.implementations.time.dates import UPNDates
-from src.main.companies.upn.implementations.cargo.container.container import UPNCargo
+from src.main.companies.upn.implementations.cargo.container.container \
+    import UPNCargo
 
-from src.main.companies.upn.implementations.packages.network_pallet import \
-    factory as pallet_factory
+from src.main.companies.upn.implementations.packages.network_pallet \
+    import factory as pallet_factory
 
-from src.main.companies.upn.implementations.references.references import UPNReferences
-from src.main.companies.upn.implementations.services.services import UPNServices
+from src.main.companies.upn.implementations.references.references \
+    import UPNReferences
+
+from src.main.companies.upn.implementations.services.services \
+    import UPNServices
 
 
 def dummy_network_consignment() -> NetworkConsignment:
@@ -43,7 +48,7 @@ def _references() -> UPNReferences:
     return result
 
 
-def _delivery_address() -> UPNAddress:
+def _delivery_address() -> UPNAddressable:
     result = UPNAddress()
     result.name = "GRAYLAW FREIGHT GROUP"
     result.line_1 = "GRAYLAW FREIGHT TERMINAL"
@@ -92,11 +97,11 @@ def _dates() -> UPNDates:
     return result
 
 
-def _pallets() -> list[NetworkPalletInterface]:
+def _pallets() -> list[NetworkPallet]:
     return [_network_pallet("W213359800P"), _network_pallet("W213359801P")]
 
 
-def _network_pallet(barcode_no: str) -> NetworkPalletInterface:
+def _network_pallet(barcode_no: str) -> NetworkPallet:
     result = pallet_factory.network_pallet(size_name="N", type_name="FULL")
     result.consignment_barcode = "W213359799C"
     result.barcode = barcode_no

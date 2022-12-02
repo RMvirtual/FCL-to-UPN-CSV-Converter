@@ -7,6 +7,6 @@ py_test(
     ]),
     data = [],
     deps = [
-        "//src/main/companies/upn/packages/cust_pallet",
+        "//src/main/companies/upn/implementations/packages/cust_pallet",
     ],
 )
