@@ -1,6 +1,6 @@
 import unittest
-from src.main.companies.upn.implementations.packages.network_pallet import \
-    factory
+from src.main.companies.upn.implementations.packages.network_pallet import (
+    factory)
 
 
 class TestNetworkPalletFactory(unittest.TestCase):

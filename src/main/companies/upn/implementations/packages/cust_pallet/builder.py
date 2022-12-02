@@ -1,8 +1,8 @@
 import copy
-from src.main.companies.upn.interfaces.cust_pallet import CustPalletInterface
-from src.main.companies.upn.implementations.packages.cust_pallet\
-    .implementation import (
-    CustPallet, CustPalletFields)
+from src.main.companies.upn.implementations.packages.cust_pallet \
+    .implementation import CustPallet as CustPalletImpl, CustPalletFields
+
+from src.main.companies.upn.interfaces.pallets import CustPallet
 
 
 class CustPalletBuilder:
@@ -24,5 +24,5 @@ class CustPalletBuilder:
     def set_weight(self, weight: int) -> None:
         self._fields.weight = weight
 
-    def build(self) -> CustPalletInterface:
-        return CustPallet(self._fields)
+    def build(self) -> CustPallet:
+        return CustPalletImpl(self._fields)

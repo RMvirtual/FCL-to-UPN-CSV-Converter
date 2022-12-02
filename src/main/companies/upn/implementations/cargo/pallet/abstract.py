@@ -1,10 +1,8 @@
-from __future__ import annotations
-
 import copy
 import dataclasses
 from abc import abstractmethod
-from src.main.companies.upn.interfaces.upn_pallet import (
-    UPNPalletInterface, UPNPalletReading)
+from src.main.companies.upn.interfaces.pallets \
+    import UPNPallet as UPNPalletInterface
 
 
 @dataclasses.dataclass
@@ -26,8 +24,7 @@ class AbstractUPNPallet(UPNPalletInterface):
         self._size = pallet_fields.size
 
     @property
-    def size(self, **kwargs) -> str:
-        # Has **kwargs due to IDE ERROR.
+    def size(self) -> str:
         return self._size
 
     @size.setter
@@ -52,7 +49,7 @@ class AbstractUPNPallet(UPNPalletInterface):
     def type_constraints(self) -> list[str]:
         return copy.deepcopy(self._type_constraints)
 
-    def __eq__(self, other: UPNPalletReading) -> bool:
+    def __eq__(self, other: UPNPalletInterface) -> bool:
         return self.size == other.size and self.type == other.type
 
     def _raise_exception_if_invalid_type(self, type_name: str) -> None:

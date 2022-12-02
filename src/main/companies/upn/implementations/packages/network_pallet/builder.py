@@ -1,10 +1,9 @@
 import copy
-from src.main.companies.upn.interfaces.network_pallet \
-    import NetworkPalletInterface
-
 from src.main.companies.upn.implementations.packages.network_pallet\
-    .implementation import (
-    NetworkPallet, NetworkPalletFields)
+    .implementation import NetworkPallet, NetworkPalletFields
+
+from src.main.companies.upn.interfaces.pallets import (
+    NetworkPallet as NetworkPalletable)
 
 
 class NetworkPalletBuilder:
@@ -29,5 +28,5 @@ class NetworkPalletBuilder:
     def set_size_constraints(self, sizes: list) -> None:
         self._fields.sizes = copy.deepcopy(sizes)
 
-    def build(self) -> NetworkPalletInterface:
+    def build(self) -> NetworkPalletable:
         return NetworkPallet(self._fields)
