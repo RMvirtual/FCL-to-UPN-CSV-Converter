@@ -1,6 +1,6 @@
-from src.main.companies.upn.packages.network_pallet import \
+from src.main.companies.upn.implementations.packages.network_pallet import \
     factory as pallet_factory
-from src.main.companies.upn.api.interfaces.pallets.network_pallet \
+from src.main.companies.upn.interfaces.network_pallet \
     import NetworkPalletInterface
 
 from src.main.metrics.dimensions.interface import Dimensions

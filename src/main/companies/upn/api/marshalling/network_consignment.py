@@ -1,18 +1,19 @@
-from src.main.companies.upn.api.interfaces.pallets.network_pallet \
+from src.main.companies.upn.interfaces.network_pallet \
     import NetworkPalletInterface
 
 from src.main.companies.upn.api.mapping import network_consignment
 from src.main.companies.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
 
-from src.main.companies.upn.consignments.network_consignment.implementation \
+from src.main.companies.upn.implementations.network_consignment\
+    .implementation \
     import NetworkConsignment
 
-from src.main.companies.upn.freight.references.references import UPNReferences
-from src.main.companies.upn.address.address import UPNAddress
-from src.main.companies.upn.customer.customer import UPNCustomer
-from src.main.companies.upn.time.dates import UPNDates
-from src.main.companies.upn.freight.services.services import UPNServices
+from src.main.companies.upn.interfaces.references import UPNReferences
+from src.main.companies.upn.interfaces.address import UPNAddress
+from src.main.companies.upn.interfaces.customer import UPNCustomer
+from src.main.companies.upn.interfaces.dates import UPNDates
+from src.main.companies.upn.interfaces.services import UPNServices
 
 UPNDict = dict[str, any]
 

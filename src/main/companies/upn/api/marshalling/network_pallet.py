@@ -1,7 +1,8 @@
 from src.main.companies.upn.api.mapping import network_pallet
-from src.main.companies.upn.packages.network_pallet import factory
+from src.main.companies.upn.implementations.packages.network_pallet import \
+    factory
 
-from src.main.companies.upn.api.interfaces.pallets.network_pallet \
+from src.main.companies.upn.interfaces.network_pallet \
     import NetworkPalletInterface
 
 UPNDict = dict[str, any]

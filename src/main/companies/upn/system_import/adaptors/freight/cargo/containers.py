@@ -1,7 +1,7 @@
 from src.main.freight.cargo.container.interface import CargoReading
 from src.main.freight.cargo.entries.interface import CargoEntry
 from src.main.freight.cargo.packages.types.interface import PackageType
-from src.main.companies.upn.freight.cargo.container.container import UPNCargo
+from src.main.companies.upn.implementations.cargo.container.container import UPNCargo
 
 
 class UPNCargoAdaptor(CargoReading):

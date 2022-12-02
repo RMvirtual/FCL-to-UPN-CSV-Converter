@@ -3,7 +3,7 @@ from src.main.freight.references.consignment.interface \
     import ConsignmentReference
 
 from src.main.freight.references.interface import References
-from src.main.companies.upn.freight.references.references import UPNReferences
+from src.main.companies.upn.interfaces.references import UPNReferences
 
 
 class UPNReferencesAdaptor(References):

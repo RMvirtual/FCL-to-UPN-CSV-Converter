@@ -4,7 +4,8 @@ from src.main.companies.upn.system_import.adaptors.address.adaptor \
 from src.main.companies.upn.system_import.adaptors.freight.references.adaptor import UPNReferencesAdaptor
 from src.main.companies.upn.system_import.adaptors.time.dates \
     import UPNDatesInterfaceAdaptor
-from src.main.companies.upn.consignments.network_consignment.implementation \
+from src.main.companies.upn.implementations.network_consignment\
+    .implementation \
     import NetworkConsignment
 from src.main.freight.cargo.container.implementation import Cargo
 from src.main.freight.consignment.interface import Consignment

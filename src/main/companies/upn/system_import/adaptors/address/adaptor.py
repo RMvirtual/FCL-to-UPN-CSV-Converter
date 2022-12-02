@@ -1,6 +1,6 @@
 import copy
 from src.main.addresses.interface import Address
-from src.main.companies.upn.address.address import UPNAddress
+from src.main.companies.upn.interfaces.address import UPNAddress
 
 
 class UPNAddressAdaptor(Address):

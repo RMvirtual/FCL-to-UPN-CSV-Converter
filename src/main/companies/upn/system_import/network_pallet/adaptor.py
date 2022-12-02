@@ -4,7 +4,7 @@ from src.main.freight.cargo.packages.types.interface import PackageType
 from src.main.companies.graylaw.packages.types import database
 
 from src.main.metrics.dimensions.implementation import Dimensions
-from src.main.companies.upn.api.interfaces.pallets.upn_pallet \
+from src.main.companies.upn.interfaces.upn_pallet \
     import UPNPalletInterface
 
 
