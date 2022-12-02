@@ -1,17 +1,19 @@
 import datetime
+from src.main.companies.upn.api.interfaces.pallets.network_pallet \
+    import NetworkPalletInterface
+
 from src.main.companies.upn.consignments.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.companies.upn.freight.references.references import UPNReferences
-from src.main.companies.upn.freight.customer.customer import UPNCustomer
-from src.main.companies.upn.freight.cargo.container.container import UPNCargo
-from src.main.companies.upn.freight.services.services import UPNServices
-from src.main.companies.upn.freight.dates.dates import UPNDates
 from src.main.companies.upn.freight.address.address import UPNAddress
+from src.main.companies.upn.freight.customer.customer import UPNCustomer
+from src.main.companies.upn.freight.dates.dates import UPNDates
+from src.main.companies.upn.freight.cargo.container.container import UPNCargo
 from src.main.companies.upn.packages.network_pallet import \
     factory as pallet_factory
-from src.main.companies.upn.api.interfaces.pallets.network_pallet \
-    import NetworkPalletInterface
+
+from src.main.companies.upn.freight.references.references import UPNReferences
+from src.main.companies.upn.freight.services.services import UPNServices
 
 
 def dummy_network_consignment() -> NetworkConsignment:

@@ -11,7 +11,7 @@ def dummy_consignment() -> Consignment:
     result.client_name = "GRAYLAW FREIGHT GROUP"
     result.address = _address()
     result.cargo = _cargo()
-    result.service.priority()
+    result.service.main().next_day()
     result.shipment_dates = _dates()
 
     return result
@@ -46,7 +46,7 @@ def _cargo_entry() -> CargoEntry:
 def _dates() -> ShipmentDates:
     result = ShipmentDates()
     result.collection_date = "18/10/2022"
-    result.delivery_date = "18/10/2022"
+    result.delivery_date = "19/10/2022"
     # result.delivery_time = "4:30"
 
     return result
