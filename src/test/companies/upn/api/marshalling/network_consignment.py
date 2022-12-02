@@ -5,11 +5,10 @@ from src.main.companies.upn.api.marshalling.network_consignment \
     import UpnNetworkConsignmentMarshaller
 
 from src.main.companies.upn.implementations.network_consignment\
-    .implementation \
-    import NetworkConsignment
+    .implementation import NetworkConsignment
 
-from src.main.companies.upn.implementations.packages.network_pallet import \
-    factory as pallet_factory
+from src.main.companies.upn.implementations.packages.network_pallet \
+    import factory as pallet_factory
 
 
 class TestNetworkConsignmentMarshaller(unittest.TestCase):

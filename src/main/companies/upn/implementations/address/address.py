@@ -12,11 +12,11 @@ class UPNAddress(UPNAddressable):
 
     @property
     def line_1(self) -> str:
-        return self._address.lines[0]
+        return self._address.lines[0] if len(self._address) > 0 else ""
 
     @property
     def line_2(self) -> str:
-        return self._address.lines[1]
+        return self._address.lines[1] if len(self._address) > 1 else ""
 
     @property
     def town(self) -> str:
@@ -24,7 +24,7 @@ class UPNAddress(UPNAddressable):
 
     @property
     def county(self) -> str:
-        return self._address.lines[2]
+        return self._address.lines[2] if len(self._address) > 2 else ""
 
     @property
     def post_code(self) -> str:
