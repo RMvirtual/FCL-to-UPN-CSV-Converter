@@ -1,10 +1,10 @@
 import datetime
-from src.main.companies.upn.freight.address.address import UPNAddress
+from src.main.companies.upn.address.address import UPNAddress
 from src.main.companies.upn.freight.references.references import UPNReferences
 from src.main.companies.upn.freight.services.services import UPNServices
 from src.main.companies.upn.freight.cargo.container.container import UPNCargo
-from src.main.companies.upn.freight.customer.customer import UPNCustomer
-from src.main.companies.upn.freight.dates.dates import UPNDates
+from src.main.companies.upn.customer.customer import UPNCustomer
+from src.main.companies.upn.time.dates import UPNDates
 from src.main.companies.upn.api.interfaces.consignments.network_consignment \
     import NetworkConsignmentInterface
 

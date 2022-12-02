@@ -9,9 +9,9 @@ from src.main.companies.upn.consignments.network_consignment.implementation \
     import NetworkConsignment
 
 from src.main.companies.upn.freight.references.references import UPNReferences
-from src.main.companies.upn.freight.address.address import UPNAddress
-from src.main.companies.upn.freight.customer.customer import UPNCustomer
-from src.main.companies.upn.freight.dates.dates import UPNDates
+from src.main.companies.upn.address.address import UPNAddress
+from src.main.companies.upn.customer.customer import UPNCustomer
+from src.main.companies.upn.time.dates import UPNDates
 from src.main.companies.upn.freight.services.services import UPNServices
 
 UPNDict = dict[str, any]

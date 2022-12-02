@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("@python_third_party//:requirements.bzl", "requirement")
+
+py_library(
+    name = "adaptors",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/upn/system_import/adaptors/address",
+        "//src/main/companies/upn/system_import/adaptors/freight",
+        "//src/main/companies/upn/system_import/adaptors/time",
+    ],
+)
