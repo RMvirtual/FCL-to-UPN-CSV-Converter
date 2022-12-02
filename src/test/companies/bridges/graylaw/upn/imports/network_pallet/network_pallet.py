@@ -1,8 +1,9 @@
 import unittest
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.network_pallet import NetworkPalletAdaptor
+from src.main.companies.bridges.graylaw.upn.imports.network_pallet\
+    .adaptor import NetworkPalletAdaptor
 
-from src.test.companies.bridges.graylaw.upn.imports.adaptors.network_pallet import \
-    setup
+
+from src.test.companies.bridges.graylaw.upn.imports.network_pallet import setup
 
 
 class TestNetworkPalletMapping(unittest.TestCase):

@@ -1,10 +1,10 @@
 import unittest
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser.consignment \
     import ConsignmentParser
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser.requests.factory \
     import ParseRequestFactory
 

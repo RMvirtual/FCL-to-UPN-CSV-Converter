@@ -1,5 +1,5 @@
 import copy
-from src.main.freight.address.interface import Address
+from src.main.addresses.interface import Address
 from src.main.companies.upn.freight.address.address import UPNAddress
 
 

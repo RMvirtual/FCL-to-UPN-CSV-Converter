@@ -1,13 +1,12 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "network_consignment",
+    name = "network_pallet",
     srcs = glob([
         "*.py",
-        "setup/*py",
     ]),
     data = [],
     deps = [
-        "//src/main/companies/bridges/graylaw/upn/imports/adaptors",
+        "//src/main/companies/bridges/graylaw/upn/imports/network_pallet",
     ],
 )

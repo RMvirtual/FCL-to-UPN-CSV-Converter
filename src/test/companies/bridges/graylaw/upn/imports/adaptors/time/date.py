@@ -1,6 +1,6 @@
 import datetime
 import unittest
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.date \
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.time.date \
     import UPNDateAdaptor
 
 from src.main.time.dates.factory import dates

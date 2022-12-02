@@ -1,6 +1,6 @@
 from src.main.freight.consignment.interface import Consignment
 from src.main.freight.references.interface import References
-from src.main.freight.address.interface import Address
+from src.main.addresses.interface import Address
 from src.main.freight.cargo.container.implementation import Cargo
 from src.main.freight.service.container.interface import Services
 from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
@@ -8,13 +8,13 @@ from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
 from src.main.companies.upn.consignments.network_consignment.implementation \
     import NetworkConsignment
 
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.address \
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.address.adaptor \
     import UPNAddressAdaptor
 
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.references \
-    import UPNReferencesAdaptor
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.references\
+    .adaptor import UPNReferencesAdaptor
 
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.dates \
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.time.dates \
     import UPNDatesInterfaceAdaptor
 
 

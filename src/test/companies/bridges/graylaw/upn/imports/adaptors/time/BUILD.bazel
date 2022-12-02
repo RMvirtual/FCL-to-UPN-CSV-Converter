@@ -1,0 +1,23 @@
+load("@rules_python//python:defs.bzl", "py_test")
+
+py_test(
+    name = "date",
+    srcs = glob([
+        "*.py",
+    ]),
+    data = [],
+    deps = [
+        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/time",
+    ],
+)
+
+py_test(
+    name = "dates",
+    srcs = glob([
+        "*.py",
+    ]),
+    data = [],
+    deps = [
+        "//src/main/companies/bridges/graylaw/upn/imports/adaptors/time",
+    ],
+)

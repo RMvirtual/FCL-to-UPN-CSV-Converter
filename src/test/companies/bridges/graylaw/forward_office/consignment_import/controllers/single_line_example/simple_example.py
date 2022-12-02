@@ -1,6 +1,6 @@
 import unittest
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.controllers.controller \
     import FCLImportController
 

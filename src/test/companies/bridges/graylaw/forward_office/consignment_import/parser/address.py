@@ -1,12 +1,10 @@
 import unittest
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
-    .consignment_import.parser import \
-    address
+from src.main.companies.bridges.graylaw.forward_office.consignment_import\
+    .parser import address
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
-    .consignment_import.parser.requests.types \
-    import AddressParseRequest
+from src.main.companies.bridges.graylaw.forward_office.consignment_import\
+    .parser.requests.types import AddressParseRequest
 
 
 class TestAddressParser(unittest.TestCase):

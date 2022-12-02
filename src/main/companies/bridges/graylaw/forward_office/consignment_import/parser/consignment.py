@@ -1,15 +1,15 @@
 from src.main.freight.consignment.implementation import Consignment
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser.requests.types \
     import ConsignmentParseRequest
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser import \
     dates, address
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser.cargo import CargoParser
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser.service \
     import ServiceParser
 

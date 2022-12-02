@@ -1,7 +1,7 @@
 import datetime
 import unittest
 from src.main.companies.upn.freight.dates.dates import UPNDates
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.dates import UPNDatesInterfaceAdaptor
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.time.dates import UPNDatesInterfaceAdaptor
 
 
 class TestUPNDatesAdaptor(unittest.TestCase):

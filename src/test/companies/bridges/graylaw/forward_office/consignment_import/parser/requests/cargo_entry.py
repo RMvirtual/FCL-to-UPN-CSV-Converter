@@ -1,7 +1,6 @@
 import unittest
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
-    .consignment_import.parser.requests.types \
-    import CargoEntryParseRequest
+from src.main.companies.bridges.graylaw.forward_office.consignment_import.\
+    parser.requests.types import CargoEntryParseRequest
 
 
 class TestCargoEntryParseRequest(unittest.TestCase):

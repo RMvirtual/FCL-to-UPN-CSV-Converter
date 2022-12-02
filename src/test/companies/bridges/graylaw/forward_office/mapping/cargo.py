@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.bridges.graylaw.graylaw.forward_office.mapping.cargo import FclCargoTypeMap
+from src.main.companies.bridges.graylaw.forward_office.mapping.cargo import FclCargoTypeMap
 
 
 class TestFCLCargoTypeMappings(unittest.TestCase):

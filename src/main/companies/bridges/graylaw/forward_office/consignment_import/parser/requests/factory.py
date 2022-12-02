@@ -1,4 +1,4 @@
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser.requests.types import (
     AddressParseRequest, ServiceParseRequest, CargoEntryParseRequest,
     CargoParseRequest, ConsignmentParseRequest, ShipmentDatesRequest

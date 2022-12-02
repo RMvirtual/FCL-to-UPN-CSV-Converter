@@ -1,6 +1,6 @@
 from src.main.freight.consignment import interface
-from src.main.freight.address.implementation import Address
-from src.main.freight.address.interface import Address as AddressInterface
+from src.main.addresses.implementation import Address
+from src.main.addresses.interface import Address as AddressInterface
 from src.main.freight.references.implementation import References
 from src.main.freight.cargo.container.implementation import Cargo
 from src.main.freight.service.container.implementation import ServiceOptions

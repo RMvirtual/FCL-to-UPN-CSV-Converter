@@ -1,9 +1,9 @@
 import unittest
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser.service import ServiceParser
 
-from src.main.companies.bridges.graylaw.graylaw.forward_office\
+from src.main.companies.bridges.graylaw.forward_office\
     .consignment_import.parser.requests.types \
     import ServiceParseRequest
 

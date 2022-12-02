@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.bridges.graylaw.graylaw.forward_office.mapping.service import FclServiceCodeMap
+from src.main.companies.bridges.graylaw.forward_office.mapping.service import FclServiceCodeMap
 
 
 class TestFCLServiceCodeMappings(unittest.TestCase):

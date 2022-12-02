@@ -1,5 +1,5 @@
 from src.main.freight.consignment.implementation import Consignment
-from src.main.freight.address.implementation import Address
+from src.main.addresses.implementation import Address
 from src.main.freight.shipment_dates.implementation import ShipmentDates
 from src.main.freight.cargo.container.implementation import Cargo
 from src.main.freight.cargo.entries.implementation import CargoEntry

@@ -1,5 +1,5 @@
-from src.main.freight.address import interface
-from src.main.freight.address.validation import AddressValidationStrategy
+from src.main.addresses import interface
+from src.main.addresses.validation import AddressValidationStrategy
 
 
 class Address(interface.Address):

@@ -1,6 +1,6 @@
 import unittest
 from src.main.companies.upn.freight.address.address import UPNAddress
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.address import UPNAddressAdaptor
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.address.adaptor import UPNAddressAdaptor
 
 
 class TestUPNAddressAdaptor(unittest.TestCase):

@@ -1,5 +1,5 @@
 import unittest
-from src.main.freight.address.validation import AddressValidationStrategy
+from src.main.addresses.validation import AddressValidationStrategy
 
 
 class TestAddressValidation(unittest.TestCase):

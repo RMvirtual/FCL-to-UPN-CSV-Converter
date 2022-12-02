@@ -2,7 +2,8 @@ import datetime
 from src.main.companies.upn.freight.dates.dates import UPNDates
 from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
 from src.main.time.dates.interface.date import DateInterface
-from src.main.companies.bridges.graylaw.upn.imports.adaptors.date import UPNDateAdaptor
+from src.main.companies.bridges.graylaw.upn.imports.adaptors.time.date \
+    import UPNDateAdaptor
 
 
 class UPNDatesInterfaceAdaptor(ShipmentDatesInterface):
