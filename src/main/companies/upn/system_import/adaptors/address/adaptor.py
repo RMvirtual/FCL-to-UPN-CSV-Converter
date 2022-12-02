@@ -1,13 +1,13 @@
 import copy
 from src.main.addresses.interface import Address
-from src.main.companies.upn.interfaces.address import UPNAddress
+from src.main.companies.upn.interfaces.address import UPNAddressable
 
 
 class UPNAddressAdaptor(Address):
     """Class for adapting a UPN address structure into a system
     address.
     """
-    def __init__(self, upn_address: UPNAddress):
+    def __init__(self, upn_address: UPNAddressable):
         self._address = copy.deepcopy(upn_address)
 
     @property

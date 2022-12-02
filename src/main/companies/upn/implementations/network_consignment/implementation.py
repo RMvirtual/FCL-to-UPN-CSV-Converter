@@ -2,13 +2,13 @@ import datetime
 from src.main.companies.upn.implementations.cargo.container.container \
     import UPNCargo
 from src.main.companies.upn.interfaces.address import UPNAddress
-from src.main.companies.upn.interfaces.customer import UPNCustomer
-from src.main.companies.upn.interfaces.dates import UPNDates
+from src.main.companies.upn.implementations.customer.customer import UPNCustomer
+from src.main.companies.upn.implementations.time.dates import UPNDates
 from src.main.companies.upn.interfaces.network_consignment \
     import NetworkConsignmentInterface
 from src.main.companies.upn.interfaces.pallets import NetworkPallet
-from src.main.companies.upn.interfaces.references import UPNReferences
-from src.main.companies.upn.interfaces.services import UPNServices
+from src.main.companies.upn.implementations.references.references import UPNReferences
+from src.main.companies.upn.implementations.services.services import UPNServices
 
 
 class NetworkConsignment(NetworkConsignmentInterface):

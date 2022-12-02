@@ -9,11 +9,11 @@ from src.main.companies.upn.implementations.network_consignment\
     .implementation \
     import NetworkConsignment
 
-from src.main.companies.upn.interfaces.references import UPNReferences
+from src.main.companies.upn.implementations.references.references import UPNReferences
 from src.main.companies.upn.interfaces.address import UPNAddress
-from src.main.companies.upn.interfaces.customer import UPNCustomer
-from src.main.companies.upn.interfaces.dates import UPNDates
-from src.main.companies.upn.interfaces.services import UPNServices
+from src.main.companies.upn.implementations.customer.customer import UPNCustomer
+from src.main.companies.upn.implementations.time.dates import UPNDates
+from src.main.companies.upn.implementations.services.services import UPNServices
 
 UPNDict = dict[str, any]
 

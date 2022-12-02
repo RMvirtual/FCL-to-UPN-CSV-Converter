@@ -1,5 +1,5 @@
 import datetime
-from src.main.companies.upn.interfaces.dates import UPNDates
+from src.main.companies.upn.implementations.time.dates import UPNDates
 from src.main.freight.shipment_dates.interface import ShipmentDatesInterface
 from src.main.time.dates.interface.date import DateInterface
 from src.main.companies.upn.system_import.adaptors.time.date \

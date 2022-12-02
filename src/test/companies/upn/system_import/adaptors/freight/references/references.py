@@ -2,7 +2,7 @@ import unittest
 from src.main.companies.upn.system_import.adaptors.freight.references.adaptor \
     import UPNReferencesAdaptor
 
-from src.main.companies.upn.interfaces.references import UPNReferences
+from src.main.companies.upn.implementations.references.references import UPNReferences
 
 
 class TestUPNReferencesAdaptor(unittest.TestCase):

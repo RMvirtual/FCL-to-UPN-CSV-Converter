@@ -1,93 +1,79 @@
-from abc import ABC, abstractmethod
+from src.main.addresses.implementation import Address
+from src.main.companies.upn.interfaces.address import UPNAddressable
 
 
-class UPNAddressable(ABC):
+class UPNAddress(UPNAddressable):
+    def __init__(self):
+        self._address = Address()
+
     @property
-    @abstractmethod
     def name(self) -> str:
-        ...
+        return self._address.name
 
     @property
-    @abstractmethod
     def line_1(self) -> str:
-        ...
+        return self._address.lines[0]
 
     @property
-    @abstractmethod
     def line_2(self) -> str:
-        ...
+        return self._address.lines[1]
 
     @property
-    @abstractmethod
     def town(self) -> str:
-        ...
+        return self._address.town
 
     @property
-    @abstractmethod
     def county(self) -> str:
-        ...
+        return self._address.lines[2]
 
     @property
-    @abstractmethod
     def post_code(self) -> str:
-        ...
+        return self._address.post_code
 
     @property
-    @abstractmethod
     def country(self) -> str:
-        ...
+        return self._address.country
 
     @property
-    @abstractmethod
     def contact_name(self) -> str:
-        ...
+        return self._address.contact_name
 
     @property
-    @abstractmethod
     def telephone_no(self) -> str:
-        ...
+        return self._address.telephone_number
 
     @name.setter
-    @abstractmethod
     def name(self, new_name: str) -> None:
-        ...
+        self._address.name = new_name
 
     @line_1.setter
-    @abstractmethod
     def line_1(self, new_line: str) -> None:
-        ...
+        self._address.lines[0] = new_line
 
     @line_2.setter
-    @abstractmethod
     def line_2(self, new_line: str) -> None:
-        ...
+        self._address.lines[1] = new_line
 
     @town.setter
-    @abstractmethod
     def town(self, new_town: str) -> None:
-        ...
+        self._address.town = new_town
 
     @county.setter
-    @abstractmethod
     def county(self, new_county: str) -> None:
-        ...
+        self._address.lines[2] = new_county
 
     @post_code.setter
-    @abstractmethod
     def post_code(self, new_post_code: str) -> None:
-        ...
+        self._address.post_code = new_post_code
 
     @country.setter
-    @abstractmethod
     def country(self, new_country: str) -> None:
-        ...
+        self._address.country = new_country
 
     @contact_name.setter
-    @abstractmethod
     def contact_name(self, new_contact_name: str) -> None:
-        ...
+        self._address.contact_name = new_contact_name
 
     @telephone_no.setter
-    @abstractmethod
     def telephone_no(self, new_number: str) -> None:
-        ...
+        self._address.telephone_number = new_number
