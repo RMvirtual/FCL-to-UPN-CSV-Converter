@@ -18,7 +18,7 @@ class NetworkConsignmentAdaptor(Consignment):
     """Adaptor for turning a UPN Network Consignment structure into
     a Graylaw Consignment.
     """
-    def __init__(self, network_consignment: NetworkConsignment):
+    def __init__(self, network_consignment: Consignment):
         self._network_consignment = network_consignment
 
     @property

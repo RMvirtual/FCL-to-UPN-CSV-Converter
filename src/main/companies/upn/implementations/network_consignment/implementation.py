@@ -1,17 +1,22 @@
 import datetime
-from src.main.companies.upn.implementations.cargo.container.container \
-    import UPNCargo
-from src.main.companies.upn.interfaces.address import UPNAddress
-from src.main.companies.upn.implementations.customer.customer import UPNCustomer
+from src.main.companies.upn.implementations.cargo.container.container import (
+    UPNCargo)
+from src.main.companies.upn.interfaces.address import UPNAddressable
+from src.main.companies.upn.implementations.address.address import UPNAddress
+from src.main.companies.upn.implementations.customer.customer import (
+    UPNCustomer)
+
 from src.main.companies.upn.implementations.time.dates import UPNDates
-from src.main.companies.upn.interfaces.network_consignment \
-    import NetworkConsignmentInterface
+from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
 from src.main.companies.upn.interfaces.pallets import NetworkPallet
-from src.main.companies.upn.implementations.references.references import UPNReferences
-from src.main.companies.upn.implementations.services.services import UPNServices
+from src.main.companies.upn.implementations.references.references import (
+    UPNReferences)
+
+from src.main.companies.upn.implementations.services.services import (
+    UPNServices)
 
 
-class NetworkConsignment(NetworkConsignmentInterface):
+class NetworkConsignment(ConsignmentDownload):
     def __init__(self):
         self._references = UPNReferences()
         self._depot_no = 75
@@ -93,12 +98,12 @@ class NetworkConsignment(NetworkConsignmentInterface):
         return self._dates.delivery
 
     @property
-    def delivery_address(self) -> UPNAddress:
+    def delivery_address(self) -> UPNAddressable:
         return self._delivery_address
 
     @delivery_address.setter
-    def delivery_address(self, new_address: UPNAddress) -> None:
-        if type(new_address) is not UPNAddress:
+    def delivery_address(self, new_address: UPNAddressable) -> None:
+        if type(new_address) is not UPNAddressable:
             raise TypeError("Incorrect type for address.")
 
         self._delivery_address = new_address
