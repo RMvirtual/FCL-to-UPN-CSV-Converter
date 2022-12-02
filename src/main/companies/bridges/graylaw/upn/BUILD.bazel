@@ -1,10 +1,10 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "bridges",
+    name = "upn",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/companies/bridges/graylaw",
+        "//src/main/companies/bridges/graylaw/upn/imports",
     ],
 )

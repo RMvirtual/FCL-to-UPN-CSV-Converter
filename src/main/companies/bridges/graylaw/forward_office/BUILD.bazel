@@ -1,0 +1,11 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "forward_office",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/bridges/graylaw/forward_office/consignment_import",
+        "//src/main/companies/bridges/graylaw/forward_office/mapping",
+    ],
+)

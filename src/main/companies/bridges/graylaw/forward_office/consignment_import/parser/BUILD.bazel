@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "parser",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/bridges/graylaw/forward_office/consignment_import/parser/requests",
+        "//src/main/companies/bridges/graylaw/forward_office/mapping",
+        "//src/main/companies/graylaw",
+        "//src/main/freight",
+    ],
+)
