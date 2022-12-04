@@ -1,13 +1,13 @@
+from src.main.companies.upn.implementations.cargo.container.container \
+    import UPNCargo
 from src.main.freight.cargo.container.interface import CargoReading
 from src.main.freight.cargo.entries.interface import CargoEntry
 from src.main.freight.cargo.packages.types.interface import PackageType
-from src.main.companies.upn.implementations.cargo.container.container \
-    import UPNCargo
 
 
 class UPNCargoAdaptor(CargoReading):
-    """Class for adapting a UPN Cargo structure into a Graylaw Cargo
-    structure.
+    """Class for adapting a UPN Cargo structure into a house-system
+    Cargo structure.
     """
     def __init__(self, upn_cargo: UPNCargo):
         self._cargo = upn_cargo
