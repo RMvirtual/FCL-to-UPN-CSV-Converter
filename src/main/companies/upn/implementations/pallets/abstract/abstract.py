@@ -17,10 +17,10 @@ class AbstractUPNPallet(UPNPallet):
 
     @abstractmethod
     def __init__(self, pallet_fields: UPNPalletFields):
-        self._type_constraints = pallet_fields.type_constraints
-        self._size_constraints = pallet_fields.size_constraints
         self._type = pallet_fields.type
         self._size = pallet_fields.size
+        self._type_constraints = copy.deepcopy(pallet_fields.type_constraints)
+        self._size_constraints = copy.deepcopy(pallet_fields.size_constraints)
 
     @property
     def size(self) -> str:
