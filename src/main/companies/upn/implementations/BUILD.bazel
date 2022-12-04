@@ -9,7 +9,7 @@ py_library(
         "//src/main/companies/upn/implementations/cargo",
         "//src/main/companies/upn/implementations/customer",
         "//src/main/companies/upn/implementations/network_consignment",
-        "//src/main/companies/upn/implementations/packages",
+        "//src/main/companies/upn/implementations/pallets",
         "//src/main/companies/upn/implementations/references",
         "//src/main/companies/upn/implementations/services",
         "//src/main/companies/upn/implementations/time",

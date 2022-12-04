@@ -10,9 +10,9 @@ class TestUPNPalletDatabase(unittest.TestCase):
         result = self._database.network_pallet()
 
         self.assertEqual("FULL", result.type)
-        self.assertEqual("NORMAL", result.size)
+        self.assertEqual("N", result.size)
         self.assertListEqual(
-            ["FULL", "HALF", "EURO", "QUARTER", "MICRO"],
+            ["FULL", "EURO", "HALF", "QUARTER", "MICRO"],
             result.type_constraints
         )
 

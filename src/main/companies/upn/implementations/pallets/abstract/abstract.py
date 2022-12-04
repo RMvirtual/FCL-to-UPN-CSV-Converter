@@ -8,8 +8,8 @@ from src.main.companies.upn.interfaces.pallets import UPNPallet
 class UPNPalletFields:
     type: str = ""
     size: str = ""
-    type_constraints: list[str] = dataclasses.field(default=list[str])
-    size_constraints: list[str] = dataclasses.field(default=list[str])
+    type_constraints: list[str] = dataclasses.field(default_factory=list[str])
+    size_constraints: list[str] = dataclasses.field(default_factory=list[str])
 
 
 class AbstractUPNPallet(UPNPallet):

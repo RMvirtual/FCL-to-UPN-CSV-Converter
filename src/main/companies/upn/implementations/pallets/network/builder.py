@@ -22,10 +22,10 @@ class NetworkPalletBuilder:
     def set_size(self, size_code: str) -> None:
         self._fields.size = size_code
 
-    def set_type_constraints(self, types: list) -> None:
+    def set_type_constraints(self, types: list[str]) -> None:
         self._fields.types = copy.deepcopy(types)
 
-    def set_size_constraints(self, sizes: list) -> None:
+    def set_size_constraints(self, sizes: list[str]) -> None:
         self._fields.sizes = copy.deepcopy(sizes)
 
     def build(self) -> NetworkPalletable:
