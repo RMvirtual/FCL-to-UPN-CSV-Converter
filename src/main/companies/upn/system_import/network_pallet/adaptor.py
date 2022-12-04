@@ -2,14 +2,12 @@ from src.main.file_system.companies.upn.api import data_structure_files
 from src.main.freight.cargo.packages.oversize.interface import OversizeOptions
 from src.main.freight.cargo.packages.types.interface import PackageType
 from src.main.companies.graylaw.packages.types import database
-
 from src.main.metrics.dimensions.implementation import Dimensions
-from src.main.companies.upn.interfaces.upn_pallet \
-    import UPNPalletInterface
+from src.main.companies.upn.interfaces.pallets import UPNPallet
 
 
 class NetworkPalletAdaptor(PackageType):
-    def __init__(self, network_pallet: UPNPalletInterface):
+    def __init__(self, network_pallet: UPNPallet):
         self._pallet = self._convert_to_graylaw_package(network_pallet)
 
     @property
@@ -37,7 +35,7 @@ class NetworkPalletAdaptor(PackageType):
         return self._pallet.override_options
 
     @staticmethod
-    def _convert_to_graylaw_package(pallet: UPNPalletInterface) -> PackageType:
+    def _convert_to_graylaw_package(pallet: UPNPallet) -> PackageType:
         mapping = data_structure_files.package_type_mappings()
 
         package_name = mapping["types"][pallet.type]

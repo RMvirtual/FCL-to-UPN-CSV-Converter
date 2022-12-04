@@ -1,5 +1,5 @@
 from src.main.companies.upn.api.mapping import network_pallet
-from src.main.companies.upn.implementations.packages.network_pallet \
+from src.main.companies.upn.implementations.pallets.network \
     import factory
 
 from src.main.companies.upn.interfaces.pallets import NetworkPallet

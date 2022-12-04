@@ -7,7 +7,7 @@ from src.main.companies.upn.api.marshalling.network_consignment \
 from src.main.companies.upn.implementations.network_consignment\
     .implementation import NetworkConsignment
 
-from src.main.companies.upn.implementations.packages.network_pallet \
+from src.main.companies.upn.implementations.pallets.network \
     import factory as pallet_factory
 
 

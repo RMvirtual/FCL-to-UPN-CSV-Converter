@@ -1,14 +1,17 @@
+import copy
 import functools
 from src.main.freight.cargo.entries.interface import CargoEntry
 from src.main.freight.cargo.packages.types.interface import PackageType
+from src.main.companies.upn.interfaces.pallets import UPNPallet
 
 
 class UPNCargoEntryAdaptor(CargoEntry):
     """Adaptor for a UPN list of pallets into a house-system Cargo
     Entry.
     """
-    def __init__(self, pallets: list):
-        ...
+    def __init__(self, pallets: list[UPNPallet], total_weight: int):
+        self._upn_pallets = copy.deepcopy(pallets)
+        self._weight = total_weight
 
     @property
     def package_type(self) -> PackageType:
@@ -16,11 +19,11 @@ class UPNCargoEntryAdaptor(CargoEntry):
 
     @property
     def quantity(self) -> int:
-        pass
+        return len(self._upn_pallets)
 
     @property
     def weight(self) -> float:
-        pass
+        return self._weight
 
     def set_totals(self, quantity: int, weight: float) -> None:
         pass

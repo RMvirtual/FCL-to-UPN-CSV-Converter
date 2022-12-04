@@ -1,4 +1,4 @@
-from src.main.companies.upn.implementations.cargo.pallet.abstract import (
+from src.main.companies.upn.implementations.pallets.abstract.abstract import (
     UPNPalletFields, AbstractUPNPallet)
 
 from src.main.companies.upn.interfaces.pallets \

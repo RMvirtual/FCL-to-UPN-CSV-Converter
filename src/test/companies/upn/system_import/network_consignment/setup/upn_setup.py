@@ -10,10 +10,10 @@ from src.main.companies.upn.implementations.address.address import UPNAddress
 from src.main.companies.upn.implementations.customer.customer \
     import UPNCustomer
 from src.main.companies.upn.implementations.time.dates import UPNDates
-from src.main.companies.upn.implementations.cargo.container.container \
+from src.main.companies.upn.implementations.cargo.container \
     import UPNCargo
 
-from src.main.companies.upn.implementations.packages.network_pallet \
+from src.main.companies.upn.implementations.pallets.network \
     import factory as pallet_factory
 
 from src.main.companies.upn.implementations.references.references \

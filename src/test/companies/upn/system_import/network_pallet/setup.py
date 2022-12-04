@@ -1,4 +1,4 @@
-from src.main.companies.upn.implementations.packages.network_pallet \
+from src.main.companies.upn.implementations.pallets.network \
     import factory as pallet_factory
 
 from src.main.companies.upn.interfaces.pallets import NetworkPallet

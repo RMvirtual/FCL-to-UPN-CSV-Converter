@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.implementations.packages.network_pallet import (
+from src.main.companies.upn.implementations.pallets.network import (
     factory)
 
 

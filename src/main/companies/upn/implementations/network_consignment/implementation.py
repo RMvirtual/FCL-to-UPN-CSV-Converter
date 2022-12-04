@@ -1,5 +1,5 @@
 import datetime
-from src.main.companies.upn.implementations.cargo.container.container import (
+from src.main.companies.upn.implementations.cargo.container import (
     UPNCargo)
 from src.main.companies.upn.interfaces.address import UPNAddressable
 from src.main.companies.upn.implementations.address.address import UPNAddress
