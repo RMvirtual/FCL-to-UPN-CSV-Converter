@@ -12,11 +12,11 @@ class UPNAddress(UPNAddressable):
 
     @property
     def line_1(self) -> str:
-        return self._address.lines[0] if len(self._address) > 0 else ""
+        return self._get_line(0)
 
     @property
     def line_2(self) -> str:
-        return self._address.lines[1] if len(self._address) > 1 else ""
+        return self._get_line(1)
 
     @property
     def town(self) -> str:
@@ -24,7 +24,7 @@ class UPNAddress(UPNAddressable):
 
     @property
     def county(self) -> str:
-        return self._address.lines[2] if len(self._address) > 2 else ""
+        return self._get_line(2)
 
     @property
     def post_code(self) -> str:
@@ -48,11 +48,11 @@ class UPNAddress(UPNAddressable):
 
     @line_1.setter
     def line_1(self, new_line: str) -> None:
-        self._address.lines[0] = new_line
+        self._set_line(line_no=0, line_value=new_line)
 
     @line_2.setter
     def line_2(self, new_line: str) -> None:
-        self._address.lines[1] = new_line
+        self._set_line(line_no=1, line_value=new_line)
 
     @town.setter
     def town(self, new_town: str) -> None:
@@ -60,7 +60,7 @@ class UPNAddress(UPNAddressable):
 
     @county.setter
     def county(self, new_county: str) -> None:
-        self._address.lines[2] = new_county
+        self._set_line(line_no=2, line_value=new_county)
 
     @post_code.setter
     def post_code(self, new_post_code: str) -> None:
@@ -77,3 +77,18 @@ class UPNAddress(UPNAddressable):
     @telephone_no.setter
     def telephone_no(self, new_number: str) -> None:
         self._address.telephone_number = new_number
+
+    def _set_line(self, line_no: int, line_value: str) -> None:
+        if self._has_line(line_no):
+            self._address.lines[line_no] = line_value
+
+        else:
+            self._address.lines.append(line_value)
+
+    def _get_line(self, line_no: int) -> str:
+        return (
+            self._address.lines[line_no] if self._has_line(line_no) else "")
+
+    def _has_line(self, line_no) -> bool:
+        return len(self._address.lines) > line_no
+
