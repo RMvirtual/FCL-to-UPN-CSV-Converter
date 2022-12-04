@@ -1,8 +1,7 @@
 import unittest
-from src.test.companies.upn.system_import.adaptors.freight.cargo.container \
-    import setup
+from src.test.companies.upn.system_import.adaptors.cargo.container import setup
 
-from src.main.companies.upn.system_import.adaptors.freight.cargo.containers \
+from src.main.companies.upn.system_import.adaptors.cargo.containers \
     import UPNCargoAdaptor
 
 

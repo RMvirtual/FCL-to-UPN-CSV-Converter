@@ -7,7 +7,9 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/companies/upn/system_import/adaptors/address",
-        "//src/main/companies/upn/system_import/adaptors/freight",
+        "//src/main/companies/upn/system_import/adaptors/cargo",
+        "//src/main/companies/upn/system_import/adaptors/references",
+        "//src/main/companies/upn/system_import/adaptors/services",
         "//src/main/companies/upn/system_import/adaptors/time",
     ],
 )
