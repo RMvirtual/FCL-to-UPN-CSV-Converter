@@ -1,12 +1,14 @@
 import unittest
+from src.main.companies.upn.database.consignment.network.key_mappings \
+    import NetworkConsignmentKeys
 
 
-class TestNetworkConsignmentKeyMappings(unittest.TestCase):
+class TestNetworkConsignmentKeys(unittest.TestCase):
     def setUp(self):
-        ...
+        self._key_map = NetworkConsignmentKeys()
 
     def test_should_load_network_consignment_key_mappings(self) -> None:
-        self.fail("MOCK FAIL")
+        self.assertEqual("Depot", self._key_map.depot_no)
 
 
 if __name__ == "__main__":
