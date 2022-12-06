@@ -1,5 +1,5 @@
 filegroup(
-    name = "api_structures",
+    name = "system_import",
     srcs = glob(["*"]),
     visibility = ["//visibility:public"],
 )

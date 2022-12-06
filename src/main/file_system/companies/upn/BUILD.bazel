@@ -3,9 +3,15 @@ load("@rules_python//python:defs.bzl", "py_library")
 py_library(
     name = "upn",
     srcs = glob(["*.py"]),
-    data = [],
+    data = [
+        "//config/api",
+        "//resources/companies/upn/api/consignments",
+        "//resources/companies/upn/api/data_types",
+        "//resources/companies/upn/api/pallets",
+        "//resources/companies/upn/system_import",
+    ],
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/file_system/companies/upn/api",
+        "//src/main/file_system/file_readers",
     ],
 )

@@ -1,0 +1,7 @@
+filegroup(
+    name = "pallets",
+    srcs = glob(["*"]),
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

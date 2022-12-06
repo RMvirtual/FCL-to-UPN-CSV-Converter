@@ -1,5 +1,5 @@
 filegroup(
-    name = "api",
+    name = "upn",
     srcs = glob(["*"]),
     visibility = ["//visibility:public"],
 )
