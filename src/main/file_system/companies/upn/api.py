@@ -1,8 +1,12 @@
 from src.main.file_system.file_readers import runfiles
 
 
-def network_consignment():
-    return _api_file_contents("consignments/network_consignment.json")
+def network_consignment_keys():
+    return _api_file_contents("consignments/network/keys.json")
+
+
+def network_consignment_values():
+    return _api_file_contents("consignments/network/values.json")
 
 
 def network_pallet():

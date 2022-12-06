@@ -1,5 +1,5 @@
 filegroup(
-    name = "consignments",
+    name = "network",
     srcs = glob(["*"]),
     visibility = ["//visibility:public"],
 )

@@ -38,7 +38,7 @@ def mapping() -> NetworkConsignmentMapping:
     fields as the NetworkConsignmentInterface dataclass.
     """
     marshaller = MappingMarshaller()
-    structure = api.network_consignment()
+    structure = api.network_consignment_values()
     result = NetworkConsignmentMapping()
 
     for field in list(dataclasses.fields(NetworkConsignmentMapping)):

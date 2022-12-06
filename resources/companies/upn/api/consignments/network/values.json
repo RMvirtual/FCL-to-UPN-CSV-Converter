@@ -1,0 +1,81 @@
+{
+  "ConNo": {
+    "type": "string"
+  },
+  "ConBarcode": {
+    "type": "string"
+  },
+  "CustRef": {
+    "type": "string"
+  },
+  "Depot": {
+    "type": "int"
+  },
+  "DespatchDate": {
+    "type": "datetime"
+  },
+  "DeliveryDateTime": {
+    "type": "datetime"
+  },
+  "DeliveryCoName": {
+    "type": "string"
+  },
+  "DeliveryAdd1": {
+    "type": "string"
+  },
+  "DeliveryAdd2": {
+    "type": "string"
+  },
+  "DeliveryTown": {
+    "type": "string"
+  },
+  "DeliveryCounty": {
+    "type": "string"
+  },
+  "DeliveryPostcode": {
+    "type": "string"
+  },
+  "DeliveryPhone": {
+    "type": "string"
+  },
+  "TotalWeight": {
+    "type": "int"
+  },
+  "SpecialInstructions": {
+    "type": "string"
+  },
+  "CustomerID": {
+    "type": "int"
+  },
+  "Consignor": {
+    "type": "string"
+  },
+  "DeliveryContactName": {
+    "type": "string"
+  },
+  "DeliveryCountry": {
+    "type": "string"
+  },
+  "CustPaperwork": {
+    "type": "int"
+  },
+  "MainService": {
+    "type": "string",
+    "values": ["P", "S", "I", "R"]
+  },
+  "PremiumService": {
+    "type": "string",
+    "values": ["", "B10", "AM", "Timed", "Sat"]
+  },
+  "TailLift": {
+    "type": "string",
+    "values": ["", "TLift"]
+  },
+  "ExtraService": {
+    "type": "string",
+    "values": ["", "BI", "Bkd", "OOH"]
+  },
+  "Pallets": {
+    "type": "dictionary"
+  }
+}
