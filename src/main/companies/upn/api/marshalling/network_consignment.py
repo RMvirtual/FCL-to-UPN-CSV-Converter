@@ -1,9 +1,9 @@
 from src.main.companies.upn.api.mapping import network_consignment
 from src.main.companies.upn.api.marshalling import customer
 from src.main.companies.upn.api.marshalling import references
+from src.main.companies.upn.api.marshalling import services
 from src.main.companies.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
-from src.main.companies.upn.database.services import UPNServicesDatabase
 from src.main.companies.upn.implementations.address.address import UPNAddress
 from src.main.companies.upn.implementations.network_consignment \
     .implementation import NetworkConsignment
@@ -70,13 +70,7 @@ class UpnNetworkConsignmentMarshaller:
         return result
 
     def unmarshall_services(self, candidate: UPNDict) -> ServicesProvider:
-        result = UPNServicesDatabase().all_services()
-        result.main = self._unmarshall(candidate, "main_service")
-        result.premium = self._unmarshall(candidate, "premium_service")
-        result.tail_lift = self._unmarshall(candidate, "tail_lift_required")
-        result.additional = self._unmarshall(candidate, "additional_service")
-
-        return result
+        return services.unmarshall(candidate)
 
     def unmarshall_pallets(self, candidate: UPNDict) -> list[NetworkPallet]:
         pallets = self._unmarshall(candidate, "pallets")["NetworkPallet"]
