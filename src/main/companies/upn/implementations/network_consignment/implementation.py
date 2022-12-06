@@ -1,13 +1,11 @@
 import datetime
 from src.main.companies.upn.implementations.address.address import UPNAddress
 from src.main.companies.upn.implementations.cargo.container import UPNCargo
-from src.main.companies.upn.implementations.customer \
-    import UPNCustomer
+from src.main.companies.upn.implementations.customer import UPNCustomer
+from src.main.companies.upn.implementations.dates import UPNDates
 from src.main.companies.upn.implementations.references.references \
     import UPNReferences
-from src.main.companies.upn.implementations.services.container \
-    import ServicesProvider
-from src.main.companies.upn.implementations.dates import UPNDates
+from src.main.companies.upn.implementations.services.container import UPNServices
 from src.main.companies.upn.interfaces.address import UPNAddressable
 from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
 from src.main.companies.upn.interfaces.pallets import UPNPallet
@@ -23,7 +21,7 @@ class NetworkConsignment(ConsignmentDownload):
         self._dates = UPNDates()
         self._cargo = UPNCargo()
         self._special_instructions = ""
-        self._services = ServicesProvider()
+        self._services = UPNServices()
 
     @property
     def references(self) -> UPNReferences:

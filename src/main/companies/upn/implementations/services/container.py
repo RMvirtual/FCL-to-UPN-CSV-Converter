@@ -1,7 +1,6 @@
 import dataclasses
-from src.main.companies.upn.interfaces.services.container \
-    import ServicesProvider
-from src.main.companies.upn.interfaces.services.specific import ServiceProvider
+from src.main.companies.upn.interfaces.services.container import (
+    ServicesProvider, ServiceProvider)
 
 
 @dataclasses.dataclass

@@ -11,12 +11,12 @@ class UPNDataTypeMarshaller:
         self._containers = UPNContainersMarshaller()
 
     def unmarshall_to_type(self, type_name: str) -> type:
-        self._validate_data_type_exists(type_name)
+        self._assert_data_type_exists(type_name)
 
         return self._type(type_name)
 
     def unmarshall_to_instance(self, type_name: str, value: any = None) -> any:
-        self._validate_data_type_exists(type_name)
+        self._assert_data_type_exists(type_name)
 
         return (
             self._unmarshall_primitive(type_name, value)
@@ -41,7 +41,7 @@ class UPNDataTypeMarshaller:
 
         return type_container.unmarshall_to_type(type_name)
 
-    def _validate_data_type_exists(self, type_name):
+    def _assert_data_type_exists(self, type_name):
         if not self.is_data_type(type_name):
             self._raise_invalid_type_error(type_name)
 
