@@ -1,4 +1,4 @@
-from src.main.file_system.companies.upn import api
+from src.main.file_system.companies.upn import system_import
 from src.main.freight.cargo.packages.oversize.interface import OversizeOptions
 from src.main.freight.cargo.packages.types.interface import PackageType
 from src.main.companies.graylaw.packages.types import database
@@ -36,7 +36,7 @@ class NetworkPalletAdaptor(PackageType):
 
     @staticmethod
     def _convert_to_graylaw_package(pallet: UPNPallet) -> PackageType:
-        mapping = data_structure_files.package_type_mappings()
+        mapping = system_import.package_type_mappings()
 
         package_name = mapping["types"][pallet.type]
         result = database.load(package_name)

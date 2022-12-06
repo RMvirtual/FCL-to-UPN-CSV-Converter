@@ -4,7 +4,7 @@ py_library(
     name = "upn",
     srcs = glob(["*.py"]),
     data = [
-        "//config/api",
+        "//config/companies/upn",
         "//resources/companies/upn/api/consignments",
         "//resources/companies/upn/api/data_types",
         "//resources/companies/upn/api/pallets",

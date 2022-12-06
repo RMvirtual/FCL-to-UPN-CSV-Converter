@@ -1,7 +1,8 @@
 from src.main.addresses.interface import Address
 from src.main.companies.upn.system_import.adaptors.address.adaptor \
     import UPNAddressAdaptor
-from src.main.companies.upn.system_import.adaptors.references.adaptor import UPNReferencesAdaptor
+from src.main.companies.upn.system_import.adaptors.references.adaptor \
+    import UPNReferencesAdaptor
 from src.main.companies.upn.system_import.adaptors.time.dates \
     import UPNDatesInterfaceAdaptor
 from src.main.freight.cargo.container.implementation import Cargo

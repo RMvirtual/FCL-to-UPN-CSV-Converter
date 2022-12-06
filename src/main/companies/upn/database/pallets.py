@@ -5,7 +5,7 @@ from src.main.companies.upn.implementations.pallets.network import factory
 
 class UPNPalletsDatabase:
     def __init__(self):
-        self._data_file = data_structure_files.network_pallet()
+        self._data_file = api.network_pallet()
 
     def network_pallet(self) -> NetworkPallet:
         return self._deserialise_network_pallet()

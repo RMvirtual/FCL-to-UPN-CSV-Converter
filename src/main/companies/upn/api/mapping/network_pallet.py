@@ -17,7 +17,7 @@ def network_pallet() -> NetworkPalletMapping:
     fields as the NetworkPalletMapping dataclass.
     """
     marshaller = MappingMarshaller()
-    structure = data_structure_files.network_pallet()
+    structure = api.network_pallet()
     result = NetworkPalletMapping()
 
     for field in list(dataclasses.fields(NetworkPalletMapping)):
