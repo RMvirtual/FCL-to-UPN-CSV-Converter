@@ -1,0 +1,6 @@
+{
+  "consignment_barcode": "ConBarcode",
+  "type": "PalletType",
+  "size": "PalletSize",
+  "barcode": "PltBarcode"
+}

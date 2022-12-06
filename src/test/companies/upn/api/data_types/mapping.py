@@ -6,21 +6,20 @@ class TestMappingMarshaller(unittest.TestCase):
     def setUp(self) -> None:
         self._marshaller = MappingMarshaller()
 
-    def test_should_marshall_mapping_without_values(self) -> None:
+    def test_should_unmarshall_mapping_without_values(self) -> None:
         result = self._marshaller.unmarshal_to_mapping({"type": "string"})
 
         self.assertEqual(str, result.type)
         self.assertEqual([], result.values)
 
-    def test_should_marshall_mapping_with_values(self) -> None:
-        candidate = {
+    def test_should_unmarshall_mapping_with_values(self) -> None:
+        result = self._marshaller.unmarshal_to_mapping({
             "type": "string",
             "values": ["Full", "Euro", "Half", "Quarter", "Micro"]
-        }
-
-        result = self._marshaller.unmarshal_to_mapping(candidate)
+        })
 
         self.assertEqual(str, result.type)
+
         self.assertListEqual(
             ["Full", "Euro", "Half", "Quarter", "Micro"], result.values)
 

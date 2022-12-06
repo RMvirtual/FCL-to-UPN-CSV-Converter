@@ -6,11 +6,15 @@ def network_consignment_keys():
 
 
 def network_consignment_values():
-    return _api_file_contents("consignments/network/values.json")
+    return _api_file_contents("consignments/network/constraints.json")
 
 
-def network_pallet():
-    return _api_file_contents("pallets/network_pallet.json")
+def network_pallet_keys():
+    return _api_file_contents("pallets/network/keys.json")
+
+
+def network_pallet_constraints():
+    return _api_file_contents("pallets/network/constraints.json")
 
 
 def primitives():

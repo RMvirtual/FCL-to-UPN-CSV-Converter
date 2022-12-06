@@ -1,26 +1,20 @@
-from src.main.companies.upn.api.mapping import network_consignment
 from src.main.companies.upn.interfaces.services.container \
     import ServicesProvider
 
 from src.main.companies.upn.database.services import UPNServicesDatabase
-
-UPNDict = dict[str, any]
-
-
-def unmarshall(candidate: UPNDict) -> ServicesProvider:
-    result = UPNServicesDatabase().all_services()
-    result.main = _unmarshall(candidate, "main_service")
-    result.premium = _unmarshall(candidate, "premium_service")
-    result.tail_lift = _unmarshall(candidate, "tail_lift_required")
-    result.additional = _unmarshall(candidate, "additional_service")
-
-    return result
+from src.main.companies.upn.api.marshalling.unmarshaller \
+    import UPNAPIUnmarshaller
 
 
-def _unmarshall(candidate: UPNDict, field_name: str) -> any:
-    return candidate[_map_interface_to(field_name)]
+class UPNServicesUnmarshaller(UPNAPIUnmarshaller):
+    def __init__(self):
+        super().__init__()
 
+    def services(self, candidate: dict[str, any]) -> ServicesProvider:
+        result = UPNServicesDatabase().all_services()
+        result.main = self.unmarshall(candidate, "main_service")
+        result.premium = self.unmarshall(candidate, "premium_service")
+        result.tail_lift = self.unmarshall(candidate, "tail_lift_required")
+        result.additional = self.unmarshall(candidate, "additional_service")
 
-def _map_interface_to(field_name: str):
-    mapping = network_consignment.mapping()
-    return getattr(mapping, field_name).mapping
+        return result

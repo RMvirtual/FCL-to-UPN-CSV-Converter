@@ -1,0 +1,16 @@
+{
+  "ConBarcode": {
+    "type": "string"
+  },
+  "PalletType": {
+    "type": "string",
+    "values": ["FULL", "EURO", "HALF", "QUARTER", "MICRO"]
+  },
+  "PalletSize": {
+    "type": "string",
+    "values": ["N", "O", "2", "3"]
+  },
+  "PltBarcode": {
+    "type": "string"
+  }
+}
