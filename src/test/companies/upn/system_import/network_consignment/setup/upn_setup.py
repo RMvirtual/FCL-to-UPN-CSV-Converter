@@ -9,7 +9,7 @@ from src.main.companies.upn.implementations.address.address import UPNAddress
 
 from src.main.companies.upn.implementations.customer \
     import UPNCustomer
-from src.main.companies.upn.implementations.time.dates import UPNDates
+from src.main.companies.upn.implementations.dates import UPNDates
 from src.main.companies.upn.implementations.cargo.container \
     import UPNCargo
 

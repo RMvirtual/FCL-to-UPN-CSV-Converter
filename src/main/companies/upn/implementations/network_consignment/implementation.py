@@ -7,7 +7,7 @@ from src.main.companies.upn.implementations.references.references \
     import UPNReferences
 from src.main.companies.upn.implementations.services.container \
     import ServicesProvider
-from src.main.companies.upn.implementations.time.dates import UPNDates
+from src.main.companies.upn.implementations.dates import UPNDates
 from src.main.companies.upn.interfaces.address import UPNAddressable
 from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
 from src.main.companies.upn.interfaces.pallets import UPNPallet

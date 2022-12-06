@@ -11,6 +11,5 @@ py_library(
         "//src/main/companies/upn/implementations/pallets",
         "//src/main/companies/upn/implementations/references",
         "//src/main/companies/upn/implementations/services",
-        "//src/main/companies/upn/implementations/time",
     ],
 )

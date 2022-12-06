@@ -1,18 +1,19 @@
 from src.main.companies.upn.api.mapping import network_consignment
 from src.main.companies.upn.api.marshalling import customer
+from src.main.companies.upn.api.marshalling import dates
+from src.main.companies.upn.api.marshalling import delivery_address
 from src.main.companies.upn.api.marshalling import references
 from src.main.companies.upn.api.marshalling import services
-from src.main.companies.upn.api.marshalling import delivery_address
 from src.main.companies.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
 from src.main.companies.upn.implementations.network_consignment \
     .implementation import NetworkConsignment
 from src.main.companies.upn.implementations.services.container \
     import ServicesProvider
-from src.main.companies.upn.implementations.time.dates import UPNDates
 from src.main.companies.upn.interfaces.address import UPNAddressable
 from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
 from src.main.companies.upn.interfaces.customer import CustomerDetails
+from src.main.companies.upn.interfaces.dates import DatesProvider
 from src.main.companies.upn.interfaces.pallets import NetworkPallet
 
 UPNDict = dict[str, any]
@@ -47,12 +48,8 @@ class UpnNetworkConsignmentMarshaller:
     def unmarshall_customer_paperwork_pages(self, candidate: UPNDict) -> int:
         return self._unmarshall(candidate, "customer_paperwork_pages")
 
-    def unmarshall_dates(self, candidate: UPNDict) -> UPNDates:
-        result = UPNDates()
-        result.despatch = self._unmarshall(candidate, "despatch_date")
-        result.delivery = self._unmarshall(candidate, "delivery_datetime")
-
-        return result
+    def unmarshall_dates(self, candidate: UPNDict) -> DatesProvider:
+        return dates.unmarshall(candidate)
 
     def unmarshall_services(self, candidate: UPNDict) -> ServicesProvider:
         return services.unmarshall(candidate)

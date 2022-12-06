@@ -1,14 +1,16 @@
 from abc import abstractmethod
-import datetime
 from src.main.companies.upn.interfaces.address import DeliveryAddressProvider
+from src.main.companies.upn.interfaces.dates import DatesProvider
+from src.main.companies.upn.interfaces.pallets import NetworkPallet, CustPallet
 from src.main.companies.upn.interfaces.references import ReferencesUpload
-from src.main.companies.upn.interfaces.services.container import ServicesProvider
-from src.main.companies.upn.interfaces.pallets import (
-    NetworkPallet, CustPallet)
+from src.main.companies.upn.interfaces.services.container import \
+    ServicesProvider
 
 
 class BaseConsignment(
-        DeliveryAddressProvider, ReferencesUpload, ServicesProvider):
+        DeliveryAddressProvider, ReferencesUpload, ServicesProvider,
+        DatesProvider
+):
     """Base Interface for UPN Consignment interfaces to draw common
     functionality from (ConNo, Del address etc).
     """
@@ -20,16 +22,6 @@ class BaseConsignment(
     @property
     @abstractmethod
     def customer_id(self) -> int:
-        ...
-
-    @property
-    @abstractmethod
-    def despatch_date(self) -> datetime.datetime:
-        ...
-
-    @property
-    @abstractmethod
-    def delivery_datetime(self) -> datetime.datetime:
         ...
 
     @property
