@@ -1,24 +1,24 @@
 from abc import ABC, abstractmethod
-from src.main.companies.upn.interfaces.services.service import UPNService
+from src.main.companies.upn.interfaces.services.specific import ServiceProvider
 
 
-class UPNServices(ABC):
+class ServicesProvider(ABC):
     @property
     @abstractmethod
-    def main_service(self) -> UPNService:
+    def main_service(self) -> ServiceProvider:
         ...
 
     @property
     @abstractmethod
-    def premium_service(self) -> UPNService:
+    def premium_service(self) -> ServiceProvider:
         ...
 
     @property
     @abstractmethod
-    def tail_lift_required(self) -> UPNService:
+    def tail_lift_required(self) -> ServiceProvider:
         ...
 
     @property
     @abstractmethod
-    def additional_service(self) -> UPNService:
+    def additional_service(self) -> ServiceProvider:
         ...

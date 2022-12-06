@@ -1,6 +1,6 @@
 import unittest
 from src.main.companies.upn.database.services import (
-    UPNServicesDatabase, UPNService)
+    UPNServicesDatabase, ServiceProvider)
 
 
 class TestUPNServicesDatabase(unittest.TestCase):
@@ -26,26 +26,26 @@ class TestUPNServicesDatabase(unittest.TestCase):
     def test_should_load_additional_service(self) -> None:
         self._assert_is_additional_service(self._database.additional_service())
 
-    def _assert_is_main_service(self, service: UPNService) -> None:
+    def _assert_is_main_service(self, service: ServiceProvider) -> None:
         self._assert_service_has_values(
             service=service, constraints=["P", "S", "I", "R"], default="P")
 
-    def _assert_is_premium_service(self, service: UPNService) -> None:
+    def _assert_is_premium_service(self, service: ServiceProvider) -> None:
         self._assert_service_has_values(
             service=service,
             constraints=["", "B10", "AM", "Timed", "Sat"], default=""
         )
 
-    def _assert_is_tail_lift_service(self, service: UPNService) -> None:
+    def _assert_is_tail_lift_service(self, service: ServiceProvider) -> None:
         self._assert_service_has_values(
             service=service, constraints=["", "TLift"], default="")
 
-    def _assert_is_additional_service(self, service: UPNService) -> None:
+    def _assert_is_additional_service(self, service: ServiceProvider) -> None:
         self._assert_service_has_values(
             service=service, constraints=["", "BI", "Bkd", "OOH"], default="")
 
     def _assert_service_has_values(
-            self, service: UPNService, constraints: list[str], default: str
+            self, service: ServiceProvider, constraints: list[str], default: str
     ) -> None:
         self.assertListEqual(constraints, service.constraints())
         self.assertEqual(default, service.selection)

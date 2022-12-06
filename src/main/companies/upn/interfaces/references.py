@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class ReferenceProvider(ABC):
+class ReferencesUpload(ABC):
     @property
     @abstractmethod
     def consignment_no(self) -> str:
@@ -12,3 +12,9 @@ class ReferenceProvider(ABC):
     def customer_reference(self) -> str:
         ...
 
+
+class ReferencesDownload(ReferencesUpload):
+    @property
+    @abstractmethod
+    def barcode(self) -> str:
+        ...

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class UPNService(ABC):
+class ServiceProvider(ABC):
     @abstractmethod
     def select(self, service_option: str) -> None:
         ...

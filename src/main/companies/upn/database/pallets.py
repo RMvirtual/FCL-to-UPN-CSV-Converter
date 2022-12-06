@@ -4,6 +4,7 @@ from src.main.companies.upn.implementations.pallets.network import factory
 
 
 class UPNPalletsDatabase:
+    """Factory for loading pallet types from UPN system configuration."""
     def __init__(self):
         self._data_file = api.network_pallet()
 

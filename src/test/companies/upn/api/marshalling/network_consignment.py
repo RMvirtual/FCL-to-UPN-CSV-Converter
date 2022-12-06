@@ -159,7 +159,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         address.telephone_no = "0"
 
     def _set_up_correct_services(self) -> None:
-        self._correct_consignment.services.main_service = "P"
+        self._correct_consignment.services.main = "P"
         self._correct_consignment.services.premium_service = None
         self._correct_consignment.services.tail_lift_required = None
         self._correct_consignment.services.additional_service = None

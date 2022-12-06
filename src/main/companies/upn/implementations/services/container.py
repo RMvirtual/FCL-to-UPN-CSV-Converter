@@ -1,19 +1,18 @@
 import dataclasses
 from src.main.companies.upn.interfaces.services.container \
-    import UPNServices as UPNServicesProvider
-
-from src.main.companies.upn.interfaces.services.service import UPNService
+    import ServicesProvider
+from src.main.companies.upn.interfaces.services.specific import ServiceProvider
 
 
 @dataclasses.dataclass
 class ServicesDetails:
-    main: UPNService = None
-    premium: UPNService = None
-    tail_lift: UPNService = None
-    additional: UPNService = None
+    main: ServiceProvider = None
+    premium: ServiceProvider = None
+    tail_lift: ServiceProvider = None
+    additional: ServiceProvider = None
 
 
-class UPNServices(UPNServicesProvider):
+class UPNServices(ServicesProvider):
     def __init__(self, services_details: ServicesDetails) -> None:
         self._main = services_details.main
         self._premium = services_details.premium
@@ -21,17 +20,17 @@ class UPNServices(UPNServicesProvider):
         self._additional = services_details.additional
 
     @property
-    def main_service(self) -> UPNService:
+    def main_service(self) -> ServiceProvider:
         return self._main
 
     @property
-    def premium_service(self) -> UPNService:
+    def premium_service(self) -> ServiceProvider:
         return self._premium
 
     @property
-    def tail_lift_required(self) -> UPNService:
+    def tail_lift_required(self) -> ServiceProvider:
         return self._tail_lift
 
     @property
-    def additional_service(self) -> UPNService:
+    def additional_service(self) -> ServiceProvider:
         return self._additional

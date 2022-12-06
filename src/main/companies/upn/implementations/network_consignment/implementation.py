@@ -5,12 +5,12 @@ from src.main.companies.upn.implementations.customer.customer \
     import UPNCustomer
 from src.main.companies.upn.implementations.references.references \
     import UPNReferences
-from src.main.companies.upn.implementations.services.container.container \
-    import UPNServices
+from src.main.companies.upn.implementations.services.container \
+    import ServicesProvider
 from src.main.companies.upn.implementations.time.dates import UPNDates
 from src.main.companies.upn.interfaces.address import UPNAddressable
 from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
-from src.main.companies.upn.interfaces.pallets import NetworkPallet
+from src.main.companies.upn.interfaces.pallets import UPNPallet
 
 
 class NetworkConsignment(ConsignmentDownload):
@@ -23,7 +23,7 @@ class NetworkConsignment(ConsignmentDownload):
         self._dates = UPNDates()
         self._cargo = UPNCargo()
         self._special_instructions = ""
-        self._services = UPNServices()
+        self._services = ServicesProvider()
 
     @property
     def references(self) -> UPNReferences:
@@ -158,31 +158,31 @@ class NetworkConsignment(ConsignmentDownload):
         self._customer_paperwork_pages = new_quantity
 
     @property
-    def services(self) -> UPNServices:
+    def services(self) -> ServicesProvider:
         return self._services
 
     @services.setter
-    def services(self, new_services: UPNServices) -> None:
-        if type(new_services) is not UPNServices:
+    def services(self, new_services: ServicesProvider) -> None:
+        if type(new_services) is not ServicesProvider:
             raise TypeError("Incorrect type for services.")
 
         self._services = new_services
 
     @property
     def main_service(self) -> str:
-        return self._services.main_service
+        return self._services.main_service.selection
 
     @property
     def premium_service(self) -> str:
-        return self._services.premium_service
+        return self._services.premium_service.selection
 
     @property
     def tail_lift_required(self) -> str:
-        return self._services.tail_lift_required
+        return self._services.tail_lift_required.selection
 
     @property
     def additional_service(self) -> str:
-        return self._services.additional_service
+        return self._services.additional_service.selection
 
     @property
     def cargo(self):
@@ -193,7 +193,7 @@ class NetworkConsignment(ConsignmentDownload):
         self._cargo = new_cargo
 
     @property
-    def pallets(self) -> list[NetworkPallet]:
+    def pallets(self) -> list[UPNPallet]:
         return self._cargo.pallets
 
     @property

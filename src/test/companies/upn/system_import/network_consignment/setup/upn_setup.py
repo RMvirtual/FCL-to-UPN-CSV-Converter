@@ -19,8 +19,8 @@ from src.main.companies.upn.implementations.pallets.network \
 from src.main.companies.upn.implementations.references.references \
     import UPNReferences
 
-from src.main.companies.upn.implementations.services.container.container \
-    import UPNServices
+from src.main.companies.upn.implementations.services.container \
+    import ServicesProvider
 
 
 def dummy_network_consignment() -> NetworkConsignment:
@@ -63,8 +63,8 @@ def _delivery_address() -> UPNAddressable:
     return result
 
 
-def _services() -> UPNServices:
-    result = UPNServices()
+def _services() -> ServicesProvider:
+    result = ServicesProvider()
     result.main_service = "P"
     result.premium_service = None
     result.tail_lift_required = None
