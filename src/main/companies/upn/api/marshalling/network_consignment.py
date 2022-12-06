@@ -1,11 +1,10 @@
 from src.main.companies.upn.api.mapping import network_consignment
+from src.main.companies.upn.api.marshalling import customer
 from src.main.companies.upn.api.marshalling import references
 from src.main.companies.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
 from src.main.companies.upn.database.services import UPNServicesDatabase
 from src.main.companies.upn.implementations.address.address import UPNAddress
-from src.main.companies.upn.implementations.customer \
-    import UPNCustomer
 from src.main.companies.upn.implementations.network_consignment \
     .implementation import NetworkConsignment
 from src.main.companies.upn.implementations.services.container \
@@ -13,6 +12,7 @@ from src.main.companies.upn.implementations.services.container \
 from src.main.companies.upn.implementations.time.dates import UPNDates
 from src.main.companies.upn.interfaces.address import UPNAddressable
 from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
+from src.main.companies.upn.interfaces.customer import CustomerDetails
 from src.main.companies.upn.interfaces.pallets import NetworkPallet
 
 UPNDict = dict[str, any]
@@ -32,12 +32,8 @@ class UpnNetworkConsignmentMarshaller:
     def unmarshall_depot_no(self, candidate: UPNDict) -> int:
         return self._unmarshall(candidate, "depot_no")
 
-    def unmarshall_customer(self, candidate: UPNDict) -> UPNCustomer:
-        result = UPNCustomer()
-        result.name = self._unmarshall(candidate, "customer_name")
-        result.id = self._unmarshall(candidate, "customer_id")
-
-        return result
+    def unmarshall_customer(self, candidate: UPNDict) -> CustomerDetails:
+        return customer.unmarshall(candidate)
 
     def unmarshall_delivery_address(
             self, candidate: UPNDict) -> UPNAddressable:
