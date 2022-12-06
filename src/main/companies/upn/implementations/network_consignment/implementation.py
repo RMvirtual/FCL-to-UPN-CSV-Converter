@@ -1,7 +1,7 @@
 import datetime
 from src.main.companies.upn.implementations.address.address import UPNAddress
 from src.main.companies.upn.implementations.cargo.container import UPNCargo
-from src.main.companies.upn.implementations.customer.customer \
+from src.main.companies.upn.implementations.customer \
     import UPNCustomer
 from src.main.companies.upn.implementations.references.references \
     import UPNReferences

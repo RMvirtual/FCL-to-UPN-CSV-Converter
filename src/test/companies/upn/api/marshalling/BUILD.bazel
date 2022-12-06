@@ -26,3 +26,12 @@ py_test(
         "//src/main/companies/upn/api/marshalling",
     ],
 )
+
+py_test(
+    name = "customer",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/companies/upn/api/marshalling",
+    ],
+)

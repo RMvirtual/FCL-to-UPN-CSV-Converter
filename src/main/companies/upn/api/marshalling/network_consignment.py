@@ -1,20 +1,18 @@
 from src.main.companies.upn.api.mapping import network_consignment
+from src.main.companies.upn.api.marshalling import references
 from src.main.companies.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
 from src.main.companies.upn.database.services import UPNServicesDatabase
 from src.main.companies.upn.implementations.address.address import UPNAddress
-from src.main.companies.upn.implementations.customer.customer \
+from src.main.companies.upn.implementations.customer \
     import UPNCustomer
 from src.main.companies.upn.implementations.network_consignment \
     .implementation import NetworkConsignment
-from src.main.companies.upn.implementations.references.references \
-    import UPNReferences
 from src.main.companies.upn.implementations.services.container \
     import ServicesProvider
 from src.main.companies.upn.implementations.time.dates import UPNDates
 from src.main.companies.upn.interfaces.address import UPNAddressable
 from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
-from src.main.companies.upn.interfaces.references import ReferencesUpload
 from src.main.companies.upn.interfaces.pallets import NetworkPallet
 
 UPNDict = dict[str, any]
@@ -27,11 +25,9 @@ class UpnNetworkConsignmentMarshaller:
 
     def unmarshall(self, candidate: UPNDict) -> ConsignmentDownload:
         result = NetworkConsignment()
-        result.references = self.unmarshall_references(candidate)
+        result.references = references.unmarshall_references(candidate)
 
         return result
-
-
 
     def unmarshall_depot_no(self, candidate: UPNDict) -> int:
         return self._unmarshall(candidate, "depot_no")
