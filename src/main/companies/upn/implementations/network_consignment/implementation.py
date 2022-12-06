@@ -5,7 +5,7 @@ from src.main.companies.upn.implementations.customer.customer \
     import UPNCustomer
 from src.main.companies.upn.implementations.references.references \
     import UPNReferences
-from src.main.companies.upn.implementations.services.services \
+from src.main.companies.upn.implementations.services.container.container \
     import UPNServices
 from src.main.companies.upn.implementations.time.dates import UPNDates
 from src.main.companies.upn.interfaces.address import UPNAddressable

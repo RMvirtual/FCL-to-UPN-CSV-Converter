@@ -1,10 +1,9 @@
-from abc import abstractmethod
 import copy
-from src.main.companies.upn.interfaces.services.service import UPNService
+from src.main.companies.upn.interfaces.services.service \
+    import UPNService as UPNServiceProvider
 
 
-class AbstractUPNService(UPNService):
-    @abstractmethod
+class UPNService(UPNServiceProvider):
     def __init__(
             self, constraints: list[str], default_value: str = None) -> None:
         if default_value is not None and default_value not in constraints:

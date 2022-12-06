@@ -7,7 +7,10 @@ class TestUPNServicesDatabase(unittest.TestCase):
         self._database = UPNServicesDatabase()
 
     def test_should_get_main_service_for_network_consignment(self) -> None:
-        self.fail("MOCK FAIL.")
+        result = self._database.main_service()
+
+        self.assertListEqual(["P", "S", "I", "R"], result.constraints())
+        self.assertEqual("P", result.selection)
 
 
 if __name__ == '__main__':

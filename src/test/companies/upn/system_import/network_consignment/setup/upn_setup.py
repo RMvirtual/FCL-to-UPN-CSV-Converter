@@ -19,7 +19,7 @@ from src.main.companies.upn.implementations.pallets.network \
 from src.main.companies.upn.implementations.references.references \
     import UPNReferences
 
-from src.main.companies.upn.implementations.services.services \
+from src.main.companies.upn.implementations.services.container.container \
     import UPNServices
 
 
