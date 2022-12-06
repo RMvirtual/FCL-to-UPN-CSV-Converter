@@ -8,6 +8,11 @@ class UPNCargo(ABC):
     def total_weight(self) -> int:
         ...
 
+    @total_weight.setter
+    @abstractmethod
+    def total_weight(self, new_weight: int) -> None:
+        ...
+
     @property
     @abstractmethod
     def pallets(self) -> list[UPNPallet]:

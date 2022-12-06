@@ -1,5 +1,8 @@
-from src.main.companies.upn.api.data_types.containers import UPNContainersMarshaller
-from src.main.companies.upn.api.data_types.primitives import UPNPrimitiveMarshaller
+from src.main.companies.upn.api.data_types.containers \
+    import UPNContainersMarshaller
+
+from src.main.companies.upn.api.data_types.primitives \
+    import UPNPrimitiveMarshaller
 
 
 class UPNDataTypeMarshaller:

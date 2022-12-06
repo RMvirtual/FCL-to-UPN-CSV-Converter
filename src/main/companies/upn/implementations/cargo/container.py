@@ -11,6 +11,10 @@ class UPNCargo(UPNCargoable):
     def total_weight(self) -> int:
         return self._total_weight
 
+    @total_weight.setter
+    def total_weight(self, new_weight: int) -> None:
+        self._total_weight = new_weight
+
     @property
     def pallets(self) -> list[UPNPallet]:
         return self._pallets

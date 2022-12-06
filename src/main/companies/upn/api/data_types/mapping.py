@@ -1,5 +1,6 @@
 import dataclasses
-from src.main.companies.upn.api.data_types.marshalling import UPNDataTypeMarshaller
+from src.main.companies.upn.api.data_types.marshalling \
+    import UPNDataTypeMarshaller
 
 
 @dataclasses.dataclass

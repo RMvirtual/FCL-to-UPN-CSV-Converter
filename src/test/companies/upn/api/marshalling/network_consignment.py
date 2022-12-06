@@ -36,7 +36,16 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         result = self._marshaller.unmarshall_delivery_address(
             self._raw_consignment)
 
-        self.assertEqual(self._correct_consignment.delivery_address, result)
+        correct_address = self._correct_consignment.delivery_address
+        self.assertEqual(correct_address.name, result.name)
+        self.assertEqual(correct_address.line_1, result.line_1)
+        self.assertEqual(correct_address.line_2, result.line_2)
+        self.assertEqual(correct_address.town, result.town)
+        self.assertEqual(correct_address.county, result.county)
+        self.assertEqual(correct_address.post_code, result.post_code)
+        self.assertEqual(correct_address.country, result.country)
+        self.assertEqual(correct_address.contact_name, result.contact_name)
+        self.assertEqual(correct_address.telephone_no, result.telephone_no)
 
     def test_should_unmarshall_total_weight(self) -> None:
         result = self._marshaller.unmarshall_total_weight(
@@ -87,7 +96,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
             'DeliveryAdd2': 'GILLBRANDS ROAD',
             'DeliveryTown': 'SKELMERSDALE',
             'DeliveryCounty': 'LANCS',
-            'DeliveryPostcode': 'WN8  9TA',
+            'DeliveryPostcode': 'WN8 9TA',
             'DeliveryCountry': 'UNITED KINGDOM',
             'DeliveryContactName': 'Katherine   01695 729101',
             'DeliveryPhone': '0',
@@ -144,7 +153,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         address.line_2 = "GILLBRANDS ROAD"
         address.town = "SKELMERSDALE"
         address.county = "LANCS"
-        address.post_code = "WN8  9TA"
+        address.post_code = "WN8 9TA"
         address.country = "UNITED KINGDOM"
         address.contact_name = "Katherine   01695 729101"
         address.telephone_no = "0"
@@ -183,7 +192,8 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         pallet_2.consignment_barcode = "W213359799C"
         pallet_2.barcode = "W213359801P"
 
-        self._correct_consignment.cargo.pallets = [pallet_1, pallet_2]
+        self._correct_consignment.cargo.pallets.append(pallet_1)
+        self._correct_consignment.cargo.pallets.append(pallet_2)
 
 
 if __name__ == '__main__':
