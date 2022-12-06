@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.main.companies.upn.interfaces.services.specific import ServiceProvider
+from src.main.companies.upn.interfaces.databases.services.specific import ServiceProvider
 
 
 class ServicesProvider(ABC):

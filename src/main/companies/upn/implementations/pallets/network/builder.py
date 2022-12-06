@@ -2,7 +2,7 @@ import copy
 from src.main.companies.upn.implementations.pallets.network.implementation \
     import NetworkPallet, NetworkPalletFields
 
-from src.main.companies.upn.interfaces.pallets import (
+from src.main.companies.upn.interfaces.api.pallets import (
     NetworkPallet as NetworkPalletable)
 
 

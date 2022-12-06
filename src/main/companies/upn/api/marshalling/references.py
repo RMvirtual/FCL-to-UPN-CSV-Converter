@@ -2,7 +2,7 @@ from src.main.companies.upn.api.marshalling.unmarshaller \
     import UPNAPIUnmarshaller
 from src.main.companies.upn.implementations.references.references \
     import UPNReferences
-from src.main.companies.upn.interfaces.references import ReferencesDownload
+from src.main.companies.upn.interfaces.api.references import ReferencesDownload
 
 
 class UPNReferencesUnmarshaller(UPNAPIUnmarshaller):

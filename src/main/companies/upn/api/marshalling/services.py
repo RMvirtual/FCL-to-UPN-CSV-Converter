@@ -1,4 +1,4 @@
-from src.main.companies.upn.interfaces.services.container \
+from src.main.companies.upn.interfaces.databases.services.container \
     import ServicesProvider
 
 from src.main.companies.upn.database.services import UPNServicesDatabase

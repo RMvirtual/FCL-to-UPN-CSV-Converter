@@ -23,7 +23,7 @@ class TestUPNDataTypeMarshalling(unittest.TestCase):
         }.items())
 
         for candidate, correct_type in unmarshall_candidates_to_correct_types:
-            unmarshalled_type = self._marshaller.unmarshall_to_type(candidate)
+            unmarshalled_type = self._marshaller.unmarshall_type(candidate)
             self.assertEqual(correct_type, unmarshalled_type)
 
     def test_should_unmarshall_container_types(self):
@@ -33,7 +33,7 @@ class TestUPNDataTypeMarshalling(unittest.TestCase):
         }.items())
 
         for candidate, correct_type in unmarshall_candidates_to_correct_types:
-            unmarshalled_type = self._marshaller.unmarshall_to_type(candidate)
+            unmarshalled_type = self._marshaller.unmarshall_type(candidate)
             self.assertEqual(correct_type, unmarshalled_type)
 
     def test_should_unmarshall_primitive_instances_with_values(self):
@@ -43,7 +43,7 @@ class TestUPNDataTypeMarshalling(unittest.TestCase):
         )
 
         self._validate_callback_against_marshalling_candidates(
-            self._marshaller.unmarshall_to_instance, unmarshalling_candidates)
+            self._marshaller.unmarshall_instance, unmarshalling_candidates)
 
     def test_should_unmarshall_empty_primitive_instances(self):
         unmarshalling_candidates = (
@@ -52,7 +52,7 @@ class TestUPNDataTypeMarshalling(unittest.TestCase):
         )
 
         self._validate_callback_against_marshalling_candidates(
-            self._marshaller.unmarshall_to_instance, unmarshalling_candidates)
+            self._marshaller.unmarshall_instance, unmarshalling_candidates)
 
     def test_should_unmarshall_empty_container_instances(self):
         unmarshalling_candidates = (
@@ -61,7 +61,7 @@ class TestUPNDataTypeMarshalling(unittest.TestCase):
         )
 
         self._validate_callback_against_marshalling_candidates(
-            self._marshaller.unmarshall_to_instance, unmarshalling_candidates
+            self._marshaller.unmarshall_instance, unmarshalling_candidates
         )
 
     def _validate_callback_against_marshalling_candidates(

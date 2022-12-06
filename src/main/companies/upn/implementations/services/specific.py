@@ -1,5 +1,5 @@
 import copy
-from src.main.companies.upn.interfaces.services.specific import ServiceProvider
+from src.main.companies.upn.interfaces.databases.services.specific import ServiceProvider
 
 
 class UPNService(ServiceProvider):

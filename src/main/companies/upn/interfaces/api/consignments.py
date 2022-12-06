@@ -1,10 +1,10 @@
 from abc import abstractmethod
-from src.main.companies.upn.interfaces.address import DeliveryAddressProvider
-from src.main.companies.upn.interfaces.dates import DatesProvider
-from src.main.companies.upn.interfaces.pallets import NetworkPallet, CustPallet
-from src.main.companies.upn.interfaces.references import ReferencesUpload
-from src.main.companies.upn.interfaces.services.container import \
-    ServicesProvider
+from src.main.companies.upn.interfaces.api.address import DeliveryAddressProvider
+from src.main.companies.upn.interfaces.api.dates import DatesProvider
+from src.main.companies.upn.interfaces.api.pallets import NetworkPallet, CustPallet
+from src.main.companies.upn.interfaces.api.references import ReferencesUpload
+from src.main.companies.upn.interfaces.database.services.container \
+    import ServicesProvider
 
 
 class BaseConsignment(

@@ -1,13 +1,13 @@
 from src.main.companies.upn.api.mapping import network_pallet
 from src.main.companies.upn.implementations.pallets.network import factory
-from src.main.companies.upn.interfaces.pallets import NetworkPallet
+from src.main.companies.upn.interfaces.api.pallets import NetworkPallet
 
 UPNDict = dict[str, any]
 
 
 class UpnNetworkPalletMarshaller:
     def __init__(self):
-        self._mappings = network_pallet.network_pallet()
+        self._mappings = network_pallet.network_pallet_constraints()
 
     def unmarshall(self, candidate: dict) -> NetworkPallet:
         result = factory.network_pallet(

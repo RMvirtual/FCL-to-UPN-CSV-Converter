@@ -5,7 +5,7 @@ def network_consignment_keys():
     return _api_file_contents("consignments/network/keys.json")
 
 
-def network_consignment_values():
+def network_consignment_constraints():
     return _api_file_contents("consignments/network/constraints.json")
 
 

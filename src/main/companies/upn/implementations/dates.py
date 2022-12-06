@@ -1,5 +1,5 @@
 from datetime import datetime
-from src.main.companies.upn.interfaces.dates import DatesProvider
+from src.main.companies.upn.interfaces.api.dates import DatesProvider
 
 
 class UPNDates(DatesProvider):

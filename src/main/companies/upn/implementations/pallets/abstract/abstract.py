@@ -1,7 +1,7 @@
 import copy
 import dataclasses
 from abc import abstractmethod
-from src.main.companies.upn.interfaces.pallets import UPNPallet
+from src.main.companies.upn.interfaces.api.pallets import UPNPallet
 
 
 @dataclasses.dataclass

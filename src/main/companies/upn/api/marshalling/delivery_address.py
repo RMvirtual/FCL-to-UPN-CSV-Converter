@@ -1,4 +1,4 @@
-from src.main.companies.upn.interfaces.address import UPNAddressable
+from src.main.companies.upn.interfaces.api.address import UPNAddressable
 from src.main.companies.upn.implementations.address.address import UPNAddress
 
 from src.main.companies.upn.api.marshalling.unmarshaller \

@@ -6,9 +6,9 @@ from src.main.companies.upn.implementations.dates import UPNDates
 from src.main.companies.upn.implementations.references.references \
     import UPNReferences
 from src.main.companies.upn.implementations.services.container import UPNServices
-from src.main.companies.upn.interfaces.address import UPNAddressable
-from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
-from src.main.companies.upn.interfaces.pallets import UPNPallet
+from src.main.companies.upn.interfaces.api.address import UPNAddressable
+from src.main.companies.upn.interfaces.api.consignments import ConsignmentDownload
+from src.main.companies.upn.interfaces.api.pallets import UPNPallet
 
 
 class NetworkConsignment(ConsignmentDownload):

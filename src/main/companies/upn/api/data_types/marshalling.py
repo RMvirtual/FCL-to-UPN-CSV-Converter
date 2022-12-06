@@ -1,7 +1,7 @@
-from src.main.companies.upn.api.data_types.containers \
+from src.main.companies.upn.api.data_types.containers.marshalling \
     import UPNContainersMarshaller
 
-from src.main.companies.upn.api.data_types.primitives \
+from src.main.companies.upn.api.data_types.primitives.marshalling \
     import UPNPrimitiveMarshaller
 
 
@@ -10,12 +10,12 @@ class UPNDataTypeMarshaller:
         self._primitives = UPNPrimitiveMarshaller()
         self._containers = UPNContainersMarshaller()
 
-    def unmarshall_to_type(self, type_name: str) -> type:
+    def unmarshall_type(self, type_name: str) -> type:
         self._assert_data_type_exists(type_name)
 
         return self._type(type_name)
 
-    def unmarshall_to_instance(self, type_name: str, value: any = None) -> any:
+    def unmarshall_instance(self, type_name: str, value: any = None) -> any:
         self._assert_data_type_exists(type_name)
 
         return (
@@ -28,7 +28,7 @@ class UPNDataTypeMarshaller:
         return type_name in self._primitives or type_name in self._containers
 
     def _unmarshall_primitive(self, type_name: str, value: any = None) -> any:
-        return self._primitives.unmarshall_to_instance(type_name, value)
+        return self._primitives.unmarshall_instance(type_name, value)
 
     def _unmarshall_container(self, type_name: str):
         return self._containers.unmarshall_to_instance(type_name)
@@ -39,7 +39,7 @@ class UPNDataTypeMarshaller:
             else self._containers
         )
 
-        return type_container.unmarshall_to_type(type_name)
+        return type_container.unmarshall_type(type_name)
 
     def _assert_data_type_exists(self, type_name):
         if not self.is_data_type(type_name):

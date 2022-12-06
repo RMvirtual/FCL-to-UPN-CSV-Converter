@@ -2,12 +2,12 @@ from src.main.companies.upn.implementations.services.container import (
     ServicesDetails, UPNServices)
 
 from src.main.companies.upn.implementations.services.specific import UPNService
-from src.main.companies.upn.interfaces.services.container import (
+from src.main.companies.upn.interfaces.databases.services.container import (
     ServicesProvider, ServiceProvider)
 
 from src.main.file_system.companies.upn import api
 
-from src.main.companies.upn.database.consignment.network.key_mappings \
+from src.main.companies.upn.database.consignment.network.keys \
     import NetworkConsignmentKeys
 
 
@@ -15,7 +15,7 @@ class UPNServicesDatabase:
     """Factory for loading service types from UPN system configuration."""
     def __init__(self):
         self._upn_keys = NetworkConsignmentKeys()
-        self._values = api.network_consignment_values()
+        self._values = api.network_consignment_constraints()
 
     def all_services(self) -> ServicesProvider:
         fields = ServicesDetails()

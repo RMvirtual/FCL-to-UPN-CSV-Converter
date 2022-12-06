@@ -1,5 +1,5 @@
 from src.main.file_system.companies.upn import api
-from src.main.companies.upn.interfaces.pallets import CustPallet, NetworkPallet
+from src.main.companies.upn.interfaces.api.pallets import CustPallet, NetworkPallet
 from src.main.companies.upn.implementations.pallets.network import factory
 
 

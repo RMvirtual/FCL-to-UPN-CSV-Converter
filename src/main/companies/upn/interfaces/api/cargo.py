@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.main.companies.upn.interfaces.pallets import UPNPallet
+from src.main.companies.upn.interfaces.api.pallets import UPNPallet
 
 
 class UPNCargo(ABC):

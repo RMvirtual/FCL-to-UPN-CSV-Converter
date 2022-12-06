@@ -1,5 +1,5 @@
-from src.main.companies.upn.interfaces.pallets import UPNPallet
-from src.main.companies.upn.interfaces.cargo import UPNCargo as UPNCargoable
+from src.main.companies.upn.interfaces.api.pallets import UPNPallet
+from src.main.companies.upn.interfaces.api.cargo import UPNCargo as UPNCargoable
 
 
 class UPNCargo(UPNCargoable):

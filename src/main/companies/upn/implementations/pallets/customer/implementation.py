@@ -1,7 +1,7 @@
 from src.main.companies.upn.implementations.pallets.abstract.abstract import (
     AbstractUPNPallet, UPNPalletFields)
 
-from src.main.companies.upn.interfaces.pallets import (
+from src.main.companies.upn.interfaces.api.pallets import (
     CustPallet as CustPalletable)
 
 

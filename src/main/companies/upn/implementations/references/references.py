@@ -1,4 +1,4 @@
-from src.main.companies.upn.interfaces.references import ReferencesDownload
+from src.main.companies.upn.interfaces.api.references import ReferencesDownload
 
 
 class UPNReferences(ReferencesDownload):

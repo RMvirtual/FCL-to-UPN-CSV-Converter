@@ -1,10 +1,10 @@
 import datetime
-from src.main.companies.upn.interfaces.pallets import NetworkPallet
+from src.main.companies.upn.interfaces.api.pallets import NetworkPallet
 
 from src.main.companies.upn.implementations.network_consignment\
     .implementation import NetworkConsignment
 
-from src.main.companies.upn.interfaces.address import UPNAddressable
+from src.main.companies.upn.interfaces.api.address import UPNAddressable
 from src.main.companies.upn.implementations.address.address import UPNAddress
 
 from src.main.companies.upn.implementations.customer \

@@ -4,5 +4,8 @@ py_library(
     name = "data_types",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+        "//src/main/companies/upn/api/data_types/containers",
+        "//src/main/companies/upn/api/data_types/primitives",
+    ],
 )

@@ -14,18 +14,18 @@ from src.main.companies.upn.implementations.network_consignment \
     .implementation import NetworkConsignment
 from src.main.companies.upn.implementations.services.container \
     import ServicesProvider
-from src.main.companies.upn.interfaces.address import UPNAddressable
-from src.main.companies.upn.interfaces.consignments import ConsignmentDownload
-from src.main.companies.upn.interfaces.customer import CustomerDetails
-from src.main.companies.upn.interfaces.dates import DatesProvider
-from src.main.companies.upn.interfaces.pallets import NetworkPallet
+from src.main.companies.upn.interfaces.api.address import UPNAddressable
+from src.main.companies.upn.interfaces.api.consignments import ConsignmentDownload
+from src.main.companies.upn.interfaces.api.customer import CustomerDetails
+from src.main.companies.upn.interfaces.api.dates import DatesProvider
+from src.main.companies.upn.interfaces.api.pallets import NetworkPallet
 
 UPNDict = dict[str, any]
 
 
 class UpnNetworkConsignmentMarshaller:
     def __init__(self):
-        self._mapping = network_consignment.mapping()
+        self._mapping = network_consignment.constraints()
         self._pallet_marshaller = UpnNetworkPalletMarshaller()
 
     def unmarshall(self, candidate: UPNDict) -> ConsignmentDownload:
@@ -79,4 +79,4 @@ class UpnNetworkConsignmentMarshaller:
         return candidate[self._map_interface_to(field_name)]
 
     def _map_interface_to(self, field_name: str):
-        return getattr(self._mapping, field_name).mapping
+        return getattr(self._mapping, field_name).constraints

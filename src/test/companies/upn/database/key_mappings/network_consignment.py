@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.database.consignment.network.key_mappings \
+from src.main.companies.upn.database.consignment.network.keys \
     import NetworkConsignmentKeys
 
 

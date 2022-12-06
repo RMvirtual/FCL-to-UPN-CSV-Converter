@@ -2,7 +2,7 @@ import copy
 from src.main.companies.upn.implementations.pallets.customer \
     .implementation import CustPallet as CustPalletImpl, CustPalletFields
 
-from src.main.companies.upn.interfaces.pallets import CustPallet
+from src.main.companies.upn.interfaces.api.pallets import CustPallet
 
 
 class CustPalletBuilder:

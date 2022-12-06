@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-
+from src.main.companies.upn.interfaces.databases.constraints.constraints \
+    import APIConstraint
 
 class ServiceProvider(ABC):
     @abstractmethod
@@ -12,5 +13,5 @@ class ServiceProvider(ABC):
         ...
 
     @abstractmethod
-    def constraints(self) -> list[str]:
+    def constraints(self) -> APIConstraint:
         ...
