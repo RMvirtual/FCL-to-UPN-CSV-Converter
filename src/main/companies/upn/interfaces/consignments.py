@@ -2,13 +2,13 @@ from abc import abstractmethod
 import datetime
 from src.main.companies.upn.interfaces.address import DeliveryAddressProvider
 from src.main.companies.upn.interfaces.references import ReferenceProvider
-from src.main.companies.upn.interfaces.services import ServiceProvider
+from src.main.companies.upn.interfaces.services.container import UPNServices
 from src.main.companies.upn.interfaces.pallets import (
     NetworkPallet, CustPallet)
 
 
 class BaseConsignment(
-        DeliveryAddressProvider, ReferenceProvider, ServiceProvider):
+        DeliveryAddressProvider, ReferenceProvider, UPNServices):
     """Base Interface for UPN Consignment interfaces to draw common
     functionality from (ConNo, Del address etc).
     """

@@ -53,7 +53,7 @@ class NetworkPallet(UPNPallet):
 
     @barcode.setter
     @abstractmethod
-    def barcode(self, new_barcode) -> None:
+    def barcode(self, new_barcode: str) -> None:
         ...
 
     @property
@@ -63,7 +63,7 @@ class NetworkPallet(UPNPallet):
 
     @consignment_barcode.setter
     @abstractmethod
-    def consignment_barcode(self, new_barcode) -> None:
+    def consignment_barcode(self, new_barcode: str) -> None:
         ...
 
     @abstractmethod
@@ -83,5 +83,5 @@ class CustPallet(UPNPallet):
 
     @weight.setter
     @abstractmethod
-    def weight(self, new_weight) -> None:
+    def weight(self, new_weight: int) -> None:
         ...

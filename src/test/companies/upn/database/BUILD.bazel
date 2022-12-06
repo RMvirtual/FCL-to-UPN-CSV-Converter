@@ -10,3 +10,14 @@ py_test(
         "//src/main/companies/upn/database",
     ],
 )
+
+py_test(
+    name = "services",
+    srcs = glob([
+        "*.py",
+    ]),
+    data = [],
+    deps = [
+        "//src/main/companies/upn/database",
+    ],
+)
