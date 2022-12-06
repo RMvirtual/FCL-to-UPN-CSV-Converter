@@ -2,9 +2,9 @@ from src.main.companies.upn.api.mapping import network_consignment
 from src.main.companies.upn.api.marshalling import customer
 from src.main.companies.upn.api.marshalling import references
 from src.main.companies.upn.api.marshalling import services
+from src.main.companies.upn.api.marshalling import delivery_address
 from src.main.companies.upn.api.marshalling.network_pallet \
     import UpnNetworkPalletMarshaller
-from src.main.companies.upn.implementations.address.address import UPNAddress
 from src.main.companies.upn.implementations.network_consignment \
     .implementation import NetworkConsignment
 from src.main.companies.upn.implementations.services.container \
@@ -35,23 +35,8 @@ class UpnNetworkConsignmentMarshaller:
     def unmarshall_customer(self, candidate: UPNDict) -> CustomerDetails:
         return customer.unmarshall(candidate)
 
-    def unmarshall_delivery_address(
-            self, candidate: UPNDict) -> UPNAddressable:
-        def _unmarshall_candidate(field_name: str) -> any:
-            return self._unmarshall(candidate, field_name)
-
-        result = UPNAddress()
-        result.name = _unmarshall_candidate("delivery_name")
-        result.line_1 = _unmarshall_candidate("delivery_address_1")
-        result.line_2 = _unmarshall_candidate("delivery_address_2")
-        result.town = _unmarshall_candidate("delivery_town")
-        result.county = _unmarshall_candidate("delivery_county")
-        result.post_code = _unmarshall_candidate("delivery_post_code")
-        result.country = _unmarshall_candidate("delivery_country")
-        result.contact_name = _unmarshall_candidate("delivery_contact_name")
-        result.telephone_no = _unmarshall_candidate("delivery_telephone_no")
-
-        return result
+    def unmarshall_del_address(self, candidate: UPNDict) -> UPNAddressable:
+        return delivery_address.unmarshall(candidate)
 
     def unmarshall_total_weight(self, candidate: UPNDict) -> int:
         return self._unmarshall(candidate, "total_weight")

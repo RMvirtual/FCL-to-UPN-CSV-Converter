@@ -33,7 +33,7 @@ class TestNetworkConsignmentMarshaller(unittest.TestCase):
         self.assertEqual(self._correct_consignment.customer, result)
 
     def test_should_unmarshall_delivery_address(self) -> None:
-        result = self._marshaller.unmarshall_delivery_address(
+        result = self._marshaller.unmarshall_del_address(
             self._raw_consignment)
 
         correct_address = self._correct_consignment.delivery_address
