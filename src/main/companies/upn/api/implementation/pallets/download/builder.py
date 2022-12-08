@@ -1,8 +1,8 @@
 import copy
-from src.main.companies.upn.api.implementation.pallets.network.implementation \
+from src.main.companies.upn.api.implementation.pallets.download.implementation \
     import NetworkPallet, NetworkPalletFields
 
-from src.main.companies.upn.api.interface.pallets.network import DownloadPallet
+from src.main.companies.upn.api.interface.pallets.download import DownloadPallet
 
 
 class NetworkPalletBuilder:

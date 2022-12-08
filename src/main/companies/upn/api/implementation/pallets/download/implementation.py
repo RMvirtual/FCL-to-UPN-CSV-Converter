@@ -1,7 +1,7 @@
 from src.main.companies.upn.api.implementation.pallets.abstract.abstract \
     import UPNPalletFields, AbstractUPNPallet
 
-from src.main.companies.upn.api.interface.pallets.network import DownloadPallet
+from src.main.companies.upn.api.interface.pallets.download import DownloadPallet
 
 
 class NetworkPalletFields(UPNPalletFields):

@@ -1,8 +1,8 @@
 import copy
-from src.main.companies.upn.api.implementation.pallets.customer\
-    .implementation import CustPallet as CustPalletImpl, CustPalletFields
+from src.main.companies.upn.api.implementation.pallets.upload\
+    .implementation import CustPallet, CustPalletFields
 
-from src.main.companies.upn.api.interface.pallets.base import CustPallet
+from src.main.companies.upn.api.interface.pallets.upload import UploadPallet
 
 
 class CustPalletBuilder:
@@ -24,5 +24,5 @@ class CustPalletBuilder:
     def set_weight(self, weight: int) -> None:
         self._fields.weight = weight
 
-    def build(self) -> CustPallet:
-        return CustPalletImpl(self._fields)
+    def build(self) -> UploadPallet:
+        return CustPallet(self._fields)

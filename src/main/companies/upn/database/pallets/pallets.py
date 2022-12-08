@@ -1,6 +1,6 @@
-from src.main.companies.upn.api.interface.pallets.customer import UploadPallet
-from src.main.companies.upn.api.interface.pallets.network import DownloadPallet
-from src.main.companies.upn.api.implementation.pallets.network import factory
+from src.main.companies.upn.api.interface.pallets.upload import UploadPallet
+from src.main.companies.upn.api.interface.pallets.download import DownloadPallet
+from src.main.companies.upn.api.implementation.pallets.download import factory
 from src.main.file_system.companies.upn.api.pallets.network \
     import NetworkPalletFiles
 

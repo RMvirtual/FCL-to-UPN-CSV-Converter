@@ -1,6 +1,6 @@
 import unittest
 from src.main.companies.upn.api.implementation.cargo.container import UPNCargo
-from src.main.companies.upn.api.implementation.pallets.network import factory
+from src.main.companies.upn.api.implementation.pallets.download import factory
 
 
 class TestUPNCargo(unittest.TestCase):

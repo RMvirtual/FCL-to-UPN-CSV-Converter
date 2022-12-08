@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class ServicesProvider(ABC):
+class ServiceOptions(ABC):
     @property
     @abstractmethod
     def main_service(self) -> str:

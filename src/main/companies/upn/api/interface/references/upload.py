@@ -11,10 +11,3 @@ class ReferencesUpload(ABC):
     @abstractmethod
     def customer_reference(self) -> str:
         ...
-
-
-class ReferencesDownload(ReferencesUpload):
-    @property
-    @abstractmethod
-    def barcode(self) -> str:
-        ...

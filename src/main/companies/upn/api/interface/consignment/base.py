@@ -2,12 +2,12 @@ from abc import abstractmethod
 from src.main.companies.upn.api.interface.address.delivery \
     import DeliveryAddressProvider
 from src.main.companies.upn.api.interface.dates.dates import DatesProvider
-from src.main.companies.upn.api.interface.services.services \
-    import ServicesProvider
+from src.main.companies.upn.api.interface.service.options \
+    import ServiceOptions
 
 
 class BaseConsignment(
-        DeliveryAddressProvider, ServicesProvider, DatesProvider):
+        DeliveryAddressProvider, ServiceOptions, DatesProvider):
     """Base Interface for UPN Consignment interfaces to draw common
     functionality from (ConNo, Del address etc).
     """

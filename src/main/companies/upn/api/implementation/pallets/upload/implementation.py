@@ -1,15 +1,14 @@
-from src.main.companies.upn.api.implementation.pallets.abstract.abstract import (
-    AbstractUPNPallet, UPNPalletFields)
+from src.main.companies.upn.api.implementation.pallets.abstract.abstract \
+    import AbstractUPNPallet, UPNPalletFields
 
-from src.main.companies.upn.api.interface.pallets.base import (
-    CustPallet as CustPalletable)
+from src.main.companies.upn.api.interface.pallets.upload import UploadPallet
 
 
 class CustPalletFields(UPNPalletFields):
     weight: int = 0
 
 
-class CustPallet(AbstractUPNPallet, CustPalletable):
+class CustPallet(AbstractUPNPallet, UploadPallet):
     def __init__(self, pallet_fields: CustPalletFields) -> None:
         super().__init__(pallet_fields)
         self._weight = pallet_fields.weight

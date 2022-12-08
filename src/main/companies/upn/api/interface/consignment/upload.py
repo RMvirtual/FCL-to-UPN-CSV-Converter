@@ -1,10 +1,10 @@
 from abc import abstractmethod
 
-from src.main.companies.upn.api.interface.consignments.base \
+from src.main.companies.upn.api.interface.consignment.base \
     import BaseConsignment
 
-from src.main.companies.upn.api.interface.pallets.customer import UploadPallet
-from src.main.companies.upn.api.interface.references.references \
+from src.main.companies.upn.api.interface.pallets.upload import UploadPallet
+from src.main.companies.upn.api.interface.references.upload \
     import ReferencesUpload
 
 

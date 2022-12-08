@@ -1,9 +1,10 @@
 import copy
 
 
-class ItemConstraint:
-    def __init__(self, type_of: type, const_values: list[any] = None) -> None:
-        self._type_constraint = type_of
+class DataConstraint:
+    def __init__(
+            self, const_type: type, const_values: list[any] = None) -> None:
+        self._type_constraint = const_type
         self._value_constraints = const_values if const_values else []
         self._assert_values_are_homogenous()
 
@@ -17,5 +18,8 @@ class ItemConstraint:
 
     def _assert_values_are_homogenous(self) -> None:
         for value in self._value_constraints:
-            if not isinstance(value, self._type_constraint):
-                raise TypeError(f"Contained type for {value} is not valid.")
+            self._assert_value_matches_type_constraint(value)
+
+    def _assert_value_matches_type_constraint(self, value: any) -> None:
+        if not isinstance(value, self._type_constraint):
+            raise TypeError(f"Contained type for {value} is not valid.")

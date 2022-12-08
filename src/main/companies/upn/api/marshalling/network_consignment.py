@@ -10,7 +10,7 @@ from src.main.companies.upn.api.marshalling.references \
     import UPNReferencesUnmarshaller
 from src.main.companies.upn.api.marshalling.services \
     import UPNServicesUnmarshaller
-from src.main.companies.upn.api.implementation.network_consignment\
+from src.main.companies.upn.api.implementation.consignment.download\
     .implementation import NetworkConsignment
 from src.main.companies.upn.api.implementation.services.container \
     import ServicesProvider

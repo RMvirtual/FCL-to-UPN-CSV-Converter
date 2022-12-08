@@ -4,10 +4,10 @@ import unittest
 from src.main.companies.upn.api.marshalling.network_consignment \
     import UpnNetworkConsignmentMarshaller
 
-from src.main.companies.upn.api.implementation.network_consignment\
+from src.main.companies.upn.api.implementation.consignment.download\
     .implementation import NetworkConsignment
 
-from src.main.companies.upn.api.implementation.pallets.network import \
+from src.main.companies.upn.api.implementation.pallets.download import \
     factory as pallet_factory
 
 

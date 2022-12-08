@@ -1,7 +1,7 @@
 import datetime
 from src.main.companies.upn.api.interface.pallets.base import NetworkPallet
 
-from src.main.companies.upn.api.implementation.network_consignment\
+from src.main.companies.upn.api.implementation.consignment.download\
     .implementation import NetworkConsignment
 
 from src.main.companies.upn.interfaces.address import UPNAddressable
@@ -14,7 +14,7 @@ from src.main.companies.upn.api.implementation.dates import UPNDates
 from src.main.companies.upn.api.implementation.cargo.container \
     import UPNCargo
 
-from src.main.companies.upn.api.implementation.pallets.network import \
+from src.main.companies.upn.api.implementation.pallets.download import \
     factory as pallet_factory
 
 from src.main.companies.upn.api.implementation.references.references \

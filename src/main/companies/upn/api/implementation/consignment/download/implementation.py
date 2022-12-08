@@ -1,5 +1,6 @@
 import datetime
-from src.main.companies.upn.api.implementation.address.address import UPNAddress
+from src.main.companies.upn.api.implementation.address.address \
+    import UPNAddress
 from src.main.companies.upn.api.implementation.cargo.container import UPNCargo
 from src.main.companies.upn.api.implementation.customer import UPNCustomer
 from src.main.companies.upn.api.implementation.dates import UPNDates
@@ -8,7 +9,7 @@ from src.main.companies.upn.api.implementation.references.references \
 from src.main.companies.upn.api.implementation.services.container \
     import UPNServices
 from src.main.companies.upn.api.interface.address.generic import UPNAddressable
-from src.main.companies.upn.api.interface.consignments.network \
+from src.main.companies.upn.api.interface.consignment.download \
     import ConsignmentDownload
 from src.main.companies.upn.api.interface.pallets.base import UPNPallet
 
