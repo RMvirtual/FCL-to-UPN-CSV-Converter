@@ -1,4 +1,4 @@
-from src.main.companies.upn.interfaces.database.constraint \
+from src.main.companies.upn.database.interface.constraints.constraint \
     import UPNDatabaseConstraint
 
 

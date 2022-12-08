@@ -1,4 +1,4 @@
-from src.main.companies.upn.implementations.cargo.container \
+from src.main.companies.upn.api.implementation.cargo.container \
     import UPNCargo
 from src.main.freight.cargo.container.interface import CargoReading
 from src.main.freight.cargo.entries.interface import CargoEntry

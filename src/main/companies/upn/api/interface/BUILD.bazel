@@ -1,0 +1,17 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "interface",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/upn/api/interface/address",
+        "//src/main/companies/upn/api/interface/cargo",
+        "//src/main/companies/upn/api/interface/consignments",
+        "//src/main/companies/upn/api/interface/customer",
+        "//src/main/companies/upn/api/interface/dates",
+        "//src/main/companies/upn/api/interface/pallets",
+        "//src/main/companies/upn/api/interface/references",
+        "//src/main/companies/upn/api/interface/services",
+    ],
+)

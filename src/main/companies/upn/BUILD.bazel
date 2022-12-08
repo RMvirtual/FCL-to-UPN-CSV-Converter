@@ -7,8 +7,6 @@ py_library(
     deps = [
         "//src/main/companies/upn/api",
         "//src/main/companies/upn/database",
-        "//src/main/companies/upn/implementations",
-        "//src/main/companies/upn/interfaces",
         "//src/main/companies/upn/system_import",
     ],
 )

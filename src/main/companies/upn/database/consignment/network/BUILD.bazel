@@ -5,8 +5,8 @@ py_library(
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/companies/upn/implementations",
-        "//src/main/companies/upn/interfaces",
+        "//src/main/companies/upn/database/constraints",
+        "//src/main/companies/upn/database/interface",
         "//src/main/file_system/companies/upn",
     ],
 )

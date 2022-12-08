@@ -1,0 +1,12 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "interface",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/upn/database/interface/constraints",
+        "//src/main/companies/upn/database/interface/network_consignment",
+        "//src/main/companies/upn/database/interface/services",
+    ],
+)

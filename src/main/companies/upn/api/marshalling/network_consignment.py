@@ -10,15 +10,15 @@ from src.main.companies.upn.api.marshalling.references \
     import UPNReferencesUnmarshaller
 from src.main.companies.upn.api.marshalling.services \
     import UPNServicesUnmarshaller
-from src.main.companies.upn.implementations.network_consignment \
+from src.main.companies.upn.api.implementation.network_consignment\
     .implementation import NetworkConsignment
-from src.main.companies.upn.implementations.services.container \
+from src.main.companies.upn.api.implementation.services.container \
     import ServicesProvider
-from src.main.companies.upn.interfaces.api.address import UPNAddressable
-from src.main.companies.upn.interfaces.api.consignments import ConsignmentDownload
-from src.main.companies.upn.interfaces.api.customer import CustomerDetails
-from src.main.companies.upn.interfaces.api.dates import DatesProvider
-from src.main.companies.upn.interfaces.api.pallets import NetworkPallet
+from src.main.companies.upn.interfaces.address import UPNAddressable
+from src.main.companies.upn.api.interface.consignments.base import ConsignmentDownload
+from src.main.companies.upn.api.interface.customer.customer import CustomerDetails
+from src.main.companies.upn.api.interface.dates.dates import DatesProvider
+from src.main.companies.upn.api.interface.pallets.base import NetworkPallet
 
 UPNDict = dict[str, any]
 

@@ -1,5 +1,5 @@
 import copy
-from src.main.companies.upn.implementations.references.references \
+from src.main.companies.upn.api.implementation.references.references \
     import UPNReferences
 from src.main.freight.references.consignment.interface \
     import ConsignmentReference

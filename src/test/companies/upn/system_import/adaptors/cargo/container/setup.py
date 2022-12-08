@@ -1,7 +1,7 @@
-from src.main.companies.upn.implementations.cargo.container \
+from src.main.companies.upn.api.implementation.cargo.container \
     import UPNCargo
 
-from src.main.companies.upn.implementations.pallets.network.builder \
+from src.main.companies.upn.api.implementation.pallets.network.builder \
     import NetworkPalletBuilder
 
 

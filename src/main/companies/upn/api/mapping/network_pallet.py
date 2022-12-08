@@ -1,5 +1,6 @@
 import dataclasses
-from src.main.file_system.companies.upn import api
+from src.main.file_system.companies.upn.api.pallets.network \
+    import NetworkPalletFiles
 from src.main.companies.upn.api.data_types.constraints import (
     Constraints, ConstraintsMarshaller)
 
@@ -17,7 +18,7 @@ def network_pallet_constraints() -> NetworkPalletConstraints:
     fields as the NetworkPalletMapping dataclass.
     """
     marshaller = ConstraintsMarshaller()
-    constraints_file = api.network_pallet_constraints()
+    constraints_file = NetworkPalletFiles()
     result = NetworkPalletConstraints()
 
     for field in list(dataclasses.fields(NetworkPalletConstraints)):

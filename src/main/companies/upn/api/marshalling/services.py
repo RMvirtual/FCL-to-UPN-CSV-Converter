@@ -1,7 +1,7 @@
 from src.main.companies.upn.interfaces.databases.services.container \
     import ServicesProvider
 
-from src.main.companies.upn.database.services import UPNServicesDatabase
+from src.main.companies.upn.database.services.services import UPNServicesDatabase
 from src.main.companies.upn.api.marshalling.unmarshaller \
     import UPNAPIUnmarshaller
 

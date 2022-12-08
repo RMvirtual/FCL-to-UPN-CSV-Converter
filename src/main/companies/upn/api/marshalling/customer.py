@@ -1,5 +1,5 @@
-from src.main.companies.upn.implementations.customer import UPNCustomer
-from src.main.companies.upn.interfaces.api.customer import CustomerDetails
+from src.main.companies.upn.api.implementation.customer import UPNCustomer
+from src.main.companies.upn.api.interface.customer.customer import CustomerDetails
 
 from src.main.companies.upn.api.marshalling.unmarshaller \
     import UPNAPIUnmarshaller

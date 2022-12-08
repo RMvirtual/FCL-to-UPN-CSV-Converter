@@ -1,7 +1,7 @@
-from src.main.companies.upn.implementations.pallets.network \
-    import factory as pallet_factory
+from src.main.companies.upn.api.implementation.pallets.network import \
+    factory as pallet_factory
 
-from src.main.companies.upn.interfaces.api.pallets import NetworkPallet
+from src.main.companies.upn.api.interface.pallets.base import NetworkPallet
 from src.main.metrics.dimensions.interface import Dimensions
 from src.main.metrics.dimensions import factory as dims_factory
 

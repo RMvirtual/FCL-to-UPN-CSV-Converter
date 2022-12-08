@@ -1,12 +1,13 @@
-from src.main.companies.upn.interfaces.databases.network_consignment.keys \
+from src.main.companies.upn.database.interface.network_consignment.keys \
     import NetworkConsignmentKeyMap
 
-from src.main.file_system.companies.upn import api
+from src.main.file_system.companies.upn.api.consignments.network \
+    import NetworkConsignmentFiles
 
 
 class NetworkConsignmentKeys(NetworkConsignmentKeyMap):
     def __init__(self):
-        self._keys = api.network_consignment_keys()
+        self._keys = NetworkConsignmentFiles().keys
 
     @property
     def consignment_no(self) -> str:

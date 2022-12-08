@@ -1,0 +1,12 @@
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "pallets",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/upn/api/implementation",
+        "//src/main/companies/upn/database/interface",
+        "//src/main/file_system/companies/upn/api/pallets",
+    ],
+)

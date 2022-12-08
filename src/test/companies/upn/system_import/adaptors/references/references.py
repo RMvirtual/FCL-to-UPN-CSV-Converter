@@ -2,7 +2,7 @@ import unittest
 from src.main.companies.upn.system_import.adaptors.references.adaptor \
     import UPNReferencesAdaptor
 
-from src.main.companies.upn.implementations.references.references \
+from src.main.companies.upn.api.implementation.references.references \
     import UPNReferences
 
 
