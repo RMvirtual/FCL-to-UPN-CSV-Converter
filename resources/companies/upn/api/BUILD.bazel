@@ -1,0 +1,11 @@
+filegroup(
+    name = "api",
+    srcs = [
+        "//resources/companies/upn/api/consignments",
+        "//resources/companies/upn/api/data_types",
+        "//resources/companies/upn/api/pallets",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

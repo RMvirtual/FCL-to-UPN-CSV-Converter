@@ -1,0 +1,9 @@
+filegroup(
+    name = "pallets",
+    srcs = [
+        "//resources/companies/upn/api/pallets/network",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

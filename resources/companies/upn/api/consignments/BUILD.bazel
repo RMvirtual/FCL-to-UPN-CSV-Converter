@@ -1,0 +1,9 @@
+filegroup(
+    name = "consignments",
+    srcs = [
+        "//resources/companies/upn/api/consignments/network",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))
