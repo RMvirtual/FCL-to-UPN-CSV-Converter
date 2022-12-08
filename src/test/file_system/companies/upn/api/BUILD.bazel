@@ -8,3 +8,12 @@ py_test(
         "//src/main/file_system/companies/upn/api/pallets",
     ],
 )
+
+py_test(
+    name = "consignments",
+    srcs = glob(["*.py"]),
+    data = [],
+    deps = [
+        "//src/main/file_system/companies/upn/api/consignments",
+    ],
+)

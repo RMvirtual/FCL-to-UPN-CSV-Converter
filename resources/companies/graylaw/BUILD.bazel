@@ -1,0 +1,9 @@
+filegroup(
+    name = "graylaw",
+    srcs = [
+        "//resources/companies/graylaw/cargo_types",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

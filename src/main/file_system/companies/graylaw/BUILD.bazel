@@ -4,7 +4,7 @@ py_library(
     name = "graylaw",
     srcs = glob(["*.py"]),
     data = [
-        "//resources/companies/graylaw/cargo_types",
+        "//resources/companies/graylaw",
     ],
     visibility = ["//visibility:public"],
     deps = [

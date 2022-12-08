@@ -1,0 +1,11 @@
+filegroup(
+    name = "companies",
+    srcs = [
+        "//resources/companies/forward_office",
+        "//resources/companies/graylaw",
+        "//resources/companies/upn",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

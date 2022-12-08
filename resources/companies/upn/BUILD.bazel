@@ -1,0 +1,12 @@
+filegroup(
+    name = "upn",
+    srcs = [
+        "//resources/companies/upn/api",
+        "//resources/companies/upn/export_mappings",
+        "//resources/companies/upn/export_profiles",
+        "//resources/companies/upn/system_import",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))

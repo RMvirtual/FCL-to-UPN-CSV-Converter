@@ -1,11 +1,9 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "forward_office",
+    name = "keys",
     srcs = glob(["*.py"]),
-    data = [
-        "//resources/companies/forward_office",
-    ],
+    data = [],
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/file_system/file_readers",

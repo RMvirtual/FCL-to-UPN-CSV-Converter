@@ -1,13 +1,14 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "forward_office",
+    name = "consignments",
     srcs = glob(["*.py"]),
     data = [
-        "//resources/companies/forward_office",
+        "//resources/companies/upn/api/consignments",
     ],
     visibility = ["//visibility:public"],
     deps = [
+        "//src/main/file_system/companies/upn/api/keys",
         "//src/main/file_system/file_readers",
     ],
 )

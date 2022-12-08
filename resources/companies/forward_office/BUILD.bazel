@@ -1,0 +1,11 @@
+filegroup(
+    name = "forward_office",
+    srcs = [
+        "//resources/companies/forward_office/dashboard_formats",
+        "//resources/companies/forward_office/package_types",
+        "//resources/companies/forward_office/priority_codes",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(glob(["*"]))
