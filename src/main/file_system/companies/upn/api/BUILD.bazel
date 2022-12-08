@@ -7,5 +7,7 @@ py_library(
         "//resources/companies/upn/api/pallets",
     ],
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+        "//src/main/file_system/companies/upn/api/pallets",
+    ],
 )
