@@ -1,4 +1,4 @@
-from src.main.companies.upn.api.implementation.pallets.download.builder \
+from src.main.companies.upn.api.implementation_1.api.pallets.download.builder \
     import NetworkPalletBuilder
 
 from src.main.companies.upn.api.interface.pallets.download import DownloadPallet

@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.api.implementation.pallets.upload.builder \
+from src.main.companies.upn.api.implementation_1.api.pallets.upload.builder \
     import CustPalletBuilder
 
 

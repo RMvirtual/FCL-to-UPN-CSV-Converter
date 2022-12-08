@@ -1,4 +1,4 @@
-from src.main.companies.upn.api.mapping import network_consignment
+from src.main.companies.upn.api.constraints import network_consignment
 
 
 class UPNAPIUnmarshaller:

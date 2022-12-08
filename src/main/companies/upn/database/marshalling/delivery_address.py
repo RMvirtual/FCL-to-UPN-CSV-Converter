@@ -1,7 +1,8 @@
-from src.main.companies.upn.interfaces.address import UPNAddressable
-from src.main.companies.upn.api.implementation.address.address import UPNAddress
-
-from src.main.companies.upn.api.marshalling.unmarshaller \
+from src.main.companies.upn.database.implementation.address.address \
+    import UPNAddress
+from src.main.companies.upn.api.interface_1.database.address.generic \
+    import UPNAddressable
+from src.main.companies.upn.api.marshalling.controller.unmarshaller \
     import UPNAPIUnmarshaller
 
 

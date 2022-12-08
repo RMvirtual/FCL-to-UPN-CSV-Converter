@@ -1,6 +1,6 @@
 import datetime
 import unittest
-from src.main.companies.upn.api.marshalling import dates
+from src.main.companies.upn.api.marshalling.api import dates
 
 
 class TestUPNServicesUnmarshaller(unittest.TestCase):

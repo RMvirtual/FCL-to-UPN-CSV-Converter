@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.main.companies.upn.database.interface.constraints.constraint \
+from src.main.companies.upn.api.interface_1.database.constraints.constraint \
     import UPNDatabaseConstraint
 
 

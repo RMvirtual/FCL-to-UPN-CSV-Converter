@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.api.marshalling import customer
+from src.main.companies.upn.api.marshalling.database import customer
 
 
 class TestUPNCustomerMarshaller(unittest.TestCase):

@@ -1,5 +1,5 @@
 import copy
-from src.main.companies.upn.api.implementation.pallets.upload\
+from src.main.companies.upn.api.implementation_1.api.pallets.upload\
     .implementation import CustPallet, CustPalletFields
 
 from src.main.companies.upn.api.interface.pallets.upload import UploadPallet

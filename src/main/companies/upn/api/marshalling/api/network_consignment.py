@@ -1,24 +1,29 @@
-from src.main.companies.upn.api.mapping import network_consignment
-from src.main.companies.upn.api.marshalling.customer \
-    import UPNCustomerUnmarshaller
-from src.main.companies.upn.api.marshalling.dates import UPNDatesUnmarshaller
-from src.main.companies.upn.api.marshalling.delivery_address \
-    import UPNDeliveryAddressUnmarshaller
-from src.main.companies.upn.api.marshalling.network_pallet \
-    import UpnNetworkPalletMarshaller
-from src.main.companies.upn.api.marshalling.references \
-    import UPNReferencesUnmarshaller
-from src.main.companies.upn.api.marshalling.services \
-    import UPNServicesUnmarshaller
-from src.main.companies.upn.api.implementation.consignment.download\
+from src.main.companies.upn.api.implementation.consignment.download \
     .implementation import NetworkConsignment
-from src.main.companies.upn.api.implementation.services.container \
+from src.main.companies.upn.database.implementation.service.container \
     import ServicesProvider
-from src.main.companies.upn.interfaces.address import UPNAddressable
-from src.main.companies.upn.api.interface.consignments.base import ConsignmentDownload
-from src.main.companies.upn.api.interface.customer.customer import CustomerDetails
+from src.main.companies.upn.api.interface.consignment.download \
+    import ConsignmentDownload
 from src.main.companies.upn.api.interface.dates.dates import DatesProvider
-from src.main.companies.upn.api.interface.pallets.base import NetworkPallet
+from src.main.companies.upn.api.interface.pallets.download \
+    import DownloadPallet
+from src.main.companies.upn.api.interface.database.address.generic \
+    import UPNAddressable
+from src.main.companies.upn.api.interface.database.customer.customer \
+    import CustomerDetails
+from src.main.companies.upn.api.constraints import network_consignment
+from src.main.companies.upn.api.marshalling.api.dates \
+    import UPNDatesUnmarshaller
+from src.main.companies.upn.api.marshalling.api.network_pallet \
+    import UpnNetworkPalletMarshaller
+from src.main.companies.upn.api.marshalling.api.references \
+    import UPNReferencesUnmarshaller
+from src.main.companies.upn.api.marshalling.database.customer \
+    import UPNCustomerUnmarshaller
+from src.main.companies.upn.api.marshalling.database.services \
+    import UPNServicesUnmarshaller
+from src.main.companies.upn.api.marshalling.database.delivery_address \
+    import UPNDeliveryAddressUnmarshaller
 
 UPNDict = dict[str, any]
 
@@ -70,7 +75,7 @@ class UpnNetworkConsignmentMarshaller:
 
         return marshaller.services(candidate)
 
-    def unmarshall_pallets(self, candidate: UPNDict) -> list[NetworkPallet]:
+    def unmarshall_pallets(self, candidate: UPNDict) -> list[DownloadPallet]:
         pallets = self._unmarshall(candidate, "pallets")["NetworkPallet"]
 
         return list(map(self._pallet_marshaller.unmarshall, pallets))

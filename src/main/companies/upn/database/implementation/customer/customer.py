@@ -1,4 +1,5 @@
-from src.main.companies.upn.api.interface.customer.customer import CustomerDetails
+from src.main.companies.upn.api.interface_1.database.customer.customer \
+    import CustomerDetails
 
 
 class UPNCustomer(CustomerDetails):

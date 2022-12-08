@@ -1,4 +1,4 @@
-from src.main.companies.upn.api.implementation.pallets.abstract.abstract \
+from src.main.companies.upn.api.implementation_1.api.pallets.abstract.abstract \
     import UPNPalletFields, AbstractUPNPallet
 
 from src.main.companies.upn.api.interface.pallets.download import DownloadPallet

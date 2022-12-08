@@ -1,6 +1,6 @@
 import datetime
 import unittest
-from src.main.companies.upn.api.implementation.dates import UPNDates
+from src.main.companies.upn.api.implementation_1.api.dates.dates import UPNDates
 from src.main.companies.upn.system_import.adaptors.time.dates import UPNDatesInterfaceAdaptor
 
 

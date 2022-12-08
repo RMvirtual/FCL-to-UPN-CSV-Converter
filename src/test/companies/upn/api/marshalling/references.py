@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.api.marshalling import references
+from src.main.companies.upn.api.marshalling.api import references
 
 
 class TestUPNReferencesMarshaller(unittest.TestCase):

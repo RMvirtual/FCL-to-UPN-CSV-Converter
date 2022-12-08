@@ -1,8 +1,9 @@
-from src.main.companies.upn.api.marshalling.unmarshaller \
+from src.main.companies.upn.api.marshalling.controller.unmarshaller \
     import UPNAPIUnmarshaller
-from src.main.companies.upn.api.implementation.references.references \
+from src.main.companies.upn.api.implementation_1.api.references.references \
     import UPNReferences
-from src.main.companies.upn.api.interface.references.upload import ReferencesDownload
+from src.main.companies.upn.api.interface.references.download \
+    import ReferencesDownload
 
 
 class UPNReferencesUnmarshaller(UPNAPIUnmarshaller):

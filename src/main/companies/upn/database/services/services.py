@@ -1,12 +1,12 @@
-from src.main.companies.upn.api.implementation.services.container import (
-    ServicesDetails, UPNServices)
-from src.main.companies.upn.api.implementation.services.specific \
-    import UPNService
 from src.main.companies.upn.database.consignment.network.keys \
     import NetworkConsignmentKeys
-from src.main.companies.upn.database.interface.services.container import (
-    ServicesProvider)
-from src.main.companies.upn.database.interface.services.specific \
+from src.main.companies.upn.database.implementation.service.container \
+    import ServicesDetails, UPNServices
+from src.main.companies.upn.database.implementation.service.specific \
+    import UPNService
+from src.main.companies.upn.api.interface_1.database.services.container \
+    import ServicesProvider
+from src.main.companies.upn.api.interface_1.database.services.specific \
     import ServiceProvider
 from src.main.file_system.companies.upn.api.consignments.network \
     import NetworkConsignmentFiles

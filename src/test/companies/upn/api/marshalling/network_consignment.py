@@ -1,13 +1,13 @@
 import datetime
 import unittest
 
-from src.main.companies.upn.api.marshalling.network_consignment \
+from src.main.companies.upn.api.marshalling.api.network_consignment \
     import UpnNetworkConsignmentMarshaller
 
-from src.main.companies.upn.api.implementation.consignment.download\
+from src.main.companies.upn.api.implementation_1.api.consignment.download\
     .implementation import NetworkConsignment
 
-from src.main.companies.upn.api.implementation.pallets.download import \
+from src.main.companies.upn.api.implementation_1.api.pallets.download import \
     factory as pallet_factory
 
 

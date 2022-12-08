@@ -1,26 +1,26 @@
 import datetime
 from src.main.companies.upn.api.interface.pallets.base import NetworkPallet
 
-from src.main.companies.upn.api.implementation.consignment.download\
+from src.main.companies.upn.api.implementation_1.api.consignment.download\
     .implementation import NetworkConsignment
 
 from src.main.companies.upn.interfaces.address import UPNAddressable
-from src.main.companies.upn.api.implementation.address.address import UPNAddress
+from src.main.companies.upn.database.implementation.address.address import UPNAddress
 
 
-from src.main.companies.upn.api.implementation.customer \
+from src.main.companies.upn.database.implementation.customer.customer \
     import UPNCustomer
-from src.main.companies.upn.api.implementation.dates import UPNDates
-from src.main.companies.upn.api.implementation.cargo.container \
+from src.main.companies.upn.api.implementation_1.api.dates.dates import UPNDates
+from src.main.companies.upn.api.implementation_1.api.cargo.container \
     import UPNCargo
 
-from src.main.companies.upn.api.implementation.pallets.download import \
+from src.main.companies.upn.api.implementation_1.api.pallets.download import \
     factory as pallet_factory
 
-from src.main.companies.upn.api.implementation.references.references \
+from src.main.companies.upn.api.implementation_1.api.references.references \
     import UPNReferences
 
-from src.main.companies.upn.api.implementation.services.container \
+from src.main.companies.upn.database.implementation.service.container \
     import ServicesProvider
 
 

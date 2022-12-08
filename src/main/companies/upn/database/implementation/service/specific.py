@@ -1,5 +1,5 @@
 import copy
-from src.main.companies.upn.database.interface.services.specific \
+from src.main.companies.upn.api.interface_1.database.services.specific \
     import ServiceProvider
 
 

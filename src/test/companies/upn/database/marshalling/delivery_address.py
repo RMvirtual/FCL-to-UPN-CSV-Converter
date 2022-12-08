@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.api.marshalling import delivery_address
+from src.main.companies.upn.api.marshalling.database import delivery_address
 
 
 class TestUPNDeliveryAddressUnmarshaller(unittest.TestCase):

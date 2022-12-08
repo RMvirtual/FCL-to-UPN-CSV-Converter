@@ -1,4 +1,4 @@
-from src.main.companies.upn.database.interface.network_consignment.keys \
+from src.main.companies.upn.api.interface_1.database.network_consignment.keys \
     import NetworkConsignmentKeyMap
 
 from src.main.file_system.companies.upn.api.consignments.network \

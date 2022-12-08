@@ -1,14 +1,14 @@
 import datetime
-from src.main.companies.upn.api.implementation.address.address \
+from src.main.companies.upn.database.implementation.address.address \
     import UPNAddress
-from src.main.companies.upn.api.implementation.cargo.container import UPNCargo
-from src.main.companies.upn.api.implementation.customer import UPNCustomer
-from src.main.companies.upn.api.implementation.dates import UPNDates
-from src.main.companies.upn.api.implementation.references.references \
+from src.main.companies.upn.api.implementation_1.api.cargo.container import UPNCargo
+from src.main.companies.upn.database.implementation.customer.customer import UPNCustomer
+from src.main.companies.upn.api.implementation_1.api.dates.dates import UPNDates
+from src.main.companies.upn.api.implementation_1.api.references.references \
     import UPNReferences
-from src.main.companies.upn.api.implementation.services.container \
+from src.main.companies.upn.database.implementation.service.container \
     import UPNServices
-from src.main.companies.upn.api.interface.address.generic import UPNAddressable
+from src.main.companies.upn.api.interface_1.database.address.generic import UPNAddressable
 from src.main.companies.upn.api.interface.consignment.download \
     import ConsignmentDownload
 from src.main.companies.upn.api.interface.pallets.base import UPNPallet

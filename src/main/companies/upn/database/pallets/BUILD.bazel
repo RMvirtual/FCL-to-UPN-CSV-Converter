@@ -6,7 +6,7 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/companies/upn/api/implementation",
-        "//src/main/companies/upn/database/interface",
+        "//src/main/companies/upn/interface/database",
         "//src/main/file_system/companies/upn/api/pallets",
     ],
 )

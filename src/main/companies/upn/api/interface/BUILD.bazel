@@ -8,7 +8,6 @@ py_library(
         "//src/main/companies/upn/api/interface/address",
         "//src/main/companies/upn/api/interface/cargo",
         "//src/main/companies/upn/api/interface/consignment",
-        "//src/main/companies/upn/api/interface/customer",
         "//src/main/companies/upn/api/interface/dates",
         "//src/main/companies/upn/api/interface/pallets",
         "//src/main/companies/upn/api/interface/references",

@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.api.marshalling.network_pallet \
+from src.main.companies.upn.api.marshalling.api.network_pallet \
     import UpnNetworkPalletMarshaller
 
 

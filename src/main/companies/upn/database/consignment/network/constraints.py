@@ -1,10 +1,7 @@
 from src.main.companies.upn.api.constraints.implementation \
-    import APIConstraint
+    import DataConstraint
 
-from src.main.companies.upn.database.interface.constraints.constraint \
-    import UPNDatabaseConstraint
-
-from src.main.companies.upn.database.interface.network_consignment \
+from src.main.companies.upn.api.interface_1.database.network_consignment\
     .constraints import NetworkConsignmentConstraintsList
 
 from src.main.file_system.companies.upn.api.consignments.network \
@@ -17,12 +14,12 @@ class NetworkConsignmentConstraints(NetworkConsignmentConstraintsList):
         self._key_mappings = file.keys
         self._constraints = file.constraints
 
-    def _constraint(self, key: str) -> UPNDatabaseConstraint:
+    def _constraint(self, key: str) -> DataConstraint:
         dictionary = self._map_key_to_constraint(key)
 
-        return APIConstraint(
-            type_constraint=dictionary["type"],
-            value_constraints=(
+        return DataConstraint(
+            const_type=dictionary["type"],
+            const_values=(
                 dictionary["values"] if "values" in dictionary else None)
         )
 
@@ -30,101 +27,101 @@ class NetworkConsignmentConstraints(NetworkConsignmentConstraintsList):
         return self._constraints[self._key_mappings[key]]
 
     @property
-    def consignment_no(self) -> UPNDatabaseConstraint:
+    def consignment_no(self) -> DataConstraint:
         return self._constraint("consignment_no")
 
     @property
-    def barcode(self) -> UPNDatabaseConstraint:
+    def barcode(self) -> DataConstraint:
         return self._constraint("barcode")
 
     @property
-    def customer_reference(self) -> UPNDatabaseConstraint:
+    def customer_reference(self) -> DataConstraint:
         return self._constraint("customer_reference")
 
     @property
-    def depot_no(self) -> UPNDatabaseConstraint:
+    def depot_no(self) -> DataConstraint:
         return self._constraint("depot_no")
 
     @property
-    def despatch_date(self) -> UPNDatabaseConstraint:
+    def despatch_date(self) -> DataConstraint:
         return self._constraint("despatch_date")
 
     @property
-    def delivery_datetime(self) -> UPNDatabaseConstraint:
+    def delivery_datetime(self) -> DataConstraint:
         return self._constraint("delivery_datetime")
 
     @property
-    def delivery_name(self) -> UPNDatabaseConstraint:
+    def delivery_name(self) -> DataConstraint:
         return self._constraint("delivery_name")
 
     @property
-    def delivery_address_1(self) -> UPNDatabaseConstraint:
+    def delivery_address_1(self) -> DataConstraint:
         return self._constraint("delivery_address_1")
 
     @property
-    def delivery_address_2(self) -> UPNDatabaseConstraint:
+    def delivery_address_2(self) -> DataConstraint:
         return self._constraint("delivery_address_2")
 
     @property
-    def delivery_town(self) -> UPNDatabaseConstraint:
+    def delivery_town(self) -> DataConstraint:
         return self._constraint("delivery_town")
 
     @property
-    def delivery_county(self) -> UPNDatabaseConstraint:
+    def delivery_county(self) -> DataConstraint:
         return self._constraint("delivery_county")
 
     @property
-    def delivery_post_code(self) -> UPNDatabaseConstraint:
+    def delivery_post_code(self) -> DataConstraint:
         return self._constraint("delivery_post_code")
 
     @property
-    def delivery_country(self) -> UPNDatabaseConstraint:
+    def delivery_country(self) -> DataConstraint:
         return self._constraint("delivery_country")
 
     @property
-    def delivery_contact_name(self) -> UPNDatabaseConstraint:
+    def delivery_contact_name(self) -> DataConstraint:
         return self._constraint("delivery_contact_name")
 
     @property
-    def delivery_telephone_no(self) -> UPNDatabaseConstraint:
+    def delivery_telephone_no(self) -> DataConstraint:
         return self._constraint("delivery_telephone_no")
 
     @property
-    def total_weight(self) -> UPNDatabaseConstraint:
+    def total_weight(self) -> DataConstraint:
         return self._constraint("total_weight")
 
     @property
-    def special_instructions(self) -> UPNDatabaseConstraint:
+    def special_instructions(self) -> DataConstraint:
         return self._constraint("special_instructions")
 
     @property
-    def customer_id(self) -> UPNDatabaseConstraint:
+    def customer_id(self) -> DataConstraint:
         return self._constraint("customer_id")
 
     @property
-    def customer_name(self) -> UPNDatabaseConstraint:
+    def customer_name(self) -> DataConstraint:
         return self._constraint("customer_name")
 
     @property
-    def customer_paperwork_pages(self) -> UPNDatabaseConstraint:
+    def customer_paperwork_pages(self) -> DataConstraint:
         return self._constraint("customer_paperwork_pages")
 
     @property
-    def main_service(self) -> UPNDatabaseConstraint:
+    def main_service(self) -> DataConstraint:
         return self._constraint("main_service")
 
     @property
-    def premium_service(self) -> UPNDatabaseConstraint:
+    def premium_service(self) -> DataConstraint:
         return self._constraint("premium_service")
 
     @property
-    def tail_lift_required(self) -> UPNDatabaseConstraint:
+    def tail_lift_required(self) -> DataConstraint:
         return self._constraint("tail_lift_required")
 
     @property
-    def additional_service(self) -> UPNDatabaseConstraint:
+    def additional_service(self) -> DataConstraint:
         return self._constraint("additional_service")
 
     @property
-    def pallets(self) -> UPNDatabaseConstraint:
+    def pallets(self) -> DataConstraint:
         return self._constraint("pallets")

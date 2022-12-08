@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.api.marshalling import services
+from src.main.companies.upn.api.marshalling.database import services
 
 
 class TestUPNServicesUnmarshaller(unittest.TestCase):

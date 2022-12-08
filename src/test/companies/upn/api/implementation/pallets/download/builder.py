@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.api.implementation.pallets.download.builder \
+from src.main.companies.upn.api.implementation_1.api.pallets.download.builder \
     import NetworkPalletBuilder
 
 

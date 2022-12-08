@@ -1,5 +1,5 @@
 import dataclasses
-from src.main.companies.upn.database.interface.services.container import (
+from src.main.companies.upn.api.interface_1.database.services.container import (
     ServicesProvider, ServiceProvider)
 
 

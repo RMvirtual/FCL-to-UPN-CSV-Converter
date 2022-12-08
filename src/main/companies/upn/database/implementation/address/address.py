@@ -1,5 +1,5 @@
 from src.main.addresses.implementation import Address
-from src.main.companies.upn.api.interface.address.generic import UPNAddressable
+from src.main.companies.upn.api.interface_1.database.address.generic import UPNAddressable
 
 
 class UPNAddress(UPNAddressable):

@@ -11,7 +11,6 @@ py_library(
         "//src/main/companies/upn/api/data_types",
         "//src/main/companies/upn/api/implementation",
         "//src/main/companies/upn/api/interface",
-        "//src/main/companies/upn/api/mapping",
         "//src/main/companies/upn/api/marshalling",
     ],
 )

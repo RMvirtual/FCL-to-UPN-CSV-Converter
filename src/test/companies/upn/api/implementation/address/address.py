@@ -1,5 +1,6 @@
 import unittest
-from src.main.companies.upn.api.implementation.address.address import UPNAddress
+from src.main.companies.upn.database.implementation.address.address \
+    import UPNAddress
 
 
 class TestUPNAddress(unittest.TestCase):
