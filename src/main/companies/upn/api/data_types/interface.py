@@ -1,15 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class UPNAPIDataTypes(ABC):
-    @abstractmethod
-    def contains(self, data_type: str) -> bool:
-        ...
-
-    @abstractmethod
-    def get(self, data_type: str) -> type:
-        ...
-
+class DataTypesContainer(ABC):
     @abstractmethod
     def __contains__(self, data_type: str) -> bool:
         ...

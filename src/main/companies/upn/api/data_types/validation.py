@@ -1,5 +1,4 @@
-from src.main.companies.upn.api.data_types.abstract.interface \
-    import UPNAPIDataTypes
+from src.main.companies.upn.api.data_types.interface import DataTypesContainer
 
 
 class InvalidUPNDataType(ValueError):
@@ -8,7 +7,7 @@ class InvalidUPNDataType(ValueError):
 
 
 class DataTypesValidator:
-    def __init__(self, data_types: UPNAPIDataTypes) -> None:
+    def __init__(self, data_types: DataTypesContainer) -> None:
         self._data_types = data_types
 
     def assert_data_type_is_valid(self, data_type: str) -> None:

@@ -1,12 +1,12 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "address",
+    name = "builder",
     srcs = glob([
         "*.py",
     ]),
     data = [],
     deps = [
-        "//src/main/companies/upn/implementations/address",
+        "//src/main/companies/upn/api/implementation/pallets/customer",
     ],
 )
