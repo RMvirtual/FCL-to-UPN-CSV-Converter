@@ -1,4 +1,4 @@
-from src.main.companies.upn.database.constraints.constraints \
+from src.main.companies.upn.api.constraints.implementation \
     import APIConstraint
 
 from src.main.companies.upn.database.interface.constraints.constraint \
