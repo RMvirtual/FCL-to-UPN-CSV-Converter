@@ -1,5 +1,5 @@
 from src.main.companies.upn.api.interface.dates.dates import DatesProvider
-from src.main.companies.upn.api.implementation.dates.dates import UPNDates
+from src.main.companies.upn.model.implementation.dates.dates import UPNDates
 
 from src.main.companies.upn.api.marshalling.controller.unmarshaller \
     import UPNAPIUnmarshaller

@@ -1,7 +1,7 @@
 import copy
 from src.main.freight.cargo.entries.interface import CargoEntry
 from src.main.freight.cargo.packages.types.interface import PackageType
-from src.main.companies.upn.api.interface.pallets.base import UPNPallet
+from src.main.companies.upn.api.interface.cargo.pallets.base import UPNPallet
 
 
 class UPNCargoEntryAdaptor(CargoEntry):

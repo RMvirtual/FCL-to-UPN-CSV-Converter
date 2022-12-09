@@ -1,0 +1,13 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("@python_third_party//:requirements.bzl", "requirement")
+
+py_library(
+    name = "model",
+    srcs = glob(["*.py"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/companies/upn/api/model/constraints",
+        "//src/main/companies/upn/api/model/database",
+        "//src/main/companies/upn/api/model/implementation",
+    ],
+)

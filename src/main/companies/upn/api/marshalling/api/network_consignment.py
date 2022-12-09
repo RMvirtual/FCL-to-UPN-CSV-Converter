@@ -1,11 +1,11 @@
-from src.main.companies.upn.api.implementation.consignment.download \
+from src.main.companies.upn.model.implementation.consignment.download\
     .implementation import NetworkConsignment
-from src.main.companies.upn.database.implementation.service.container \
+from src.main.companies.upn.model.implementation.service.container \
     import ServicesProvider
 from src.main.companies.upn.api.interface.consignment.download \
     import ConsignmentDownload
 from src.main.companies.upn.api.interface.dates.dates import DatesProvider
-from src.main.companies.upn.api.interface.pallets.download \
+from src.main.companies.upn.api.interface.cargo.pallets.download \
     import DownloadPallet
 from src.main.companies.upn.api.interface.database.address.generic \
     import UPNAddressable

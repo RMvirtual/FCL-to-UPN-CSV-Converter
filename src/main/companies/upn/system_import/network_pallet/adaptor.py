@@ -3,7 +3,7 @@ from src.main.freight.cargo.packages.oversize.interface import OversizeOptions
 from src.main.freight.cargo.packages.types.interface import PackageType
 from src.main.companies.graylaw.packages.types import database
 from src.main.metrics.dimensions.implementation import Dimensions
-from src.main.companies.upn.api.interface.pallets.base import UPNPallet
+from src.main.companies.upn.api.interface.cargo.pallets.base import UPNPallet
 
 
 class NetworkPalletAdaptor(PackageType):

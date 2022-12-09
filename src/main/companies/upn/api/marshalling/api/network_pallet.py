@@ -1,7 +1,7 @@
 from src.main.companies.upn.api.constraints import network_pallet
 from src.main.companies.upn.api.implementation_1.api.pallets.download import \
     factory
-from src.main.companies.upn.api.interface.pallets.base import NetworkPallet
+from src.main.companies.upn.api.interface.cargo.pallets.base import NetworkPallet
 
 UPNDict = dict[str, any]
 

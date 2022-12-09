@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.database.implementation.address.address import UPNAddress
+from src.main.companies.upn.model.implementation.address.address import UPNAddress
 from src.main.companies.upn.system_import.adaptors.address.adaptor import (
     UPNAddressAdaptor)
 

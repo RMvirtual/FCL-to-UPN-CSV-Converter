@@ -1,11 +1,11 @@
 load("@rules_python//python:defs.bzl", "py_library")
+load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "cargo",
+    name = "constraints",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/companies/upn/api/interface/cargo/container",
-        "//src/main/companies/upn/api/interface/cargo/pallets",
+        "//src/main/companies/upn/model/interface/constraints",
     ],
 )

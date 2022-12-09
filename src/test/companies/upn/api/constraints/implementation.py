@@ -1,5 +1,5 @@
 import unittest
-from src.main.companies.upn.api.constraints.implementation \
+from src.main.companies.upn.model.implementation.constraints.implementation \
     import DataConstraint
 
 

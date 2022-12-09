@@ -1,14 +1,14 @@
 import datetime
-from src.main.companies.upn.api.interface.pallets.base import NetworkPallet
+from src.main.companies.upn.api.interface.cargo.pallets.base import NetworkPallet
 
 from src.main.companies.upn.api.implementation_1.api.consignment.download\
     .implementation import NetworkConsignment
 
 from src.main.companies.upn.interfaces.address import UPNAddressable
-from src.main.companies.upn.database.implementation.address.address import UPNAddress
+from src.main.companies.upn.model.implementation.address.address import UPNAddress
 
 
-from src.main.companies.upn.database.implementation.customer.customer \
+from src.main.companies.upn.model.implementation.customer.customer \
     import UPNCustomer
 from src.main.companies.upn.api.implementation_1.api.dates.dates import UPNDates
 from src.main.companies.upn.api.implementation_1.api.cargo.container \
@@ -20,7 +20,7 @@ from src.main.companies.upn.api.implementation_1.api.pallets.download import \
 from src.main.companies.upn.api.implementation_1.api.references.references \
     import UPNReferences
 
-from src.main.companies.upn.database.implementation.service.container \
+from src.main.companies.upn.model.implementation.service.container \
     import ServicesProvider
 
 
