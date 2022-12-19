@@ -2,11 +2,11 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("@python_third_party//:requirements.bzl", "requirement")
 
 py_library(
-    name = "model",
+    name = "marshalling",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/companies/upn/model/implementation",
-        "//src/main/companies/upn/model/interface",
+        "//src/main/companies/upn/api",
+        "//src/main/companies/upn/model",
     ],
 )
