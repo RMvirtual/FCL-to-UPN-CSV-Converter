@@ -1,8 +1,10 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
-    name = "network_consignment",
+    name = "interface",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [],
+    deps = [
+        "//src/main/companies/upn/model/database/interface/consignment",
+    ],
 )

@@ -5,6 +5,5 @@ py_library(
     name = "api",
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
-    deps = [
-    ],
+    deps = [],
 )

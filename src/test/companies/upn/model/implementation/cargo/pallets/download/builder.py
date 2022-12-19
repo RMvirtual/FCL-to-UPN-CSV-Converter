@@ -1,6 +1,6 @@
 import unittest
-from src.main.companies.upn.api.implementation_1.api.pallets.download.builder \
-    import NetworkPalletBuilder
+from src.main.companies.upn.model.implementation.cargo.pallets.download\
+    .builder import NetworkPalletBuilder
 
 
 class TestUPNNetworkPallet(unittest.TestCase):

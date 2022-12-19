@@ -5,6 +5,6 @@ py_library(
     srcs = glob(["*.py"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/main/companies/upn/database/consignment/network",
+        "//src/main/companies/upn/model/database/consignment/network",
     ],
 )

@@ -1,7 +1,7 @@
-from src.main.companies.upn.api.implementation_1.api.pallets.abstract.abstract \
-    import AbstractUPNPallet, UPNPalletFields
-
-from src.main.companies.upn.api.interface.cargo.pallets.upload import UploadPallet
+from src.main.companies.upn.api.interface.cargo.pallets.upload \
+    import UploadPallet
+from src.main.companies.upn.model.implementation.cargo.pallets.abstract \
+    .abstract import AbstractUPNPallet, UPNPalletFields
 
 
 class CustPalletFields(UPNPalletFields):

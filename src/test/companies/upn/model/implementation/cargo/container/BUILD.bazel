@@ -7,7 +7,6 @@ py_test(
     ]),
     data = [],
     deps = [
-        "//src/main/companies/upn/api/implementation/cargo",
-        "//src/main/companies/upn/api/implementation/pallets",
+        "//src/main/companies/upn/model/implementation/cargo",
     ],
 )

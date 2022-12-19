@@ -7,6 +7,6 @@ py_test(
     ]),
     data = [],
     deps = [
-        "//src/main/companies/upn/database/services",
+        "//src/main/companies/upn/model/database/services",
     ],
 )

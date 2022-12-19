@@ -5,7 +5,7 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/companies/upn/api/marshalling",
+        "//src/main/companies/upn/model/database/marshalling",
     ],
 )
 
@@ -14,7 +14,7 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/companies/upn/api/marshalling",
+        "//src/main/companies/upn/model/database/marshalling",
     ],
 )
 
@@ -23,6 +23,6 @@ py_test(
     srcs = glob(["*.py"]),
     data = [],
     deps = [
-        "//src/main/companies/upn/api/marshalling",
+        "//src/main/companies/upn/model/database/marshalling",
     ],
 )

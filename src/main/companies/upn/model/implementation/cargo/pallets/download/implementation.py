@@ -1,7 +1,8 @@
-from src.main.companies.upn.api.implementation_1.api.pallets.abstract.abstract \
-    import UPNPalletFields, AbstractUPNPallet
+from src.main.companies.upn.model.implementation.cargo.pallets.abstract\
+    .abstract import UPNPalletFields, AbstractUPNPallet
 
-from src.main.companies.upn.api.interface.cargo.pallets.download import DownloadPallet
+from src.main.companies.upn.api.interface.cargo.pallets.download \
+    import DownloadPallet
 
 
 class NetworkPalletFields(UPNPalletFields):

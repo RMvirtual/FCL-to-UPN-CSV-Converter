@@ -12,8 +12,7 @@ from src.main.companies.upn.model.interface.address.general \
     import UPNAddressable
 from src.main.companies.upn.model.implementation.cargo.container.container\
     import UPNCargo
-from src.main.companies.upn.model.implementation.dates.dates \
-    import UPNDates
+from src.main.companies.upn.model.implementation.dates.dates import UPNDates
 from src.main.companies.upn.model.implementation.references.download \
     import UPNReferences
 

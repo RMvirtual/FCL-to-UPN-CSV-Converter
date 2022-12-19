@@ -1,6 +1,6 @@
 import unittest
-from src.main.companies.upn.api.implementation_1.api.pallets.download import \
-    factory
+from src.main.companies.upn.model.implementation.cargo.pallets.download \
+    import factory
 
 
 class TestNetworkPalletFactory(unittest.TestCase):

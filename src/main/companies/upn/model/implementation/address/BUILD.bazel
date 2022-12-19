@@ -6,6 +6,6 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/addresses",
-        "//src/main/companies/upn/api/interface",
+        "//src/main/companies/upn/model/interface/address",
     ],
 )

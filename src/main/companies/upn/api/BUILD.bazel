@@ -7,9 +7,7 @@ py_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/main/companies/upn/api/client",
-        "//src/main/companies/upn/api/constraints",
         "//src/main/companies/upn/api/data_types",
-        "//src/main/companies/upn/api/implementation",
         "//src/main/companies/upn/api/interface",
         "//src/main/companies/upn/api/marshalling",
     ],
