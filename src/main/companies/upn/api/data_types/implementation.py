@@ -18,6 +18,14 @@ class APIDataTypes(DataTypesContainer):
 
         self._validator = DataTypesValidator(self)
 
+    def type(self, type_name: str) -> type:
+        return self[type_name]
+
+    def instance(self, type_name: str, value=None) -> any:
+        result_type = self[type_name]
+
+        return result_type(value) if value else result_type()
+
     def is_container(self, type_name: str) -> bool:
         return type_name in self._containers
 
