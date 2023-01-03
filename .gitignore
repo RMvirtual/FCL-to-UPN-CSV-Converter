@@ -148,3 +148,4 @@ user.bazelrc
 
 /config/companies/**.json
 /config/companies/upn/api.json
+/config/api/upn_api.json
